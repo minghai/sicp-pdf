@@ -2264,12 +2264,12 @@ uniform, end up causing more trouble than they are worth when programs become
 large and complex.  In the words of Alan Perlis, ``Syntactic sugar causes
 cancer of the semicolon.''}
 
-そのような一般的な評価ルールに対する例外は@newterm{特別形式}と呼ばれます。
-@t{define}は特別形式の一例に過ぎません。すぐに他の例に出会うことになります。
-特別な形式は全てそれ自身の評価ルールを持ちます。色々な種類の式(それぞれが
+そのような一般的な評価ルールに対する例外は@newterm{特殊形式}と呼ばれます。
+@t{define}は特殊形式の一例に過ぎません。すぐに他の例に出会うことになります。
+特殊形式は全てそれ自身の評価ルールを持ちます。色々な種類の式(それぞれが
 関連する評価ルールを持つ)はプログラミング言語の構文を構成します。
 他の多くのプログラミング言語と比較してLispはとても簡単な構文を持ちます。
-式の評価ルールは簡単な一般ルールと少しの特別な形式にて説明可能です。
+式の評価ルールは簡単な一般ルールと少しの特殊形式にて説明可能です。
 @footnote{事物をより統一的な方法で表記可能な、簡単で便利な代替的表面構造である
 特別な構文形式を、Peter Landinの作成した語句ですが、@newterm{syntactic sugar}
 (シンタックスシュガー、構文糖)と呼ぶ場合があります。他言語のユーザと比較して
@@ -2757,7 +2757,7 @@ in Lisp for notating such a case analysis.  It is called @t{cond} (which
 stands for ``conditional''), and it is used as follows:
 
 この考えは@newterm{case analysis}(ケース分析)と呼びLispにはそのようなケース分析の
-ための特別な形式が存在します。@t{cond}(``conditional''(条件文)を表わす)と呼ばれ、
+ための特殊形式が存在します。@t{cond}(``conditional''(条件文)を表わす)と呼ばれ、
 以下のように利用されます。
 
 @lisp
@@ -2882,7 +2882,7 @@ This uses the special form @t{if}, a restricted type of conditional that can
 be used when there are precisely two cases in the case analysis.  The general
 form of an @t{if} expression is
 
-これは特別な形式の@t{if}という制約のある条件の型を使用しており、ケース分析にて正確に2つのケースが存在する場合に用います。
+これは特殊形式の@t{if}という制約のある条件の型を使用しており、ケース分析にて正確に2つのケースが存在する場合に用います。
 @t{if}式の一般的な形式は以下のとおりです。
 
 
@@ -2965,7 +2965,7 @@ Notice that @t{and} and @t{or} are special forms, not procedures, because
 the subexpressions are not necessarily all evaluated.  @t{Not} is an
 ordinary procedure.
 
-@t{and}と@t{or}が特別な形式であり手続ではないことに注意すること。
+@t{and}と@t{or}が特殊形式であり手続ではないことに注意すること。
 部分式が全て評価される必要が無いためである。
 @t{Not}は通常の手続である。
 
@@ -3115,7 +3115,7 @@ expression.)
 
 Benは適用順評価を用いるインタプリタではどのような挙動を観察するだろうか?
 Benは正規順評価を用いるインタプリタではどのような挙動を観察するだろうか?
-あなたの回答を説明せよ。(特別形式の@t{if}はインタプリタが適用順評価でも正規順評価でも
+あなたの回答を説明せよ。(特殊形式の@t{if}はインタプリタが適用順評価でも正規順評価でも
 同じ挙動を行うと仮定せよ: 述部式が最初に評価され、結果がconsequentとalternativeのどちらを評価するか決定する)
 
 
@@ -3391,7 +3391,7 @@ as an ordinary procedure in terms of @t{cond}?'' she asks.  Alyssa's friend
 Eva Lu Ator claims this can indeed be done, and she defines a new version of
 @t{if}:
 
-Alyssa P. Hackerはなぜ@t{if}が特別形式として提供される必要があるのか理解できなかった。
+Alyssa P. Hackerはなぜ@t{if}が特殊形式として提供される必要があるのか理解できなかった。
 ``なぜ@t{cond}を用いた通常手続として定義できないのだろう?''と彼女は訝った。
 Alyssaの友達であるEva Lu Atorはこれは実際にできると主張し、@t{if}の新バージョンを
 定義した。
@@ -6564,7 +6564,7 @@ what we want as
 手続を高階手続にて引数として使うためだけに定義せねばならないのはひどく不恰好に見えます。
 @t{pi-next}や@t{pi-term}を定義する代わりに、``入力値に4を足す手続''や``入力値と入力値に
 2を足した数の積の逆数を返す手続''を直接指定する方法を持つほうがより便利になるでしょう。
-これは手続を作成する特別な形式@t{lambda}を紹介することで可能です。
+これは手続を作成する特殊形式@t{lambda}を紹介することで可能です。
 @t{lambda}を用いることで先程行いたかったことを以下のように記述できます。
 
 @lisp
@@ -6764,7 +6764,7 @@ This construct is so useful that there is a special form called @t{let} to
 make its use more convenient.  Using @t{let}, the @t{f} procedure could
 be written as
 
-この構成はとても便利で@t{let}と呼ばれる特別な形式がその使用をより便利にするために
+この構成はとても便利で@t{let}と呼ばれる特殊形式がその使用をより便利にするために
 用意されています。@t{let}を用いることで手続@t{f}は以下のようになります。
 
 @lisp
@@ -13351,7 +13351,7 @@ construct the expression @t{(car '(a b c))}, which is the same as @t{(car
 クォーテーションはまた慣習的なリストに対する印字された表現を用いて
 複合オブジェクトの入力も可能にします。@footnote{厳密には私達のクォーテーションマークの
 使用方法は言語における全ての複合式は括弧で区切られリストのように見えるという
-全体のルールを破ります。この整合性に対しては特別な形式@t{quote}を紹介することで
+全体のルールを破ります。この整合性に対しては特殊形式@t{quote}を紹介することで
 回復することが可能です。これはクォーテーションマークと同じ目的を演じます。
 従って@t{'a}の代わりに@t{(quote a)}と入力できますし、@t{'(a b c)}の代わりに
 @t{(quote (a b c))}と入力できます。これはインタプリタは正確にはどのように働くか
@@ -19371,7 +19371,7 @@ Decrementing @t{balance} is accomplished by the expression
 @noindent
 This uses the @t{set!} special form, whose syntax is
 
-これは@t{set!}という特別形式を用いています。その文法は次のとおりです。
+これは@t{set!}という特殊形式を用いています。その文法は次のとおりです。
 
 @lisp
 (set! @math{\langle}@var{name}@math{\rangle} @math{\langle}@var{new-value}@math{\rangle})
@@ -19413,7 +19413,7 @@ expressions to be evaluated in the case where the @t{if} test is true: first
 decrementing @t{balance} and then returning the value of @t{balance}.  In
 general, evaluating the expression
 
-@t{withdraw}はまた@t{begin}という特別形式も使用しており、これは2つの式を@t{if}のテストが
+@t{withdraw}はまた@t{begin}という特殊形式も使用しており、これは2つの式を@t{if}のテストが
 真の場合に評価されるようにします。最初に@t{balance}を減らし、次に@t{balance}の値を返します。
 一般的に以下の式を評価すると
 
@@ -27323,7 +27323,7 @@ evaluation---in effect, forcing the @t{delay} to fulfill its promise.  We
 will see below how @t{delay} and @t{force} can be implemented, but first
 let us use these to construct streams.
 
-私達のストリームの実装は@t{delay}(遅延)と呼ばれる特別な形式を基にします。
+私達のストリームの実装は@t{delay}(遅延)と呼ばれる特殊形式を基にします。
 @t{(delay <@var{exp}>)}の評価は式@math{\langle}@var{exp}@math{\kern0.08em\rangle}を評価しません。
 しかしその代わりに所謂@newterm{delayed object}(遅延オブジェクト)を返します。これは
 ある将来の時点で@math{\langle}@var{exp}@math{\kern0.08em\rangle}を評価する``promise''(プロミス、約束)として
@@ -27334,7 +27334,7 @@ let us use these to construct streams.
 
 @t{Cons-stream} is a special form defined so that
 
-@t{cons-stream}は特別な形式で、
+@t{cons-stream}は特殊形式で、
 
 @lisp
 (cons-stream @math{\langle}@var{a}@math{\rangle} @math{\langle}@var{b}@math{\rangle})
@@ -27377,11 +27377,11 @@ though @t{force} can be an ordinary procedure.}
 
 @t{stream-car}はペアの@t{car}を選択します。@t{stream-cdr}はペアの@t{cdr}を選択し、
 そこに見つかった遅延表現を評価し、ストリームの残りを得ます。@footnote{@t{stream-car}と
-@t{stream-cdr}が手続として定義できるにも係わらず、@t{cons-stream}は特別形式で
+@t{stream-cdr}が手続として定義できるにも係わらず、@t{cons-stream}は特殊形式で
 なければなりません。もし@t{cons-stream}が手続であるのならば、私達の評価モデルに従い、
 @t{(cons-stream <@var{a}> <@var{b}>)}の評価は自動的に@math{\langle}@var{b}@math{\kern0.08em\rangle}の
 評価を起こします。これは明らかに私たちにとって起こって欲しくないことです。
-同じ理由から@t{delay}も特別形式でなければなりません。しかし@t{force}は
+同じ理由から@t{delay}も特殊形式でなければなりません。しかし@t{force}は
 通常の手続になります。}
 
 @subsubheading The stream implementation in action
@@ -27568,7 +27568,7 @@ accomplish this simply by treating the expression as the body of a procedure.
 @t{delay}と@t{force}はミステリアスな命令に見えるかもしれませんが、それらの実装は
 本当にとても簡単です。@t{delay}は式を梱包して要求に応じて評価できるようにせねば
 なりません。私達はこれを手続のボディのように式を扱うことで簡単に達成できます。
-@t{delay}は以下のような特別な形式です。
+@t{delay}は以下のような特殊形式です。
 
 @lisp
 (delay @math{\langle}@var{exp}@math{\rangle})
@@ -30917,7 +30917,7 @@ To evaluate a combination (a compound expression other than a special form),
 evaluate the subexpressions and then apply the value of the operator
 subexpression to the values of the operand subexpressions.
 
-組み合わせ(特殊な形式を除く複合式)を評価するためには、部分式を評価し、次に
+組み合わせ(特殊形式を除く複合式)を評価するためには、部分式を評価し、次に
 オペレータ部分式をオペランド部分式の値に適用する。
 
 @item
@@ -30992,7 +30992,7 @@ accept arguments.
 @math{\bullet} The evaluator provides the special forms, which must be evaluated differently
 from procedure calls.
 
-@math{\bullet} 評価機は特別な形式を提供します。これは手続呼出と異なった形で評価されねば
+@math{\bullet} 評価機は特殊形式を提供します。これは手続呼出と異なった形で評価されねば
 なりません。} 
 
 This evaluation cycle will be embodied by the interplay between the two
@@ -31131,7 +31131,7 @@ expression itself.
 @end itemize
 
 @noindent
-@b{Special forms}(特別な形式)
+@b{Special forms}(特殊形式)
 
 @itemize @bullet
 
@@ -31701,7 +31701,7 @@ example is @t{cond}, which can be implemented as a nest of @t{if}
 expressions.  For example, we can reduce the problem of evaluating the
 expression
 
-いくつかの私達の言語内での特別な形式は直接実装されるのでなく、他の特別な形式を含む式を用いて定義できます。
+いくつかの私達の言語内での特殊形式は直接実装されるのでなく、他の特殊形式を含む式を用いて定義できます。
 例の1つは@t{cond}です。これは入れ子の@t{if}式として実装できます。例えば以下の式の評価上の
 問題を、
 
@@ -31731,7 +31731,7 @@ because it reduces the number of special forms for which the evaluation process
 must be explicitly specified.
 
 @t{cond}の評価をこのように実装することは評価機を簡略化します。評価過程が明示的に
-指定されねばならない特別な形式の数を減らすことができるからです。
+指定されねばならない特殊形式の数を減らすことができるからです。
 
 We include syntax procedures that extract the parts of a @t{cond}
 expression, and a procedure @t{cond->if} that transforms @t{cond}
@@ -31853,7 +31853,7 @@ the syntax implemented in this section.)
 @strong{@anchor{Exercise 4.4}Exercise 4.4:} Recall the definitions of the
 special forms @t{and} and @t{or} from @ref{Chapter 1}:
 
-@ref{Chapter 1}の特別な形式@t{and}と@t{or}の定義を思い出せ。
+@ref{Chapter 1}の特殊形式@t{and}と@t{or}の定義を思い出せ。
 
 @itemize @bullet
 
@@ -31885,7 +31885,7 @@ defining appropriate syntax procedures and evaluation procedures
 @t{eval-and} and @t{eval-or}.  Alternatively, show how to implement
 @t{and} and @t{or} as derived expressions.
 
-@t{and}と@t{or}を評価機に対する新しい特別な形式として適切な構文手続と
+@t{and}と@t{or}を評価機に対する新しい特殊形式として適切な構文手続と
 評価手続@t{eval-and}と@t{eval-or}を定義することで導入せよ。
 代替法として、@t{and}と@t{or}を派生式として実装する方法を示せ。
 @end quotation
@@ -32376,7 +32376,7 @@ binding in the first frame of the environment?  Complete the specification and
 justify any choices you make.
 
 Schemeは@t{define}を用いて新しい束縛を作成することができる。しかし束縛を
-取り除く手段は提供しない。評価機に特別形式@t{make-unbound!}を実装せよ。
+取り除く手段は提供しない。評価機に特殊形式@t{make-unbound!}を実装せよ。
 これは@t{make-unbound!}が評価された環境から与えられたシンボルの束縛を
 削除する。この問題は完全には指示されていない。例えば環境の最初のフレームの
 束縛のみを削除するべきだろうか? 仕様を完成させあなたが行った選択について
@@ -33237,7 +33237,7 @@ simultaneously and have the same scope as each other.  The sample procedure
 the same meaning, as
 
 内部定義は逐次的に見えるが実際には同時であるため、いくらかの人々はこれを完全に
-回避するほうを好むだろう。そして特別な形式@t{letrec}を代わりに用いる。
+回避するほうを好むだろう。そして特殊形式@t{letrec}を代わりに用いる。
 @t{letrec}は@t{let}に似ているため、それが束縛する変数が同時に束縛されお互いに
 同じスコープを持つことは不思議ではないだろう。上記のサンプル手続@t{f}は内部手続を
 用いずに、しかし全く同じ意味を持つように書くことができる。
@@ -33677,7 +33677,7 @@ run-time support procedures as in sections @ref{Sec. 4.1.2,,4.1.2}, @ref{Sec. 4.
 @strong{@anchor{Exercise 4.22}Exercise 4.22:} Extend the evaluator in this
 section to support the special form @t{let}.  (See @ref{Exercise 4.6}.)
 
-この節の評価機を特別な形式@t{let}をサポートするように拡張せよ。(@ref{Exercise 4.6}参照)
+この節の評価機を特殊形式@t{let}をサポートするように拡張せよ。(@ref{Exercise 4.6}参照)
 @end quotation
 
 @quotation
@@ -33939,11 +33939,11 @@ where it might be useful to have @t{unless} available as a procedure, rather
 than as a special form.
 
 Ben BitdiddleとAlyssa P. Hackerは@t{unless}のような物を実装するための
-遅延評価の重要性について意見が分かれた。Benは@t{unless}を適用順序でも特別形式として
+遅延評価の重要性について意見が分かれた。Benは@t{unless}を適用順序でも特殊形式として
 実装可能である点を指摘した。Alyssaはもしそれを行えば@t{unless}はただ単に文法であり
 高階手続と連動して使用できる手続ではないと反論した。議論の両サイド上の詳細を埋めよ。
 @t{unless}をどのようにして派生手続として(@t{cond}や@t{let}のように)実装するかを示せ。
-そして特別形式ではなく手続として存在する@t{unless}を持つことが有効である状況の
+そして特殊形式ではなく手続として存在する@t{unless}を持つことが有効である状況の
 例を与えよ。
 @end quotation
 
@@ -34550,7 +34550,7 @@ to lists, and this required us to reimplement many ordinary list operations
 (@t{map}, @t{append}, and so on) for use with streams.
 
 @ref{3.5.1}ではどのようにストリームを遅延化されたリストとして実装するかについて示しました。
-特別な形式@t{delay}と@t{cons-stream}導入しました。このことは私達にストリームの@t{cdr}を
+特殊形式@t{delay}と@t{cons-stream}導入しました。このことは私達にストリームの@t{cdr}を
 求める``promise''(プロミス、約束)を、実際には後になるまではプロミスを実行すること
 無しに構築することを可能にしました。
 
@@ -34569,7 +34569,7 @@ loop.  If we had originally included @t{cons}, @t{car}, and @t{cdr} as
 primitives in the global environment, they will be redefined.  (Also see
 @ref{Exercise 4.33} and @ref{Exercise 4.34}.)}
 
-遅延評価ではストリームとリストは同一にできます。そのため特別な形式やリストとストリームの
+遅延評価ではストリームとリストは同一にできます。そのため特殊形式やリストとストリームの
 命令を分ける必要はありません。私達が行わなければならないこと全ては@t{cons}が非厳密になる
 よう問題を準備することです。これを達成する1つの方法は遅延評価を拡張しプリミティブにも
 非厳密を許し@t{cons}をこれらの内の1つとすることです。より簡単な方法は(@ref{2.1.3})の
@@ -34843,7 +34843,7 @@ The nondeterministic program evaluator implemented below is called the
 @t{an-element-of}, and @t{require}) and run the procedure as follows:
 
 以下で実装される非決定性プログラム評価機は@t{amb}評価機と呼ばれます。
-それが@t{amb}と呼ばれる新しい特別形式に基づくためです。上記の@t{prime-sum-pair}の
+それが@t{amb}と呼ばれる新しい特殊形式に基づくためです。上記の@t{prime-sum-pair}の
 定義を@t{amb}評価機ドライバループにて(@t{prime?}, @t{an-element-of}, @t{require}と
 一緒に)型を付け、以下のように手続を実行することができます。
 
@@ -34886,7 +34886,7 @@ called @t{amb}.@footnote{The idea of @t{amb} for nondeterministic
 programming was first described in 1961 by John McCarthy (see @ref{McCarthy 1967}).}
 The expression
 
-Schemeに非決定性を対応するよう拡張するために、@t{amb}と呼ばれる新しい特別形式を
+Schemeに非決定性を対応するよう拡張するために、@t{amb}と呼ばれる新しい特殊形式を
 導入します。@footnote{非決定性プログラミングのための@t{amb}の考えは1961年に
 最初にJohn McCarthyにより説明されました。(@ref{McCarthy 1967}参照)。}
 
@@ -36068,7 +36068,7 @@ used in our nondeterministic programs.}
 
 @t{amb}評価機に対する文法とデータの表現手続、また基本的な@t{analyze}手続は、
 @ref{4.1.7}の評価機のそれらに等しい物です。しかし私達が追加の構文手続を@t{amb}の
-特別形式を認識するために必要とすることが異なります。@footnote{評価機は@t{let}を
+特殊形式を認識するために必要とすることが異なります。@footnote{評価機は@t{let}を
 サポートすると想定しています。(@ref{Exercise 4.22}参照)。私達はこれを非決定性
 プログラム内にて利用してきました。}
 
@@ -36082,7 +36082,7 @@ used in our nondeterministic programs.}
 We must also add to the dispatch in @t{analyze} a clause that will recognize
 this special form and generate an appropriate execution procedure:
 
-@t{analyze}内にこの特別形式を認識し、適切な実行手続を生成する呼出を追加しなければなりません。
+@t{analyze}内にこの特殊形式を認識し、適切な実行手続を生成する呼出を追加しなければなりません。
 
 @lisp
 ((amb? exp) (analyze-amb exp))
@@ -36454,7 +36454,7 @@ all the possible values of the @t{amb} expression.  Each execution procedure
 is called with a failure continuation that will try the next one.  When there
 are no more alternatives to try, the entire @t{amb} expression fails.
 
-@t{amb}の特別形式は非決定性言語の鍵となる要素です。ここでは逐次翻訳処理の本質と
+@t{amb}の特殊形式は非決定性言語の鍵となる要素です。ここでは逐次翻訳処理の本質と
 継続を追跡する理由について学びます。@t{amb}に対する実行手続はループ@t{try-next}を
 定義します。これは全ての@t{amb}式の可能な値のために、全実行手続を通して実行します。
 各実行手続は次の実行手続を試す失敗継続と共に呼ばれます。試行する選択肢が無くなった
@@ -36564,7 +36564,7 @@ is no evaluation in progress.
 random order, rather than from left to right.  Show how this can help with
 Alyssa's problem in @ref{Exercise 4.49}.
 
-@t{amb}と似ているが、次の選択肢を左から右へでなくランダムな順で探索する新しい特別形式@t{ramb}を実装せよ。
+@t{amb}と似ているが、次の選択肢を左から右へでなくランダムな順で探索する新しい特殊形式@t{ramb}を実装せよ。
 @ref{Exercise 4.49}におけるAlyssaの問題をどのように助けるか示せ。
 @end quotation
 
@@ -36660,7 +36660,7 @@ would have had to implement it as a special form.  This would require syntax
 procedures
 
 もし@t{require}が@t{amb}を用いた通常の手続として実装できることに気付かなかった場合、
-ユーザにより非決定性プログラムの一部として定義されるために、それを特別形式として
+ユーザにより非決定性プログラムの一部として定義されるために、それを特殊形式として
 実装する必要があったはずである。これは以下の構文手続を必要としたであろう。
 
 @lisp
@@ -38516,7 +38516,7 @@ streams.  We use each frame in the stream to instantiate any variables in the
 pattern, then apply the Lisp predicate.  We remove from the input stream all
 frames for which the predicate fails.
 
-@t{lisp-value}特別形式はフレームのストリーム上の同様なフィルタとして実装されます。
+@t{lisp-value}特殊形式はフレームのストリーム上の同様なフィルタとして実装されます。
 ストリーム内の各フレームをパターン内の任意の変数をインスタンス化するために用い、
 そしてLisp手続を適用します。入力ストリームから述語が失敗する全てのフレームを削除します。
 
@@ -38851,7 +38851,7 @@ Lispの@t{eval}手続の役割と同様な役割を演じます。@t{qeval}は入力としてクエリと
 フレームのストリームを取ります。その出力はフレームのストリームであり、クエリパターンへの
 成功したマッチングに相応します。これは@ref{Figure 4.4}で示されるよう入力ストリームの
 いくつかを拡張しています。@t{eval}と同様に、@t{qeval}は異なる型の式(クエリ)を分類し、
-それぞれに対する適切な手続を呼び出します。各特別形式(@t{and}, @t{or}, @t{not}, @t{lisp-value})に
+それぞれに対する適切な手続を呼び出します。各特殊形式(@t{and}, @t{or}, @t{not}, @t{lisp-value})に
 手続が存在し、また単純なクエリにも手続が存在します。
 
 The driver loop, which is analogous to the @t{driver-loop} procedure for the
@@ -39535,8 +39535,8 @@ processed by @t{simple-query}.
 @t{query-driver-loop}により呼ばれる@t{qeval}手続はクエリシステムの基本的な評価機です。
 入力としてクエリとフレームのストリームを取り、拡張されたフレームのストリームを返します。
 @ref{Chapter 2}で総称的な命令を実装したのと同様に、
-@t{get}と@t{put}を用いたデータ適従による呼出により特別形式を判別します。
-特別形式とは判別されない任意のクエリは単純なクエリと見做され@t{simple-query}により処理されます。
+@t{get}と@t{put}を用いたデータ適従による呼出により特殊形式を判別します。
+特殊形式とは判別されない任意のクエリは単純なクエリと見做され@t{simple-query}により処理されます。
 
 @lisp
 (define (qeval query frame-stream)
@@ -39550,7 +39550,7 @@ processed by @t{simple-query}.
 @t{Type} and @t{contents}, defined in @ref{4.4.4.7}, implement
 the abstract syntax of the special forms.
 
-@t{type}と@t{contents}は@ref{4.4.4.7}で定義され、特別形式の抽象構文を実装します。
+@t{type}と@t{contents}は@ref{4.4.4.7}で定義され、特殊形式の抽象構文を実装します。
 
 @subsubheading Simple queries
 
@@ -39747,7 +39747,7 @@ all the frames in the input stream.  @t{Always-true} is used by the
 that were defined without bodies (that is, rules whose conclusions are always
 satisfied).
 
-特別形式@t{always-true}はクエリに対し常に満たされた状態を与えます。これはその
+特殊形式@t{always-true}はクエリに対し常に満たされた状態を与えます。これはその
 中身(通常は空)を無視し、単純に入力ストリームの全てのフレームを通します。
 @t{always-true}は@t{rule-body}セレクタ(@ref{4.4.4.7})により利用され、ボディ成しで
 定義されたルールに対しボディを提供します。(言い換えれば、その結果部分が常に
@@ -40570,7 +40570,7 @@ They are the same as the @t{type-tag} and @t{contents} procedures in
 @ref{2.4.2}, except for the error message.
 
 @t{qeval}(@ref{4.4.4.2})により用いられる@t{type}と@t{contents}は、
-特別形式がその@t{car}に存在するシンボルにより判別されることを指示します。
+特殊形式がその@t{car}に存在するシンボルにより判別されることを指示します。
 これらは@ref{2.4.2}の@t{type-tag}と@t{contents}手続と同じですが、エラーメッセージが
 異なります。
 
@@ -40604,7 +40604,7 @@ expressions of the form @t{(assert! <@var{rule-or-assertion}>)}:
 Here are the syntax definitions for the @t{and}, @t{or}, @t{not}, and
 @t{lisp-value} special forms (@ref{4.4.4.2}):
 
-以下は特別形式@t{and}, @t{or}, @t{not}, @t{lisp-value}のための構文定義です。(@ref{4.4.4.2})
+以下は特殊形式@t{and}, @t{or}, @t{not}, @t{lisp-value}のための構文定義です。(@ref{4.4.4.2})
 
 @lisp
 (define (empty-conjunction? exps) (null? exps))
@@ -40864,7 +40864,7 @@ a new special form called @t{unique}.  @t{Unique} should succeed if there
 is precisely one item in the data base satisfying a specified query.  For
 example,
 
-クエリ言語に対して新しい特別形式@t{unique}を実装せよ。@t{unique}は正確に
+クエリ言語に対して新しい特殊形式@t{unique}を実装せよ。@t{unique}は正確に
 データベース内の1つの項目が指定されたクエリを満たす場合に成功しなければならない。
 例えば、
 
@@ -40914,7 +40914,7 @@ procedure that handles this special form, and the second is to make
 @t{qeval} does its dispatching in a data-directed way.  If your procedure is
 called @t{uniquely-asserted}, all you need to do is
 
-@t{unique}を実装するには2つの部分が存在する。1つ目はこの特別形式を扱う手続を
+@t{unique}を実装するには2つの部分が存在する。1つ目はこの特殊形式を扱う手続を
 書くことであり、2つ目は@t{qeval}にその手続を呼出させることである。2つ目の部分は
 自明だ。@t{qeval}はその呼出をデータ適従の方法に従うためである。もしあなたの
 手続が@t{uniquely-asserted}という名前であるなら、やらなければいけないことは以下である。
@@ -40944,7 +40944,7 @@ This is similar to the implementation of the @t{not} special form.
 @t{qeval}を用いて与えられたクエリを満たすフレームの全ての拡張のストリームを見つけなければ
 ならない。正確に1つのアイテムのみを持たないストリームは全て取り除かれなければならない。
 残ったストリームは@t{unique}クエリの結果である1つの巨大なストリームに蓄積するために
-戻されなければならない。これは特別形式@t{not}の実装に似ている。
+戻されなければならない。これは特殊形式@t{not}の実装に似ている。
 
 Test your implementation by forming a query that lists all people who supervise
 precisely one person.
@@ -46089,7 +46089,7 @@ evaluating fragments of the expression.  For an @t{if} expression, we must
 evaluate the predicate and decide, based on the value of predicate, whether to
 evaluate the consequent or the alternative.
 
-メタ循環評価機と同様に、特別な形式は選択的に式の部分部分を評価することで取り扱われます。
+メタ循環評価機と同様に、特殊形式は選択的に式の部分部分を評価することで取り扱われます。
 @t{if}式に対しては、述語を評価して、その値を元に、結果部(consequent)と代替部(alternative)の
 どちらを評価するか決定します。
 
@@ -46221,7 +46221,7 @@ construct a loop that tests the predicates of successive @t{cond} clauses
 until you find one that is true, and then use @t{ev-sequence} to evaluate
 the actions of the clause.
 
-@t{cond}を新しい基本的な特別形式として@t{if}に簡約すること無しに実装せよ。
+@t{cond}を新しい基本的な特殊形式として@t{if}に簡約すること無しに実装せよ。
 連続する@t{cond}節の述語を真になるものを見つけるまでテストするループを構築する必要がある。
 次に@t{ev-sequence}を使用してその節のアクションを評価する。
 @end quotation
@@ -49236,12 +49236,12 @@ family of code generators for the open-coded primitives.
 
 コンパイラはソースプログラム内のopen-codeなプリミティブの適用を認識できなければ
 ならない。@t{compile}手続に割り振りを追加し、
-現在認識可能な予約語(特別形式)に加えてこれらのプリミティブの名前を認識できるようにする。@footnote{プリミティブを
+現在認識可能な予約語(特殊形式)に加えてこれらのプリミティブの名前を認識できるようにする。@footnote{プリミティブを
 予約語に入れることは一般的には悪い考えです。そうするとユーザがこれらの名前を異なる
 手続に束縛し直すことができなくなるためです。さらに、もし使用中のコンパイラに予約語を
 追加すると、これらの名前で手続を定義した既存のプログラムが動作しなくなります。
 この問題をどのように回避するかの見解については@ref{Exercise 5.44}を参照して下さい。}
-特別な形式のそれぞれに対してコンパイラはコード生成器を持つ。この課題ではopen-codeな
+特殊形式のそれぞれに対してコンパイラはコード生成器を持つ。この課題ではopen-codeな
 プリミティブのためのコード生成器の仲間を構築する。
 
 @enumerate a
@@ -49254,7 +49254,7 @@ list and compile the given operands targeted to successive argument registers.
 Note that an operand may contain a call to an open-coded primitive, so argument
 registers will have to be preserved during operand evaluation.
 
-open-codeなプリミティブ全ては特別形式とは異なり、オペランドが評価されることを
+open-codeなプリミティブ全ては特殊形式とは異なり、オペランドが評価されることを
 必要とする。全てのopen-codeのコード生成器から使用されるコード生成器@t{spread-arguments}を書け。
 @t{spread-arguments}はオペランドのリストを取り、与えられたオペランドを次に続く引数
 レジスタをターゲットにコンパイルしなければならない。オペランドがopen-codeなプリミティブへの
