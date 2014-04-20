@@ -2444,11 +2444,11 @@ square-rootとcube-rootの抽象化としての汎用なニュートン法の実
 
 
 上記の\code{good\-/enough?}の定義において、\code{guess}と\code{x}は束縛変数ですが、
-\code{<}, \code{-}, \code{abs}, \code{square}は自由です。私達が
+\code{<}, \code{-}, \code{abs}, \code{square}は自由変数です。私達が
 選んだ\code{guess}と\code{x}の名前が、\code{<}, \code{-}, \code{abs}, \code{square}と異なり区別可能
 である限り、\code{good\-/enough?}の意味はそれらの名前から独立せねばなりません。
 (もし\code{guess}を\code{abs}にリネームした場合、変数\code{abs}を\newterm{capturing}(\jnewterm{占領})
-することでバグを持ち込むことになるでしょう。自由変数を束縛に変化させます)
+することで自由変数を束縛変数に変化させるのでバグを持ち込むことになるでしょう。)
 しかしながら\code{good\-/enough?}の意味はその自由変数の名前からは独立していません。
 記号\code{abs}は(この定義の外部の)数値の絶対値を求める手続に名付けられているという事実に
 当然、依存します。もし\code{cos}を\code{abs}にその定義において置き換えれば\code{good\-/enough?}は

@@ -3705,11 +3705,11 @@ number.  @t{Good-enough?} will compute a different function if we substitute
 @t{cos} for @t{abs} in its definition.
 
 上記の@t{good-enough?}の定義において、@t{guess}と@t{x}は束縛変数ですが、
-@t{<}, @t{-}, @t{abs}, @t{square}は自由です。私達が
+@t{<}, @t{-}, @t{abs}, @t{square}は自由変数です。私達が
 選んだ@t{guess}と@t{x}の名前が、@t{<}, @t{-}, @t{abs}, @t{square}と異なり区別可能
 である限り、@t{good-enough?}の意味はそれらの名前から独立せねばなりません。
 (もし@t{guess}を@t{abs}にリネームした場合、変数@t{abs}を@newterm{capturing}(占領)
-することでバグを持ち込むことになるでしょう。自由変数を束縛に変化させます)
+することで自由変数を束縛変数に変化させるのでバグを持ち込むことになるでしょう。)
 しかしながら@t{good-enough?}の意味はその自由変数の名前からは独立していません。
 記号@t{abs}は(この定義の外部の)数値の絶対値を求める手続に名付けられているという事実に
 当然、依存します。もし@t{cos}を@t{abs}にその定義において置き換えれば@t{good-enough?}は
