@@ -4696,10 +4696,10 @@ describe this difference is to use the notion of \newterm{order of growth} to
 obtain a gross measure of the resources required by a process as the inputs
 become larger.
 
-前節の例ではプロセスが消費する計算資源の割合が大幅に異なることを示しました。
-この違いを説明する1つの便利な方法には\newterm{order of growth}の記法を
-用いて入力が大きくなるにつれプロセスが要求するリソース(資源)の総体的量の
-説明を得ることがあります。
+前節の例ではプロセスが消費する計算資源の割合が大幅に異なり得ることを示しました。
+この違いを説明する1つの便利な方法は、\newterm{order of growth}の記法を
+用いて、入力が大きくなるに従いプロセスにより要求されるリソース(資源)の総体的量を
+得ることです。
 
 Let \( n \) be a parameter that measures the size of the problem, and let
 \( R(n) \) be the amount of resources the process requires for a problem of
@@ -4736,7 +4736,7 @@ the value \( R(n) \) is sandwiched between \( k_1f(n) \) and
 
 もし任意の十分に大きな\( n \)の値に対して正の定数\( k_1 \)と\( k_2 \)が
 \( n \)に独立して存在し\( k_1f(n) \le R(n) \le k_2f(n) \)を満たす時、
-\( R(n) \)は増加の次数\( \Theta(f(n)) \)を持ち\( R(n) \) = \( \Theta(f(n)) \)
+\( R(n) \)は増加のオーダー\( \Theta(f(n)) \)を持ち\( R(n) \) = \( \Theta(f(n)) \)
 (``シータ\( f(n) \)''と発音する)と記述されます。
 
 
@@ -4783,14 +4783,14 @@ the resource utilization by a constant factor.  In the remainder of
 so that doubling the problem size increases the resource requirement by a
 constant amount.
 
-増加の次数はプロセスの行いについて概観的な説明のみを与えます。
+増加のオーダーはプロセスの行いについて概観的な説明のみを与えます。
 例えば\( n^2 \)ステップ、\( 1000n^2 \)ステップ、
-\( 3n^2 + 10n + 17 \)ステップを必要とするプロセスは全て増加の次数は
-\( \Theta(n^2) \)になります。一方で増加の次数は問題のサイズを変更した場合に
+\( 3n^2 + 10n + 17 \)ステップを必要とするプロセスは全て増加のオーダーは
+\( \Theta(n^2) \)になります。一方で増加のオーダーは問題のサイズを変更した場合に
 どの程度プロセスの挙動が変化するかを推測するのに実用的な指標です。
 \( \Theta(n) \)の線形プロセスに対しサイズを2倍にした場合、概ね2倍のリソースを
 使用します。指数関数的プロセスに対しては問題サイズを1増やす度、定数因子を
-リソース使用率にかけることになります。\link{Section 1.2}の最後にて増加の次数が対数である
+リソース使用率にかけることになります。\link{Section 1.2}の最後にて増加のオーダーが対数である
 2つのアルゴリズムをでは、問題サイズを倍にした時に必要とするリソースが定数量
 増えることを調査します。
 
@@ -4802,7 +4802,7 @@ number of steps used by this process as the amount to be changed increases?
 
 \link{Section 1.2.2}の\code{count\-/change}手続により11セントの両替を求めた場合に生成される
 プロセスの木を図示せよ。量が増えるに従いこのプロセスにより使用される記憶域とステップ数
-の増加の次数はいくつか?
+の増加のオーダーはいくつか?
 \end{quote}
 
 \begin{quote}
@@ -4858,7 +4858,7 @@ What is the order of growth in space and number of steps (as a function of
 \code{(sine a)} is evaluated?
 
 \code{(sine a)}が評価された時、\code{sine}手続により生成されたプロセスにより使用
-された(\( a \)の関数としての)記憶域とステップ数の増加の次数を求めよ。
+された(\( a \)の関数としての)記憶域とステップ数の増加のオーダーを求めよ。
 
 \end{enumerate}
 \end{quote}
