@@ -187,6 +187,25 @@
 {\lstset{basicstyle=\ttfamily\footnotesize\color{SchemeLight},#1}}
 {}
 
+\makeatletter
+\@definecounter{yakuchu}
+\@addtoreset{yakuchu}{book}%
+\def\yakuchu{%
+\@ifnextchar[\@xfootnote %]
+{\stepcounter{yakuchu}%
+\protected@xdef\@thefnmark{(訳注\theyakuchu)}%
+\@footnotemark\@footnotetext}}
+\def\yakuchutext{%
+\@ifnextchar [\@xfootnotenext %]
+{\protected@xdef\@thefnmark{(訳注\theyakuchu)}%
+\@footnotetext}}
+\def\yakuchumark{%
+\@ifnextchar[\@xfootnotemark %]
+{\stepcounter{yakuchu}%
+\protected@xdef\@thefnmark{(訳注\theyakuchu)}%
+\@footnotemark}}
+\makeatother
+
 \titleformat{\chapter}[display]
   {\color{SchemeDark}\normalfont\sffamily\bfseries\LARGE}
   {\filright \color{ChapterGray}\fontsize{3em}{0em}\selectfont
@@ -359,54 +378,59 @@ based on \href{http://www.neilvandyke.org/sicp-texi/}{2.neilvandyke4} (January 1
 \addcontentsline{toc}{chapter}{非公式Texinfoフォーマット}
 \label{UTF}
 
-これは\acronym{SICP}の第二版非公式Texinfo版です。
+これは\acronym{SICP}の非公式Texinfo版\yakuchu{
+残念ながら、日本語版にはTexinfo版はありません。{\LaTeX}ソースとPDFのみです。
+}の第二版です。
 
-あなたは恐らくこれをEmacsのInfoモードの様なハイパーテキストブラウザで読んで
-いることでしょう。他にも{\TeX}で組版した物を画面や印刷して読んでいるかもしれませんが
-それはバカバカしい上に高くつきます。
-
-
-公式に無料で公開された\acronym{HTML}-and-\acronym{GIF}版を
-Lytha Aythが最初に私的に、2001年4月の長いEmacs Lovefest Weekendの間に
-非公式Texinfo版(\acronym{UTF})バージョン1へと変換しました。
+あなたはきっと、これをEmacsのInfoモードのようなInfoハイパーテキストブラウザで読んで
+いるのでしょう。もしかすると、{\TeX}で組版されたものを画面上で、または印刷して読んで
+いるのかもしれませんね。もっとも、それは間抜けなことだと思いますが。それに、印刷するには
+だいぶお金がかかりますよね。
 
 
-
-\acronym{UTF}は\acronym{HTML}版よりも検索がより簡単です。また寄付された古い386の様な
-質素な計算機上で行う人々にとってよりアクセスが容易です。386は理論的にはLinux、Emacs、
-Schemeインタプリタを同時に実行できます。しかし多くの386は恐らくNetscapeと必要なX Window
-Systemを事前に芽の出かけた資金不足の若いハッカーに\newterm{thrashing}(\jnewterm{スラッシング})の
-概念を教えることなしに動かすことはできないでしょう。UTFはまた圧縮無しでも1.44\acronym{MB}
-のフロッピーディスケットに収まります。これはインターネットやLANへの接続環境の無いPC
-にインストールする場合に役立つでしょう。
+\acronym{HTML}-\acronym{GIF}版は公式に無料で公開されているのですが、それを初めて
+Unofficial Texinfo Format（非公式Texinfo版、\acronym{UTF}）の初版としてLytha Aythが
+個人的に変換したのは、2001年4月の長いEmacs Lovefest Weekendの間のことでした。
 
 
 
-Texinfoへの変換は可能な範囲での直接的な翻字でした。{\TeX}-to-\acronym{HTML}変換の様に
-ある程度の破れが含まれること無しにはできませんでした。非公式TexInfo形式においては
-図が「失なわれた技術」であるアスキーアートによる下手糞な"復活"を被りました。また
-多量の上付き文字と下付き文字のいくつかの変換の間に不明瞭さによる変換の
-失敗が含まれてしまった可能性が大いにあります。読者への課題として残されたと予測します。
-しかし、最低でも\emph{``以上''}の記号を\texttt{<u>\&gt;</u>}と符号化することで
-我等の勇敢な宇宙飛行士を危険に晒すようなことはしませんでした。
+\acronym{UTF}は\acronym{HTML}版よりも検索が簡単です。また、あまりよくないコンピュータ
+（たとえば寄付された386マシンのようなもの）を使っている人にとってもアクセスしやすいでしょう。
+386マシンは、理論的には、Linux、Emacs、Schemeインタプリタを同時に実行できます。
+しかし、多くの386マシンでは、Netscapeとそれに必要なX Window Systemの両方を動かそうとすると、
+まだ始めたてでお金もない若いハッカーに\newterm{thrashing}(\jnewterm{スラッシング})という
+概念を早い段階から教えるはめになるのがオチです。それに、UTF版なら圧縮なしで1.44\acronym{MB}
+のフロッピーディスクに収まりますので、インターネットやLANへの接続環境のないいPCに
+インストールするのにも便利です。
 
 
 
-もしあなたが\texttt{sicp.texi}を変更しエラーを訂正したり、アスキーアートを向上させたなら
-\code{@set utfversion {utfversion}}の行を更新し、あなたの修正を反映して下さい。
-例えば、もしあなたがLythaのバージョン\code{1}で開始し、あなたの名前がBobなら、改訂版は
-\code{1.bob1}, \code{1.bob2}, \dots , \code{1.bob\textit{n}}です。また\code{utfversiondate}も更新
-して下さい。もしあなたが自分の改訂版をWeb上で配布したいのなら文字列``sicp.texi''を
-ファイルやWebページのどこかに埋め込んでおけば人々にとってWeb検索エンジンから
-探すことが簡単になるでしょう。
+Texinfoへの変換は、可能な範囲で直接的な翻字をしました。{\TeX}から\acronym{HTML}への
+変換のように、これによってある程度内容が損なわれてしまいました。非公式TexInfo形式では、
+図はいにしえの技術であるアスキーアートによって不格好に復活させられることになりました。
+また、多量の上付き文字(`\^{}')と下付き文字(`\_')を変換するうちに、曖昧さによる変換ミスが
+含まれてしまった可能性も大いにあります。どれが変換ミスかを当てるのは、読者への課題とします。
+しかし、少なくとも私たちは、\emph{``より大きい''}という記号を\texttt{<u>\&gt;</u>}と符号化して
+我らの勇敢な宇宙飛行士たちを危険にさらすようなことはしていません。
 
 
 
-非公式Texinfo形式は寛大にも自由の下に配布された\acronym{HTML}版の魂を引き継いで
-いると信じられています。しかし、いつ誰かの法律家の大艦隊が良心に基づく小さな事に対して非常に腹を立て
-何かを行わなければならなくなるかもしれません。ですのであなたのフルネームを
-使ったり、あなたのアカウントやマシン名を含むInfo, \acronym{DVI}, PostScript, \acronym{PDF}形式
-を配布する前に良く良く考えて下さい。
+もしあなたが\texttt{sicp.texi}を変更して間違いを直したりアスキーアートを改善したりした場合、
+\code{@set utfversion {utfversion}}の行を更新し、あなたの差分をを反映してください。
+例えば、もしあなたがLythaのバージョン\code{1}から始めていて、あなたの名前がBobなら、改訂版には
+\code{1.bob1}, \code{1.bob2}, \dots , \code{1.bob\textit{n}}のように名前をつけるのがいいでしょう。
+また、\code{utfversiondate}も更新してください。もしあなたが自分の改訂版をWeb上で配布したいのなら、
+文字列``sicp.texi''をファイルやWebページのどこかに埋め込んでおけば、Web検索エンジンから見つけ
+やすくなるでしょう。
+
+
+
+
+非公式Texinfo形式は、寛大にもフリーに配布されている\acronym{HTML}版の魂を引き継いで
+いると信じられています。しかし、いつどこかの法律家の大艦隊が、何でもないような小さなことをめぐって
+大騒ぎをしないとも限りません。ですから、あなたのフルネームを使ったり、あなたのアカウント名やマシン名を
+含むかもしれないInfo, \acronym{DVI}, PostScript, \acronym{PDF}版を配布したりするのは
+慎重に考えてからにしてください。
 
 \noindent
 \textit{Peath, Lytha Ayth}
@@ -420,11 +444,13 @@ Texinfoへの変換は可能な範囲での直接的な翻字でした。{\TeX}-
 \vspace{0.5em}
 \noindent 
 \textbf{付録2:} 上記は2001年の元の\acronym{UTF}の紹介です。
-10年後、\acronym{UTF}は一変しました。数学上の記号と式は適切に組版され、図は
+10年後のいま、\acronym{UTF}は一変しました。数学上の記号と式は適切に組版され、図は
 ベクターグラフィックにより描かれています。元のテキスト形式とアスキーアートの図
-は今でもTexinfoのソースに残っていますが、Info形式でコンパイルした場合のみ
-表示されます。電子書籍リーダーとタブレットの夜明けに画面上で\acronym{PDF}を
-読むことは正式に、最早バカバカしいことでは無くなりました。楽しんで下さい！
+は今でもTexinfoのソースに残っていますが、Info形式にコンパイルした場合のみ
+表示されます。電子書籍リーダーとタブレットの夜明け時代になって、
+画面上で\acronym{PDF}を読むことは、もはやバカバカしいことではないとはっきり
+言えるようになりました。
+楽しんでください！
 
 \vspace{0.5em}
 \noindent
@@ -433,7 +459,7 @@ Texinfoへの変換は可能な範囲での直接的な翻字でした。{\TeX}-
 %============================================================================================================
 \chapter*{非公式日本語版}
 \addcontentsline{toc}{chapter}{非公式日本語版}
-\label{Unofficail Japanese Edition}
+\label{Unofficial Japanese Edition}
 
 SICPはかつて第一版、第二版共に日本にて公式に翻訳が商業出版されていました。
 第二版を出版していたピアソン桐原が2013年8月に
@@ -495,6 +521,12 @@ XeLaTeX向け日本語パッケージ
 \item \href{https://github.com/ainoya}{Naoki Ainoya}
 
 \end{itemize}
+
+%============================================================================================================
+\chapter*{非公式日本語版 翻訳改訂版}
+\addcontentsline{toc}{chapter}{非公式日本語版 翻訳改訂版}
+\label{Unofficial Japanese Edition Revised Translation}
+当面、非公式日本語版をもとに改訂作業を進めています。作業が終わり次第、翻訳改訂版についてのコメントを加える予定です。
 
 %============================================================================================================
 
