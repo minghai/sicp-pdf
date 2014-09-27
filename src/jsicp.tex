@@ -1850,16 +1850,15 @@ Lispは適用順序評価を使っています。理由のひとつは、上で�
 限定された形の通常順序評価を組み入れることで、``無限''に見えるデータ構造を
 扱うという手法です。\link{Section 4.2}では、Schemeインタプリタに手を加え、
 Schemeの通常順序バージョンを作成します。}
-% #####
 
 
 \subsection{条件式と述語}
 \label{Section 1.1.6}
 
-この時点で私達が定義可能な種類の手続きの表現力はとても限られています。テストを作成し、
-テストの結果により異なる命令を実行する方法が無いためです。例えば数値の絶対値を
-演算する手続きを定義できません。数値が正、負、零であるかテストを行いルールに従い
-異なる場合に対し異なる行動をしなければなりません。
+この時点で私たちが定義できる種類の手続きは、表現力がとても乏しいものです。
+というのは、検査を行う方法がなく、また検査の結果によって異なる演算を行う
+ということもできないからです。例えば、次のようなルールに従って、
+数値が正か負かゼロかを検査して絶対値を求めるという手続きを定義することはできません。
 \begin{comment}
 
 \begin{example}
@@ -1877,9 +1876,9 @@ Schemeの通常順序バージョンを作成します。}
 	0  &  x = 0, \\
   \!\! -x  &  x < 0. \end{array} \right. 
 \end{displaymath}
-この考えは\newterm{case analysis}(ケース分析、\jnewterm{事例分析})と呼びLispにはそのようなケース分析の
-ための特殊形式が存在します。\code{cond}(``conditional''(条件文)を表わす)と呼ばれ、
-以下のように利用されます。
+この構造は\newterm{case analysis}(\jnewterm{場合分け})と呼ばれるもので、Lispには
+そのような場合分けを記述するための特殊な形式があります。それは\code{cond}
+(``conditional''(条件的)の略)と呼ばれ、次のように使います。
 
 \begin{scheme}
 (define (abs x)
@@ -1889,7 +1888,7 @@ Schemeの通常順序バージョンを作成します。}
 \end{scheme}
 
 \noindent
-条件式の一般的な形式は以下のとおりです。
+条件式の一般形式は以下の通りです。
 
 \begin{scheme}
 (cond (~\( \dark \langle{p_1}\kern0.08em\rangle \)~ ~\( \dark \langle{e_1}\kern0.08em\rangle \)~)
@@ -1899,42 +1898,44 @@ Schemeの通常順序バージョンを作成します。}
 \end{scheme}
 
 \noindent
-記号\code{cond}から構成され、続く括弧で括った複数の式のペア
+これは、記号\code{cond}に続く、\newterm{clause}(\jnewterm{節})と呼ばれる括弧でくくった式のペアの並びによって構成されます。節の形式は次のようになります。
 
 \begin{scheme}
 (~\( \dark \langle{p}\kern0.08em\rangle \)~ ~\( \dark \langle{e}\kern0.08em\rangle \)~)
 \end{scheme}
 
 \noindent
-\newterm{clauses}(\jnewterm{クローズ}、節)と呼ばれます。各ペアの最初の式は\newterm{predicate}(\jnewterm{述語})
----値が真か偽になる式です。
-\footnote{``真か偽のどちかに解釈される''とは次を意味します。Schemeでは2つの区別される
-値が存在し、それらは \code{\#t} と \code{\#f}の定数で示されます。インタプリタが述語の値をチェック
-する時、\code{\#f}を偽と訳します。それ以外の任意の値は全て真だと扱われます。(従って
-\code{\#t}を与えることは論理的には必要ありません。しかしそのほうが便利です。)
-この本では\code{true} と \code{false}という名前を用います。それらは\code{\#t} と \code{\#f}という値に
-それぞれ関連付けられます。}
+それぞれのペアの最初の式は、\newterm{predicate}(\jnewterm{述語})---値が真か偽の
+どちらかとして解釈される式---です。
+\footnote{``真か偽のどちらかとして解釈される''とは、以下のことを意味します。
+Schemeでは、二つの特別な値が存在し、\code{\#t}、\code{\#f}という定数として
+表されます。インタプリタが述語の値をチェックするとき、\code{\#f}を偽として
+解釈します。ほかの値はすべて真として扱われます。(つまり、論理的に言うと
+\code{\#t}を定義する必要はないところですが、あったほうが便利です。)
+この本では、\code{\#t}と\code{\#f}にそれぞれ関連付けた名前として、
+\code{true}と\code{false}を使います。
+}
 
 
-条件式は次のように評価されます。まず述語\( \langle{p_1}\kern0.08em\rangle \)が最初に評価されます。
-もしその値が偽であれば次に\( \langle{p_2}\kern0.08em\rangle \)が評価されます。もし\( \langle{p_2}\kern0.08em\rangle \)
-の値もまた偽であるならば、その次は\( \langle{p_3}\kern0.08em\rangle \)が評価されます。
-この過程は値が真となる述語が見つかるまで続きます。その場合インタプリタは対応するクローズの
-\newterm{consequent expression}(\jnewterm{結果式}) \( \langle{e}\kern0.08em\rangle \)の値が条件式の値として返されます。
-もし真となる\( \langle{p}\kern0.08em\rangle \)が見つからない場合には\code{cond}の値は未定義です。
+条件式は、次のように評価されます。まず、述語\( \langle{p_1}\kern0.08em\rangle \)が評価されます。
+もしその値が偽なら、\( \langle{p_2}\kern0.08em\rangle \)が評価されます。
+もし\( \langle{p_2}\kern0.08em\rangle \)の値も偽なら、次は\( \langle{p_3}\kern0.08em\rangle \)が
+評価されます。この手順は、値が真である述語が見つかるまで続きます。見つかると、インタプリタは
+その節に対応する\newterm{consequent expression}(\jnewterm{結果式})
+\( \langle{e}\kern0.08em\rangle \)の値を返します。
+\( \langle{p}\kern0.08em\rangle \)がどれも真でない場合、\code{cond}の値は未定義となります。
 
 
+\jnewterm{述語}という単語は、真か偽のどちらかに評価される式だけでなく、真か偽の
+どちらかを返す手続きについても使われます。絶対値の手続き\code{abs}は、
+\code{>}, \code{<}, \code{=}という基本述語を使っています。
+\footnote{\code{abs}は、このほかに``マイナス''演算子\code{-}も使っています。
+これは、\code{(- x)}のようにオペランドをひとつ取り、符号の反転を表します。}
+これらは、二つの数値を引数として取り、最初の数が二番目の数に比べて
+大きいか、小さいか、同じかという検査を行い、その結果に従って真か偽かを返すというものです。
 
-述語という単語は真か偽を返す手続きに利用されます。真か偽と評価される式にも用いられます。
-絶対値の手続き\code{abs}はプリミティブな述語\code{>}, \code{<}, \code{=}を利用します。
-\footnote{\code{abs}はまた``マイナス''演算子\code{-}を使用します。
-\code{(- x)}のように単一のオペランドに利用された時、符号の反転を示します。}
 
-これらは2つの数値を引数として取り最初の数が2つ目の数に対し式の順に、より大きい、より小さい、等しい
-かどうかテストを行い適宜に真か偽を返します。
-
-
-絶対値の手続きを書くもう1つの方法が次です。
+絶対値の手続きは、次のように書くこともできます。
 
 \begin{scheme}
 (define (abs x)
@@ -1943,14 +1944,16 @@ Schemeの通常順序バージョンを作成します。}
 \end{scheme}
 
 \noindent
-これは日本語で``もし\( x \)が零より小さい場合\( -x \)を返す。そうでなければ\( x \)を返す''と
-表現できます。\code{else}は特別なシンボルで\code{cond}の最後の節(クローズ)の\( \langle{p}\kern0.08em\rangle \)
-の場所にて利用可能です。こうすることで\code{cond}がその値として対応する\( \langle{e}\kern0.08em\rangle \)
-の値をそれ以前のクローズ全てが回避された場合に返すことが可能です。
-本当の所はここで\( \langle{p}\kern0.08em\rangle \)に常に値が真となる任意の式を使用することも可能です。
+これは、日本語で言うと``もし\( x \)がゼロより小さいければ\( -x \)を返す。
+そうでなければ\( x \)を返す''となります。\code{else}は特別な記号で、
+\code{cond}の最後の節の\( \langle{p}\kern0.08em\rangle \)
+の代わりに使うことができます。これを使うと、それまでのすべての節がスキップされた
+ときに、これに対応する\( \langle{e}\kern0.08em\rangle \)を\code{cond}の値として
+返すようにできます。実は、値が常に真として評価される式であれば何でも、
+ここの\( \langle{p}\kern0.08em\rangle \)として使うことができます。
 
 
-次はさらにもう1つ別の絶対値手続きの書き方です。
+次は、また別の絶対値の手続きの書き方です。
 
 \begin{scheme}
 (define (abs x)
@@ -1960,9 +1963,8 @@ Schemeの通常順序バージョンを作成します。}
 \end{scheme}
 
 \noindent
-これは特殊形式の\code{if}という制約のある条件の型を使用しており、ケース分析にて正確に2つのケースが存在する場合に用います。
-\code{if}式の一般的な形式は以下のとおりです。
-
+ここでは、\code{if}という特殊形式を使っています。これは、場合分けがちょうど二つの場合から
+なる場合に使える、制約付きの条件式です。\code{if}式の一般形式は以下の通りです。
 
 
 \begin{scheme}
@@ -1970,75 +1972,83 @@ Schemeの通常順序バージョンを作成します。}
 \end{scheme}
 
 \noindent
-\code{if}式を評価するためにインタプリタは式の\( \langle \)\var{predicate}\( \kern0.08em\rangle \)の部分を評価すること
-から始めます。もし\( \langle \)\var{predicate}\( \kern0.08em\rangle \)の評価が真値になる場合、インタプリタは次に
-\( \langle \)\var{consequent}\( \kern0.08em\rangle \)を評価しその値を返します。そうでなければ
-\( \langle \)\var{alternative}\( \kern0.08em\rangle \)を評価しその値を返します。
-\footnote{\code{if} と \code{cond}の小さな違いは\code{cond}の各クローズの\( \langle{e}\kern0.08em\rangle \)は連続する式になっても
-良いことです。もし対応する\( \langle{p}\kern0.08em\rangle \)が真になる場合、\( \langle{e}\kern0.08em\rangle \)内の式は
-順に評価され連なりの最後の式の値が\code{cond}の値として返されます。しかし\code{if}式の中では
-\( \langle \)\var{consequent}\( \kern0.08em\rangle \)と\( \langle \)\var{alternative}\( \kern0.08em\rangle \)
-は単一の式でなければなりません}
+\code{if}式を評価するにあたって、インタプリタは最初に
+式の\( \langle \)\var{predicate}\( \kern0.08em\rangle \)の部分を評価します。
+もし\( \langle \)\var{predicate}\( \kern0.08em\rangle \)の評価結果が真である場合、
+インタプリタは\( \langle \)\var{consequent}\( \kern0.08em\rangle \)を評価し、その値を返します。
+そうでなければ\( \langle \)\var{alternative}\( \kern0.08em\rangle \)を評価し、その値を返します。
+\footnote{\code{if} と \code{cond}のちょっとした違いとして
+\code{cond}の各節の\( \langle{e}\kern0.08em\rangle \)は式の列であってもいいという
+ことがあります。対応する\( \langle{p}\kern0.08em\rangle \)が真になる場合、
+\( \langle{e}\kern0.08em\rangle \)内の式は順番に評価され、
+列の最後の式の値が\code{cond}の値として返されます。しかし、\code{if}式の中では
+\( \langle \)\var{consequent}\( \kern0.08em\rangle \)と
+\( \langle \)\var{alternative}\( \kern0.08em\rangle \)は単一の式でなければなりません。}
 
 
-
-\code{<}や\code{=}, \code{>}のようなプリミティブな述語に追加して論理複合命令が存在し、複合述語を構築することを可能にします。
-最も良く利用される3つは以下の物です。
+\code{<}や\code{=}, \code{>}のような基本述語に加えて、合成述語を構築するための
+論理合成演算というものがあります。
+次の三つは、最もよく使われるものです。
 
 \begin{itemize}
 
 \item
 \( \hbox{\tt(and }\langle{e_1}\rangle\;\;\dots\;\;\langle{e_n}\rangle\hbox{\tt)} \)
 
-インタプリタは式\( \langle{e}\kern0.08em\rangle \)を左から右へ1つずつ評価します。もし\( \langle{e}\kern0.08em\rangle \)の
-どれかが偽と評価された場合\code{and}式の値は偽となり、残りの\( \langle{e}\kern0.08em\rangle \)は評価されません。
-もし全ての\( \langle{e}\kern0.08em\rangle \)の評価が真となれば\code{and}式の値は最後の値になります。
+インタプリタは式\( \langle{e}\kern0.08em\rangle \)を左から右にひとつずつ評価します。
+\( \langle{e}\kern0.08em\rangle \)のどれかが偽と評価されると、
+\code{and}式の値は偽となり、残りの\( \langle{e}\kern0.08em\rangle \)は評価されません。
+すべての\( \langle{e}\kern0.08em\rangle \)が真と評価されると、\code{and}式の値は
+最後の式の値になります。
 
 \item
 \( \hbox{\tt(or }\langle{e_1}\rangle\;\;\dots\;\;\langle{e_n}\rangle\hbox{\tt)} \)
 
-インタプリタは式 \( \langle{e}\kern0.08em\rangle \)を1つずつ左から右へ評価します。
-もし\( \langle{e}\kern0.08em\rangle \)のどれかが真と評価されればその値が\code{or}式の値として返され、
-\( \langle{e}\kern0.08em\rangle \)の残りは評価されません。
-もし全ての\( \langle{e}\kern0.08em\rangle \)が偽と評価された場合、\code{or}の値は偽となります。
+インタプリタは式 \( \langle{e}\kern0.08em\rangle \)を左から右にひとつずつ評価します。
+\( \langle{e}\kern0.08em\rangle \)のどれかが真と評価されると、その値が\code{or}式の
+値として返され、残りの\( \langle{e}\kern0.08em\rangle \)は評価されません。
+すべての\( \langle{e}\kern0.08em\rangle \)が偽と評価されると、\code{or}式の値は
+偽となります。
 
 \item
 \( \hbox{\tt(not }\langle{e}\rangle\hbox{\tt)} \)
 
-\code{not}式の値は式\( \langle{e}\kern0.08em\rangle \)が偽と評価される時は真であり、そうでなければ偽となります。
+\code{not}式の値は、式\( \langle{e}\kern0.08em\rangle \)が偽と評価される場合は真になり、
+そうでなければ偽となります。
 
 \end{itemize}
 
 \noindent
-\code{and}と\code{or}が特殊形式であり手続きではないことに注意して下さい。
-部分式が全て評価される必要が無いためです。
-\code{not}は通常の手続きです。
+\code{and}と\code{or}が特殊形式で、手続きではないということに注意してください。
+これは、部分式がすべて評価されるとは限らないからです。\code{not}は通常の手続きです。
 
-これらがどのように利用されるかの例として、数値\( x \)が\( 5 < x < 10 \)の値域に存在するかという条件は
-次のように表現されます。
+
+これらをどのように使うかというひとつの例として、数値\( x \)が\( 5 < x < 10 \)という値域に
+あるかという条件を次のように表現することができます。
 
 \begin{scheme}
 (and (> x 5) (< x 10))
 \end{scheme}
 
 \noindent
-別の例として、ある数値が別の数値に対し等しいかより大きいかを示す述語は以下の通りです。
+もうひとつの例として、ある数値がもうひとつの数値と比べて等しいかより大きいかということを
+検査する述語を、以下のように定義することができます。
 
 \begin{scheme}
 (define (>= x y) (or (> x y) (= x y)))
 \end{scheme}
 
 \noindent
-または代替法として
+または、次のように書くこともできます。
 
 \begin{scheme}
 (define (>= x y) (not (< x y)))
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.1}Exercise 1.1:} 以下の一連の式について、
-各式に対するインタプリタの応答としての表示結果は何か?
-式の列は下記に表示された順で評価されるものと考えよ。
+\heading{\phantomsection\label{Exercise 1.1}Exercise 1.1:}
+以下の一連の式について、それぞれの式に対するインタプリタの応答として
+表示される結果はどうなるか。式の列は、下記に示した順に評価されるとする。
 
 \begin{scheme}
 10
@@ -2074,7 +2084,7 @@ Schemeの通常順序バージョンを作成します。}
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.2}Exercise 1.2:} 以下の式を接頭辞形式にて翻訳せよ
+\heading{\phantomsection\label{Exercise 1.2}Exercise 1.2:} 以下の式を前置記法に書き換えよ。
 \begin{comment}
 
 \begin{example}
@@ -2090,14 +2100,14 @@ Schemeの通常順序バージョンを作成します。}
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.3}Exercise 1.3:} 3つの数値を引数として取り、
-内2つの大きな数値の二乗の和を返す手続きを定義せよ。
+\heading{\phantomsection\label{Exercise 1.3}Exercise 1.3:} 三つの数値を引数として取り、
+そのうち大きいほうから二つの数値の二乗の和を返す手続きを定義せよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.4}Exercise 1.4:} 我々の評価モデルが
-オペレータが複合式である組み合わせを可能にすることを観察せよ。
-この観察結果を用いて次の手続きの挙動を説明せよ:
+\heading{\phantomsection\label{Exercise 1.4}Exercise 1.4:} 我々の評価モデルでは、
+オペレータが複合式であるような組み合わせが作れるということを観察せよ。
+この観察結果を使って、次の手続きのふるまいを説明せよ。
 
 
 \begin{scheme}
@@ -2107,9 +2117,9 @@ Schemeの通常順序バージョンを作成します。}
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.5}Exercise 1.5:} Ben Bitdiddleは自分が
-直面するインタプリタが適用順評価と正規順評価のどちらを用いるか
-決定するテストを開発した。まず以下の2つの手続きを定義する。
+\heading{\phantomsection\label{Exercise 1.5}Exercise 1.5:} Ben Bitdiddleは、
+自分が対面しているインタプリタが適用順序評価と通常順序評価のどちらを使っているかを
+調べるテストを発明した。彼は、以下の2つの手続きを定義する。
 
 \begin{scheme}
 (define (p) (p))
@@ -2119,7 +2129,7 @@ Schemeの通常順序バージョンを作成します。}
 
 
 
-次に以下の式を評価する。
+それから、以下の式を評価する。
 
 \begin{scheme}
 (test 0 (p))
@@ -2127,10 +2137,13 @@ Schemeの通常順序バージョンを作成します。}
 
 
 
-Benは適用順評価を用いるインタプリタではどのような挙動を観察するだろうか?
-Benは正規順評価を用いるインタプリタではどのような挙動を観察するだろうか?
-あなたの回答を説明せよ。(特殊形式の\code{if}はインタプリタが適用順評価でも正規順評価でも
-同じ挙動を行うと仮定せよ: 述語式が最初に評価され、結果がconsequentとalternativeのどちらを評価するか決定する)
+適用順序評価を使うインタプリタでは、Benはどのようなふるまいを観察するだろうか。
+通常順序評価を使うインタプリタでは、どのようなふるまいを観察するだろうか。
+あなたの回答を説明せよ。(特殊形式である\code{if}の評価ルールは、
+インタプリタが適用順序評価でも通常順序評価でも同じであると仮定せよ。
+述語式が最初に評価され、その結果によってconsequentとalternativeの
+どちらを評価するかが決まる。)
+%#####
 
 
 \end{quote}
