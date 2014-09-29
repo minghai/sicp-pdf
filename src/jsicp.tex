@@ -2748,6 +2748,31 @@ counter ~\( \dark \gets \)~ counter + 1
 そして、\( n! \)とはカウンタが\( n \)を越えた時点での積の値であると規定します。
 
 
+\begin{figure}[tb]
+\phantomsection\label{Figure 1.4}
+\centering
+\begin{comment}
+\heading{Figure 1.4:} A linear iterative process for computing 6!.
+
+\begin{example}
+(factorial 6)   -----.
+(fact-iter   1 1 6)  |
+(fact-iter   1 2 6)  |
+(fact-iter   2 3 6)  |
+(fact-iter   6 4 6)  |
+(fact-iter  24 5 6)  |
+(fact-iter 120 6 6)  |
+(fact-iter 720 7 6)  V
+720
+\end{example}
+\end{comment}
+\includegraphics[width=36mm]{fig/chap1/Fig1.4c.pdf}
+\par\bigskip
+\noindent
+\heading{Figure 1.4:} 6!を求めるための線形反復プロセス
+\end{figure}
+
+
 ここでまた、問題の記述を階乗計算の手続きとして書き直します。
 \footnote{実際のプログラムでは、前の節で紹介したブロック構造を使って
 \code{fact\-/iter}の定義を隠すところです。
@@ -2786,40 +2811,16 @@ counter ~\( \dark \gets \)~ counter + 1
 同じ順番のかけ算を行い、同じ順番で部分積を得ます。一方で、プロセスの``形''について考えると、
 これらがまったく違う進化の仕方をしていることがわかります。
 
-\begin{figure}[tb]
-\phantomsection\label{Figure 1.4}
-\centering
-\begin{comment}
-\heading{Figure 1.4:} A linear iterative process for computing 6!.
-
-\begin{example}
-(factorial 6)   -----.
-(fact-iter   1 1 6)  |
-(fact-iter   1 2 6)  |
-(fact-iter   2 3 6)  |
-(fact-iter   6 4 6)  |
-(fact-iter  24 5 6)  |
-(fact-iter 120 6 6)  |
-(fact-iter 720 7 6)  V
-720
-\end{example}
-\end{comment}
-\includegraphics[width=36mm]{fig/chap1/Fig1.4c.pdf}
-\par\bigskip
-\noindent
-\heading{Figure 1.4:} 6!を求めるための線形反復プロセス
-\end{figure}
-
 一つ目のプロセスについて考えてみましょう。置換モデルは、\link{Figure 1.3}の矢印で
 示されるような、展開に続く収縮という形を表しています。展開は、プロセスが
-\newterm{deferred operations}(遅延演算)の連鎖(ここではかけ算の連鎖)を構築する際に
+\newterm{deferred operations}(\jnewterm{遅延演算})の連鎖(ここではかけ算の連鎖)を構築する際に
 起こります。収縮は、演算が実際に行われる際に起こります。
 遅延演算の連鎖によって特徴付けられるこのタイプのプロセスは、
-\newterm{recursive process}(再帰プロセス)と呼ばれます。このプロセスを実行するには、
+\newterm{recursive process}(\jnewterm{再帰プロセス})と呼ばれます。このプロセスを実行するには、
 インタプリタは後で実行する演算について記録しておく必要があります。\( n! \)の計算では、
 遅延乗算の連鎖の長さ、またそれを記録するために必要な情報の量は、\( n \)に対して線形に
 (\( n \)に比例して)増加します。ステップ数も、同じように線形に増加します。
-このようなプロセスは、\newterm{linear recursive process}(線形再帰プロセス)と呼ばれます。
+このようなプロセスは、\newterm{linear recursive process}(\jnewterm{線形再帰プロセス})と呼ばれます。
 
 
 それとは対照的に、二つ目のプロセスは伸びたり縮んだりしません。各ステップで記録しておく
