@@ -3206,20 +3206,27 @@ b <- a
 テーブル化は、(\code{count\-/change}のような)指数的なステップ数の必要なプロセスを、
 必要な時間と空間が入力に対して線形に増加するプロセスに変換するのにも時々使われます。
 \link{Exercise 3.27}参照。}
-%###
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.11}Exercise 1.11:} 関数\( f \)は
-\( n < 3 \)の場合\( f(n) = n \)と\( n \ge 3 \)の場合、\( f(n) = f(n-1) + 2f(n-2) + 3f(n-3) \)
-のルールの下に定義される。 \( f \)を演算する手続きを再帰プロセスを用いて書け。また\( f \)を演算する手続きを
-反復プロセスを用いて書け。
+\heading{\phantomsection\label{Exercise 1.11}Exercise 1.11:} 関数\( f \)は次のように定義される。
+
+\begin{displaymath}
+f(n) = 
+\begin{cases} 
+\;\; n \quad \text{if \; \( n < 3 \),} \\ 
+\;\; f(n-1) + 2\kern-0.08em f(n-2) + 3\kern-0.08em f(n-3) \quad \text{if \; \( n \ge 3 \).}
+\end{cases}
+\end{displaymath}
+
+\( f \)を演算する手続きを再帰プロセスによって書け。また、\( f \)を演算する手続きを
+反復プロセスによって書け。
 \end{quote}
 
 \newpage
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.12}Exercise 1.12:} 以下の
-数値のパターンは\newterm{Pascal's triangle}(\jnewterm{パスカルの三角形})と呼ばれる。
+\heading{\phantomsection\label{Exercise 1.12}Exercise 1.12:} 以下の数値のパターンは
+\newterm{Pascal's triangle}(\jnewterm{パスカルの三角形})と呼ばれる。
 
 \begin{example}
         1
@@ -3231,26 +3238,23 @@ b <- a
 \end{example}
 
 
-
-三角の端の数値は全て1であり、三角内部の各数値はそれの上2つの数値の和である。
-\footnote{パスカルの三角形の各要素は\newterm{binomial coefficients}(二項係数)と
-呼ばれます。\( n \)番目の行が\( (x + y)^n \)の展開式における各項の係数であるため
-です。係数を計算するこのパターンはBlaise Pascalの1653年の確率理論の独創的な成果
-である \textit{Trait\'e du triangle arithm\'etique}に現れました。\link{Knuth (1973)}
-によると、1303年に同様のパターンが中国の数学者、朱世傑により出版された\textit{Szu-yuen Y\"u-chien} 
-(``The Precious Mirror of the Four Elements'')(四元玉鑑)の中にも記載されています。
-また12世紀のペルシャの詩人であり数学者であったOmar Khayyam、同じく12世紀
-のインド人数学者Bh\'ascara \'Ach\'aryaについても同様です。}パスカルの三角形の要素を
-再帰プロセスを用いて求める手続きを書け。
+三角形の辺の数値は全て1で、三角形内部の数値は、それぞれその上にある2つの数値の合計となっている。
+\footnote{パスカルの三角形の要素は\newterm{binomial coefficients}(二項係数)と
+呼ばれます。これは、\( n \)番目の行が\( (x + y)^n \)を展開したときの各項の係数と
+なっているからです。この係数計算のパターンは、Blaise Pascalが1653年に書いた
+確率理論の偉大な論文である \textit{Trait\'e du triangle arithm\'etique}に書かれたものです。
+\link{Knuth (1973)}によると、同様のパターンは1303年に中国の数学者朱世傑により出版された
+\textit{Szu-yuen Y\"u-chien} (四元玉鑑)や、12世紀のペルシャの詩人であり数学者でもあった
+Omar Khayyamの著作や、12世紀インドの数学者Bh\'ascara \'Ach\'aryaの著作にも現れるということです。}
+パスカルの三角形の要素を再帰プロセスによって求める手続きを書け。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 1.13}Exercise 1.13:} Fib(\( n \))が
 \( \varphi^n / \sqrt{5} \)に最も近い整数であることを証明せよ。
-\( \varphi = (1 + \sqrt{5}) / 2 \)とする。
-ヒント：\( \psi = (1 - \sqrt{5}) / 2 \)と置く。帰納法とフィボナッチ数の定義
-(\link{Section 1.2.2}参照)を用いてFib(\( n \)) = \( (\varphi^n - \psi^n) / \sqrt{5} \)
-であることを証明せよ。
+\( \varphi = (1 + \sqrt{5}) / 2 \)とする。ヒント：\( \psi = (1 - \sqrt{5}) / 2 \)と置く。
+帰納法とフィボナッチ数の定義(\link{Section 1.2.2}参照)を使って、
+Fib(\( n \)) = \( (\varphi^n - \psi^n) / \sqrt{5} \)であることを証明せよ。
 \end{quote}
 
 \subsection{増加のオーダー}
