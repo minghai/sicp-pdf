@@ -3842,7 +3842,6 @@ modulo \( n \)が\( a \)に等しいかをチェックすることで行いま�
         (else false)))
 \end{scheme}
 
-
 \subsubsection*{確率的手法}
 
 
@@ -3947,36 +3946,37 @@ modulo \( n \)が\( a \)に等しいかをチェックすることで行いま�
 この予想は確認できただろうか。そうでなければ、二つのアルゴリズムの観測された速度の比率は
 どのようになっていて、それが2でないという事実をどのように説明できるだろうか。
 \end{quote}
-%###
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 1.24}Exercise 1.24:} \link{Exercise 1.22}の
-\code{timed\-/prime\-/test}手続きを変更し\code{fast\-/prime?}(フェルマー法)を用い、
-課題で見つけた12の素数をそれぞれテストせよ。フェルマーテストは\( \Theta(\log n) \)で
-増加するが、1000に近い素数をテストするのに必要な時間と比べ1,000,000付近の素数をテストする
-のに必要な時間をどれ程と見繕うだろうか? 実際との相違をどのように説明できるか?
+\code{timed\-/prime\-/test}手続きを\code{fast\-/prime?}(フェルマー法)を使うように修正し、
+\link{Exercise 1.22}で見つけた12個の素数をそれぞれテストせよ。フェルマーテストは
+\( \Theta(\log n) \)で増加するが、1,000,000に近い素数をテストするのにかかる時間は
+1000に近い素数をテストするのに必要な時間と比べてどの程度になると予想できるか。
+実際とのずれがあれば、それを説明できるだろうか。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.25}Exercise 1.25:} Alyssa P. Hackerは
-\code{expmod}を書くにあたって多くの余分な仕事を行ったと文句を
-言った。結局のところ我々は既に指数演算のやり方を知っているのだから単純に
-以下のように書くことができたはずだと彼女は言った。
+\heading{\phantomsection\label{Exercise 1.25}Exercise 1.25:} Alyssa P. Hackerは、
+\code{expmod}を書くのにだいぶ余計な手間がかかったと愚痴をこぼした。
+どうせ指数の計算のやり方はわかっているんだから、単純にこんなふうに書いたら
+よかったんじゃないの、と。
 
 \begin{scheme}
 (define (expmod base exp m)
   (remainder (fast-expt base exp) m))
 \end{scheme}
 
-彼女は正しいだろうか? この手続きは最初の素数判定と同様にうまく行えるだろうか?
+彼女は正しいだろうか。高速素数判定にこの手続きを使っても同じようにうまく行くだろうか。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 1.26}Exercise 1.26:} Louis Reasonerは
-\link{Exercise 1.24}を行うのに随分と苦労した。彼の\code{fast\-/prime?}
-テストは彼の\code{prime?}テストよりも随分遅いようだ。Louisは友達のEva Lu Atorを呼んで
-助けを求めた。彼らがLouisのコードを試してみると、Louisが\code{expmod}手続きを\code{square}手続きを呼ぶのでなく、
-明示的に乗算を用いていることを見つけた。
+\link{Exercise 1.24}を解くのにだいぶ苦労している。彼の\code{fast\-/prime?}
+テストは、彼の\code{prime?}テストよりだいぶ遅いようだ。Louisは友達のEva Lu Atorに
+見てもらうことにした。二人でLouisのコードをよく見てみると、\code{expmod}手続きで
+\code{square}手続きを呼ぶのでなく、明示的にかけ算を使うように書き換えていることが
+わかった。
 
 \begin{scheme}
 (define (expmod base exp m)
@@ -3992,18 +3992,19 @@ modulo \( n \)が\( a \)に等しいかをチェックすることで行いま�
 \end{scheme}
 
 
+``何も違わないように見えるけど''とLouisは言う。``いや、違うって''と
+Evaが言う。``手続きをそんなふうに書いたから、\( \Theta(\log n) \)のプロセスを
+\( \Theta(n) \)のプロセスに変えちゃったんだよ。''
 
-``これがどんな違いを生んでいるのかわからないよ''とLouisは言った。``私にはわかる''と
-Evaが言う。``手続きをそのように記述することで、\( \Theta(\log n) \)のプロセスを
-\( \Theta(n) \)のプロセスに変えてしまったの。''
 説明せよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.27}Exercise 1.27:} \link{Footnote 1.47}にて
-並べられたカーマイケル数が実際にフェルマーテストを騙すか実演せよ。
-整数\( n \)を取り\( a^n \)が\( a \)と法\( n \)に関して合同であるか全ての\( a < n \)
-に対しテストを行う手続きを書き、与えられたカーマイケル数に対してその手続きを試せ。
+\heading{\phantomsection\label{Exercise 1.27}Exercise 1.27:} \link{Footnote 1.47}で
+挙げたカーマイケル数が実際にフェルマーテストを騙すということを実験せよ。
+それはつまり、整数\( n \)を取り、すべての\( a < n \)について\( a^n \)が法\( n \)に
+関して\( a \)と合同になるかテストする手続きを書き、与えられたカーマイケル数に対して
+その手続きを試すということになる。
 \end{quote}
 
 \begin{quote}
