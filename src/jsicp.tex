@@ -952,7 +952,7 @@ Bill Gosper and Richard Greenblattのもとで見習いプログラマとして�
 すべての講師、口答の指導者、チューターたち、中でもBill Siebert,
 Albert Meyer, Joe Stoy, Randy Davis, Louis Braida, Eric Grimson, Rod Brooks, Lynn Stein,
 Peter Szolovitsに感謝します。現在はウェルズリーにいるFranklyn Turbakに、教育上の
-際立った貢献について特別に感謝します。彼の学部生向けの授業は、私たち皆が目指す基準を
+際立った貢献について特に感謝します。彼の学部生向けの授業は、私たち皆が目指す基準を
 打ち立てました。Jerry SaltzerとJim Millerには、私たちが並行性のミステリーに取り組むのを
 手助けしてくださったことを感謝します。そしてPeter SzolovitsとDavid McAllesterには、
 \link{Chapter 4}における非決定性評価の説明に対する貢献に感謝します。
@@ -1531,7 +1531,7 @@ circumference
 \end{itemize}
 
 \noindent
-二つ目のルールは、三つ目のルールの特別なケースと考えることができます。
+二つ目のルールは、三つ目のルールの特殊なケースと考えることができます。
 このことは、\code{+}と\code{*}といった記号もグローバル環境に含まれていて、
 一連の機械語命令がそれらの``値''として関係付けられていると
 規定することによって可能になります。ここでキーになるのは、式に出てくる記号の
@@ -1554,9 +1554,9 @@ circumference
 持っています。それらのいろいろな種類の式(それぞれ関連づけられた評価ルールを持つ)は、
 プログラミング言語の構文を構成します。ほかの多くのプログラミング言語と比べると、
 Lispはとても単純な構文を持っています。それは、式の評価ルールはひとつの
-単純な一般ルールと少数の特別な形に対する特別ルールからなるということです。
+単純な一般ルールと少数の特殊な形に対する特殊ルールからなるということです。
 \footnote{統一された書き方でも書けるものに対して、便利さのために別の表面構造を
-持たせるような特別な構文形式は、Peter Landinの造語を使って
+持たせるような特殊な構文形式は、Peter Landinの造語を使って
 \newterm{syntactic sugar}(\jnewterm{シンタックスシュガー})と呼ばれることがあります。
 ほかの言語の使用者と比べると、Lispプログラマは一般に、構文の問題をあまり
 気にしていません。(これと対照的なのがPascalです。何でもいいのでPascalのマニュアルを
@@ -1908,7 +1908,7 @@ Schemeの通常順序バージョンを作成します。}
 それぞれのペアの最初の式は、\newterm{predicate}(\jnewterm{述語})---値が真か偽の
 どちらかとして解釈される式---です。
 \footnote{``真か偽のどちらかとして解釈される''とは、以下のことを意味します。
-Schemeでは、二つの特別な値が存在し、\code{\#t}、\code{\#f}という定数として
+Schemeでは、二つの特殊な値が存在し、\code{\#t}、\code{\#f}という定数として
 表されます。インタプリタが述語の値をチェックするとき、\code{\#f}を偽として
 解釈します。ほかの値はすべて真として扱われます。(つまり、論理的に言うと
 \code{\#t}を定義する必要はないところですが、あったほうが便利です。)
@@ -1945,7 +1945,7 @@ Schemeでは、二つの特別な値が存在し、\code{\#t}、\code{\#f}とい
 
 \noindent
 これは、日本語で言うと``もし\( x \)がゼロより小さいければ\( -x \)を返す。
-そうでなければ\( x \)を返す''となります。\code{else}は特別な記号で、
+そうでなければ\( x \)を返す''となります。\code{else}は特殊な記号で、
 \code{cond}の最後の節の\( \langle{p}\kern0.08em\rangle \)
 の代わりに使うことができます。これを使うと、それまでのすべての節がスキップされた
 ときに、これに対応する\( \langle{e}\kern0.08em\rangle \)を\code{cond}の値として
@@ -2213,7 +2213,7 @@ sqrt(x) = the y such that y >= 0 and y^2 = x
 数値\( x \)の平方根の推定値として\( y \)があるとき、
 \( y \)と\( x / y \)の平均を取るという単純な操作を行うことで
 より良い推定値(実際の平方根により近い値)が得られます。
-\footnote{この平方根アルゴリズムは、実際にはニュートン法の特別なケースです。
+\footnote{この平方根アルゴリズムは、実際にはニュートン法の特殊なケースです。
 ニュートン法は、方程式の根を求めるための一般的な技法です。平方根アルゴリズム自体は、
 アレキサンドリアのヘロンにより\acronym{A.D.}1世紀に開発されたものです。
 一般的なニュートン法をどのようにLispの手続きとして表すかについては、
@@ -3944,7 +3944,7 @@ modulo \( n \)が\( a \)に等しいかをチェックすることで行いま�
 \link{Exercise 1.22}で見つけた12個の素数についてテストを実行せよ。
 この変更はテストのステップ数を半分にするため、2倍の速度で実行できると予想できる。
 この予想は確認できただろうか。そうでなければ、二つのアルゴリズムの観測された速度の比率は
-どのようになっていて、それが2でないという事実をどのように説明できるだろうか。
+どうなっていて、それが2でないという事実をどのように説明できるだろうか。
 \end{quote}
 
 \begin{quote}
@@ -4339,64 +4339,65 @@ pi   2 * 4 * 4 * 6 * 6 * 8 ...
 		   3\cdot 3\cdot 5\cdot 5\cdot 7\cdot 7\dots}\,. 
 \end{displaymath}
 \item
-\code{product}手続きが再帰プロセスを生成するのであれば、線形プロセスを生成するものを書け。
-線形プロセスを生成するのであれば、再帰プロセスを生成するものを書け。
+あなたが書いた\code{product}手続きが再帰プロセスを生成するのであれば、線形プロセスを
+生成するものを書け。線形プロセスを生成するのであれば、再帰プロセスを生成するものを書け。
 
 \end{enumerate}
 \end{quote}
 
-%###
 \begin{quote}
 \heading{\phantomsection\label{Exercise 1.32}Exercise 1.32:} \begin{enumerate}[a.]
 
 \item
-\code{sum}と\code{product} (\link{Exercise 1.31})は両方とも、汎用の集積関数を用いて
-項の集合を結合する\code{accumulate}(集積)と呼ばれるより一般的な目的の特別なケースに過ぎない。
+\code{sum}と\code{product} (\link{Exercise 1.31})は、どちらも\code{accumulate}(集積)
+というより一般的な概念の特殊なケースであることを示せ。集積とは、次のような一般的な
+集積関数を使って複数の項を組み合わせるものである。
+
 
 \begin{scheme}
 (accumulate combiner null-value term a next b)
 \end{scheme}
 
 
-
-\code{accumulate}は引数として\code{sum}と\code{product}と同じく項と範囲の指定を
-(2つの引数の)\code{combiner}手続きと \code{null-value}を共に得る。\code{combiner}は
-どのように現在の項が以前の項の集積と結合されるかを指定し、 \code{null-value}は
-項が尽きた時に使用する基となる値を指定する。\code{accumulate}を書き\code{sum}と\code{product}
-の両者がどのように簡単な\code{accumulate}の呼び出しで定義できるかを示せ。
+\code{accumulate}は、\code{sum}や\code{product}と同じく項と範囲指定の引数を取り、
+それに加えて、それまでの項の集積と現在の項をどうやって結合するかを指定する
+\code{combiner}手続き(2引数)と、項がなくなったときにどのような基本値を使うかを
+指定する\code{null\-/value}を引数に取る。\code{accumulate}を書き、
+\code{sum}と\code{product}の両方を\code{accumulate}への単純な呼び出しとして定義できる
+ことを示せ。
 
 \item
-あなたの\code{accumulate}が再帰プロセスを生成するのなら線形プロセスを生成する物を書け。
-もし線形プロセスを生成するのならば再帰プロセスを生成する物を書け。
+あなたが書いた\code{accumulate}が再帰プロセスを生成するのであれば、線形プロセスを
+生成するものを書け。線形プロセスを生成するのであれば、再帰プロセスを生成するものを書け。
 
 \end{enumerate}
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.33}Exercise 1.33:} より汎用的なバージョンの
-\code{accumulate} (\link{Exercise 1.32})を結合される項の
-\newterm{filter}(\jnewterm{フィルタ})の概念を紹介することで得ることが可能だ。指定された条件を
-満たす範囲の値から導かれる項のみを連結する。結果としての\code{filtered\-/accumulate}抽象は
-\code{accumulate}と同じ引数を追加の1引数の述語と共に取り、述語はフィルタを指定する。
-手続きとしての\code{filtered\-/accumulate}を書け。以下を\code{filtered\-/accumulate}を用いて
-どのように表現するかを示せ。
+\heading{\phantomsection\label{Exercise 1.33}Exercise 1.33:}
+結合する項に対する\newterm{filter}(\jnewterm{フィルタ})という概念を導入することで、
+さらに一般的なバージョンの\code{accumulate} (\link{Exercise 1.32})を手に入れることができる。
+指定された条件を満たす範囲内の値から導出される項だけを結合するというものだ。
+結果となる\code{filtered\-/accumulate}抽象は、\code{accumulate}と同じ引数に加えて、
+フィルタを指定する1引数の述語を取る。\code{filtered\-/accumulate}を手続きとして書け。
+次のものを\code{filtered\-/accumulate}を使ってどのように表現するかを示せ。
 
 \begin{enumerate}[a]
 
 \item
-\( a \)と\( b \)の区間の素数の二乗の和(あなたは既に\code{prime?}述語を書いていると前提する)
+\( a \)から\( b \)の区間の素数の二乗の和(すでに\code{prime?}述語を書いているとする)
 
 \item
-全ての\( n \)未満の正の整数でかつ\( n \)に対して互いに素(つまり
-\( {\rm GCD}(i, n) = 1 \)となる全ての整数\( i < n \))の積
+\( n \)と互いに素である\( n \)未満のすべての正の整数
+(つまり、\( {\rm GCD}(i, n) = 1 \)となるすべての整数\( i < n \))の積
 
 \end{enumerate}
 \end{quote}
+%###
 
 
 \subsection{\code{lambda}を用いた手続きの構築}
 \label{Section 1.3.2}
-
 
 
 \link{Section 1.3.1}に示すよう\code{sum}を使用する時、\code{pi\-/term}や\code{pi\-/next}のような自明な
