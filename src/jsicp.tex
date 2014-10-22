@@ -193,16 +193,16 @@
 \def\yakuchu{%
 \@ifnextchar[\@xfootnote %]
 {\stepcounter{yakuchu}%
-\protected@xdef\@thefnmark{(訳注\theyakuchu)}%
+\protected@xdef\@thefnmark{訳注\theyakuchu}%
 \@footnotemark\@footnotetext}}
 \def\yakuchutext{%
 \@ifnextchar [\@xfootnotenext %]
-{\protected@xdef\@thefnmark{(訳注\theyakuchu)}%
+{\protected@xdef\@thefnmark{訳注\theyakuchu}%
 \@footnotetext}}
 \def\yakuchumark{%
 \@ifnextchar[\@xfootnotemark %]
 {\stepcounter{yakuchu}%
-\protected@xdef\@thefnmark{(訳注\theyakuchu)}%
+\protected@xdef\@thefnmark{訳注\theyakuchu}%
 \@footnotemark}}
 \makeatother
 
@@ -4393,33 +4393,31 @@ pi   2 * 4 * 4 * 6 * 6 * 8 ...
 
 \end{enumerate}
 \end{quote}
-%###
 
 
-\subsection{\code{lambda}を用いた手続きの構築}
+\subsection{\code{lambda}を使って手続きを構築する}
 \label{Section 1.3.2}
 
 
-\link{Section 1.3.1}に示すよう\code{sum}を使用する時、\code{pi\-/term}や\code{pi\-/next}のような自明な
-手続きを高階手続きにて引数として使うためだけに定義せねばならないのはひどく不恰好に見えます。
-\code{pi\-/next}や\code{pi\-/term}を定義する代わりに、``入力値に4を足す手続き''や``入力値と入力値に
-2を足した数の積の逆数を返す手続き''を直接指定する方法を持つほうがより便利になるでしょう。
-これは手続きを作成する特殊形式\code{lambda}を紹介することで可能です。
-\code{lambda}を用いることで先程行いたかったことを以下のように記述できます。
+\code{sum}を使用する際に、\link{Section 1.3.1}でやったように、高階手続きの引数として
+使うためだけに\code{pi\-/term}や\code{pi\-/next}のような些細な手続きを定義しないと
+いけないというのは、とんでもなく不格好に思えます。\code{pi\-/next}や\code{pi\-/term}を
+定義するより、``入力に4を足したものを返す手続き''や``入力と入力に2を足したものの積の
+逆数を返す手続き''を直接指定する方法があったほうが便利ではないでしょうか。これは、
+手続きを作る\code{lambda}という特殊形式を導入することでできるようになります。
+\code{lambda}を使うと、やりたいことはそれぞれ次のように記述できます。
 
 \begin{scheme}
 (lambda (x) (+ x 4))
 \end{scheme}
-
-\noindent
-そして
 
 \begin{scheme}
 (lambda (x) (/ 1.0 (* x (+ x 2))))
 \end{scheme}
 
 \noindent
-次に\code{pi\-/sum}手続きは補助的な手続きを定義すること無しに表現が可能となります。
+こうすると、\code{pi\-/sum}手続きは次のように補助手続きをまったく定義しないで
+表現できます。
 
 \begin{scheme}
 (define (pi-sum a b)
@@ -4430,8 +4428,8 @@ pi   2 * 4 * 4 * 6 * 6 * 8 ...
 \end{scheme}
 
 \noindent
-同様に\code{lambda}を使用して、\code{integral}手続きを補助的な手続き\code{add\-/dx}を定義することなく
-書くことが可能です。
+同様に、\code{lambda}を使うことで、\code{integral}手続きも補助手続き\code{add\-/dx}を
+定義しないで書けます。
 
 \begin{scheme}
 (define (integral f a b dx)
@@ -4443,40 +4441,42 @@ pi   2 * 4 * 4 * 6 * 6 * 8 ...
 \end{scheme}
 
 \noindent
-一般的に、\code{lambda}は\code{define}と同様に手続きを作成しますが、手続きに対して
-名前が指定されないことが異なります。
+一般的に、\code{lambda}は\code{define}同様、手続きを作るために使われますが、
+その手続きに名前を指定しないという点が違います。
 
 \begin{scheme}
 (lambda (~\( \dark \langle \)~~\var{\dark formal-parameters}~~\( \dark \rangle \)~) ~\( \dark \langle \)~~\var{\dark body}~~\( \dark \rangle \)~)
 \end{scheme}
 
 \noindent
-結果としての手続きは\code{define}を用いて作成した手続きと同じです。ただ1つの違いは
-それが環境においてどのような名前にも結び付けられていないことです。
+作られる手続きは、\code{define}によって作られるものと同じく、普通の手続きです。
+唯一の違いは、環境の中で名前と関連づけられていないということだけです。
 
 \begin{scheme}
 (define (plus4 x) (+ x 4))
 \end{scheme}
 
 \noindent
-上記は以下と等価です。
+これは、以下と同値です。
 
 \begin{scheme}
 (define plus4 (lambda (x) (+ x 4)))
 \end{scheme}
 
 \noindent
-\code{lambda}式は以下のように読むことができます。
+\code{lambda}式は、英語で次のように読むことができます。\yakuchu{
+日本語では語順が異なるため、前から読み下すことはできません。意味は、「引数xを取り、xと4を足す手続き」です。
+}
 
 \begin{scheme}
 (lambda                     (x)     (+   x     4))
     |                        |       |   |     |
-手続きは                    引数xを持ち 足す x と  4
+the procedure of an argument x that adds x and 4
 \end{scheme}
 
 \noindent
-任意の値として手続きを持つ式と同様に、\code{lambda}式は複合式において
-オペレータとして使用することが可能です。例えば、
+値として手続きを持つほかの式と同じように、\code{lambda}式は次のように複合式の中で
+オペレータとして使うことができます。
 
 \begin{scheme}
 ((lambda (x y z) (+ x y (square z)))
@@ -4485,17 +4485,17 @@ pi   2 * 4 * 4 * 6 * 6 * 8 ...
 \end{scheme}
 
 \noindent
-またはより一般的に、私達が通常手続きの名前を使用する任意の文脈において使用可能です。
-\footnote{Lispを学ぶ人にとっては\code{lambda}という名前よりは\code{make\-/procedure}の様な
-名前を使用したほうがより判りやすいか、または恐しく思わせたりはしないでしょう。
-しかしこの慣習はしっかりと根付いた物です。この表記は\( \lambda \)-calculus(ラムダ計算)
-という数理論理学者Alonzo \link{Church (1941)}により発表された数学上の形式主義の
-名から受け入れられています。Churchは\( \lambda \)計算を関数と関数適用の概念を学ぶための
-厳格な基礎として与えるために開発しました。 \( \lambda \)計算はプログラミング言語の
-意味の数学上の研究のための基礎的なツールとなりました。}
+というよりも、さらに一般的に言うと、通常手続き名を使うようなどんな文脈でも使えます。
+\footnote{\code{lambda}という名前ではなく、\code{make\-/procedure}(手続き作成)のような
+当たり前の名前をつけたほうが、Lispを勉強する人にわかりやすく、怖そうな感じを
+与えないですんだかもしれません。しかし、この慣習は深く根を下ろしたものです。
+この記法は、数理論理学者のAlonzo \link{Church (1941)}によって導入された
+\( \lambda \)計算という数学的形式主義から取られています。
+Churchは、関数と関数適用の概念を研究する厳密な基礎として\( \lambda \)計算を
+開発しました。\( \lambda \)計算は、プログラミング言語の意味論を数学的に
+研究するための基礎的な道具となっています。}
 
 \subsubsection*{ローカル変数使用のため\code{let}を用いる}
-
 
 
 別の\code{lambda}使用法にはローカル変数の作成があります。形式的パラメータに
