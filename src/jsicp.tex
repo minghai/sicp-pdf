@@ -4464,7 +4464,7 @@ pi   2 * 4 * 4 * 6 * 6 * 8 ...
 \end{scheme}
 
 \noindent
-\code{lambda}式は、英語で次のように読むことができます。\yakuchu{
+\code{lambda}式は、次のように読むことができます。\yakuchu{
 日本語では語順が異なるため、前から読み下すことはできません。意味は、「引数xを取り、xと4を足す手続き」です。
 }
 
@@ -4495,12 +4495,13 @@ Churchは、関数と関数適用の概念を研究する厳密な基礎とし�
 開発しました。\( \lambda \)計算は、プログラミング言語の意味論を数学的に
 研究するための基礎的な道具となっています。}
 
-\subsubsection*{ローカル変数使用のため\code{let}を用いる}
+\subsubsection*{\code{let}を使ってローカル変数を作る}
 
 
-別の\code{lambda}使用法にはローカル変数の作成があります。形式的パラメータに
-束縛されていないローカル変数を手続きで必要とする場合は良くあります。
-例えば以下の関数を演算したいとします。
+\code{lambda}の別の使い方として、ローカル変数を作るというものがあります。
+手続きの中で、仮引数として束縛されたもの以外のローカル変数を使いたいという
+ことはよくあることです。たとえば、次の関数を計算したいとします。
+
 \begin{comment}
 
 \begin{example}
@@ -4511,7 +4512,7 @@ f(x,y) = x(1 + xy)^2 + y(1 - y) + (1 + xy)(1 - y)
 \begin{displaymath}
  f(x,y) = x(1 + xy)^2 + y(1 - y) + (1 + xy)(1 - y), 
 \end{displaymath}
-これは以下のようにも表現できます。
+これは、次のように表現することもできます。
 \begin{comment}
 
 \begin{example}
@@ -4531,9 +4532,9 @@ f(x,y) = xa^2 + yb + ab
   f(x,y)  &  xa^2 + yb + ab.
 \end{array}
 \end{displaymath}
-\( f \)を求める手続きを書く場合、\( x \)と\( y \)のみでなく中間値の名前として
-\( a \)や\( b \)をローカル変数として含みたくなるでしょう。これを実現する1つの
-方法として補助的な手続きをローカル変数を束縛するため使用することがあります。
+\( f \)を計算する手続きを書く際には、\( x \)と\( y \)だけでなく、\( a \)や\( b \)と
+いった計算過程の値の名前もローカル変数として持っておきたいところです。これを
+実現するひとつの方法は、ローカル変数を束縛するために補助手続きを使うというものです。
 
 \begin{scheme}
 (define (f x y)
@@ -4546,8 +4547,8 @@ f(x,y) = xa^2 + yb + ab
 \end{scheme}
 
 \noindent
-もちろん、\code{lambda}式を用いて無名手続きをローカル変数の束縛のため指定することも
-可能です。\code{f}のボディはすると手続きへの単一の呼び出しになります。
+もちろん、\code{lambda}式を使って、ローカル変数を束縛するための無名手続きを指定する
+こともできます。そうすると、\code{f}の本体はその手続きの呼び出しひとつだけになります。
 
 \begin{scheme}
 (define (f x y)
@@ -4560,8 +4561,8 @@ f(x,y) = xa^2 + yb + ab
 \end{scheme}
 
 \noindent
-この構成はとても便利で\code{let}と呼ばれる特殊形式がその使用をより便利にするために
-用意されています。\code{let}を用いることで手続き\code{f}は以下のようになります。
+この構成は便利なので、\code{let}という特殊形式でさらに手軽に使えるようになっています。
+\code{let}を使うと、手続き\code{f}は次のように書けます。
 
 \begin{scheme}
 (define (f x y)
@@ -4573,7 +4574,7 @@ f(x,y) = xa^2 + yb + ab
 \end{scheme}
 
 \noindent
-\code{let}式の一般的な形式は次のとおりです。
+\code{let}式の一般形式は次のようになります。
 
 \begin{scheme}
 (let ((~\( \dark \langle \)~~\( \dark var_1 \)~~\( \dark \rangle \)~ ~\( \dark \langle \)~~\( \dark exp_1 \)~~\( \dark \rangle \)~)
@@ -4584,7 +4585,7 @@ f(x,y) = xa^2 + yb + ab
 \end{scheme}
 
 \noindent
-これは以下のように考えることが可能です。
+これは、次のように考えることができます。
 
 \begin{scheme}
 let ~\( \dark \langle \)~~\( \dark var_1 \)~~\( \dark \rangle \)~ have the value ~\( \dark \langle \)~~\( \dark exp_1 \)~~\( \dark \rangle \)~ and
@@ -4594,13 +4595,17 @@ let ~\( \dark \langle \)~~\( \dark var_1 \)~~\( \dark \rangle \)~ have the value
 in  ~\( \dark \langle \)~~\var{\dark body}~~\( \dark \rangle \)~
 \end{scheme}
 
-(letは使役の意ですので、\( \langle \)\var{body}\( \rangle \)の中では\( \langle \)\( var_1 \)\( \rangle \)は
-\( \langle \)\( exp_1 \)\( \rangle \)の値を持たせる、以下繰り返しと読めます。)
+\yakuchu{
+ここでも、日本語では語順が異なります。「\( \langle \)\var{body}\( \rangle \)の中で、
+\( \langle \)\( var_1 \)\( \rangle \)には\( \langle \)\( exp_1 \)\( \rangle \)、
+\( \langle \)\( var_2 \)\( \rangle \)に\( \langle \)\( exp_2 \)\( \rangle \)…
+という値を持たせる」という意味です。}
 
 \noindent
-\code{let}式の最初の部分は名前と式のペアのリストです。\code{let}が評価される時、
-各名前は関連する式の値と関連付けされます。\code{let}のボディはこれらのローカルな値に束縛された
-名前と共に評価されます。\code{let}式は以下の代替文法として評価されるためこれが起こります。
+\code{let}式の最初の部分は、名前・式というペアのリストです。\code{let}が評価されるとき、
+それぞれの名前は対応する式の値と関連づけられます。\code{let}の本体は、これらの名前が
+ローカル変数として束縛された状態で評価されます。これは、\code{let}式が以下のものの
+別の文法として評価されているということです。
 
 \begin{scheme}
 ((lambda (~\( \dark \langle \)~~\( \dark var_1 \)~~\( \dark \rangle \)~ ~\( \dots \)~ ~\( \dark \langle \)~~\( \dark var_n \)~~\( \dark \rangle \)~)
@@ -4611,19 +4616,17 @@ in  ~\( \dark \langle \)~~\var{\dark body}~~\( \dark \rangle \)~
 \end{scheme}
 
 \noindent
-インタプリタ内にはローカル変数を提供するために新しいメカニズムが必要とされません。
-\code{let}式は中で行われる\code{lambda}適用に対する構文糖でしかありません。
+ローカル変数を提供するのに、インタプリタの新しい仕組みは必要ありません。\code{let}式は、
+その裏にある\code{lambda}適用に対するシンタックスシュガーにすぎません。
 
-
-
-この等価式から\code{let}式にて指定された変数のスコープが\code{let}のボディであることが
-わかります。これが以下のことを暗示します。
+この等価関係から、\code{let}式で指定された変数のスコープが\code{let}の本体であるという
+ことがわかります。ここから、次のようなことを導くことができます。
 
 \begin{itemize}
 
 \item
-\code{let}は変数を可能な限り使用される場所に局地的に束縛します。例えばもし\code{x}の値が
-5である時、次の式の値は
+\code{let}を使うと、変数を最大限局所的に使用箇所に束縛することができます。
+例えば、もし\code{x}の値が5であれば、次の式の値は38になります。
 
 \begin{scheme}
 (+ (let ((x 3))
@@ -4632,13 +4635,13 @@ in  ~\( \dark \langle \)~~\var{\dark body}~~\( \dark \rangle \)~
 \end{scheme}
 
 \noindent
-38です。ここで\code{let}のボディの中の\code{x}は3ですので\code{let}式の値は33です。
-一方で最も外側の\code{+}の第二引数である\code{x}は依然5です。
+ここで、\code{let}の本体の中では\code{x}は3なので\code{let}式の値は33になります。
+それに対して、一番外側の\code{+}の第二引数である\code{x}は5のままです。
 
 \item
-変数の値は\code{let}の外側にて計算されます。これはローカル変数の値を提供する式が
-ローカル変数自身と同じ名前を持っている変数に依存する場合に問題となります。
-例えば、もし\code{x}の値が2の時、次の式では
+変数の値は、\code{let}の外側で計算されます。ローカル変数の値を提供する式が
+ローカル変数自身と同じ名前を持った変数に依存している場合には、このことが
+関係してきます。例えば、\code{x}の値が2であれば、次の式の値は12になります。
 
 \begin{scheme}
 (let ((x 3)
@@ -4647,10 +4650,11 @@ in  ~\( \dark \langle \)~~\var{\dark body}~~\( \dark \rangle \)~
 \end{scheme}
 
 \noindent
-式の値は12になります。\code{let}のボディ内部では\code{x}は3、\code{y}は4(外側の\code{x}足す2)に
-なるためです。
+これは、\code{let}の本体の中では\code{x}は3になり、\code{y}は4(つまり、外側の\code{x}に
+2を足したもの)になっているからです。
 
 \end{itemize}
+%###
 
 \noindent
 時には\code{let}と同様の効果を得るために内部定義を利用することもあります。
