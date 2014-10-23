@@ -4585,7 +4585,12 @@ f(x,y) = xa^2 + yb + ab
 \end{scheme}
 
 \noindent
-これは、次のように考えることができます。
+これは、次のように考えることができます。\yakuchu{
+ここでも、日本語では語順が異なります。「\( \langle \)\var{body}\( \rangle \)の中で、
+\( \langle \)\( var_1 \)\( \rangle \)には\( \langle \)\( exp_1 \)\( \rangle \)、
+\( \langle \)\( var_2 \)\( \rangle \)には\( \langle \)\( exp_2 \)\( \rangle \)…
+という値を持たせる」という意味です。}
+
 
 \begin{scheme}
 let ~\( \dark \langle \)~~\( \dark var_1 \)~~\( \dark \rangle \)~ have the value ~\( \dark \langle \)~~\( \dark exp_1 \)~~\( \dark \rangle \)~ and
@@ -4594,12 +4599,6 @@ let ~\( \dark \langle \)~~\( \dark var_1 \)~~\( \dark \rangle \)~ have the value
     ~\( \dark \langle \)~~\( \dark var_n \)~~\( \dark \rangle \)~ have the value ~\( \dark \langle \)~~\( \dark exp_n \)~~\( \dark \rangle \)~
 in  ~\( \dark \langle \)~~\var{\dark body}~~\( \dark \rangle \)~
 \end{scheme}
-
-\yakuchu{
-ここでも、日本語では語順が異なります。「\( \langle \)\var{body}\( \rangle \)の中で、
-\( \langle \)\( var_1 \)\( \rangle \)には\( \langle \)\( exp_1 \)\( \rangle \)、
-\( \langle \)\( var_2 \)\( \rangle \)に\( \langle \)\( exp_2 \)\( \rangle \)…
-という値を持たせる」という意味です。}
 
 \noindent
 \code{let}式の最初の部分は、名前・式というペアのリストです。\code{let}が評価されるとき、
@@ -4625,7 +4624,7 @@ in  ~\( \dark \langle \)~~\var{\dark body}~~\( \dark \rangle \)~
 \begin{itemize}
 
 \item
-\code{let}を使うと、変数を最大限局所的に使用箇所に束縛することができます。
+\code{let}を使うと、変数を可能な限りローカルに使用箇所に束縛することができます。
 例えば、もし\code{x}の値が5であれば、次の式の値は38になります。
 
 \begin{scheme}
