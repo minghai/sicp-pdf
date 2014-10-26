@@ -4893,37 +4893,37 @@ f(x), f(f(x)), f(f(f(x))), ...
 (\( y = {1\over2}(y + x / y) \)が方程式\( y = x / y \)を単純に変形したものである
 ことに注意してください。方程式の両辺に\( y \)を足し、2で割ることで得られます。)
 
-この修正を加えると、平方根の手続きがうまくいくようになります。実際、定義を
-%###
-
-この変更により平方根手続きがうまく行きます。実際に、もし定義をひも解いた場合、ここで
-生成された平方根の近似の連続は元々の\link{Section 1.1.7}の平方根手続きが生成するものと正確に
-同じです。この一連の近似値の平均から回答へのアプローチは、\newterm{average damping}(\jnewterm{平均減衰})
-と呼ぶテクニックであり、良く不動点検索の収束に対し手助けとなります。
+この修正を加えると、平方根の手続きがうまくいくようになります。実は、定義を
+外して中を見ていくと、ここで生成されている平方根の近似列が、\link{Section 1.1.7}
+の元の平方根手続きによって生成されるものと完全に同じであることがわかります。
+解に対する連続した近似値の平均を取るというこのアプローチは、
+\newterm{average damping}(\jnewterm{平均緩和法})と呼ばれるテクニックで、
+不動点探索の収束に役に立つことがよくあります。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.35}Exercise 1.35:} 黄金比率
-\( \varphi \)(\link{Section 1.2.2})は変形\( x \mapsto 1 + 1 / x \)の不動点である
-ことを示せ。この比率を用いて\( \varphi \)を\code{fixed\-/point}手続きを用いて求めよ。
+\heading{\phantomsection\label{Exercise 1.35}Exercise 1.35:} 黄金比
+\( \varphi \)(\link{Section 1.2.2})が\( x \mapsto 1 + 1 / x \)という変形の
+不動点であることを示し、そのことを利用して\( \varphi \)を\code{fixed\-/point}
+手続きによって求めよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.36}Exercise 1.36:} \code{fixed\-/point}を変更し、
-\link{Exercise 1.22}にて示された\code{newline}
-と\code{display}プリミティブを用いて生成する一連の近似値を表示するようにせよ。
-次に\( x^x = 1000 \)の答を\( x \mapsto \log(1000) / \log(x) \)の不動点を
-求める方法で求めよ。
-(Schemeのプリミティブである\code{log}手続きを利用せよ。これは自然対数を計算する)。
-平均減衰を用いる場合と用いない場合にてステップ数を比較せよ。(\code{fixed\-/point}を
-推定値1では開始できないことに注意せよ。これは\( \log(1) = 0 \)での割り算を
-引き起すためである。)
+\heading{\phantomsection\label{Exercise 1.36}Exercise 1.36:} \code{fixed\-/point}を
+修正し、\link{Exercise 1.22}で示した\code{newline}と\code{display}という
+基本手続きを使って、生成する近似値列を表示するようにせよ。次に、
+\( x \mapsto \log(1000) / \log(x) \)の不動点を求めることによって
+\( x^x = 1000 \)の解を求めよ(自然対数を計算するSchemeの基本手続き
+\code{log}を利用せよ)。
+平均緩和法を使う場合と使わない場合のステップ数を比較せよ。
+(\code{fixed\-/point}を開始するのに、1という推定値が使えないことに注意。
+1を使うと、\( \log(1) = 0 \)による割り算が発生してしまう。)
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 1.37}Exercise 1.37:} \begin{enumerate}[a]
 
 \item
-無限\newterm{continued fraction}(\jnewterm{連分数})とは以下の形式の式である。
+無限\newterm{continued fraction}(\jnewterm{連分数})とは、以下のような形の式である。
 \begin{comment}
 
 \begin{example}
@@ -4940,11 +4940,12 @@ f = ---------------------
 \begin{displaymath}
  {f} = {N_1 \over {D_1 + {N_2 \over {D_2 + {N_3 \over D_3 + \dots}}}}}\,. 
 \end{displaymath}
-例として、無限連分数の展開として\( N_i \)と\( D_i \)の全てが1の場合、\( 1 / \varphi \)
-を生成し、この時\( \varphi \)は(\link{Section 1.2.2}で説明した)黄金比率である。
-無限連分数の近似を求める1つの方法として与えられた項の数を越えた後、展開を切り捨てる方法がある。
-そのような切り捨て---所謂\newterm{\textit{k}-term finite continued fraction}(\jnewterm{k項有限連分数})---は以下
-の形式になる。
+ひとつの例として、\( N_i \)と\( D_i \)がすべて1の無限連分数は\( 1 / \varphi \)
+になるということが示せる。ここで、\( \varphi \)は(\link{Section 1.2.2}で説明した)
+黄金比である。無限連分数の近似値を求める方法のひとつは、与えられた項数で
+展開を打ち切るというものである。このように展開を打ち切ったもの---
+いわゆる\newterm{\textit{k}-term finite continued fraction}
+(\jnewterm{\textit{k}項有限連分数})---は、以下のような形になる。
 \begin{comment}
 
 \begin{example}
@@ -4961,9 +4962,11 @@ D_1 + -----------
 \begin{displaymath}
  {N_1 \over {D_1 + {N_2 \over {\ddots + {N_k \over D_k}}}}}\,. 
 \end{displaymath}
-\code{n}と\code{d}は連分数の\( N_i \)\( D_i \)の項を返す1引数(項の索引\( i \))の手続きであると考える。
-\code{(cont\-/frac n d k)}を評価すると\( k \)項有限連分数の値を求める手続き、\code{cont\-/frac}を定義せよ。
-あなたの手続きを以下を用いて\( 1 / \varphi \)の近似を求めることで、一連の\code{k}の値についてチェックせよ。
+\code{n}と\code{d}を1引数(項の添字\( i \))の手続きとし、それぞれ連分数の項
+\( N_i \)\( D_i \)を返すとする。
+\code{(cont\-/frac n d k)}を評価すると\textit{k}項有限連分数の値を計算するような
+手続き\code{cont\-/frac}を定義せよ。
+一連の\code{k}の値に対し、以下によって\( 1 / \varphi \)の近似を求め、その手続きをチェックせよ。
 
 \begin{scheme}
 (cont-frac (lambda (i) 1.0)
@@ -4972,14 +4975,15 @@ D_1 + -----------
 \end{scheme}
 
 \noindent
-小数点以下4桁の精度の近似を得るには\code{k}はどれだけの大きさでなければならないか?
+小数点以下4桁の精度の近似を得るには、\code{k}をどれだけ大きくしなければならないだろうか。
 
 \item
-もしあなたの\code{cont\-/frac}手続きが再帰プロセスを生成するのならば線形プロセスを生成するものを書け。
-もし線形プロセスを生成するのであれば、再帰プロセスを生成するものを書け。
+あなたが書いた\code{cont\-/frac}が再帰プロセスを生成するのであれば、線形プロセスを
+生成するものを書け。線形プロセスを生成するのであれば、再帰プロセスを生成するものを書け。
 
 \end{enumerate}
 \end{quote}
+%###
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 1.38}Exercise 1.38:} 1737年にスイスの数学者、
