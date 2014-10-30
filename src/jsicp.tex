@@ -5282,27 +5282,27 @@ Lispは、ほかの一般的なプログラミング言語と違い、手続き�
 手続きを返り値とすることができるようにするには手続きの自由変数の領域を
 手続きが実行中でないときにも予約しておかなければいけないということがあります。
 \link{Section 4.1}で学ぶSchemeの実装では、これらの変数は手続きの環境に保存されます。}
-%###
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.40}Exercise 1.40:} \code{newtons\-/method}手続きと
-共に以下の形式の式にて使用が可能な手続き\code{cubic}を
-定義せよ。
+\heading{\phantomsection\label{Exercise 1.40}Exercise 1.40:}
+次のような形の式で\code{newtons\-/method}手続きと組み合わせて使えるような手続き
+\code{cubic}(三次方程式)を定義せよ。
 
 \begin{scheme}
 (newtons-method (cubic a b c) 1)
 \end{scheme}
 
 \noindent
-次に三次方程式\( x^3 + ax^2 + bx + c = 0 \)の近似解を求めよ。
+これを使って、三次方程式\( x^3 + ax^2 + bx + c = 0 \)の零点の近似値を求めよ。
 
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.41}Exercise 1.41:} 引数が1つの手続きを
-引数として取り、その手続きを二回適用する手続きを返す手続き\code{double}を定義せよ。
-例えば\code{inc}が引数に1を足す手続きであれば、\code{(double inc)}は2を足す手続きになる。
-次の式はどんな値を返すか?
+\heading{\phantomsection\label{Exercise 1.41}Exercise 1.41:}
+引数がひとつの手続きを引数として取り、その手続きを二回適用する手続きを返す
+手続き\code{double}を定義せよ。
+例えば、\code{inc}が引数に1を足す手続きであれば、\code{(double inc)}は2を足す
+手続きになる。次の式はどんな値を返すだろうか。
 
 \begin{scheme}
 (((double (double double)) inc) 5)
@@ -5310,10 +5310,11 @@ Lispは、ほかの一般的なプログラミング言語と違い、手続き�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.42}Exercise 1.42:} \( f \)と\( g \)が
-2つの1引数関数だとする。\( g \)に\( f \)を\newterm{composition}(\jnewterm{合成})するとは
-関数\( x \mapsto f(g(x)) \)と定義される。合成を実装する手続き\code{compose}を定義せよ。
-例えば\code{inc}が引数に1を足す手続きである場合、
+\heading{\phantomsection\label{Exercise 1.42}Exercise 1.42:}
+\( f \)と\( g \)を二つの1引数関数とする。
+\( g \)に\( f \)を\newterm{composition}(\jnewterm{合成})するということを、
+関数\( x \mapsto f(g(x)) \)として定義する。合成を実装する手続き\code{compose}を
+定義せよ。例えば\code{inc}が引数に1を足す手続きであれば、以下のようになる。
 
 \begin{scheme}
 ((compose square inc) 6)
@@ -5322,35 +5323,38 @@ Lispは、ほかの一般的なプログラミング言語と違い、手続き�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.43}Exercise 1.43:} \( f \)が
-数値演算関数であり\( n \)が正の整数である時、\( f \)を\( n \)回適用する、
-\( x \)における値が\( f(f(\dots (f(x))\dots )) \)である関数を定義できる。
-例えば\( f \)が関数\( x \mapsto x + 1 \)である時、\( f \)を\( n \)回適用した関数は
-\( x \mapsto x + n \)となる。もし\( f \)が数値を二乗する操作ならば、\( f \)を
-\( n \)回適用した関数は引数を\( 2^n \)乗する。入力として\( f \)を計算する手続きと正の整数
-\( n \)を取り、\( f \)の\( n \)回適用を計算する手続きを返す手続きを書け。
-その手続きは以下のように使用可能でなければならない。
+\heading{\phantomsection\label{Exercise 1.43}Exercise 1.43:}
+\( f \)が数値関数で\( n \)が正の整数であれば、\( f \)の\( n \)回適用という
+ものを作ることができ、それは\( x \)での値が\( f(f(\dots (f(x))\dots )) \)で
+ある関数として定義できる。
+例えば、\( f \)が関数\( x \mapsto x + 1 \)であれば、\( f \)の\( n \)回適用は
+関数\( x \mapsto x + n \)となる。もし\( f \)が数値を二乗する演算であれば、
+\( f \)の\( n \)回適用は、引数を\( 2^n \)乗する関数になる。入力として
+\( f \)を計算する手続きと正の整数\( n \)を取り、\( f \)の\( n \)回適用を
+計算する手続きを返す手続きを書け。
+その手続きは、以下のように使えるはずである。
 
 \begin{scheme}
 ((repeated square 2) 5)
 ~\textit{625}~
 \end{scheme}
 
-ヒント：\link{Exercise 1.42}の\code{compose}を使うと便利でしょう。
+ヒント：\link{Exercise 1.42}の\code{compose}を使うと便利かもしれない。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.44}Exercise 1.44:} 関数の
-\newterm{smoothing}(\jnewterm{補間})という考えは信号処理において重要な概念である。
-\( f \)が関数であり\( dx \)がある小さな値である時、\( f \)の補間とは
-\( x \)における値が\( f(x - dx) \), \( f(x) \), and \( f(x + dx) \)
-の平均である関数である。入力として\( f \)を計算する手続きを取り、補間された
-\( f \)を計算する手続きを返す手続き\code{smooth}を書け。
-時には関数の補正を繰り返し(つまり補間された関数をさらに補間
-することを繰り返す)、\newterm{\textit{n}-fold smoothed function}(\jnewterm{\textit{n}次畳み込み補間関数})
-を得ることには価値がある。任意の与えられた関数の\textit{n}次畳み込み補間関数を\link{Exercise 1.43}の
-\code{smooth}と\code{repeated}を用いてどのように生成するかを示せ。
+\heading{\phantomsection\label{Exercise 1.44}Exercise 1.44:} 
+ 関数の\newterm{smoothing}(\jnewterm{平滑化})は、信号処理において重要な概念である。
+\( f \)が関数で\( dx \)がある小さな値であるとき、\( f \)を平滑化したものは
+\( x \)での値が\( f(x - dx) \), \( f(x) \), \( f(x + dx) \)の平均となる関数である。
+入力として\( f \)を計算する手続きを取り、\( f \)を平滑化したものを計算する手続きを
+返す手続き\code{smooth}を書け。時には、関数を繰り返し平滑化する(つまり、平滑化した
+関数をさらに平滑化することを続ける)ことによって
+\newterm{\textit{n}-fold smoothed function}(\jnewterm{\textit{n}重平滑化関数})
+を得ることが役に立つこともある。\code{smooth}と\link{Exercise 1.43}の\code{repeated}
+を使って任意の関数の\textit{n}重平滑化関数を生成するやり方を示せ。
 \end{quote}
+%###
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 1.45}Exercise 1.45:} \link{Section 1.3.3}にて
