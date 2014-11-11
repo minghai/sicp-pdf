@@ -6594,22 +6594,22 @@ Common LispなどのLisp方言では、\code{nil}を特別な記号として扱�
 避けたいと思っています。\link{Section 2.3}でクォートを導入したら、空リストを
 \code{'()}として示し、完全に変数\code{nil}を使わないですむようにします。}
 
-\subsubsection*{リスト命令}
+\subsubsection*{リスト演算}
 
-
-複数のペアを使用して要素の列をリストのように表現することは、慣習的なプログラミングテクニック
-である連続してリストを``\code{cdr}で縮小する''ことによりリストを操作するのと同時に生じます。
-例えば手続き\code{list\-/ref}は引数としてリストと数値\( n \)を取り、リストの\( n \)番目の項目を
-返します。リストの要素を数えるのに0から始めるのが慣習です。
+ペアを使って要素の列をリストとして表現するやり方は、リストを
+``\code{cdr}ダウン''していくという確立されたプログラミングテクニックと
+セットになっています。例えば、\code{list\-/ref}手続きは引数として
+リストと数値\( n \)を取り、リストの\( n \)番目のものを返します。
+リストの要素の番号は0から始めるのが慣例となっています。
 \code{list\-/ref}を計算する方法は以下の通りです。
 
 \begin{itemize}
 
 \item
-\( n = 0 \)の場合、\code{list\-/ref}はリストの\code{car}を返す。
+\( n = 0 \)であれば、\code{list\-/ref}はリストの\code{car}を返す。
 
 \item
-そうでなければ、\code{list\-/ref}はリストの\code{cdr}の\( (n - 1) \)番目の項目を返す。
+そうでなければ、\code{list\-/ref}はリストの\code{cdr}の\( (n - 1) \)番目のものを返す。
 
 \end{itemize}
 
@@ -6624,9 +6624,10 @@ Common LispなどのLisp方言では、\code{nil}を特別な記号として扱�
 \end{scheme}
 
 \noindent
-時折、私達はリスト全体を\code{cdr}で下ります。これを手助けするために、Schemeは
-プリミティブな手続き\code{null?}を持っており、その引数が空リストであるかどうかを試験します。
-手続き\code{length}はリスト内の要素数を返しますが、\code{null?}の使用の典型的なパターンを説明します。
+リスト全体を\code{cdr}ダウンすることもよくあります。それをやりやすくするために
+Schemeは基本述語\code{null?}を持っています。これは、引数が空リストかどうか
+テストするものです。\code{length}というリストの要素数を返す手続きは、
+その典型的な使用パターンを示しています。
 
 \begin{scheme}
 (define (length items)
@@ -6639,27 +6640,27 @@ Common LispなどのLisp方言では、\code{nil}を特別な記号として扱�
 \end{scheme}
 
 \noindent
-手続き\code{length}は単純な最近計画を実装します。集約ステップは以下の通りです。
+手続き\code{length}は、単純な再帰プランを実装しています。簡約ステップは以下の通りです。
 
 \begin{itemize}
 
 \item
-任意のリストの\code{length}はリストの\code{cdr}の\code{length}に1を足した値
+任意のリストの\code{length}は、リストの\code{cdr}の\code{length}に1を足した値である。
 
 \end{itemize}
 
 \noindent
-これが底となるケースに到達するまで繰り返し適用される
+これは、次の基本ケースに着くまで連続的に適用される。
 
 \begin{itemize}
 
 \item
-空リストの\code{length}は0
+空リストの\code{length}は0である。
 
 \end{itemize}
 
 \noindent
-また\code{length}は反復スタイルでも計算可能です。
+\code{length}は、反復スタイルで計算することもできます。
 
 \begin{scheme}
 (define (length items)
@@ -6671,9 +6672,10 @@ Common LispなどのLisp方言では、\code{nil}を特別な記号として扱�
 \end{scheme}
 
 \noindent
-もう1つの慣習的なプログラミングテクニックは\code{cdr}を繰り返し利用しリストを下る間に、
-答のリストを``\code{cons}で積み上げ''ることです。これは手続き\code{append}にて利用され、
-\code{append}は2つのリストを引数として取り、それらの要素を結合し、新しいリストを作ります。
+もうひとつの確立されたプログラミングテクニックは、リストを\code{cdr}ダウンしながら
+答えのリストを``\code{cons}アップ''するというものです。これは、次の\code{append}
+手続きで使われます。\code{append}手続きは、二つのリストを引数として取り、
+要素を連結して新しいリストを作ります。
 
 \begin{scheme}
 (append squares odds)
@@ -6683,17 +6685,17 @@ Common LispなどのLisp方言では、\code{nil}を特別な記号として扱�
 \end{scheme}
 
 \noindent
-\code{append}もまた再帰計画を用いて実装されます。リスト\code{list1}と\code{list2}を
-\code{append}するためには以下の通りに行います。
+\code{append}も再帰プランを使って実装されています。
+リスト\code{list1}と\code{list2}を\code{append}するには、次のようにします。
 
 \begin{itemize}
 
 \item
-もし\code{list1}が空リストであれば、結果は単に\code{list2}
+もし\code{list1}が空リストであれば、結果は単に\code{list2}である。
 
 \item
-そうでない場合、\code{list1}の\code{cdr}と\code{list2}を\code{append}し、その結果の上に
-\code{list1}の\code{car}を\code{cons}する
+そうでなければ、\code{list1}の\code{cdr}と\code{list2}を\code{append}し、その結果に
+\code{list1}の\code{car}を\code{cons}する。
 
 \end{itemize}
 
@@ -6706,7 +6708,7 @@ Common LispなどのLisp方言では、\code{nil}を特別な記号として扱�
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 2.17}Exercise 2.17:} 与えられた(空でない)
-リストの最初の要素のみを持つリストを返す手続き\code{last\-/pair}を定義せよ。
+リストの最後の要素のみを持つリストを返す手続き\code{last\-/pair}を定義せよ。
 
 \begin{scheme}
 (last-pair (list 23 72 149 34))
@@ -6715,7 +6717,8 @@ Common LispなどのLisp方言では、\code{nil}を特別な記号として扱�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.18}Exercise 2.18:}リストを引数として取り、同じ要素を逆順に持つリストを返す手続き\code{reverse}を定義せよ。
+\heading{\phantomsection\label{Exercise 2.18}Exercise 2.18:}リストを引数として取り、
+同じ要素を逆順に持つリストを返す手続き\code{reverse}を定義せよ。
 
 \begin{scheme}
 (reverse (list 1 4 9 16 25))
@@ -6724,24 +6727,24 @@ Common LispなどのLisp方言では、\code{nil}を特別な記号として扱�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.19}Exercise 2.19:} \link{Section 1.2.2}の
-両替数え上げプログラムについて考える。プログラムにて用いられる
-通貨を容易に変更できるようになればとても良いだろう。そうすることで例えば
-イギリスのポンドの両替方法の数を計算できるようになるだろう。プログラムが書かれた時には、
-通貨の知識はある部分は手続き\code{first\-/denomination}の中に、またある部分は手続き\code{count\-/change}の
-中に存在した。(\code{count\-/change}は米国の貨幣には5種類あることを知っていた)。
-両替を行うため利用される貨幣のリストが提供できるようになればより良くなるだろう。
+\heading{\phantomsection\label{Exercise 2.19}Exercise 2.19:}
+\link{Section 1.2.2}の両替パターン数計算プログラムについて考える。
+プログラムで使う通貨を変えられるようにして、例えばイギリスポンドの両替パターン数を
+計算できるようになると便利だろう。現状のプログラムでは、通貨についての知識は
+一部は\code{first\-/denomination}に、一部は\code{count\-/change}
+(アメリカには5種類のコインがあるということを知っている)に分散されている。
+両替に使うコインのリストを与えられるようになればもっとよくなるだろう。
 
-
-\code{cc}を変更することで、その2つ目の引数がどの貨幣を使用するかを指定する整数ではなく、
-使用する貨幣の値のリストとなるようにしたいと考える。そして通貨の各種類を定義する
-リストを持つことにする。
+手続き\code{cc}を書き直して、二つ目の引数として取るものを、どのコインを使うかを
+指定する整数ではなく、使うコインの値のリストとなるようにしたい。それから、
+それぞれの通貨の種類を定義するリストを次のように持っておく。
 
 \begin{scheme}
 (define us-coins (list 50 25 10 5 1))
 (define uk-coins (list 100 50 20 10 5 2 1 0.5))
 \end{scheme}
 
+%###
 
 次に\code{cc}を以下のように呼び出す。
 
