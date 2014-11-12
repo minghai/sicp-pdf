@@ -4562,7 +4562,7 @@ f(x,y) = xa^2 + yb + ab
 \end{scheme}
 
 \noindent
-この構成は便利なので、\code{let}という特殊形式でさらに手軽に使えるようになっています。
+この概念は便利なので、\code{let}という特殊形式でさらに手軽に使えるようになっています。
 \code{let}を使うと、手続き\code{f}は次のように書けます。
 
 \begin{scheme}
@@ -6744,18 +6744,16 @@ Schemeは基本述語\code{null?}を持っています。これは、引数が�
 (define uk-coins (list 100 50 20 10 5 2 1 0.5))
 \end{scheme}
 
-%###
-
-次に\code{cc}を以下のように呼び出す。
+そして、\code{cc}は次のように呼び出すことにしよう。
 
 \begin{scheme}
 (cc 100 us-coins)
 ~\textit{292}~
 \end{scheme}
 
-
-これを行うためにはプログラム\code{cc}に何らかの変更が必要だ。同じ形態を保つが、
-2つ目の引数に異なる方法でアクセスする。以下のようになる。
+このためには、プログラム\code{cc}に対して何らかの変更を加える必要がある。
+プログラムの形は同じだが、二つ目の引数に対するアクセスの仕方が次のように
+変わる。
 
 \begin{scheme}
 (define (cc amount coin-values)
@@ -6771,54 +6769,54 @@ Schemeは基本述語\code{null?}を持っています。これは、引数が�
                 coin-values)))))
 \end{scheme}
 
-リスト構造に対するプリミティブな命令を用いて
-手続き\code{first\-/denomination}, \code{except\-/first\-/de- nomination}, and \code{no\-/more?}を定義せよ。
-リスト\code{coin\-/values}の順は\code{cc}により生成される解答に影響を与えるか?
-それは何故か? または何故そうでないのか?
+リスト構造に対する基本演算によって、手続き\code{first\-/denomination},
+\code{except\-/first\-/de- nomination}, and \code{no\-/more?}を定義せよ。
+リスト\code{coin\-/values}の順序は、\code{cc}によって返される解答に影響を与える
+だろうか、それとも与えないだろうか。それはどうしてだろうか。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.20}Exercise 2.20:}手続き
-\code{+}, \code{*}, \code{list}は任意の数の引数を取る。そのような手続きを定義する1つの
-方法として\newterm{dotted-tail notation}(\jnewterm{ドット付き末尾記法})と共に\code{define}を使用することが上げられる。
-手続き定義において、最後のパラメータ名の前にドットがあるパラメータリストは手続きが呼び出された時に、
-最初以下のパラメータが(もし存在したら)初期引数の値を通常通りに持つが、最後のパラメータの値は
-残りの引数全てのリストとなる。例えば、以下の定義を与えられた時に、
+\heading{\phantomsection\label{Exercise 2.20}Exercise 2.20:}
+手続き\code{+}, \code{*}, \code{list}は任意の数の引数を取る。このような手続きを定義する
+方法のひとつとして、\code{define}で\newterm{dotted-tail notation}
+(\jnewterm{ドット付き末尾記法})を使うというものがある。手続きの定義の中で、
+仮引数リストの最後の仮引数名の前にドットのあるものは、手続きが呼ばれるときに、
+前のほうの仮引数は(もしあれば)通常通り前のほうの引数の値を持つことになるが、
+最後の仮引数の値は残りの引数すべての\jnewterm{リスト}となる。
+例えば、次のような定義の場合、
 
 \begin{scheme}
 (define (f x y . z) ~\( \dark \langle \)~~\var{\dark body}~~\( \dark \rangle \)~)
 \end{scheme}
 
 \noindent
-手続き\code{f}は2つ以上の引数で呼び出すことが可能だ。もし次を評価すれば、
+手続き\code{f}は、二つ以上の引数で呼び出すことができる。次のものを評価すると、
 
 \begin{scheme}
 (f 1 2 3 4 5 6)
 \end{scheme}
 
 \noindent
-\code{f}のボディでは\code{x}が1、 \code{y}が2、そして\code{z}はリスト\mbox{\code{(3 4 5 6)}}となる。
-以下の定義を与えられた時、
+\code{f}の本体では、\code{x}は1となり、\code{y}は2で、\code{z}はリスト\mbox{\code{(3 4 5 6)}}となる。
+次の定義の場合、
 
 \begin{scheme}
 (define (g . w) ~\( \dark \langle \)~~\var{\dark body}~~\( \dark \rangle \)~)
 \end{scheme}
 
 \noindent
-手続き\code{g}はゼロ個以上の引数にて呼び出し可能となる。
-次を評価すれば、
+手続き\code{g}は0個以上の引数で呼び出すことができる。次のものを評価すると、
 
 \begin{scheme}
 (g 1 2 3 4 5 6)
 \end{scheme}
 
 \noindent
-\code{g}のボディでは\code{w}はリスト\code{(1 2 3 4 5 6)}となる。\footnote{
+\code{g}の本体では、\code{w}はリスト\code{(1 2 3 4 5 6)}となる。
+\footnote{
 To define \code{f} and \code{g} using \code{lambda} we would
 write
-
-
-\code{f}と\code{g}を\code{lambda}を用いて定義するには、以下のように記述する。
+\code{lambda}を使って\code{f}と\code{g}を定義する場合、次のように書ける。
 
 \begin{smallscheme}
 (define f (lambda (x y . z) ~\( \dark \langle \)~~\var{\dark body}~~\( \dark \rangle \)~))
@@ -6826,11 +6824,8 @@ write
 \end{smallscheme}
 }
 
-
-
-この記法を用いて手続き\code{same\-/parity}を書け。\code{same\-/parity}は1つまたは
-それ以上の整数を引数として取り、最初の引数と同じ偶奇性を持つ全ての引数の
-リストを返す。例えば、
+\code{same\-/parity}は、ひとつ以上の整数を引数として取り、最初の引数と同じ
+偶奇性を持つ引数すべてのリストを返す手続きとする。例えば、次のようになる。
 
 \begin{scheme}
 (same-parity 1 2 3 4 5 6 7)
@@ -6840,10 +6835,13 @@ write
 \end{scheme}
 \end{quote}
 
-\subsubsection*{リストに渡るmap}
+上記の記法を使ってこの手続きを書け。
 
-あるとても便利な命令は、ある変換をリストの各要素に適用し、結果のリストを返します。
-例えば以下の手続きはリストの各数値を与えられた因数で拡大します。
+\subsubsection*{リストに対するマップ}
+
+非常に便利な演算として、リストのそれぞれの要素に何らかの変換を適用し、
+結果のリストを返すというものがあります。例えば、次の手続きはリストの
+それぞれの数値を与えられた係数倍します。
 
 \begin{scheme}
 (define (scale-list items factor)
@@ -6857,14 +6855,15 @@ write
 \end{scheme}
 
 \noindent
-私達は\link{Section 1.3}のように、この一般的な考えを抽象化し、高階手続きにて表現された共通なパターン
-として捉えることができます。ここでの高階手続きは\code{map}と呼ばれます。\code{map}は引数として
-1引数の手続きとリストを取り、返り値としてその手続きをリストの各要素に適用することで得られた
-結果のリストを返します。\footnote{\label{Footnote 12}
-Schemeは標準としてここで説明される物よりもより汎用的な\code{map}手続きを提供します。
-このより汎用的な\code{map}は\( n \)引数の手続きを、\( n \)個のリストと共に取り、
-全てのリストの最初の要素を手続きに適用し、次に全ての2つ目の要素を適用し、以下それを繰り返し、
-結果のリストを返します。例えば、
+\link{Section 1.3}でやったように、この一般的な考え方を抽象化し、高階手続きによって
+表現される共通パターンとしてとらえることができます。ここでの高階手続きは、
+\code{map}と呼ばれるものです。\code{map}は、1引数の手続きとリストを引数として取り、
+リストのそれぞれの要素に手続きを適用した結果のリストを返します。
+\footnote{\label{Footnote 12}
+Schemeは、ここで記述したものよりも汎用的な\code{map}手続きを標準で提供しています。
+そのより汎用的な\code{map}は、引数として\( n \)引数の手続きと\( n \)個のリストを取り、
+手続きを、すべてのリストの一つ目の要素、すべてのリストの二つ目の要素\( \dots \)に対して
+適用していき、結果のリストを返します。例えば、次のようになります。
 
 \begin{smallscheme}
 (map + (list 1 2 3) (list 40 50 60) (list 700 800 900))
@@ -6889,7 +6888,7 @@ Schemeは標準としてここで説明される物よりもより汎用的な\c
 \end{scheme}
 
 \noindent
-これで\code{map}を用いた新しい\code{scale\-/list}の定義を与えられる。
+これで、\code{map}を使って\code{scale\-/list}の新しい定義を書くことができます。
 
 \begin{scheme}
 (define (scale-list items factor)
@@ -6898,11 +6897,15 @@ Schemeは標準としてここで説明される物よりもより汎用的な\c
 \end{scheme}
 
 \noindent
-\code{map}は重要な構造です。それが共通なパターンを掴むからだけでなく、リストを扱う
-より高いレベルの抽象化を確立させるためです。\code{scale\-/list}の元の定義では
-プログラムの再帰構造はリストのエレメント毎の処理に注意を引きました。
-\code{map}を用いた\code{scale\-/list}の定義はそのレベルの詳細を抑制し、要素のリストから
-結果のリストへの拡大変換を強調します。2つの定義の間の違いはコンピュータが異なる
+\code{map}は重要な概念ですが、これが共通パターンをとらえているという理由からだけでは
+ありません。\code{map}はリストを扱ううえでのより高いレベルの抽象化を達成するからです。
+元の\code{scale\-/list}の定義では、プログラムは再帰構造になっていて、リストの
+要素ごとの処理に注意が向くようになっていました。\code{map}によって\code{scale\-/list}を
+定義すると、そのレベルの細かいことは隠されて、係数倍というものが要素のリストを結果の
+リストに変換するものであるというところが強調されます。
+
+結果のリストへの拡大変換を強調します。
+2つの定義の間の違いはコンピュータが異なる
 処理を行うことではなく(異なりますが)、私達が過程について異って考えていることです。
 実際に、\code{map}はリストの要素がどのように抽出され、また結合されるかの詳細から
 リストを変換する手続きの実装を分離する抽象化バリアを強化することを手助けします。
