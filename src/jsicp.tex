@@ -6993,16 +6993,16 @@ Louis Reasonerは\link{Exercise 2.21}の一つ目の\code{square\-/list}手続�
 \label{Section 2.2.2}
 
 リストによる列の表現は、要素がそれ自身列であるような列を表現するように自然に
-一般化できる。例えば、次の式によって構築されるオブジェクト\code{((1 2) 3 4)}は、
+一般化できます。例えば、次の式によって構築されるオブジェクト\code{((1 2) 3 4)}は、
 
 \begin{scheme}
 (cons (list 1 2) (list 3 4))
 \end{scheme}
 
 \noindent
-三つの項目のリストとして見ることができる。最初の項目はそれ自身が\code{(1 2)}という
-リストとなる。実際、このことはインタプリタによって表示される結果の形からも見て取る
-ことができる。\link{Figure 2.5}は、この構造のペアによる表現を示している。
+三つの項目のリストとして見ることができます。最初の項目はそれ自身が\code{(1 2)}という
+リストとなります。実際、このことはインタプリタによって表示される結果の形からも見て取る
+ことができます。\link{Figure 2.5}は、この構造のペアによる表現を示しています。
 
 \begin{figure}[tb]
 \phantomsection\label{Figure 2.5}
@@ -7035,13 +7035,9 @@ Louis Reasonerは\link{Exercise 2.21}の一つ目の\code{square\-/list}手続�
 \end{quote}
 \end{figure}
 
-要素が列であるような列は、\newterm{trees}(\jnewterm{木})として考えることもできる。
-列の要素は木の枝で、それ自身が列である要素は部分木となる。
-\link{Figure 2.6}に、\link{Figure 2.5}を木として見た構造を示す。
-
-要素それ自身が列である列のもう1つの考え方は木としての考え方である。
-列の要素は木の枝であり、それ自身が列である要素は部分木となる。
-\link{Figure 2.6}は木として見た場合の\link{Figure 2.5}を示している。
+要素が列であるような列は、\newterm{trees}(\jnewterm{木})として考えることもできます。
+列の要素は木の枝で、それ自身が列である要素は部分木となります。
+\link{Figure 2.6}に、\link{Figure 2.5}を木として見た構造を示します。
 
 \begin{figure}[tb]
 \phantomsection\label{Figure 2.6}
