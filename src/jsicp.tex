@@ -6640,7 +6640,7 @@ Schemeは基本述語\code{null?}を持っています。これは、引数が�
 \end{scheme}
 
 \noindent
-手続き\code{length}は、単純な再帰プランを実装しています。簡約ステップは以下の通りです。
+手続き\code{length}は、単純な再帰計画を実装しています。簡約ステップは以下の通りです。
 
 \begin{itemize}
 
@@ -6685,7 +6685,7 @@ Schemeは基本述語\code{null?}を持っています。これは、引数が�
 \end{scheme}
 
 \noindent
-\code{append}も再帰プランを使って実装されています。
+\code{append}も再帰計画を使って実装されています。
 リスト\code{list1}と\code{list2}を\code{append}するには、次のようにします。
 
 \begin{itemize}
@@ -6900,30 +6900,27 @@ Schemeは、ここで記述したものよりも汎用的な\code{map}手続き�
 元の\code{scale\-/list}の定義では、プログラムは再帰構造になっていて、リストの
 要素ごとの処理に注意が向くようになっていました。\code{map}によって\code{scale\-/list}を
 定義すると、そのレベルの細かいことは隠されて、係数倍というものが要素のリストを結果の
-リストに変換するものであるというところが強調されます。
-
-結果のリストへの拡大変換を強調します。
-2つの定義の間の違いはコンピュータが異なる
-処理を行うことではなく(異なりますが)、私達が過程について異って考えていることです。
-実際に、\code{map}はリストの要素がどのように抽出され、また結合されるかの詳細から
-リストを変換する手続きの実装を分離する抽象化バリアを強化することを手助けします。
-\link{Figure 2.1}にて示されるバリアのように、この抽象化は私達に列がどのように実装さ
-れるかの低レベルの詳細を変更する柔軟性を提供し、その上で列から列へと変換する操作の
-概念上のフレームワークを保っている。\link{Section 2.2.3}はこのプログラムを構成するためのフレームワーク
-としての列の利用を拡張している。
+リストに変換するものであるというところが強調されます。二つの定義の違いは、コンピュータが
+異なるプロセスを実行しているというところではなく(プロセスは同じものです)、私たちがプロセスを
+異なるやり方で考えるというところにあります。実際に\code{map}は、リストを変形する手続きの
+実装を、リストの要素をどうやって取り出して結合していくかという細かいところから切り離す
+抽象化の壁を作ることを助けてくれます。\link{Figure 2.1}で示した壁のように、
+この抽象化を使うことで、列を列に変形するという概念的な演算フレームワークを保ったままで、
+列がどのように実装されているかという低レベルな細かいところを変更できる柔軟性が得られます。
+\link{Section 2.2.3}では、列をプログラム組織化のフレームワークとするという
+この使い方についてさらに詳しく説明します。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.21}Exercise 2.21:} T手続き
-\code{square\-/list}は数値のリストを引数として取りそれらの数値の二乗のリストを返す。
+\heading{\phantomsection\label{Exercise 2.21}Exercise 2.21:}
+手続き\code{square\-/list}は、引数として数値のリストを取り、それらの数値の二乗の列を
+持つリストを返す。
 
 \begin{scheme}
 (square-list (list 1 2 3 4))
 ~\textit{(1 4 9 16)}~
 \end{scheme}
 
-
-ここに2つの異なる\code{square\-/list}がある。失なわれた式を埋めることで両者を
-完成させよ。
+次に二つの異なる\code{square\-/list}の定義を示す。書けた部分を埋め、二つとも完成させよ。
 
 \begin{scheme}
 (define (square-list items)
@@ -6936,9 +6933,9 @@ Schemeは、ここで記述したものよりも汎用的な\code{map}手続き�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.22}Exercise 2.22:} Louis Reasonerは
-\link{Exercise 2.21}の最初の\code{square\-/list}手続きを書き直し、
-反復プロセスを展開させようと試みている。
+\heading{\phantomsection\label{Exercise 2.22}Exercise 2.22:}
+Louis Reasonerは\link{Exercise 2.21}の一つ目の\code{square\-/list}手続きを書き直し、
+反復プロセスを展開するようにしようとしている。
 
 \begin{scheme}
 (define (square-list items)
@@ -6951,13 +6948,10 @@ Schemeは、ここで記述したものよりも汎用的な\code{map}手続き�
   (iter items nil))
 \end{scheme}
 
+残念ながら、このように\code{square\-/list}を定義すると、答えとなるリストは
+望むものの逆順になってしまう。なぜだろうか。
 
-
-残念なことに、\code{square\-/list}をこのように定義しては解答のリストは希望の逆順に
-なってしまう。何故か?
-
-
-Louisはそこで彼のバグを\code{cons}への引数を逆順にすることで直そうと試みた。
+それから、Louisは\code{cons}の引数を逆順にしてバグを直そうとした。
 
 \begin{scheme}
 (define (square-list items)
@@ -6970,15 +6964,16 @@ Louisはそこで彼のバグを\code{cons}への引数を逆順にすること�
   (iter items nil))
 \end{scheme}
 
-これもまたうまく行かない。説明せよ。
+これもうまくいかない。説明せよ。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 2.23}Exercise 2.23:} 手続き
-\code{for\-/each}は\code{map}に似ている。手続きと要素のリストを引数として取る。しかし
-結果のリストを形成するのではなく、\code{for\-/each}はただ手続きを左から右へと毎回各要素に適用する。
-手続きを要素に適用し返された値は全く利用しない---\code{for\-/each}は表示のような行動を起こす手続きと共に
-利用される。例えば、
+\code{for\-/each}は\code{map}に似ている。引数として手続きと要素のリストを取る。
+しかし、結果のリストを生成するのではなく、\code{for\-/each}は手続きを
+それぞれの要素に左から右に順番に手続きを適用していくだけである。手続きを
+要素に適用して返される値はまったく使わない---\code{for\-/each}は、
+表示のような、何かのアクションを実行する手続きとともに使う。例えば次の例で、
 
 \begin{scheme}
 (for-each (lambda (x)
@@ -6990,28 +6985,24 @@ Louisはそこで彼のバグを\code{cons}への引数を逆順にすること�
 ~\textit{88}~
 \end{scheme}
 
-
-
-(上では示されていない)\code{for\-/each}呼出による返り値は真のような不定な何かである。
-\code{for\-/each}の実装を与えよ。
+\code{for\-/each}への呼び出し(上では示していないが)に返される値は何でもよく、
+例えば真の値などでもよい。\code{for\-/each}の実装を与えよ。
 \end{quote}
 
 \subsection{階層構造}
 \label{Section 2.2.2}
 
-
-
-リストを用いた列の表現は要素が列自身である列を表現することを自然に一般化する。
-例えば以下の様に構築されたオブジェクト\code{((1 2) 3 4)}を
+リストによる列の表現は、要素がそれ自身列であるような列を表現するように自然に
+一般化できる。例えば、次の式によって構築されるオブジェクト\code{((1 2) 3 4)}は、
 
 \begin{scheme}
 (cons (list 1 2) (list 3 4))
 \end{scheme}
 
 \noindent
-最初の項目はそれ自身がリスト\code{(1 2)}である、3つの項目のリストであると見做すことができる。
-実際に、インタプリタにより表示される結果の形式によりこれは推奨されている。
-\link{Figure 2.5}がペアを用いたこの構造の表現を示している。
+三つの項目のリストとして見ることができる。最初の項目はそれ自身が\code{(1 2)}という
+リストとなる。実際、このことはインタプリタによって表示される結果の形からも見て取る
+ことができる。\link{Figure 2.5}は、この構造のペアによる表現を示している。
 
 \begin{figure}[tb]
 \phantomsection\label{Figure 2.5}
@@ -7040,12 +7031,16 @@ Louisはそこで彼のバグを\code{cons}への引数を逆順にすること�
 \end{comment}
 \includegraphics[width=91mm]{fig/chap2/Fig2.5c.pdf}
 \begin{quote}
-\heading{Figure 2.5:} \code{(cons (list 1 2) (list 3 4))}により形作られた構造
+\heading{Figure 2.5:} \code{(cons (list 1 2) (list 3 4))}によって作られる構造
 \end{quote}
 \end{figure}
 
+要素が列であるような列は、\newterm{trees}(\jnewterm{木})として考えることもできる。
+列の要素は木の枝で、それ自身が列である要素は部分木となる。
+\link{Figure 2.6}に、\link{Figure 2.5}を木として見た構造を示す。
+
 要素それ自身が列である列のもう1つの考え方は木としての考え方である。
-列の要素は木の枝であり、それ自身が列である\mbox{elements}(複数の要素)は部分木である。
+列の要素は木の枝であり、それ自身が列である要素は部分木となる。
 \link{Figure 2.6}は木として見た場合の\link{Figure 2.5}を示している。
 
 \begin{figure}[tb]
@@ -7066,13 +7061,14 @@ Louisはそこで彼のバグを\code{cons}への引数を逆順にすること�
 \includegraphics[width=22mm]{fig/chap2/Fig2.6a.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 2.6:} 木として見た\link{Figure 2.5}のリスト構造
+\heading{Figure 2.6:} \link{Figure 2.5}のリスト構造を木として見たもの
 \end{figure}
 
-再帰は木構造を扱うのに自然なツールです。良く木に対する操作を枝に対する操作へと
-還元でき、それは順に枝の枝への操作へと還元され、木の葉に辿り着くまで繰り返され
-ます。例として、\link{Section 2.2.1}の\code{length}手続きを木の葉の総数を求める\code{count\-/leaves}
-手続きと比べてみましょう。
+再帰は木構造を扱う自然なツールです。再帰を使うことで、木への演算をその枝に対する
+演算に落とし込み、それを今度は枝の枝に対する演算に落とし込み\( \dots \)と続けて
+いくることで木の葉にたどり着く、というようにできることがよくあります。ひとつの
+例として、\link{Section 2.2.1}の\code{length}手続きと、木の葉の総数を返す
+\code{count\-/leaves}手続きを比べてみましょう。
 
 \begin{scheme}
 (define x (cons (list 1 2) (list 3 4)))
@@ -7089,17 +7085,19 @@ Louisはそこで彼のバグを\code{cons}への引数を逆順にすること�
 \end{scheme}
 
 \noindent
-\code{count\-/leaves}を実装するには\code{length}を求める再帰計画を思い出します。
+\code{count\-/leaves}を実装するために、\code{length}の計算で使った再帰計画を
+思い出してみましょう。
 
 \begin{itemize}
 
 \item
-リスト\code{x}の\code{length}は\code{x}の\code{cdr}の\code{length}に1を足した物
+リスト\code{x}の\code{length}は、\code{x}の\code{cdr}の\code{length}に1を足した値である。
 
 \item
-空リストの\code{length}は0
+空リストの\code{length}は0である。
 
 \end{itemize}
+%###
 
 \noindent
 \code{count\-/leaves}も同様えす。空リストの値は同じで
