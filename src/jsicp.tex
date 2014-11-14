@@ -7061,7 +7061,7 @@ Louis Reasonerは\link{Exercise 2.21}の一つ目の\code{square\-/list}手続�
 \end{figure}
 
 再帰は木構造を扱う自然なツールです。再帰を使うことで、木への演算をその枝に対する
-演算に落とし込み、それを今度は枝の枝に対する演算に落とし込み\( \dots \)と続けて
+演算に還元し、それを今度は枝の枝に対する演算に還元し\( \dots \)と続けて
 いくことで木の葉にたどり着く、というようにできることがよくあります。ひとつの
 例として、\link{Section 2.2.1}の\code{length}手続きと、木の葉の総数を返す
 \code{count\-/leaves}手続きを比べてみましょう。
@@ -7093,46 +7093,48 @@ Louis Reasonerは\link{Exercise 2.21}の一つ目の\code{square\-/list}手続�
 空リストの\code{length}は0である。
 
 \end{itemize}
-%###
 
 \noindent
-\code{count\-/leaves}も同様えす。空リストの値は同じで
+\code{count\-/leaves}も似たようなものになります。空リスト場合の値は同じです。
 
 \begin{itemize}
 
 \item
-空リストの\code{count\-/leaves}は0
+空リストの\code{count\-/leaves}は0である。
 
 \end{itemize}
 
 \noindent
-しかし集約ステップにおいて、リストの\code{car}を取り除く時、\code{car}はそれ自身が
-後で数えねばならない木である可能性があることを計算に入れねばなりません。
-従って適切な集約ステップは
+しかし、リストの\code{car}を取り除く還元ステップでは、その\code{car}自身が木であって、
+その葉の数も数えなければいけないかもしれないということを考える必要があります。
+そのため、適切な還元ステップは次のようになります。
 
 \begin{itemize}
 
 \item
-木\code{x}の\code{count\-/leaves}は\code{x}の\code{car}の\code{count\-/leaves}と、
-\code{x}の\code{cdr}の\code{count\-/leaves}の和
+木\code{x}の\code{count\-/leaves}は、\code{x}の\code{car}の\code{count\-/leaves}と
+\code{x}の\code{cdr}の\code{count\-/leaves}を足した値である。
 
 \end{itemize}
 
 \noindent
-最終的に\code{car}を取ることにより実際の葉に届くので別の規範を必要とする。
+最後に、\code{car}を取っていくと実際の葉に到達するので、基本ケースがもうひとつ必要になります。
 
 \begin{itemize}
 
 \item
-葉の\code{count\-/leaves}は1
+葉の\code{count\-/leaves}は1である。
 
 \end{itemize}
 
 \noindent
-木に対する再帰手続きを書くのを助けるために、Schemeはプリミティブな手続き\code{pair?}を提供します。
-\code{pair?}は引数がペアであるかをテストします。以下に完成した手続きを置きます。\footnote{
-\code{cond}の最初の2つの項の順が大事です。空リストは\code{null?}を満たし、その上でペアでも
-ありません}
+木に対する再帰手続きが書きやすくなるように、Schemeは\code{pair?}という基本述語を
+提供しています。これは、引数がペアであるかどうかをテストするものです。以下に
+完成した手続きを書きます。
+\footnote{
+\code{cond}の一番目と二番目の節は、この順番でなければいけません。空リストは
+\code{null?}を満たし、またペアでもないからです。
+}
 
 \begin{scheme}
 (define (count-leaves x)
@@ -7144,13 +7146,13 @@ Louis Reasonerは\link{Exercise 2.21}の一つ目の\code{square\-/list}手続�
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 2.24}Exercise 2.24:} 式
-\code{(list 1 (list 2 (list 3 4)))}を評価したとする。インタプリタの表示する
-結果、対応する箱と点構造、木としての解釈(\link{Figure 2.6}相当)を示せ。
+\code{(list 1 (list 2 (list 3 4)))}を評価するとする。インタプリタの表示する
+結果、それに対応する箱-点構造、木としての解釈(\link{Figure 2.6}で示したようなもの)を示せ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.25}Exercise 2.25:} 以下の
-各リストから7を抽出する\code{car}と\code{cdr}の組み合わせを与えよ。
+\heading{\phantomsection\label{Exercise 2.25}Exercise 2.25:}
+以下のそれぞれのリストから7を取り出す\code{car}と\code{cdr}の組み合わせを書け。
 
 \begin{scheme}
 (1 3 (5 7) 9)
@@ -7160,15 +7162,15 @@ Louis Reasonerは\link{Exercise 2.21}の一つ目の\code{square\-/list}手続�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.26}Exercise 2.26:} 2つのリスト\code{x}と\code{y}を定義したとする。
+\heading{\phantomsection\label{Exercise 2.26}Exercise 2.26:}
+二つのリスト\code{x}と\code{y}を定義するとする。
 
 \begin{scheme}
 (define x (list 1 2 3))
 (define y (list 4 5 6))
 \end{scheme}
 
-
-以下の各式を評価した場合にレスポンスとしてインタプリタがどのような結果を表示するか?
+次のそれぞれの式を評価すると、インタプリタはどのような結果を表示するだろうか。
 
 \begin{scheme}
 (append x y)
@@ -7178,10 +7180,11 @@ Louis Reasonerは\link{Exercise 2.21}の一つ目の\code{square\-/list}手続�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.27}Exercise 2.27:} \link{Exercise 2.18}の
-\code{reverse}手続きを変更してリストを引数として取り、
-全ての要素が逆順に、さらに全てのサブリストも同様に逆順にされたリストをその値として
-返す手続き\code{deep\-/reverse}を作れ。例として、
+\heading{\phantomsection\label{Exercise 2.27}Exercise 2.27:}
+\link{Exercise 2.18}の\code{reverse}手続きを修正し、\code{deep\-/reverse}という
+手続きを書け。\code{deep\-/reverse}は、ひとつのリストを引数として取り、要素が逆順で、
+サブリストもすべて要素が逆順になっているリストを返す手続きである。
+例えば、次のようになる。
 
 \begin{scheme}
 (define x (list (list 1 2) (list 3 4)))
@@ -7195,9 +7198,9 @@ x
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.28}Exercise 2.28:} リストとして
-表現された木を引数に取り、その木の全ての葉を左から右への順で要素とした
-リストを返す手続き\code{fringe}を書け。
+\heading{\phantomsection\label{Exercise 2.28}Exercise 2.28:}
+リストとして表現された木を引数として取り、その木のすべての葉を左から右の順で
+要素として持つリストを返す手続き\code{fringe}を書け。例えば、次のようになる。
 
 \begin{scheme}
 (define x (list (list 1 2) (list 3 4)))
