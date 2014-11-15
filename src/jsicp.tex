@@ -7105,7 +7105,7 @@ Louis Reasonerは\link{Exercise 2.21}の一つ目の\code{square\-/list}手続�
 \end{itemize}
 
 \noindent
-しかし、リストの\code{car}を取り除く還元ステップでは、その\code{car}自身が木であって、
+しかし、リストの\code{car}を取り外す還元ステップでは、その\code{car}自身が木であって、
 その葉の数も数えなければいけないかもしれないということを考える必要があります。
 そのため、適切な還元ステップは次のようになります。
 
@@ -7212,23 +7212,19 @@ x
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.29}Exercise 2.29:} バイナリモバイル(binary mobile)\footnote{
-訳注：天井から糸で釣ってあり、絶妙なバランスで揺れ、回る数々の棒のインテリア。
-枝が必ず2つに分かれるのでバイナリ(二進)と名付けられている。Google Imagesで
-mobileを検索すると実物が見られる。}
-は左の枝と右の枝の2つの枝で構成される。各枝はある長さを持つ
-棒であり、そこから重りか別のバイナリモバイルをぶら下げる。
-バイナリモバイルを複合データを用いて2つの枝から組み立てることで表現できる。
-(例えば\code{list}を用いる。)
+\heading{\phantomsection\label{Exercise 2.29}Exercise 2.29:}
+二枝モビールは、左の枝と右の枝のという二つの枝から構成されている。
+それぞれの枝はある長さを持つ棒で、おもりか別の二進モビールがぶら下がっている。
+二枝モビールは、二つの枝によって構成することで、(例えば\code{list}を使って)
+複合データによって表現できる。
 
 \begin{scheme}
 (define (make-mobile left right)
   (list left right))
 \end{scheme}
 
-
-枝は\code{length}(数値であること)と\code{structure}から組み立てられ、\code{structure}は
-数値(簡単に重りを表わす)かまたは他のモバイルである。
+枝は、長さ\code{length}(必ず数値)と構造\code{structure}からなり、
+\code{structure}は数値(単純なおもりを表す)か、または別のモビールである。
 
 \begin{scheme}
 (define (make-branch length structure)
@@ -7238,21 +7234,20 @@ mobileを検索すると実物が見られる。}
 \begin{enumerate}[a]
 
 \item
-対応するセレクタ\code{left\-/branch}を\code{right\-/branch}を書け。このセレクタは
-モバイルの複数の枝を返す。また\code{branch\-/length}と\code{branch\-/structure}
-は枝のそれぞれのコンポーネント(構成要素)を返す。
+これに対応する、モビールの枝を返すセレクタ\code{left\-/branch}と
+\code{right\-/branch}、枝の構成要素を返す\code{branch\-/length}と
+\code{branch\-/structure}を書け。
 
 \item
-セレクタを用いて手続き\code{total\-/weight}を定義せよ。それはモバイルの総重量を
-返す。
+これらのセレクタを使って、モビールの総重量を返す手続き\code{total\-/weight}を
+定義せよ。
 
 \item
-モバイルは一番上の左枝にかかるトルク(回転力)が一番上の右の枝にかかるトルクと等しい時
-(これはつまり、もし左の棒の長さと
-その棒にかかる重さを掛けた値が、相対する右側の積の値と同じ場合である)、かつ
-各部分モバイルも全て同様である場合に限り、
-\newterm{balanced}(\jnewterm{バランスが取れた状態})であると言う。
-あるバイナリモバイルがバランスが取れているかテストする述語を設計せよ。
+モビールについて、\newterm{balanced}(\jnewterm{バランスが取れている})というのは、
+一番上の左枝にかかるトルク(回転力)が一番上の右の枝にかかるトルクと
+等しく(つまり、左の棒の長さとかかる重さの積が、右の棒についてのその積と等しい)
+、かつ両枝からぶら下がっている各部分モビールのバランスが取れている状態について言う。
+ある二枝モビールがバランスが取れているかどうかテストする述語を設計せよ。
 
 \item
 モバイルの表現をコンストラクタが以下になるように変更すると考える。
