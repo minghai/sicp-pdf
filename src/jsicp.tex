@@ -7250,7 +7250,7 @@ x
 ある二枝モビールがバランスが取れているかどうかテストする述語を設計せよ。
 
 \item
-モバイルの表現をコンストラクタが以下になるように変更すると考える。
+モビールの表現を変更し、以下のようなコンストラクタにする。
 
 \begin{scheme}
 (define (make-mobile left right) (cons left right))
@@ -7258,22 +7258,19 @@ x
   (cons length structure))
 \end{scheme}
 
-
-
-新しい表現へとあなたのプログラムを変更するのにどれほどが必要か?
+あなたのプログラムを新しい表現に移行するにはどの程度の変更が必要だろうか。
 
 \end{enumerate}
 \end{quote}
 
-\subsubsection*{木に渡るmap}
+\subsubsection*{木に対するマップ}
 
-
-
-\code{map}が列を扱うのに強力な抽象化であるのと同様に、再帰を伴なう\code{map}は木を
-扱うのに強力な抽象化です。例えば\link{Section 2.2.1}の\code{scale\-/list}に同類な\code{scale\-/tree}
-手続きは引数として因数と葉が数値である木を取ります。これは同じ形の木を返しますが、
-各数値は因数により乗算されます。\code{scale\-/tree}の再帰計画は\code{count\-/leaves}に対する物に
-似ています。
+\code{map}は列を扱うための強力な抽象化ですが、それと同じように、\code{map}に
+再帰を組み合わせたものは木を扱うための強力な抽象化です。例えば、
+\code{scale\-/tree}という手続きは、\link{Section 2.2.1}の\code{scale\-/list}と
+似たようなものですが、引数としては、数値の係数と、葉が数値である木を取ります。
+返り値は同じ形の木で、それぞれの数値が計数倍されたものとなります。
+\code{scale\-/tree}の再帰計画は、\code{count\-/leaves}のものに似ています。
 
 \begin{scheme}
 (define (scale-tree tree factor)
@@ -7286,9 +7283,11 @@ x
 \end{scheme}
 
 \noindent
-\code{scale\-/tree}を実装するもう1つの方法は木を部分木の列と見做し\code{map}を使用します。
-列全体に\code{map}をかけ、各部分木を順に拡大し、結果のリストを返します。その木が葉である
-場合には単純に因数を掛けます。
+
+\code{scale\-/tree}の別の実装方法として、木を部分木の列と見なして\code{map}を
+使うというものがあります。列にマップを行い、それぞれの部分木を順番に係数倍し、
+結果のリストを返すということになります。木が葉である基本ケースでは、
+単純に係数倍します。
 
 \begin{scheme}
 (define (scale-tree tree factor)
@@ -7300,12 +7299,13 @@ x
 \end{scheme}
 
 \noindent
-多くの木の操作が同様な列操作と再帰の組み合わせにて実装可能です。
+木の操作の多くは、列の操作と再帰を組み合わせて同じように実装することができます。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.30}Exercise 2.30:} \link{Exercise 2.21}の
-\code{square\-/list}と同様の手続き\code{square\-/tree}を定義せよ。
-\code{square\-/tree}は以下の振舞を行う。
+\heading{\phantomsection\label{Exercise 2.30}Exercise 2.30:}
+\link{Exercise 2.21}の\code{square\-/list}と似たような手続き\code{square\-/tree}を
+定義せよ。
+\code{square\-/tree}は以下のように動作する。
 
 \begin{scheme}
 (square-tree
@@ -7314,15 +7314,14 @@ x
        (list 6 7)))
 ~\textit{(1 (4 (9 16) 25) (36 49))}~
 \end{scheme}
-
-\code{square\-/tree}を直接な(つまり高階関数を全く用いない)方法と\code{map}と再帰を
-用いる方法の両者を定義せよ。
+直接的な(つまり、高階手続きをまったく使わない)やり方と、\code{map}と再帰を使う
+やり方の両方で、\code{square\-/tree}を定義せよ。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 2.31}Exercise 2.31:} 
-\link{Exercise 2.30}への解答を抽象化し、手続き\code{tree\-/map}を作れ。
-\code{tree\-/map}を用いて\code{square\-/tree}は以下のように定義できる。
+\link{Exercise 2.30}の解答を抽象化し、手続き\code{tree\-/map}を作れ。
+\code{square\-/tree}が\code{tree\-/map}によって以下のように定義できるようにせよ。
 
 \begin{scheme}
 (define (square-tree tree) (tree-map square tree))
@@ -7330,12 +7329,13 @@ x
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.32}Exercise 2.32:} 集合は
-識別可能な要素のリストとして表現できる。そして集合の全ての部分集合集合を
-リストのリストとして表わせられる。例えば、集合が\code{(1 2 3)}である時、全ての
-部分集合の集合は\code{(() (3) (2) (2 3) (1) (1 3) (1 2) (1 2 3))}だ。
-以下の集合の全ての部分集合の集合を生成する手続きの定義を完成し、なぜうまくいくのか
-を明確に説明せよ。
+\heading{\phantomsection\label{Exercise 2.32}Exercise 2.32:}
+集合は、それぞれ異なる要素を持つリストとして表現できる。また、集合の
+すべての部分集合の集合は、リストのリストとして表現できる。例えば、
+集合が\code{(1 2 3)}の場合、すべての部分集合の集合は
+\code{(() (3) (2) (2 3) (1) (1 3) (1 2) (1 2 3))}となる。
+以下に、集合のすべての部分集合の集合を生成する手続きを示す。
+これを完成させ、なぜそれが動作するのかを明確に説明せよ。
 
 \begin{scheme}
 (define (subsets s)
@@ -7346,17 +7346,15 @@ x
 \end{scheme}
 \end{quote}
 
-\subsection{慣習的インターフェイスとしての列}
+\subsection{標準インターフェイスとしての列}
 \label{Section 2.2.3}
 
-
-
-複合データを用いて働く場合、これまでデータ抽象化がどれだけプログラムの設計を
-データ表現の詳細に陥らずに行えるか、また抽象化がどれだけ代替的な表現方法を
-試みる柔軟性を保つかについて強調してきました。この節ではもう1つの強力なデータ構造を用いる
-設計原則を紹介します。\newterm{conventional interfaces}(\jnewterm{慣習的インターフェイス})の使用です。
-
-
+ここまで複合データについて見てきましたが、その中では、データ抽象化のおかげで
+データ表現の細かいところに煩わされることなくプログラムが設計できるということ、
+また抽象化によってほかの表現を実験する柔軟性を確保できるできるということを
+強調してきました。この節では、データ構造を扱ううえでのもうひとつの強力な設計原則を
+導入します。
+それは、\newterm{conventional interfaces}(\jnewterm{標準インターフェイス})の使用です。
 
 \link{Section 1.3}においてプログラム抽象化、高階手続きとしての実装がどのようにして数値データを取り扱う
 プログラムの共通パターンを掴むことができるのかを学んできました。複合データを扱う類似の操作を
