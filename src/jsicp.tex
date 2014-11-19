@@ -7757,12 +7757,11 @@ a_n x^n + a_(n-1) x^(n-1) + ... + a_1 x + a_0
             (accumulate-n op init ~\( \dark \langle \)~~\var{\dark ??}~~\( \dark \rangle \)~))))
 \end{scheme}
 \end{quote}
-%###
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 2.37}Exercise 2.37:}
 ベクトル\( {\bf v} = (v_i) \)を数値の列として表現し、行列\( {\bf m} = (m_{ij}) \)を
-ベクトル(行列の行)の列として表現するとする。例えば以下の行列は、
+ベクトル(行列の行)の列として表現するとする。例えば、以下の行列は
 \begin{comment}
 
 \begin{example}
@@ -7788,9 +7787,9 @@ a_n x^n + a_(n-1) x^(n-1) + ... + a_1 x + a_0
 \right) 
 \end{displaymath}
 \noindent
-列\code{((1 2 3 4) (4 5 6 6) (6 7 8 9))}として表現される。この表現と共に列操作を
-用いることで簡潔に基本的な行列とベクトルの操作を表現することができる。これらの
-操作は(行列演算のどんな本にも記述されている)次のものである。
+列\code{((1 2 3 4) (4 5 6 6) (6 7 8 9))}として表現される。この表現を使うと、
+列操作によって基本的な行列とベクトルの演算を簡潔に表現することができる。
+これらの(どんな行列演算の本にも書いてある)演算は、次のようなものである。
 \begin{comment}
 
 \begin{example}
@@ -7823,18 +7822,18 @@ a_n x^n + a_(n-1) x^(n-1) + ... + a_1 x + a_0
 % 		\; {\rm where\;} n_{ij} = m_{ji}. \cr
 % } 
 \begin{array}{rl}
-	\hbox{\tt (dot-product v w)} 		&\; {\rm returns\;the\;sum\;} 
-		\Sigma_i v_i w_i, \\
-	\hbox{\tt (matrix-*-vector m v)} 	&\; {\rm returns\;the\;vector\;} \hbox{\bf t}, \\ 
-		&\; {\rm where\;} t_i = \Sigma_j m_{ij} v_j, \\
-	\hbox{\tt (matrix-*-matrix m n)} 	&\; {\rm returns\;the\;matrix\;} \hbox{\bf p}, \\
-		&\; {\rm where\;} p_{ij} = \Sigma_k m_{ik} n_{kj}, \\
-	\hbox{\tt (transpose m)} 			&\; {\rm returns\;the\;matrix\;} \hbox{\bf n}, \\
-		&\; {\rm where\;} n_{ij} = m_{ji}.
+	\hbox{\tt (dot-product v w)} 		&\; \mbox{総和}
+		\Sigma_i v_i w_i \mbox{を返す}  \\
+	\hbox{\tt (matrix-*-vector m v)} 	&\; t_i = \Sigma_j m_{ij} v_j \mbox{であるような} \\ 
+		&\; \mbox{ベクトル} \hbox{\bf t} \mbox{を返す} \\
+	\hbox{\tt (matrix-*-matrix m n)} 	&\; p_{ij} = \Sigma_k m_{ik} n_{kj} \mbox{であるような} \\
+		&\; \mbox{行列} \hbox{\bf p} \mbox{を返す} \\
+	\hbox{\tt (transpose m)} 		&\; n_{ij} = m_{ji} \mbox{であるような} \\
+		&\; \mbox{行列} \hbox{\bf n} \mbox{を返す}
 \end{array}
 \end{displaymath}
-ドット積を次のように定義できる。\footnote{この定義は\link{Footnote 12}にて説明した
-\code{map}の拡張バージョンを使用する}
+内積は、次のように定義できる。\footnote{この定義では、\link{Footnote 12}で説明した
+拡張バージョンの\code{map}を使っている。}
 
 \begin{scheme}
 (define (dot-product v w)
@@ -7842,9 +7841,8 @@ a_n x^n + a_(n-1) x^(n-1) + ... + a_1 x + a_0
 \end{scheme}
 
 
-
-以下の他の行列操作を演算するための手続きの欠けた式を補え。(手続き\code{accumulate\-/n}は
-\link{Exercise 2.36}で定義されている。)
+ほかの行列演算を計算する以下の手続きについて、欠けた式を補え
+(手続き\code{accumulate\-/n}は\link{Exercise 2.36}で定義されている)。
 
 \begin{scheme}
 (define (matrix-*-vector m v)
@@ -7859,9 +7857,10 @@ a_n x^n + a_(n-1) x^(n-1) + ... + a_1 x + a_0
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 2.38}Exercise 2.38:} 
-\code{accumulate}手続きはまた\code{fold\-/right}としても知られている。それが列の最初の要素と
-右側の要素全てを結合した結果とを結合するためである。\code{fold\-/left}も存在し、\code{fold\-/right}と
-似ているが、要素の結合を逆の向きに行う。
+\code{accumulate}手続きは、列の最初の要素と、右のすべての要素を組み合わせた結果とを
+組み合わせるため、\code{fold\-/right}としても知られている。\code{fold\-/left}という
+ものもあり、これは\code{fold\-/right}に似ているが、要素の組み合わせを逆方向に
+行うという点が違う。
 
 \begin{scheme}
 (define (fold-left op initial sequence)
@@ -7883,16 +7882,15 @@ a_n x^n + a_(n-1) x^(n-1) + ... + a_1 x + a_0
 (fold-left list nil (list 1 2 3))
 \end{scheme}
 
-
-
-\code{op}が\code{fold\-/right}と\code{fold\-/left}にて同じ値を任意の列に対し生成することを保証するのに
-必要な特性を答えよ。
+\code{fold\-/right}と\code{fold\-/left}が任意の列に対して同じ値を返すことを
+保証するために、\code{op}はどのような性質を満たさなければならないだろうか。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 2.39}Exercise 2.39:} 
-以下の\code{reverse}(\link{Exercise 2.18})の\code{fold\-/right}と\code{fold\-/left}(\link{Exercise 2.38})を用いた
-定義を完成させよ。
+以下の\code{reverse}(\link{Exercise 2.18})手続きの定義を、
+\link{Exercise 2.38}の\code{fold\-/right}と\code{fold\-/left}によって
+完成させよ。
 
 \begin{scheme}
 (define (reverse sequence)
