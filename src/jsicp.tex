@@ -6814,7 +6814,7 @@ Schemeは基本述語\code{null?}を持っています。これは、引数が�
 \noindent
 \code{g}の本体では、\code{w}はリスト\code{(1 2 3 4 5 6)}となる。
 \footnote{
-\code{lambda}を使って\code{f}と\code{g}を定義する場合、次のように書ける。
+\code{lambda}を使って\code{f}と\code{g}を定義する場合、次のように書けます。
 
 \begin{smallscheme}
 (define f (lambda (x y . z) ~\( \dark \langle \)~~\var{\dark body}~~\( \dark \rangle \)~))
@@ -7833,7 +7833,7 @@ a_n x^n + a_(n-1) x^(n-1) + ... + a_1 x + a_0
 \end{array}
 \end{displaymath}
 内積は、次のように定義できる。\footnote{この定義では、\link{Footnote 12}で説明した
-拡張バージョンの\code{map}を使っている。}
+拡張バージョンの\code{map}を使っています。}
 
 \begin{scheme}
 (define (dot-product v w)
@@ -7899,6 +7899,7 @@ a_n x^n + a_(n-1) x^(n-1) + ... + a_1 x + a_0
   (fold-left (lambda (x y) ~\( \dark \langle \)~~\var{\dark ??}~~\( \dark \rangle \)~) nil sequence))
 \end{scheme}
 \end{quote}
+%###
 
 \subsubsection*{入れ子のmap}
 
