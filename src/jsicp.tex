@@ -8278,8 +8278,9 @@ Francis A. Walker(\acronym{MIT}の三代目の学長)によると、
 よい死の迎え方をした。職務中に、持ち場について、公務を果たすちょうどそのときに
 亡くなったのだ。
 \end{quote}
-} \link{Figure 2.11}の4つのイメージは\link{Figure 2.10}の\code{wave}のイメージと
-同じ4つのフレームを考慮して描かれています。
+}
+\link{Figure 2.11}の4つの画像は、\link{Figure 2.10}の\code{wave}の画像と
+同じ4つの枠に対して描いたものです。
 
 \begin{figure}[tb]
 \phantomsection\label{Figure 2.11}
@@ -8295,20 +8296,23 @@ permission of the \acronym{MIT} Museum).
 \includegraphics[width=48mm]{fig/chap2/Fig2.11.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 2.11:} William Barton Rogersのイメージ
+\begin{quote}
+\heading{Figure 2.11:} \acronym{MIT}創設者・初代学長William Barton Rogersの画像。\link{Figure 2.10}と同じ4つの枠に対して描いたもの。(元の画像は\acronym{MIT}博物館の許諾を得て
+複製した)
+\end{quote}
 \end{figure}
 
-イメージを結合するには与えられたペインタから新しいペインタを構築する種々の命令を
-使用します。例えば\code{beside}命令は2つのペインタを取り新しい最初のペインタのイメージを
-フレームの左半分に、2つ目のペインタのイメージをフレームの右半分に描く複合ペインタを
-生成します。同様に\code{below}は2つのペインタを取り、1つ目のペインタのイメージを2つ目の
-ペインタのイメージの下に描きます。いくつかの命令は単一のペインタを変換し新しいペインタを
-生成します。例えば\code{flip\-/vert}はペインタを取りそのイメージを上下逆さに描くペインタを
-生成し、\code{flip\-/horiz}は元のペインタのイメージを左右逆に描くペインタを生成します。
+画像を結合するには、与えられたペインタから新しいペインタを構築するいろいろな演算を
+使います。例えば、\code{beside}命令は二つのペインタを引数に取り、枠の左半分に
+一つ目のペインタの画像を描き右半分に二つ目のペインタの画像を描く新しい複合ペインタを
+作ります。同じように、\code{below}は二つのペインタを引数に取り、二つ目のペインタの
+画像の下に一つ目のペインタの画像を描く複合ペインタを作ります。単独のペインタを
+変形して別のペインタを作る演算もあります。例えば、\code{flip\-/vert}はひとつの
+ペインタを引数に取り、その画像を上下逆に描くプリンタを作ります。また、
+\code{flip\-/horiz}は元のペインタの画像を左右逆に描くプリンタを作ります。
 
-
-\link{Figure 2.12}は\code{wave4}を呼んだペインタの描画を見せており、これは\code{wave}で始め
-2段階を経て構築されています。
+\code{wave}から始めて、二段階を経て構築した\code{wave4}というペインタの描く画像を
+\link{Figure 2.12}に示します。
 
 \begin{scheme}
 (define wave2 (beside wave (flip-vert wave)))
@@ -8331,23 +8335,23 @@ from the \code{wave} painter of \link{Figure 2.10}.
 \end{comment}
 \includegraphics[width=50mm]{fig/chap2/Fig2.12.pdf}
 \begin{quote}
-\heading{Figure 2.12:} \link{Figure 2.10}の\code{wave}ペインタから始めて複雑な図を作成する
+\heading{Figure 2.12:} \link{Figure 2.10}の\code{wave}ペインタから始めて複雑な図を作る
 \end{quote}
 \end{figure}
 
-複雑なイメージをこの様式で構築する場合はペインタが言語の接続手段の下で閉じている
-という事実を利用しています。2つのペインタの\code{beside}や\code{below}はそれ自身がペインタです。
-従ってそれをより複雑なペインタを作るための要素として使用できます。
-\code{cons}を用いてリスト構造を構築するのと同様に、結合手段の下のデータの閉包は
-ほんのわずかな命令を用いて複雑な構造を作成する能力にとって重大です。
+複雑な画像をこの方法で構築する際に、ペインタがこの言語の結合手段について閉じている
+ということを利用しています。二つのペインタの\code{beside}や\code{below}は、
+それ自身ペインタになります。そのため、より複雑なペインタを作るのに、
+それを要素として使うことができます。リスト構造を\code{cons}を使って構築する場合と
+同じように、データが結合手段について閉じているということは、少しの演算によって
+複雑な構造を作る能力を実現するうえで決定的に重要なことです。
 
-
-
-ペインタを結合できれば直ぐに、ペインタを接続する典型的なパターンを抽象化できるように
-なりたいと願うでしょう。ペインタ操作をSchemeの手続きとして実装することにします。それは
-私達が図形言語内のメカニズムとして専用の抽象化を必要としないことを意味します。
-接続の手段が普通のSchemeの手続きですから、手続きの範囲で行えるペインタの操作を用いて、何でもできる
-能力が自動的に得られます。例えば\code{wave4}内のパターンを抽象化できます。
+ペインタを結合することができるとなると、よくある結合パターンを抽象化したく
+なるところです。ここで、ペインタ演算をSchemeの手続きとして実装することにします。
+つまり、この図形言語のための特別な抽象化メカニズムというものは必要ないという
+ことです。結合手段は普通のScheme手続きなので、手続きについてできることは
+何でもペインタ演算についてもできる能力が自動的に得られることになります。
+例えば、\code{wave4}に出てくるパターンは次のように抽象化できます。
 
 \begin{scheme}
 (define (flipped-pairs painter)
@@ -8356,7 +8360,7 @@ from the \code{wave} painter of \link{Figure 2.10}.
 \end{scheme}
 
 \noindent
-そして\code{wave4}をこのパターンのインスタンスとして定義します。
+そして、\code{wave4}はこのパターンの具体例として定義します。
 
 \begin{scheme}
 (define wave4 (flipped-pairs wave))
@@ -8394,8 +8398,9 @@ from the \code{wave} painter of \link{Figure 2.10}.
 \heading{Figure 2.13:} \code{right\-/split}と\code{corner\-/split}の再帰計画
 \end{figure}
 
-また再帰命令を定義することも可能です。以下はペインタを分割し、\link{Figure 2.13}に示すように
-右へ向けて枝分かれします。
+また、再帰演算を定義することもできます。以下に示すものは、\link{Figure 2.13}と
+\link{Figure 2.14}に示すような、右方向に枝分かれしていくペインタを作る
+再帰演算です。
 
 \begin{scheme}
 (define (right-split painter n)
@@ -8406,8 +8411,9 @@ from the \code{wave} painter of \link{Figure 2.10}.
 \end{scheme}
 
 \noindent
-右に向けてと同じように上方向にも枝分かれすることでバランスの取れたパターンを生成することも可能です。
-(課題\link{Exercise 2.44}と図\link{Figure 2.13}と\link{Figure 2.14}を参照して下さい)。
+右方向だけでなく上方向にも枝分かれさせることで、バランスの取れたパターンを
+作ることもできます(問題\link{Exercise 2.44}と、図\link{Figure 2.13}・
+\link{Figure 2.14}参照)。
 
 \begin{scheme}
 (define (corner-split painter n)
@@ -8423,9 +8429,9 @@ from the \code{wave} painter of \link{Figure 2.10}.
 \end{scheme}
 
 \noindent
-\code{corner\-/split}の4つのコピーを置くことで\code{square\-/limit}と呼ばれるパターンを
-獲得することができ、\code{wave}と\code{rogers}に対する適用が\link{Figure 2.9}に
-示されます。
+\code{corner\-/split}の四つのコピーを適切に配置することによって、\code{square\-/limit}
+というパターンを得ることができます。それを\code{wave}と\code{rogers}に適用したものを
+\link{Figure 2.9}に示してあります。
 
 \begin{scheme}
 (define (square-limit painter n)
@@ -8436,8 +8442,9 @@ from the \code{wave} painter of \link{Figure 2.10}.
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 2.44}Exercise 2.44:} 
-\code{corner\-/split}にて使用された手続き\code{up\-/split}を定義せよ。\code{right\-/split}に
-似ているが、\code{below}と\code{beside}の役割を入れ替える。
+\code{corner\-/split}で使われている\code{up\-/split}手続きを定義せよ。
+\code{right\-/split}に似ているが、\code{below}と\code{beside}の役割を
+入れ替えている。
 \end{quote}
 
 \begin{figure}[tbp]
