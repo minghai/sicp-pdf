@@ -1574,7 +1574,7 @@ Alan Perilの言葉を借りると、``シンタックスシュガーはセミ�
 \begin{itemize}
 
 \item
-数値は基本的なデータで、算術命令は基本的な手続きです。
+数値は基本データで、算術演算は基本手続きです。
 
 \item
 組み合わせをネストすることで、演算を合成することができます。
@@ -5546,8 +5546,8 @@ Lispは、ほかの一般的なプログラミング言語と違い、手続き�
 
 その次に、プログラムのいろいろな部分で異なる形で表現されているデータを扱うという
 問題を取り上げます。このためには、異なるデータ型を処理する
-\newterm{generic operations}(\jnewterm{総称命令})というものを実装しなければなりません。
-総称命令というものがある状況でモジュール性を維持するには、単純なデータ抽象だけの
+\newterm{generic operations}(\jnewterm{総称演算})というものを実装しなければなりません。
+総称演算というものがある状況でモジュール性を維持するには、単純なデータ抽象だけの
 場合に比べて、より強力な抽象化の壁が必要になります。具体的には、
 \newterm{data-directed programming}(\jnewterm{データ主導プログラミング})という
 テクニックを導入します。これは、それぞれのデータ表現を独立して設計し、
@@ -6560,8 +6560,8 @@ one-through-four
 \end{smallscheme}
 
 このような手続きの名前はすべて\code{c}で始まり\code{r}で終わります。間の\code{a}は
-\code{car}命令を表し、\code{d}は\code{cdr}命令を表し、名前の中での順番と同じ順番で
-適用されます。\code{cadr}のような単純な組み合わせが発音可能になるため、
+\code{car}演算を表し、\code{d}は\code{cdr}演算を表し、名前の中での順番と同じ順番で
+適用されます。\code{cadr}のような単純な組み合わせが発音可能になるように、
 \code{car}と\code{cdr}の名前を残しています。}
 コンストラクタ\code{cons}は、元のリストと同じリストに最初にひとつ項が加わったものを
 作ります。
@@ -8303,7 +8303,7 @@ permission of the \acronym{MIT} Museum).
 \end{figure}
 
 画像を結合するには、与えられたペインタから新しいペインタを構築するいろいろな演算を
-使います。例えば、\code{beside}命令は二つのペインタを引数に取り、枠の左半分に
+使います。例えば、\code{beside}演算は二つのペインタを引数に取り、枠の左半分に
 一つ目のペインタの画像を描き右半分に二つ目のペインタの画像を描く新しい複合ペインタを
 作ります。同じように、\code{below}は二つのペインタを引数に取り、二つ目のペインタの
 画像の下に一つ目のペインタの画像を描く複合ペインタを作ります。単独のペインタを
@@ -8467,29 +8467,25 @@ from the \code{wave} painter of \link{Figure 2.10}.
 \end{comment}
 \includegraphics[width=91mm]{fig/chap2/Fig2.14b.pdf}
 \begin{quote}
-\heading{Figure 2.14:} ペインタ\code{wave}と\code{rogers}に適用された再帰命令\code{right\-/split}と\code{corner\-/split}。
-4つの図\code{corner\-/split}を組み合わせることで\link{Figure 2.9}で示された対照的な\code{square\-/limit}のデザインを生成する。
+\heading{Figure 2.14:} 再帰演算\code{right\-/split}と\code{corner\-/split}をペインタ\code{wave}と\code{rogers}に適用したもの。\code{corner\-/split}した四つの図を組み合わせると、\link{Figure 2.9}に示すような対照的な\code{square\-/limit}のデザインになる。
 \end{quote}
 \end{figure}
 
 \subsubsection*{高階命令}
 
+ペインタを組み合わせるパターンを抽象化するだけでなく、より高いレベルで、
+ペインタ演算を組み合わせるパターンを抽象化することもできます。つまり、
+ペインタ演算を操作対象の要素として扱い、それらの要素を組み合わせる手段
+---ペインタ演算を引数として取り、新しいペインタ演算を作るような手続き---
+を書くことができるということです。
 
-
-ペインタ命令のパターンを抽象化するのに加えて、より高いレベルのペインタ命令接続の
-抽象化パターンについて取り組むことができます。
-それはペインタ命令を操作を行うための要素---ペインタ命令を引数として
-取り新しいペインタ命令を作成する手続きと見做し、そしてこれらの要素のための
-組み合わせの手段の記述が可能だということです。
-
-
-
-例として、\code{flipped\-/pairs}と\code{square\-/limit}はペインタのイメージを四角のパターン内にて
-4つのコピーをそれぞれが準備します。それらはどのような位置と向きに置くかということのみ
-において異なります。このペインタ接続のパターンを抽象化する1つの方法は以下のプロシジャを
-用いて、4つの1引数ペインタ命令を取り与えられたペインタをそれら4つの命令で変換する命令を
-生成し、結果を四角の中に配置します。\code{tl}, \code{tr}, \code{bl}, and \code{br}は左上、右上、
-左下、右下のコピーに対応する変換です。
+例えば、\code{flipped\-/pairs}と\code{square\-/limit}はどちらも、あるペインタの
+画像を四つ正方形のパターンに並べるもので、違うのはそれぞれの画像の向きだけです。
+このペインタの組み合わせパターンを抽象化する方法のひとつを次の手続きに示します。
+この手続きは、四つの一引数ペインタ演算を引数として取り、ある与えられたペインタを
+これらの四つの演算によって変形したものを正方形に配置するペインタ演算を作るという
+ものです。\code{tl}, \code{tr}, \code{bl}, \code{br}は、それぞれ左上、右上、
+左下、右下の画像に適用する変換です。
 
 \begin{scheme}
 (define (square-of-four tl tr bl br)
@@ -8500,8 +8496,9 @@ from the \code{wave} painter of \link{Figure 2.10}.
 \end{scheme}
 
 \noindent
-すると\code{flipped\-/pairs}は\code{square\-/of\-/four}を以下のように用いて定義可能です。\footnote{
-同等に、こうも書けます。
+こうすると、\code{flipped\-/pairs}は\code{square\-/of\-/four}によって以下のように定義できます。
+\footnote{
+等価な書き方として、次のように書くこともできます。
 
 \begin{smallscheme}
 (define flipped-pairs
@@ -8517,10 +8514,11 @@ from the \code{wave} painter of \link{Figure 2.10}.
 \end{scheme}
 
 \noindent
-そして\code{square\-/limit}は以下の様に表現可能です。\footnote{\code{Rotate180}は
-ペインタを180度回転します(\link{Exercise 2.50}参照)。\code{rotate180}の代わりに
-\code{(compose flip\-/vert flip\-/horiz)}と言うこともできます。\code{compose}手続きは
-\link{Exercise 1.42}から使用しました。}
+また、\code{square\-/limit}は次のように表現できます。
+\footnote{\code{Rotate180}はペインタを180度回転するものです(\link{Exercise 2.50}参照)。
+\code{rotate180}の代わりに、\link{Exercise 1.42}の\code{compose}手続きを使って
+\code{(compose flip\-/vert flip\-/horiz)}と書くこともできます。
+}
 
 \begin{scheme}
 (define (square-limit painter n)
@@ -8531,8 +8529,8 @@ from the \code{wave} painter of \link{Figure 2.10}.
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 2.45}Exercise 2.45:} 
-\code{right\-/split}と\code{up\-/split}は一般的な分割命令のインスタンスだと言うことができる。
-手続き\code{split}を以下の式を評価する場合に、
+\code{right\-/split}と\code{up\-/split}は、汎用の分割演算の具体例として表現できる。
+以下の式を評価したとき、
 
 \begin{scheme}
 (define right-split (split beside below))
@@ -8540,27 +8538,24 @@ from the \code{wave} painter of \link{Figure 2.10}.
 \end{scheme}
 
 \noindent
-既に定義済みのものと全く同じ振舞を行う手続き\code{right\-/split}と\code{up\-/split}を
-生成するよう定義せよ。
+すでに定義したのものと同じふるまいを持つ手続き\code{right\-/split}と\code{up\-/split}が
+得られるように、\code{split}手続きを定義せよ。
 \end{quote}
 
+\subsubsection*{枠}
+ペインタやペインタの組み合わせ手段をどのように実装するかを示す前に、まず枠について
+考える必要があります。枠は三つのベクトルとして記述することができます---
+原点ベクトルと、二つの辺ベクトルです。原点ベクトルは、平面上のどこかにある絶対原点
+からの枠の原点の相対位置を指定します。辺ベクトルは、枠の角について、枠の原点からの
+相対位置を指定します。もし二つの辺が垂直であれば、枠は長方形になります。そうでない
+場合、枠はより一般的な平行四辺形になります。
 
-\subsubsection*{フレーム}
-
-
-ペインタとどのように実装しその接続手段を示す前に、始めにフレームについて考えなけ
-ればなりません。フレームは3つのベクトル---始点ベクトルと2つの辺ベクトルで説明でき
-ます。始点ベクトルは平面上においてある絶対的な始点からフレームの始点までのオフセットを
-指定します。そして辺ベクトルは始点から角までのオフセットを指定します。もし2つの辺が
-垂直であればフレームは長方形になります。それ以外ではフレームはより一般的な平行四辺形に
-なります。
-
-
-\link{Figure 2.15}はフレームとその対応するベクトルを示します。
-データ抽象化に従い、まだフレームがどのように表現されるかについては、
-3つのベクトルを取りフレームを生成するコンストラクタ\code{make\-/frame}と関連する3つの
-セレクタ\code{origin\-/frame}, \code{edge1\-/frame}, \code{edge2\-/frame}が存在すること以外を
-特定する必要がありません。(\link{Exercise 2.47}を参照して下さい)。
+\link{Figure 2.15}は、枠とそれに関連づけられたベクトルを示しています。
+データ抽象化の原則通り、枠がどのように表現されているかについて
+ここではまだ特定する必要がありません。三つのベクトルを引数に取り枠を作る
+コンストラクタ\code{make\-/frame}と、それに対応する三つのセレクタ
+\code{origin\-/frame}, \code{edge1\-/frame}, \code{edge2\-/frame}があるという
+だけで十分です(\link{Exercise 2.47}参照)。
 
 \begin{figure}[tb]
 \phantomsection\label{Figure 2.15}
@@ -8588,9 +8583,10 @@ vector    \    __--        edge1
 \end{comment}
 \includegraphics[width=51mm]{fig/chap2/Fig2.15a.pdf}
 \begin{quote}
-\heading{Figure 2.15:} 3つのベクトル --- 始点と2つの辺により記述されたフレーム
+\heading{Figure 2.15:} 枠は、原点と二つの辺という三つのベクトルによって記述される。
 \end{quote}
 \end{figure}
+%###
 
 私達は単位正方形\( (0 \le x, y \le 1) \)内の座標をイメージを指定するのに用いることにします。
 各フレームは、フレームに適合するようにイメージの移動と拡大縮小をするのに使われる
