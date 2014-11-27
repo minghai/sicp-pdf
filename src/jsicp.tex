@@ -8471,7 +8471,7 @@ from the \code{wave} painter of \link{Figure 2.10}.
 \end{quote}
 \end{figure}
 
-\subsubsection*{高階命令}
+\subsubsection*{高階演算}
 
 ペインタを組み合わせるパターンを抽象化するだけでなく、より高いレベルで、
 ペインタ演算を組み合わせるパターンを抽象化することもできます。つまり、
@@ -8879,17 +8879,18 @@ Origin(Frame) + x * Edge_1(Frame) + y * Edge_2(Frame)
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 2.50}Exercise 2.50:} 
-ペインタを水平方向に引っくり返す変換\code{flip\-/horiz}を定義せよ。
-またペインタを時計と逆回りに180度と270度回す変換を定義せよ。
+ペインタを左右逆にする変換\code{flip\-/horiz}、ペインタを反時計回りに
+180度、270度回転させる変換を定義せよ。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 2.51}Exercise 2.51:} 
-ペインタに対する\code{below}命令を定義せよ。\code{below}は2つのペインタを引数に取る。
-結果のペインタはフレームを与えられ、1つ目のペインタにてフレームの底部を描き、
-2つ目のペインタにて上部を描く。\code{below}を2つの異なる方法で定義せよ。
-1つは上で与えた\code{beside}と同様な方法で、2つ目は\code{beside}と適切な(\link{Exercise 2.50}の)
-回転命令を利用せよ。
+ペインタに対する\code{below}演算を定義せよ。\code{below}は二つのペインタを引数に取る。
+返り値となるペインタは、枠が与えられたとき、一つ目のペインタで枠の下部を描画し、
+二つ目のペインタで上部を描画する。二つのやり方で\code{below}を定義せよ。
+一つ目は、上に示した\code{beside}手続きと似たような手続きを書くというもので、
+二つ目は、\code{beside}と適切な回転演算(\link{Exercise 2.50}のもの)によって
+定義するというものである。
 \end{quote}
 
 \subsubsection*{堅牢な設計のための言語のレベル}
