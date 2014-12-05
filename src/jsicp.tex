@@ -9599,7 +9599,7 @@ d(u^n)            du
 結果になります)。そのため、集合が\( n \)個の要素を持っているとすると、
 \code{element\-/of\-/set?}には最大\( n \)ステップかかるかもしれません。つまり、
 必要なステップ数は\( \Theta(n) \)で増加するということです。\code{adjoin\-/set}は
-この演算を使うので、やはり\code{adjoin\-/set}で増加します。\code{intersection\-/set}は、
+この演算を使うので、やはり\( \Theta(n) \)で増加します。\code{intersection\-/set}は、
 \code{set1}の要素それぞれに対して\code{element\-/of\-/set?}のチェックをするため、
 必要なステップ数は関係する集合の大きさの積に比例して増加、つまり大きさ\( n \)の二つの集合
 に対して\( \Theta(n^2) \)で増加するということになります。\code{union\-/set}についても
