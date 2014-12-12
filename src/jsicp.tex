@@ -10342,29 +10342,28 @@ merge
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 2.69}Exercise 2.69:} 
-以下の手続きはその引数としてシンボルと頻度のペアのリストを取り(どのシンボルも1つ
-より多くのペアには存在しない)、ハフマンアルゴリズムに従いハフマン符号化木を生成する。
+以下の手続きは、引数として記号・頻度ペアのリスト(同じ記号が二つ以上のペアに
+出てくることはない)を取り、ハフマンアルゴリズムに従ってハフマン符号化木を
+生成する。
 
 \begin{scheme}
 (define (generate-huffman-tree pairs)
   (successive-merge (make-leaf-set pairs)))
 \end{scheme}
 
-
-
-\code{make\-/leaf\-/set}は上で与えられた手続きでペアのリストを葉の順序有り集合へと変換する。
-\code{successive\-/merge}はあなたが書かなければならぬ手続きである。\code{make\-/code\-/tree}を
-用いて集合の重みが最小の要素を残り要素が1つになるまで繰り返しマージせよ。残った一要素こそ
-が望まれたハフマン木である。(この手続きは少しトリッキーであるがそんなに複雑ではない。
-もしあなたが自分の設計が複雑だと思うなら、ほとんど確実に何かを間違えている。順序有りの
-集合表現を用いているという事実から著しい利点を得ることができる。)
+\code{make\-/leaf\-/set}は上で与えた手続きで、ペアのリストを葉の順序つき集合に変換する。
+\code{successive\-/merge}は、集合の中で重みが最小の要素を\code{make\-/code\-/tree}を
+使って順番にくっつけていき、最後に要素がひとつだけ残るようにするというものである。
+その要素が求めるハフマン木となる。この手続きを書け(この手続きはちょっとトリッキーだが、
+そこまで複雑ではない。もし手続きの設計が複雑になったとしたら、ほぼ確実に何かを間違えて
+いる。順序つきの集合表現を使っているということが大きな助けになる)。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.70}Exercise 2.70:} 
-以下の8つのシンボルによるアルファベット(文字体系)と関連する頻度は効率的に1950年代のロック
-の歌を符号化するために設計された。(``アルファベット''の``シンボル''は単体の
-文字である必要は無いことに注意せよ。)
+\heading{\phantomsection\label{Exercise 2.70}Exercise 2.70:}
+以下に示す8記号の相対頻度つきアルファベットは、1950年代のロックの歌詞を効率よく
+符号化できるよう設計されたものである(``アルファベット''の``記号''が単独の文字で
+あるとは限らないことに注意)。
 
 \begin{example}
 A    2   GET 2   SHA 3   WAH 1
@@ -10372,9 +10371,8 @@ BOOM 1   JOB 2   NA 16   YIP 9
 \end{example}
 
 
-\code{generate\-/huffman\-/tree}(\link{Exercise 2.69}参照)を用いて対応するハフマン木を
-生成し、\code{encode} (\link{Exercise 2.68}参照)を用いて以下のメッセージを符号化
-せよ。
+\code{generate\-/huffman\-/tree}(\link{Exercise 2.69})を使って対応するハフマン木を
+生成し、\code{encode} (\link{Exercise 2.68})を使って次のメッセージを符号化せよ。
 
 \begin{example}
 Get a job
@@ -10385,8 +10383,8 @@ Wah yip yip yip yip yip yip yip yip yip
 Sha boom
 \end{example}
 
-符号化には何ビットが必要であるか? この歌をもし固定長符号を8つシンボルによる
-アルファベットに用いた時、最小で何ビットが必要であるか?
+符号化には何ビット必要だろうか。もし固定長符号をこの8記号アルファベットに使ったとしたら、
+最低でどれだけのビット数が必要になるだろうか
 \end{quote}
 
 \begin{quote}
