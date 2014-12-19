@@ -11093,7 +11093,7 @@ Alyassaの極形式パッケージも同様です。
 
 \begin{scheme}
 (define (install-polar-package)
-  ~\textrm{;; internal procedures}~
+  ~\textrm{;; 内部手続き}~
   (define (magnitude z) (car z))
   (define (angle z) (cdr z))
   (define (make-from-mag-ang r a) (cons r a))
@@ -11104,7 +11104,7 @@ Alyassaの極形式パッケージも同様です。
   (define (make-from-real-imag x y)
     (cons (sqrt (+ (square x) (square y)))
           (atan y x)))
-  ~\textrm{;; interface to the rest of the system}~
+  ~\textrm{;; システムのほかの部分とのインターフェイス}~
   (define (tag x) (attach-tag 'polar x))
   (put 'real-part '(polar) real-part)
   (put 'imag-part '(polar) imag-part)
