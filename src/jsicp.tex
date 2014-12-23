@@ -11483,7 +11483,7 @@ scheme-numberパッケージのユーザは、次の手続きによって(タグ
 
 \begin{scheme}
 (define (install-rational-package)
-  ~\textrm{;; internal procedures}~
+  ~\textrm{;; 内部手続き}~
   (define (numer x) (car x))
   (define (denom x) (cdr x))
   (define (make-rat n d)
@@ -11503,7 +11503,7 @@ scheme-numberパッケージのユーザは、次の手続きによって(タグ
   (define (div-rat x y)
     (make-rat (* (numer x) (denom y))
               (* (denom x) (numer y))))
-  ~\textrm{;; interface to rest of the system}~
+  ~\textrm{;; システムのほかの部分とのインターフェイス}~
   (define (tag x) (attach-tag 'rational x))
   (put 'add '(rational rational)
        (lambda (x y) (tag (add-rat x y))))
@@ -11530,12 +11530,12 @@ scheme-numberパッケージのユーザは、次の手続きによって(タグ
 
 \begin{scheme}
 (define (install-complex-package)
-  ~\textrm{;; imported procedures from rectangular and polar packages}~
+  ~\textrm{;; 直交形式パッケージと極形式パッケージからインポートした手続き}~
   (define (make-from-real-imag x y)
     ((get 'make-from-real-imag 'rectangular) x y))
   (define (make-from-mag-ang r a)
     ((get 'make-from-mag-ang 'polar) r a))
-  ~\textrm{;; internal procedures}~
+  ~\textrm{;; 内部手続き}~
   (define (add-complex z1 z2)
     (make-from-real-imag (+ (real-part z1) (real-part z2))
                          (+ (imag-part z1) (imag-part z2))))
@@ -11548,7 +11548,7 @@ scheme-numberパッケージのユーザは、次の手続きによって(タグ
   (define (div-complex z1 z2)
     (make-from-mag-ang (/ (magnitude z1) (magnitude z2))
                        (- (angle z1) (angle z2))))
-  ~\textrm{;; interface to rest of the system}~
+  ~\textrm{;; システムのほかの部分とのインターフェイス}~
   (define (tag z) (attach-tag 'complex z))
   (put 'add '(complex complex)
        (lambda (z1 z2) (tag (add-complex z1 z2))))
@@ -11588,6 +11588,7 @@ scheme-numberパッケージのユーザは、次の手続きによって(タグ
 ``下向きに''渡されるにつれ、適切なパッケージに送るために使われた外側のタグは
 (\code{contents}の適用によって)はがされていき、(もしあれば)次のレベルのタグが
 さらなるディスパッチ用に見えるようになります。
+%%%
 
 \begin{figure}[tb]
 \phantomsection\label{Figure 2.24}
