@@ -11984,7 +11984,7 @@ Louisの強制型変換手続きを組み込むと、もし\code{scheme\-/number
 ~\textrm{;; 以下はScheme-numberパッケージに追加する}~
 (put 'exp '(scheme-number scheme-number)
      (lambda (x y) (tag (expt x y)))) 
-     ~\textrm{; using primitive \code{expt}}~
+     ~\textrm{; 基本手続き\code{expt}を使う}~
 \end{scheme}
 
 \noindent
