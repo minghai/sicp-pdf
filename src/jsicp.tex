@@ -12399,6 +12399,7 @@ B : x^100 + 2x^2 + 1
 呼び出しを行うということを保証するなら、このままでも問題はありません。そのような保証を
 したくなければ、順序つきリストとしての集合の表現(\link{Exercise 2.61})に対する
 \code{adjoin\-/set}に近い形で\code{adjoin\-/term}を実装することもできます。}
+%%%
 \begin{scheme}
 (define (adjoin-term term term-list)
   (if (=zero? (coeff term))
