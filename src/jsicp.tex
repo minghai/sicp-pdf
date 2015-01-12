@@ -12614,12 +12614,10 @@ x^3 - 1   x^2 - 1    x^4 + x^3 - x - 1
 割り当てる方法を持つ領域です。その性質とは、任意の非ゼロな\( x \)と\( y \)に対し
 \( m(xy) \ge m(x) \)となり、任意の\( x \)と\( y \)に対し、\( y = qx + r \)で
 \( r = 0 \)または\( m(r) < m(x) \)となる\( q \)が存在するというものです。
-%%%
 
 抽象化の視点からこれがユークリッドのアルゴリズムがうまく行くのに必要な条件です。
 整数の定義域に対して、整数の大きさ\( m \)はその整数の絶対値です。多項式の定義域においては
-多項式の大きさはその次数です。}整数版は以下のとおりです。
-
+多項式の大きさはその次数です。}整数版は次のようなものでした。
 
 \begin{scheme}
 (define (gcd a b)
@@ -12629,7 +12627,7 @@ x^3 - 1   x^2 - 1    x^4 + x^3 - x - 1
 \end{scheme}
 
 \noindent
-これを用いて、項リスト上で働く\acronym{GCD}命令を定義するための明かな変更を行うことができます。
+これを使って、自明な修正を加えて項リストに対して動く\acronym{GCD}演算を定義できます。
 
 \begin{scheme}
 (define (gcd-terms a b)
@@ -12639,16 +12637,18 @@ x^3 - 1   x^2 - 1    x^4 + x^3 - x - 1
 \end{scheme}
 
 \noindent
-ここで\code{remainder\-/terms}は\link{Exercise 2.91}で実装された項リストの除算命令
-\code{div\-/terms}により返されるリストの剰余部を取り出します。
+ここでの\code{remainder\-/terms}は、\link{Exercise 2.91}で実装した項リスト除算演算
+\code{div\-/terms}が返すリストから、剰余の部分を取り出すものです。
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 2.94}Exercise 2.94:} 
-\code{div\-/terms}を用いて手続き\code{remainder\-/terms}を実装し、それを用いて\code{gcd\-/terms}を
-上記のように定義せよ。次に2つの多項式の多項式\acronym{GCD}を求める手続き\code{gcd\-/poly}
-を書け。(この手続きは2つの多項式が同じ変数でなければエラーを発しなければならない)。
-多項式に対しては\code{gcd\-/poly}を簡約し、通常の数値に対しては通常の\code{gcd}に簡約する
-ジェネリック命令\code{greatest\-/common\-/divisor}をシステムにインストールせよ。テストとして以下を試せ。
+\code{div\-/terms}を使って手続き\code{remainder\-/terms}を実装し、それを使って
+\code{gcd\-/terms}を上記のように定義せよ。次に、二つの多項式に対して
+多項式\acronym{GCD}を求める手続き\code{gcd\-/poly}を書け(この手続きは、
+二つの多項式が同じ変数のものでなければエラーを出すようにする)。
+システムに\code{greatest\-/common\-/divisor}というジェネリック演算を組み込み、
+多項式は\code{gcd\-/poly}によって簡約し、通常の数値は通常の\code{gcd}によって簡約する
+ようにせよ。テストとして以下を実行せよ。
 
 \begin{scheme}
 (define p1 (make-polynomial 
@@ -12659,7 +12659,7 @@ x^3 - 1   x^2 - 1    x^4 + x^3 - x - 1
 
 \noindent
 
-次にその結果を手でチェックせよ。
+その結果を手計算によって確認せよ。
 \end{quote}
 
 \begin{quote}
@@ -12688,49 +12688,50 @@ P_3 : 13x + 5
 	P_3 	& \quad 13x + 5. 
 \end{array}
 \end{displaymath}
-次に\( P_1 \)と\( P_2 \)の積\( Q_1 \)、\( P_1 \)と\( P_3 \)の積\( Q_2 \)を定義し、
-\code{greatest\-/common\-/divisor}(\link{Exercise 2.94})を用いて\( Q_1 \)と\( Q_2 \)
-の\acronym{GCD}を求めよ。答が\( P_1 \)と同じにならないことに注意せよ。これが
-非整数命令の演算が\acronym{GCD}に伴なう困難さを生じさせることの例を示している。\footnote{
-\acronym{MIT} Schemeの様な実装ではこの問題は\( Q_1 \)と\( Q_2 \)の実際の約数を分数係数を
-伴なって生成します。多くのSchemeシステムでは整数の除算が精度に限界のある小数を生成するため、
-正しい約数を得るのに失敗します。}
-何が起こったのか正しく理解するため、\acronym{GCD}を求める間\code{gcd\-/terms}をトレースするか
-この除算を手で試行してみよ。
+次に、\( P_1 \)と\( P_2 \)の積\( Q_1 \)、\( P_1 \)と\( P_3 \)の積\( Q_2 \)を定義し、
+\code{greatest\-/common\-/divisor}(\link{Exercise 2.94})を使って\( Q_1 \)と\( Q_2 \)
+の\acronym{GCD}を求めよ。答えが\( P_1 \)と同じにならないことに注意せよ。この例では
+計算に非整数演算の演算が絡んでくるので、\acronym{GCD}アルゴリズムが困難になっている。
+\footnote{
+\acronym{MIT} Schemeのような実装では、この計算は確かに\( Q_1 \)と\( Q_2 \)の約数となる
+多項式を生成しますが、係数は有理数になります。ほかの多くのSchemeシステムでは、
+整数の除算結果は有限精度の小数となることがあるので、正しい約数が得られないことがあります。}
+何が起こっているか理解するために、\acronym{GCD}の計算時に\code{gcd\-/terms}をトレース
+せよ。または、この除算を手計算で実行せよ。
 \end{quote}
 
 \noindent
-\link{Exercise 2.95}で示された問題を以下に示す(整数係数の多項式の場合のみ実際には動作する)
-\acronym{GCD}アルゴリズムの変更を用いることで解決することができます。
-\acronym{GCD}の演算中の一切の多項式の除算の前に、被除数を一切の分数が除算処理の間に現れない
-よう保証するために選ばれた整数定数因数を掛けます。答は従って実際の\acronym{GCD}より整数定数
-因数の分異なります。しかしこれは分数関数を最小の項に簡約する場合には問題になりません。
-\acronym{GCD}は分子と分母の両方を割るために利用されるため、整数定数因数は相殺されます。
+\link{Exercise 2.95}で出てきた問題は、以下のように\acronym{GCD}アルゴリズムを修正すると
+解決できます(これは、実際には整数係数の多項式の場合にしか動作しません)。\acronym{GCD}
+計算で多項式の除算を行う前にはいつも、除算過程で分数が現れないことを保証するように選んだ
+整数定数を被除数にかけるようにします。こうすると、答えは実際の\acronym{GCD}と整数定数
+倍だけ違うものになりますが、このことは有理数関数を既約にする場合には問題になりません。
+\acronym{GCD}は分子と分母の両方を割るのに使うので、整数定数倍は相殺されます。
 
-
-
-より正確に述べれば、もし\( P \)と\( Q \)が多項式である場合、\( O_1 \)を\( P \)の次数とし
-(つまり\( P \)の最大項の次数とし)、\( O_2 \)を\( Q \)の次数とします。\( c \)を\( Q \)の
-第一の係数とします。すると\( P \)を\newterm{integerizing factor}(\jnewterm{整数化因数})\( c^{1 + O_1 - O_2} \)
-で掛けると、結果の多項式は\code{div\-/terms}アルゴリズムを用いて一切の分数を生じずに\( Q \)で割る
-ことができます。
-被除数をこの定数で乗算した後に割る命令は時々\( P \)の\( Q \)による\newterm{pseudodivision}(\jnewterm{擬除算})と呼ばれます。
-除算の剰余は\newterm{pseudoremainder}(\jnewterm{擬剰余})と呼ばれます。
+より正確には、\( P \)と\( Q \)が多項式であるとき、\( O_1 \)を\( P \)の次数
+(つまり、\( P \)の最大項の次数)とし、\( O_2 \)を\( Q \)の次数とします。
+\( c \)を\( Q \)の先頭の係数とします。すると、\( P \)に\newterm{integerizing factor}
+(\jnewterm{整数化因子})\( c^{1 + O_1 - O_2} \)をかけると、答えの多項式を
+\code{div\-/terms}アルゴリズムを使って分数を出さずに\( Q \)で割ることができるという
+ことが示せます。被除数にこの定数をかけてから割るという操作は、\( P \)の\( Q \)による
+\newterm{pseudodivision}(\jnewterm{擬除算})と呼ばれることもあります。除算の剰余は
+\newterm{pseudoremainder}(\jnewterm{擬剰余})と呼ばれます。
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 2.96}Exercise 2.96:}
 \begin{enumerate}[a]
 
 \item
-手続き\code{pseudoremainder\-/terms}を実装せよ。これは\code{remainder\-/terms}と同様であるが
-\code{div\-/terms}を呼ぶ前に被除数を上で説明した整数化因数で掛ける。
-\code{gcd\-/terms}を変更し\code{pseudoremainder\-/terms}を用いるようにし、\code{greatest\-/common\-/divisor}が
-整数係数の答を\link{Exercise 2.95}の例にて生ずることを確認せよ。
+手続き\code{pseudoremainder\-/terms}を実装せよ。これは\code{remainder\-/terms}と
+同じようなものになるが、\code{div\-/terms}を呼ぶ前に、上で述べた整数化因数を被除数に
+かけるというところが違う。\code{gcd\-/terms}を修正して\code{pseudoremainder\-/terms}を
+使うようにし、\code{greatest\-/common\-/divisor}が\link{Exercise 2.95}の例に対して
+整数係数の答えを返すようになっていることを確認せよ。
 
 \item
-\acronym{GCD}はこれで整数係数を得る。しかしそれらは\( P_1 \)の物よりも大きい。
-\code{gcd\-/terms}を変更し解の係数から全ての係数をそれらの(整数)の最大公約数により割ることで共通因数を取り除く
-ようにせよ。
+これで\acronym{GCD}は整数係数になる。しかし、係数は\( P_1 \)の係数よりも大きくなる。
+\code{gcd\-/terms}を修正し、答えの係数すべての(整数の)最大公約数で係数を割ることによって
+答えの係数から共通因数を取り除くようにせよ。
 \end{enumerate}
 \end{quote}
 
