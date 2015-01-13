@@ -12736,24 +12736,26 @@ P_3 : 13x + 5
 \end{quote}
 
 \noindent
-従って、以下に分数関数をどのようにして規約分数に簡約するかを説明します。
+まとめると、有理数関数を既約にする方法は以下のようになります。
 
 \begin{itemize}
 
 \item
-\link{Exercise 2.96}の\code{gcd\-/terms}の版を用いて、分子と分母の\acronym{GCD}を求める
+\link{Exercise 2.96}版の\code{gcd\-/terms}を使って、分子と分母の\acronym{GCD}を
+求める。
 
 \item
-\acronym{GCD}を得たら分子と分母の両方に同じ整数化因数を\acronym{GCD}で割る前に
-掛けることで\acronym{GCD}による除算が非整数な係数を生じないようにする。
-因数として\acronym{GCD}の最初の係数を\( 1 + O_1 - O_2 \)乗した物を用いることができ、
-この時\( O_2 \)は\acronym{GCD}の次数であり、\( O_1 \)は分子と分母の最大次数である。
-こうすることで分子と分母を\acronym{GCD}で割っても分数を生じない。
+\acronym{GCD}を求めたら、分子と分母を\acronym{GCD}で割る前に、それらに同じ整数化因子を
+かけて、\acronym{GCD}による割り算で非整数の係数が出ないようにする。整数化因子としては、
+\acronym{GCD}の最初の係数を\( 1 + O_1 - O_2 \)乗したものが使える。ここで、\( O_2 \)は
+\acronym{GCD}の次数、\( O_1 \)を分子と分母の大きいほうの次数とする。こうすると、
+分子と分母を\acronym{GCD}で割っても分数が出てこないということが保証できる。
 
 \item
-この操作の結果は分子と分母が整数係数になる。係数は通常とても巨大になる。理由の
-全ては整数化因数のせいだ。そのため最終ステップは分子と分母の全ての係数の
-(整数の)最大公約数を求めてこの約数で割ることで冗長な因数を取り除くことである。
+この演算の結果は、整数係数を持つ分子と分母になる。いろいろ整数化因子をかけているため、
+係数は普通とても大きなものになっている。そのため、最終ステップとして、分子と分母の
+係数すべてに対する(整数の)最大公約数を求め、それで割ることによって、冗長な因数を
+取り除く。
 
 \end{itemize}
 
@@ -12762,15 +12764,16 @@ P_3 : 13x + 5
 \begin{enumerate}[a]
 
 \item
-このアルゴリズムを、2つの項リスト\code{n}と\code{d}を引数として取り上で説明された
-アルゴリズムにて\code{n}と\code{d}を最小の項に簡約したリスト\code{nn}と\code{dd}を返す
-手続き\code{reduce\-/terms}として実装せよ。また\code{add\-/poly}と同様に2つの多項式が同じ変数を持つか
-チェックする手続き\code{reduce\-/poly}も書け。もしそうである場合\code{reduce\-/poly}は変数を取り去り
-問題を\code{reduce\-/terms}に渡す。そして\code{reduce\-/terms}により与えられた2つの項リストに
-再び変数を取り付ける。
+このアルゴリズムを\code{reduce\-/terms}という手続きとして実装せよ。手続きは
+\code{n}と\code{d}という二つの項リストを引数として取り、上で説明したアルゴリズムによって
+\code{n}と\code{d}を既約にした\code{nn}と\code{dd}のリストを返す。また、\code{add\-/poly}
+と同様の手続き\code{reduce\-/poly}を実装せよ。これは二つのpolyが同じ変数を持つかどうか
+チェックし、もし同じであれば変数を取り去って問題を\code{reduce\-/terms}に渡し、
+\code{reduce\-/terms}に返された二つの項リストにその変数をつけ直す。
 
 \item
-元の\code{make\-/rat}が整数に対して行ったことを行う\code{reduce\-/terms}と同様の手続きを定義せよ。
+\code{reduce\-/terms}と同じような手続きで、元々の\code{make\-/rat}が整数に対して
+行っていたことと同じことを実行するものを次のように定義せよ。
 
 \begin{scheme}
 (define (reduce-integers n d)
@@ -12778,11 +12781,13 @@ P_3 : 13x + 5
 \end{scheme}
 
 \noindent
-次に\code{reduce}をジェネリック命令として定義する。
-これは\code{apply\-/generic}を呼び、(\code{polynomial}型引数に対しては)\code{reduce\-/poly}を呼び出し、
-(\code{scheme\-/number}型引数に対しては)\code{reduce\-/integers}を呼び出す。
-これで\code{make\-/rat}に与えられた分子と分母を接続して分数を形成する前に\code{reduce}を
-呼ばせることで、簡単に分数数値演算パッケージに分数を最小の項に約分させることができる。
+そして、\code{reduce}というジェネリック演算を定義せよ。これは、\code{apply\-/generic}を
+呼んで、\code{reduce\-/poly}(\code{polynomial}型引数に対して)または
+\code{reduce\-/integers}(\code{scheme\-/number}型引数に対して)にディスパッチする。
+こうすると、\code{make\-/rat}が分子と分母を組み合わせて有理数を作る前に\code{reduce}を
+呼ぶようにすることで、有理数算術演算パッケージが有理数を既約にするようにできる。
+これで、このシステムは整数と多項式のどちらの有理式も扱えるようになった。プログラムを
+テストするために、この拡張練習問題の最初に出てきた例を試してみよ。
 
 \begin{scheme}
 (define  p1 (make-polynomial 'x '((1 1) (0  1))))
@@ -12794,7 +12799,7 @@ P_3 : 13x + 5
 (add rf1 rf2)
 \end{scheme}
 
-正しい答を得るかどうか、正しく最小の項に簡約されるかどうか確認せよ。
+正しく既約になっている正しい答えが返ってくるかどうかを確認せよ。
 \end{enumerate}
 \end{quote}
 
