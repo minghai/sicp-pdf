@@ -12960,7 +12960,6 @@ Plus \c{c}a change, plus c'est la m\^{e}me chose.
 \code{amount}分だけ減らし、新しい\code{balance}の値を返します。なければ、
 \code{withdraw}は\emph{Insufficient funds}(残高不足)というメッセージを返します。
 以下は、\code{balance}と\code{withdraw}の定義です。
-%%%
 
 \begin{scheme}
 (define balance 100)
@@ -12972,42 +12971,36 @@ Plus \c{c}a change, plus c'est la m\^{e}me chose.
 \end{scheme}
 
 \noindent
-\code{balance}を減らすのは次の式により行われます。
+\code{balance}の減算は次の式によって行います。
 
 \begin{scheme}
 (set! balance (- balance amount))
 \end{scheme}
 
 \noindent
-これは\code{set!}という特殊形式を用いています。その文法は次のとおりです。
+ここでは\code{set!}という特殊形式を使っています。構文は次のようになります。
 
 \begin{scheme}
 (set! ~\( \dark \langle \)~~\var{\dark name}~~\( \dark \rangle \)~ ~\( \dark \langle \)~~\var{\dark new-value}~~\( \dark \rangle \)~)
 \end{scheme}
 
 \noindent
-ここでは\( \langle \)\var{name}\( \kern0.08em\rangle \)はシンボルであり、
+ここで、\( \langle \)\var{name}\( \kern0.08em\rangle \)は記号で、
 \( \langle \)\var{new-value}\( \kern0.08em\rangle \)は任意の式です。
-\code{set!}は\( \langle \)\var{name}\( \kern0.08em\rangle \)を変更し、その値が
-\( \langle \)\var{new-value}\( \kern0.08em\rangle \)を評価して得られた結果に
-します。この場合では\code{balance}を変更することでその新しい値が\code{balance}の以前の
-値から\code{amount}を引いた結果になります。\footnote{
+\code{set!}は\( \langle \)\var{name}\( \kern0.08em\rangle \)の値を
+\( \langle \)\var{new-value}\( \kern0.08em\rangle \)を評価して得られる結果に変更します。
+ここでの例では、\code{balance}を変更して、\code{balance}の以前の値から\code{amount}を
+引いた結果を新しい値にします。\footnote{
+\code{set!}式の値は実装依存です。\code{set!}は作用のためだけに使うもので、
+値のために使うものではありません。
 
+\code{set!}という名前は、Schemeで使われる命名規則に従っています。変数の値を変更する
+演算(または、\link{Section 3.3}で学ぶデータ構造を変える演算)は、感嘆符で終わる名前を
+つけることになっています。これは、述語を指すのに疑問符で終わる名前を使うのと似ています。}
 
-\code{set!}式の値は実装依存です。\code{set!}はその効果のためのみに用いられ、その値のために
-用いられてはなりません。
-
-
-その名前\code{set!}はSchemeで用いられる名前付けの慣習が反映されています。
-変数の値を変更する命令(または\link{Section 3.3}で学ぶデータ構造を変える物)は感嘆符(ビックリマーク)で
-終わる名前を与えられます。
-これは述語をクエスチョンマークで終わる名前で指定するのと同様です。}
-
-
-
-\code{withdraw}はまた\code{begin}という特殊形式も使用しており、これは2つの式を\code{if}のテストが
-真の場合に評価されるようにします。最初に\code{balance}を減らし、次に\code{balance}の値を返します。
-一般的に以下の式を評価すると
+\code{withdraw}では、\code{if}のテストが真の場合に二つの式が評価されるようにするために、
+\code{begin}という特殊形式も使っています。二つの式では、まず\code{balance}を減らし、
+それから\code{balance}の値を返しています。一般的に、以下の式を評価すると、
 
 \begin{scheme}
 (begin ~\( \dark \langle \)~~\( \dark exp_1 \)~~\( \dark \rangle \)~ ~\( \dark \langle \)~~\( \dark exp_2 \)~~\( \dark \rangle \)~ ~\( \dots \)~ ~\( \dark \langle \)~~\( \dark exp_k \)~~\( \dark \rangle \)~)
@@ -13015,27 +13008,26 @@ Plus \c{c}a change, plus c'est la m\^{e}me chose.
 
 \noindent
 \( \langle \)\( exp_1 \)\( \kern0.08em\rangle \)から
-\( \langle \)\( exp_k \)\( \kern0.08em\rangle \)までの式は続けて評価され
-最後の式\( \langle \)\( exp_k \)\( \kern0.08em\rangle \)が\code{begin}の形式全体の値として
-返ります。\footnote{
-私達は既に\code{begin}を暗黙的にプログラムの中で使用しています。Schemeでは手続きのボディは連続する式と
-なるからです。また\code{cond}式の各節の\( \langle \)\var{consequent}\( \kern0.08em\rangle \)の部分
-は単一の式でなく一連の式にすることができます。}
+\( \langle \)\( exp_k \)\( \kern0.08em\rangle \)までの式が順番に評価され、最後の式
+\( \langle \)\( exp_k \)\( \kern0.08em\rangle \)の値が\code{begin}形式全体の値として
+返されます。
+\footnote{
+Schemeでは手続きの本体として式の連続が使えるので、すでに\code{begin}を暗黙的にプログラムの中で
+使っていることになります。また、\code{cond}式の各節の
+\( \langle \)\var{consequent}\( \kern0.08em\rangle \)部分も、単一の式ではなく、式の連続に
+することができます。}
 
 
+\code{withdraw}は意図した通りに動くのですが、変数\code{balance}が問題になります。
+上で記述したように、\code{balance}はグローバル環境で定義された名前なので、どんな手続きからでも
+アクセスして値を調べたり変更したりすることができてしまいます。何とかして\code{balance}を
+\code{withdraw}の内部に置いて、\code{withdraw}が\code{balance}に直接アクセスできる唯一の手続きに
+なるようにして、ほかの手続きは全部、\code{balance}には(\code{withdraw}の呼出を通して)間接的にしか
+アクセスできないようにできれば、ずっとよくなります。こうすると、\code{withdraw}が口座の状態を
+覚えておくために使っている局所状態変数が\code{balance}であるという概念をより正確にモデル化
+できます。
 
-\code{withdraw}は望んだ通りに働きますが、変数\code{balance}が問題を表します。
-上で指定されたように、\code{balance}はグローバル環境にて定義された名前であり
-自由に検査や変更のために任意の手続きからアクセスすることができます。
-どうにかして\code{balance}を\code{withdraw}の内在にすることで\code{withdraw}のみが
-\code{balance}に直接アクセスでき、他の手続きのどれもが\code{balance}には間接的に
-(\code{withdraw}の呼出を通して)アクセスするようにできればともて良くなるでしょう。
-こうすることが口座の状態を追跡するため\code{balance}が\code{withdraw}により利用される
-局所状態変数であるという概念をより正確にモデル化します。
-
-
-
-定義を以下のように書き直すことで\code{balance}を\code{withdraw}に内在させることができます。
+\code{balance}を\code{withdraw}の内部に置くようにするには、定義を以下のように書き直します。
 
 \begin{scheme}
 (define new-withdraw
@@ -13048,18 +13040,18 @@ Plus \c{c}a change, plus c'est la m\^{e}me chose.
 \end{scheme}
 
 \noindent
-ここで起こなったのは\code{let}を用いて初期値100に束縛されたローカル変数\code{balance}を
-持つ環境を設置しました。この局所環境の中では\code{lambda}を用いて\code{amount}を引数に取り
-以前の\code{withdraw}手続きと同様に振る舞う手続きを作成しています。この手続き---\code{let}式の
-評価の結果として返される物---は\code{new\-/withdraw}であり正確に\code{withdraw}と同じ
-振舞をしますが、その変数\code{balance}は他のどの手続きからもアクセスできません。\footnote{
-プログラミング言語の専門語において変数\code{balance}は手続き\code{new\-/withdraw}にカプセル化
-されたと言います。カプセル化は\newterm{hiding principle}(\jnewterm{隠蔽原則})として知られる
-一般的なシステム設計の原則を反映しています。隠蔽原則とはシステムの部分をお互いから守ることで
-よりモジュール化の推進と頑強なシステムを作成することができるということです。それはつまり
-情報へのアクセスを``知ることを必要とする''システムの部分ににも与えることによります。}
-
-
+ここでは、初期値100に束縛されたローカル変数\code{balance}を持つ環境を\code{let}によって
+作っています。この局所環境の中で、\code{amount}を引数に取り、以前の\code{withdraw}手続きと
+同じようなふるまいをする手続きを、\code{lambda}を使って作っています。\code{let}式を評価した
+結果として返されるこの手続きは\code{new\-/withdraw}で、\code{withdraw}と正確に同じふるまいを
+しますが、変数\code{balance}はほかのどの手続きからもアクセスできません。
+\footnote{
+プログラミング言語の業界用語では、変数\code{balance}は手続き\code{new\-/withdraw}の中に
+\newterm{encapsulated}(\jnewterm{カプセル化})されていると言います。カプセル化は、
+\newterm{hiding principle}(\jnewterm{隠蔽原理})として知られる、一般的なシステム設計の原則を
+反映したものです。隠蔽原理とは、システムの各部品をほかの部品から守ることによって、システムを
+よりモジュール的で頑健なものにできるという考え方です。これはつまり、``知る必要''のある
+システムの部品にだけ、情報へのアクセス権を与えるということです。}
 
 \code{set!}をローカル変数と組み合わせることはローカルな状態を持つ計算オブジェクトを
 構築するのに用いる一般的なプログラミングテクニックです。残念なことに、このテクニックを
