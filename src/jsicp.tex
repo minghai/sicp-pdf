@@ -13012,20 +13012,20 @@ Plus \c{c}a change, plus c'est la m\^{e}me chose.
 \( \langle \)\( exp_k \)\( \kern0.08em\rangle \)の値が\code{begin}形式全体の値として
 返されます。
 \footnote{
-Schemeでは手続きの本体として式の連続が使えるので、すでに\code{begin}を暗黙的にプログラムの中で
-使っていることになります。また、\code{cond}式の各節の
+Schemeでは手続きの本体として式の連続が使えるので、すでに\code{begin}を暗黙的に
+プログラムの中で使っていることになります。また、\code{cond}式の各節の
 \( \langle \)\var{consequent}\( \kern0.08em\rangle \)部分も、単一の式ではなく、式の連続に
 することができます。}
 
 
 \code{withdraw}は意図した通りに動くのですが、変数\code{balance}が問題になります。
-上で記述したように、\code{balance}はグローバル環境で定義された名前なので、どんな手続きからでも
-アクセスして値を調べたり変更したりすることができてしまいます。何とかして\code{balance}を
-\code{withdraw}の内部に置いて、\code{withdraw}が\code{balance}に直接アクセスできる唯一の手続きに
-なるようにして、ほかの手続きは全部、\code{balance}には(\code{withdraw}の呼出を通して)間接的にしか
-アクセスできないようにできれば、ずっとよくなります。こうすると、\code{withdraw}が口座の状態を
-覚えておくために使っている局所状態変数が\code{balance}であるという概念をより正確にモデル化
-できます。
+上で記述したように、\code{balance}はグローバル環境で定義された名前なので、どんな手続き
+からでもアクセスして値を調べたり変更したりすることができてしまいます。何とかして
+\code{balance}を\code{withdraw}の内部に置いて、\code{withdraw}が\code{balance}に直接
+アクセスできる唯一の手続きになるようにして、ほかの手続きは全部、\code{balance}には
+(\code{withdraw}の呼出を通して)間接的にしかアクセスできないようにできればずっとよくなる
+でしょう。そうできれば、\code{withdraw}が口座の状態を覚えておくために使っている
+局所状態変数が\code{balance}であるという概念をより正確にモデル化できることになります。
 
 \code{balance}を\code{withdraw}の内部に置くようにするには、定義を以下のように書き直します。
 
@@ -13041,8 +13041,8 @@ Schemeでは手続きの本体として式の連続が使えるので、すで�
 
 \noindent
 ここでは、初期値100に束縛されたローカル変数\code{balance}を持つ環境を\code{let}によって
-作っています。この局所環境の中で、\code{amount}を引数に取り、以前の\code{withdraw}手続きと
-同じようなふるまいをする手続きを、\code{lambda}を使って作っています。\code{let}式を評価した
+作っています。この局所環境の中で、\code{amount}を引数に取り以前の\code{withdraw}手続きと
+同じようなふるまいをする手続きを\code{lambda}を使って作っています。\code{let}式を評価した
 結果として返されるこの手続きは\code{new\-/withdraw}で、\code{withdraw}と正確に同じふるまいを
 しますが、変数\code{balance}はほかのどの手続きからもアクセスできません。
 \footnote{
