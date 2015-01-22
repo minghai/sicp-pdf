@@ -13384,19 +13384,18 @@ Kolmogorov, Solomonoff, Chaitinはこれらの問題の解明に大きく寄与�
 多くの点について行えば、領域の中に入る点の割合から、その領域の中にある長方形の割合を推定する
 ことができる。よって、その割合に長方形全体の面積をかけると、積分の推定値が得られることになる。
 
-%%%
-モンテカルロ積分を手続き\code{estimate\-/integral}として実装せよ。これは引数として述語\code{P}、
-長方形の上下界として\code{x1}, \code{x2}, \code{y1}, \code{y2}、そして推定値を生成するため実行する
-試行回数を取る。手続きは上で\( \pi \)を推測するために使用した\code{monte\-/carlo}手続きを同じく
-使用せねばならない。\code{estimate\-/integral}を用いて\( \pi \)の推測値を単位円の面積を
-測ることで求めよ。
+モンテカルロ積分を、手続き\code{estimate\-/integral}として実装せよ。引数として、述語\code{P}、
+長方形の上下界\code{x1}, \code{x2}, \code{y1}, \code{y2}、推定値を生成するための試行回数を取る。
+この手続きは、上で\( \pi \)を推定するために使ったものと同じ\code{monte\-/carlo}手続きを
+使わなければならない。この\code{estimate\-/integral}を使って、単位円の面積を測ることによって
+\( \pi \)の推定値を求めよ。
 
-
-与えられた値域から不作為に選択された数値を返す手続きを持つことが便利であると発見するかもしれない。
-以下の\code{random\-/in\-/range}手続きはこれを\link{Section 1.2.6}で使用した\code{random}手続きを用いて実装する。
-これは入力より小さな非負数を返す。\footnote{\acronym{MIT} Schemeはそのような手続きを提供します。
-もし\code{random}が(\link{Section 1.2.6}での様に)整数を渡されれば、整数を返します。しかし(この課題のように)
-小数を渡された場合には小数を返します。}
+この手続きを書くのには、与えられた範囲からランダムに選んだ数値を返す手続きがあれば便利だ。
+以下の\code{random\-/in\-/range}手続きは、\link{Section 1.2.6}で使った、入力よりも小さい
+非負数を返す\code{random}手続きによってそれを実装している。
+\footnote{\acronym{MIT} Schemeはそのような手続きを提供しています。\code{random}に
+(\link{Section 1.2.6}のように)整数が渡されれば整数を返しますが、(この課題のように)
+小数を渡されると小数を返します。}
 
 \begin{scheme}
 (define (random-in-range low high)
