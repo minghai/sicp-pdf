@@ -13405,36 +13405,34 @@ Kolmogorov, Solomonoff, Chaitinはこれらの問題の解明に大きく寄与�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.6}Exercise 3.6:} 
-乱数生成器を与えられた値から始まる列を生成するためリセットすることができれば便利である。
-シンボル\code{generate}またはシンボル\code{reset}のどちらかを引数として呼び出す新しい\code{rand}手続きを設計せよ。
-これは次のように振る舞う。\code{(rand 'generate)}は新しい乱数を生成する。
-\code{((rand 'reset)}\( \;\langle \)\var{new-value}\( \kern0.11em\rangle \)\code{)}は内部の状態変数を指定された
-\( \langle \)\var{new-value}\( \kern0.08em\rangle \)でリセットする。
-従って状態をリセットすることで繰り返し可能な列の生成が行える。これは乱数を用いるプログラムのテストや
-デバッグにおいてとても役に立つ。
+\heading{\phantomsection\label{Exercise 3.6}Exercise 3.6:}
+乱数生成器をリセットして、与えられた値から始まる数列を作れるようにできると便利だ。
+記号\code{generate}または\code{reset}のどちらかを引数として取り、次のようなふるまいをする新しい
+\code{rand}手続きを設計せよ。\code{(rand 'generate)}は新しい乱数を生成する。
+\code{((rand 'reset)}\( \;\langle \)\var{new-value}\( \kern0.11em\rangle \)\code{)}は内部の
+状態変数を指定された\( \langle \)\var{new-value}\( \kern0.08em\rangle \)にリセットする。
+つまり、状態をリセットすることによって、再現可能な数列が生成できる。これは乱数を使うプログラムを
+テストしたりデバッグしたりするのにとても役に立つ。
 
 \end{quote}
 
-\subsection{代入導入のコスト}
+\subsection{代入を導入することのコスト}
 \label{Section 3.1.3}
 
+ここまでで見てきたように、\code{set!}演算があると局所状態を持つオブジェクトをモデル化することが
+できるようになります。しかし、この利点は代償を伴うものです。このことによって、私たちの
+プログラミング言語は\link{Section 1.1.5}で紹介した手続き適用の置換モデルによって解釈することが
+もうできなくなっています。それだけでなく、プログラミング言語のオブジェクトと代入を扱う適切な
+枠組みとして使えるような、``いい感じの''数学的性質を持った単純なモデルというものは存在しません。
 
-ここまで見てきたとおり、\code{set!}命令はローカルな状態を持つオブジェクトのモデル化を可能にします。
-しかしこの利点は犠牲を伴ないます。私達のプログラミング言語は\link{Section 1.1.5}で紹介した手続き適用の置換モデルを用いて説明
-することができません。加えて、プログラミング言語の間にオブジェクトと代入を取り扱うための適切なフレームワークとなる
-``良い''数学上の特性を伴なう簡単なモデルが存在しません。
+代入を使わない限り、同じ引数による同じ手続きの呼び出しは二回評価しても同じ結果になるので、
+手続きは数学関数の計算と見なすことができます。この本の一章と二章を通してしてきたような、
+まったく代入を使わないプログラミングというのは、そのために\newterm{functional programming}
+(\jnewterm{関数型プログラミング})と呼ばれています。
 
-
-
-代入を使わない限り、同じ引数を伴なう同じ手続きの二度の評価は同じ結果を生じ、手続きは数学上の関数の計算と
-見ることができます。私達がこの本の最初の二章を通じて行ってきたような代入を使用しないプログラミングは、
-それ故に\newterm{functional programming}(\jnewterm{関数型プログラミング})として知られています。
-
-
-
-代入が問題をどのように困難にするかを理解するために、\link{Section 3.1.1}の\code{make\-/withdraw}手続きを
-残額が十分であるかのチェックを行わない様に単純化した版について考えます。
+代入によってどれだけ話が難しくなるかということを、\link{Section 3.1.1}の\code{make\-/withdraw}
+手続きを単純化したバージョンを使って考えてみましょう。このバージョンでは、残額が十分かどうかの
+チェックをしないようにしています。
 
 \begin{scheme}
 (define (make-simplified-withdraw balance)
@@ -13449,7 +13447,7 @@ Kolmogorov, Solomonoff, Chaitinはこれらの問題の解明に大きく寄与�
 \end{scheme}
 
 \noindent
-この手続きと以下の\code{set!}を使用しない\code{make\-/decrementer}手続きとを比べてみて下さい。
+この手続きと、\code{set!}を使わない次の\code{make\-/decrementer}手続きとを比べてみてください。
 
 \begin{scheme}
 (define (make-decrementer balance)
@@ -13458,8 +13456,8 @@ Kolmogorov, Solomonoff, Chaitinはこれらの問題の解明に大きく寄与�
 \end{scheme}
 
 \noindent
-\code{make\-/decrementer}は指定された残高\code{balance}からその入力を引きます。
-しかし連続した呼び出しにおいて\code{make\-/simplified\-/withdraw}のような累積効果はありません。
+\code{make\-/decrementer}は、指定された残高\code{balance}から入力値を引く手続きを返します。
+しかし、続けて呼び出しても、\code{make\-/simplified\-/withdraw}のような蓄積効果はありません。
 
 \begin{scheme}
 (define D (make-decrementer 25))
@@ -13470,64 +13468,63 @@ Kolmogorov, Solomonoff, Chaitinはこれらの問題の解明に大きく寄与�
 \end{scheme}
 
 \noindent
-\code{make\-/decrementer}がどのように働くかの説明には置換モデルを使用できます。
-例えば以下の式の評価を解析してみましょう。
+\code{make\-/decrementer}の動作の説明には置換モデルが使えます。例えば、以下の式の評価を
+解析してみましょう。
 
 \begin{scheme}
 ((make-decrementer 25) 20)
 \end{scheme}
 
 \noindent
-最初に結合の演算子を\code{make\-/decrementer}のボディの\code{balance}を25と置き換えることにより
-簡約します。式は以下のようになります。
+まず、\code{make\-/decrementer}本体の\code{balance}を25によって置き換えて、組み合わせの演算子を
+単純にします。式は以下のようになります。
 
 \begin{scheme}
 ((lambda (amount) (- 25 amount)) 20)
 \end{scheme}
 
 \noindent
-\code{lambda}式のボディにある\code{amount}を20と置き換えることで演算子を適用します。
+\code{lambda}式本体にある\code{amount}を20によって置き換えて、演算子を適用します。
 
 \begin{scheme}
 (- 25 20)
 \end{scheme}
 
 \noindent
-最終的な答は5です。
+最終的な答は5になります。
 
 
-しかしもし\code{make\-/simplified\-/withdraw}に対しても同様の置換分析を試みれば何が起こるか観察して
-みて下さい。
+しかし、\code{make\-/simplified\-/withdraw}に対して同じような置換による解析をしようとすると
+どうなるでしょうか。
 
 \begin{scheme}
 ((make-simplified-withdraw 25) 20)
 \end{scheme}
 
 \noindent
-最初に\code{make\-/simplified\-/withdraw}のボディにある\code{balance}を25に置き換えることで演算子を簡約します。
-これにより式は以下のようになります。\footnote{
-\code{set!}式に存在する\code{balance}は置き換えません。なぜなら\code{set!}内の
-\( \langle \)\var{name}\( \kern0.08em\rangle \)は評価されないからです。
-もしこれを置き換えれば\code{(set! 25 (- 25 amount))}を得ることになりますが、これは意味がありません。}
+まず、\code{make\-/simplified\-/withdraw}の本体にある\code{balance}を25に置き換えて演算子を
+単純にします。すると、式は次のようになります。\footnote{
+\code{set!}式に出てくる\code{balance}は置き換えません。\code{set!}内の
+\( \langle \)\var{name}\( \kern0.08em\rangle \)は評価されていないからです。
+これを置き換えるとすると、\code{(set! 25 (- 25 amount))}というおかしな結果になってしまいます。}
 
 \begin{scheme}
 ((lambda (amount) (set! balance (- 25 amount)) 25) 20)
 \end{scheme}
 
 \noindent
-ここで\code{lambda}式のボディの中の\code{amount}を20に置き換えて演算子を適用します。
+今度は、\code{lambda}式本体の\code{amount}を20に置き換えて演算子を適用します。
 
 \begin{scheme}
 (set! balance (- 25 20)) 25
 \end{scheme}
 
 \noindent
-もし置換モデルに執着するのであれば、手続きの適用の意味は最初に\code{balance}を5に設定し、
-次に式の値として25を返すと言わざるを得ません。これは間違った答を得ます。
-正しい答を得るためには、どうにかして最初の位置の\code{balance}(\code{set!}の効果以前)を
-2つ目の\code{balance}(\code{set!}の効果の後)から区別せねばなりません。そして置換モデルはこれを行うことが
-できません。
-
+置換モデルにあくまでこだわるのであれば、この手続き適用の意味は、まず\code{balance}を5に設定して、
+それから式の値として25を返すというものだ、と言わなければならないことになります。これは間違った
+答えです。正しい答えを得るには、何とかして一つ目の\code{balance}(\code{set!}の効果の前)と
+二つ目の\code{balance}(\code{set!}の効果の後)とを区別する必要があります。しかし、これは置換モデル
+ではできません。
 
 ここでの問題は置換は詰まるところ、私達の言語のシンボルが本質的に値の名前であるという概念に
 基いています。しかし\code{set!}と変数の値が変更できるという考えを紹介してから直ぐに、
