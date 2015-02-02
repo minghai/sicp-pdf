@@ -1778,7 +1778,7 @@ Alan Perilの言葉を借りると、``シンタックスシュガーはセミ�
 実際にどのように動いているかについて記述したものではありません。
 インタプリタは普通、手続き適用の評価にあたって、手続きのテキストを操作して
 仮引数を値で置き換えるということはしません。実際には、この``置換''は
-仮引数のためにローカル環境を使うことによって実現します。このことについては、
+仮引数のために局所環境を使うことによって実現します。このことについては、
 \link{Chapter 3}と\link{Chapter 4}で、インタプリタの実装について詳しく調べながら
 見ていきます。
 
@@ -2649,9 +2649,9 @@ Chapter 3で、環境とインタプリタの詳細なふるまいについて�
 望むふるまいをするプログラムを確実に構築できるようになるのです。
 
 
-手続きは、計算プロセスの\newterm{local evolution}(\jnewterm{ローカル展開})のための
+手続きは、計算プロセスの\newterm{local evolution}(\jnewterm{局所展開})のための
 パターンです。それは、プロセスの各段階が、どのように前の段階の上に構築される
-かを記述するものです。プロセスのローカル展開は手続きによって記述されるものですが、
+かを記述するものです。プロセスの局所展開は手続きによって記述されるものですが、
 できればプロセスの全体的なふるまい、別の言い方をすると\newterm{global}
 (\jnewterm{グローバル})なふるまいについても何か言えるようになりたいところです。
 これは、一般的にはとても難しいことです。
@@ -14237,10 +14237,9 @@ env       +------------------|--------+
 環境部分は、\code{lambda}が評価された環境であるE1になります。結果としてできる手続きオブジェクトは、
 \code{make\-/withdraw}の呼び出しに対して返される値になります。これがグローバル環境で\code{W1}に
 束縛されます。これは、\code{define}自身がグローバル環境で評価されているからです。
-\link{Figure 3.7}に、最終的な環境構造を示します。
-%%%
+\link{Figure 3.7}に最終的な環境構造を示します。
 
-これで\code{W1}が引数に適用された時に何が起こるかを解析できます。
+これで、\code{W1}が引数に適用されるとどうなるか解析できるようになります。
 
 \begin{scheme}
 (W1 50)
@@ -14282,10 +14281,10 @@ global -->|                                       |       |
 \heading{Figure 3.7:} \code{(define W1 (make\-/withdraw 100))}を評価した結果
 \end{figure}
 
-\code{W1}の形式パラメタ\code{amount}が引数50に束縛されるフレームを構築することから始めます。
-観察すべき重大な点はこのフレームがその外部環境としてグローバル環境ではなく環境E1を持って
-いる点です。これが\code{W1}手続きオブジェクトにより指示される環境だからです。
-この新しい環境の中で手続きのボディを評価します。
+まずフレームを構築し、その中で\code{W1}の仮引数\code{amount}を引数50に束縛します。
+注意すべき重要な点は、このフレームが持っている外側の環境が、グローバル環境ではなく
+環境E1だというところです。これは、\code{W1}手続きオブジェクトによって規定されている
+環境がE1だからです。この新しい環境の中で、手続きの本体を評価します。
 
 \begin{scheme}
 (if (>= balance amount)
@@ -14295,9 +14294,9 @@ global -->|                                       |       |
 \end{scheme}
 
 \noindent
-結果の環境構造は\link{Figure 3.8}に示されます。評価された式は\code{amount}と\code{balance}の両方を
-参照します。\code{amount}は環境の最初のフレームに見つかりますが、\code{balance}は外部環境ポインタに
-従ってE1にて見つかります。
+結果の環境構造を\link{Figure 3.8}に示します。評価されている式は、\code{amount}と\code{balance}の
+両方を参照しています。\code{amount}は環境の最初のフレームで見つかり、\code{balance}は外側の環境の
+ポインタをたどることによってE1で見つかります。
 
 \begin{figure}[tb]
 \phantomsection\label{Figure 3.8}
@@ -14331,22 +14330,22 @@ env       | W1: --+                                           |
 \end{comment}
 \includegraphics[width=99mm]{fig/chap3/Fig3.8c.pdf}
 \begin{quote}
-\heading{Figure 3.8:} 手続きオブジェクト\code{W1}を適用したことにより作成された環境
+\heading{Figure 3.8:} 手続きオブジェクト\code{W1}を適用することによって作成される環境
 \end{quote}
 \end{figure}
 
-\code{set!}が実行された時、E1中の\code{balance}の束縛は変更されます。\code{W1}の呼出が終了する時
-\code{balance}は50で、\code{balance}を含むフレームは依然手続きオブジェクト\code{W1}から指されています。
-\code{amount}を束縛する(その中で\code{balance}を変更するコードを実行した)フレームは最早関係が存在しません。
-それを構築した手続き呼出は停止したためです。そしてその環境の他の部分からそのフレームを指す
-ポインタは存在しません。次回\code{W1}が呼ばれた時、\code{amount}を束縛する新しいフレームが構築され
-その外部環境はE1になります。私達はE1が手続きオブジェクト\code{W1}のためのローカル状態を持つ``場所''の
-役割を果たすのを見ました。\link{Figure 3.9}は\code{W1}を呼び出した後の状況を示します。
+\code{set!}が実行されると、E1中の\code{balance}の束縛が変更されます。\code{W1}の呼び出しが
+終わるときには\code{balance}は50になっていて、\code{balance}を含むフレームはそれまで通り
+手続きオブジェクト\code{W1}によって指されています。\code{balance}を変更するコードを実行した、
+\code{amount}を束縛しているフレームは、もういらなくなりました。このフレームを構築することに
+なった手続きの呼び出しは終了していますし、環境のほかの部分からこのフレームを指しているところも
+ないからです。次に\code{W1}が呼ばれるときには、新しいフレームが構築されて\code{amount}を束縛し、
+その外側の環境はE1になります。手続きオブジェクト\code{W1}の局所状態を持っておく``場所''
+としての役割をE1が果たしているということがわかります。\link{Figure 3.9}に、\code{W1}を呼び出した
+後の様子を示します。
 
-
-
-二つ目の``withdraw''オブジェクトを別の\code{make\-/withdraw}呼出を行うことで作成した時に何が起こるかについて
-観察して下さい。
+もう一度\code{make\-/withdraw}を呼び出して、二つ目の``withdraw''オブジェクトを作るとどうなるか
+見てみましょう。
 
 \begin{scheme}
 (define W2 (make-withdraw 100))
@@ -14382,7 +14381,7 @@ env        | W1: --+                            |
 \includegraphics[width=96mm]{fig/chap3/Fig3.9a.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.9:} \code{W1}呼出後の環境
+\heading{Figure 3.9:} \code{W1}呼び出し後の環境
 \end{figure}
 
 \begin{figure}[tb]
@@ -14414,24 +14413,29 @@ env      | W1: --+                        |                |
 \end{comment}
 \includegraphics[width=108mm]{fig/chap3/Fig3.10a.pdf}
 \begin{quote}
-\heading{Figure 3.10:} \code{(define W2 (make\-/withdraw 100))}を用いて2つ目のオブジェクトを作成
+\heading{Figure 3.10:} \code{(define W2 (make\-/withdraw 100))}を使って二つ目のオブジェクトを作成
 \end{quote}
 \end{figure}
 
-これにより\link{Figure 3.10}の環境構造が生成され\code{W2}が手続きオブジェクトであり、ある程度のコードと
-環境によるペアであることを示しています。\code{W2}のための環境E2は\code{make\-/withdraw}の呼出により作成されます。
-それ専用の\code{balance}のためのローカルな状態を持つフレームを含みます。一方で\code{W1}と\code{W2}は同じ
-コードを持ちます。\code{make\-/withdraw}のボディ内の\( \lambda \)式によりコードは指定されています。\footnote{
-\code{W1}と\code{W2}が計算機内の同じ物理コードを共有しているかどうか、またはそれぞれがコードのコピーを持っているのか
-は実装上の詳細です。\link{Chapter 4}で実装するインタプリタではコードは実際に共有されます。}
-なぜ\code{W1}と\code{W2}が独立したオブジェクトとして振る舞うのかをここで見ました。
-\code{W1}の呼出はE1に格納された状態変数\code{balance}を参照し、一方\code{W2}の呼出はE2に格納された\code{balance}を
-参照します。従って一方のオブジェクトのローカル状態への変更は他方のオブジェクトに影響を与えません。
+こうすると、\link{Figure 3.10}のような環境構造が生成されます。この図は、\code{W2}が
+手続きオブジェクトであるということ、つまり何らかのコードとひとつの環境のペアであるということを
+示しています。\code{W2}の環境E2は、\code{make\-/withdraw}を呼び出すことによって作られます。
+この環境は、\code{balance}に対する局所的な束縛を持つフレームを含んでいます。一方、\code{W1}と
+\code{W2}のコードは同じです。どちらも、\code{make\-/withdraw}本体の\( \lambda \)式によって
+規定されるコードです。
+\footnote{
+\code{W1}と\code{W2}はコンピュータ内の同じ物理コードを共有しているのか、それともそれぞれ
+コードのコピーを持っているのかということは、実装上の詳細に属することです。\link{Chapter 4}で
+実装するインタプリタでは、コードは実際には共有されることになります。}
+これで、なぜ\code{W1}と\code{W2}が独立したオブジェクトとしてふるまうのかがわかりました。
+\code{W1}の呼び出しはE1に格納された状態変数\code{balance}を参照し、\code{W2}の呼び出しは
+E2に格納された\code{balance}を参照しています。このため、一方のオブジェクトの局所状態に
+変更を加えても、もう一方のオブジェクトには影響がありません。
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 3.10}Exercise 3.10:} 
-\code{make\-/withdraw}手続きではローカル変数\code{balance}は\code{make\-/withdraw}のパラメタと
-して作成される。ローカル状態変数を明示的に\code{let}を使って以下の様に作成することもできる。
+\code{make\-/withdraw}手続きでは、ローカル変数\code{balance}は\code{make\-/withdraw}の仮引数と
+して作られる。局所状態変数は、\code{let}を使って、以下のように明示的に作ることもできる。
 
 \begin{scheme}
 (define (make-withdraw initial-amount)
@@ -14443,24 +14447,22 @@ env      | W1: --+                        |                |
           "Insufficient funds"))))
 \end{scheme}
 
-
-
-\link{Section 1.3.2}で\code{let}は手続き呼出のための単純な構文糖であったことを思い出そう。
+\code{let}は手続き呼び出しに対する単純なシンタックスシュガーだという\link{Section 1.3.2}の内容を
+思い出そう。
 
 \begin{scheme}
 (let ((~\( \dark \langle \)~~\var{\dark var}~~\( \dark \rangle \)~ ~\( \dark \langle \)~~\var{\dark exp}~~\( \dark \rangle \)~)) ~\( \dark \langle \)~~\var{\dark body}~~\( \dark \rangle \)~)
 \end{scheme}
 
 \noindent
-上記は代替的な文法として以下に翻訳される。
+上記の式は、次の式の別の書き方として解釈される。
 
 \begin{scheme}
 ((lambda (~\( \dark \langle \)~~\var{\dark var}~~\( \dark \rangle \)~) ~\( \dark \langle \)~~\var{\dark body}~~\( \dark \rangle \)~) ~\( \dark \langle \)~~\var{\dark exp}~~\( \dark \rangle \)~)
 \end{scheme}
 
-
-環境モデルを用いてこの\code{make\-/withdraw}の代替版を解析し、先に記述したような図を描き
-相互作用を説明せよ。
+環境モデルを使って、この\code{make\-/withdraw}の別のバージョンを解析し、上のような図を描いて
+次のやりとりを説明せよ。
 
 \begin{scheme}
 (define W1 (make-withdraw 100))
@@ -14468,10 +14470,8 @@ env      | W1: --+                        |                |
 (define W2 (make-withdraw 100))
 \end{scheme}
 
-
-
-\code{make\-/withdraw}の2つの版が同じ振舞を持つオブジェクトを作成することを示せ。
-環境構造は2つの版でどのように違うか?
+\code{make\-/withdraw}のどちらのバージョンも同じふるまいを持つオブジェクトを作るということを示せ。
+環境構造は二つのバージョンでどのように違うだろうか。
 \end{quote}
 
 
