@@ -14653,39 +14653,31 @@ E1に出てくる\code{x}の束縛を参照することになります。これ�
 \end{scheme}
 
 \noindent
-%%%
-ミューテータが定義された
-データオブジェクトは\newterm{mutable data objects}(\jnewterm{ミュータブルデータオブジェクト}、
-変更可能なオブジェクト)として知られます。
+ミューテータが定義されているデータオブジェクトは、\newterm{mutable data objects}
+(\jnewterm{可変データオブジェクト})と呼ばれます。
 
+\link{Chapter 2}では、複合データを合成するための汎用的な``糊''としてペアを導入しました。
+この節では、ペアのための基本的なミューテータを定義することから始め、可変データオブジェクトを
+構築するためのブロックとしてペアを使うことができるようにします。これらのミューテータはペアの
+表現力を大幅に拡張し、それによって\link{Section 2.2}で取り組んだ列や木構造以外のデータ構造も
+作れるようになります。また、シミュレーションの例もいくつか取り上げます。それらの例では、複雑な
+システムを局所状態を持つオブジェクトの集合としてモデルすることになります。
 
-\link{Chapter 2}は複合データを合成するため汎用目的の``糊''としてのペアを紹介しました。
-この節はペアのための基本的なミューテータを定義することから始め、ペアが変更可能な
-データオブジェクトを構築するための架設ブロックとして供給できるようにします。
-これらのミューテータはペアの表現力を大きく拡張し、\link{Section 2.2}で用いた列と木以外のデータ構造を
-構築することを可能にします。複雑なシステムが局所状態を持つオブジェクトの集合としてモデル化される
-シミュレーションのいくつかの例も紹介します。
-
-
-
-\subsection{ミュータブルなリスト構造}
+\subsection{可変リスト構造}
 \label{Section 3.3.1}
 
+ペアに対する基本演算---\code{cons}, \code{car}, \code{cdr}---は、リスト構造を構築し、
+またリスト構造から部品を選択するために使うことができます。しかし、これらはリスト構造を変更する
+ことはできません。これまで学んできた、\code{append}や\code{list}のようなリスト演算についても
+同じことが言えます。これらは、\code{cons}, \code{car}, \code{cdr}によって定義できるものだからです。
+リスト構造を変更するには、新しい命令が必要となります。
 
-
-ペア上の基本的な命令---\code{cons}, \code{car}, \code{cdr}---はリスト構造の構築と
-リスト構造からの部品の選択に用いることができます。しかしそれらはリスト構造を変更する
-能力はありませんでした。同じことが今までに使用した\code{append}や\code{list}の様な
-リスト命令にも正しいと言えます。これらが\code{cons}, \code{car}, \code{cdr}を用いて定義できる
-ためです。リスト構造を変更するため新しい命令が必要です。
-
-
-
-ペアのプリミティブなミューテータは\code{set\-/car!}と\code{set\-/cdr!}です。
-\code{set\-/car!}は2つの引数を取り、第一引数はペアでなければなりません。
-このペアの\code{car}ポインタを\code{set\-/car!}の第二引数へのポインタで置き換えることでペアを変更します。\footnote{
-\code{set\-/car!}と\code{set\-/cdr!}は実装依存な値を返します。\code{set!}と同様にそれらはそれらの効果のためだけに
-使用されるべきです。}
+ペアに対する基本ミューテータは\code{set\-/car!}と\code{set\-/cdr!}です。\code{set\-/car!}は二つの
+引数を取り、一つ目の引数はペアでなければなりません。\code{set\-/car!}はこのペアを変更し、
+\code{car}ポインタを\code{set\-/car!}の第二引数へのポインタに置き換えます。
+\footnote{
+\code{set\-/car!}と\code{set\-/cdr!}の返す値は実装依存です。\code{set!}同様、これらの命令は
+効果のために使うものです。}
 
 \begin{figure}[tp]
 \phantomsection\label{Figure 3.12}
@@ -14723,25 +14715,23 @@ x -->| * | *-+---->| * | *-+---->| * | / |
 \heading{Figure 3.12:} リスト \code{x}: \code{((a b) c d)}と\code{y}: \code{(e f)}
 \end{figure}
 
+例として、\link{Figure 3.12}に示すように、\code{x}がリスト\code{((a b) c d)}に束縛され、
+\code{y}がリスト\code{(e f)}に束縛されているという場合について考えます。
+式\code{ (set\-/car!  x y)}を評価すると、\code{x}が束縛されているペアが変更され、
+その\code{car}を\code{y}の値で置き換えます。演算の結果を\link{Figure 3.13}に示します。
+構造\code{x}は変更され、今では\code{((e f) c d)}と表示されるような構造になっています。
+置き換えられたポインタが指していたリスト\code{(a b)}を表す二つのペアは、今では元の構造から
+切り離されています。
+\footnote{
+ここから、リストに対して変更演算を行うと、アクセス可能な構造の部品になっていない``garbage''
+(ゴミ)ができるかもしれないということがわかります。\link{Section 5.3.2}では、Lispのメモリ管理
+システムは\newterm{garbage collector}(\jnewterm{ガベージコレクタ})というものを含んでいて、
+それによって必要のないペアが使っていたメモリ空間をリサイクルということを学びます。}
 
-
-
-例として\link{Figure 3.12}に示すように\code{x}がリスト\code{((a b) c d)}に、\code{y}がリスト\code{(e f)}に
-束縛されているとします。式\code{ (set\-/car!  x y)}の評価は\code{x}が束縛されているペアを変更し、
-その\code{car}を\code{y}の値で置き換えます。命令の結果は\link{Figure 3.13}に示されています。
-構造\code{x}が変更され\code{((e f) c d)}となりました。リスト\code{(a b)}を表すペアは、置き換えられた
-ポインタにより特定されていましが、元の構造から取り外されました。\footnote{
-この点からリストの変更命令はどのアクセス可能な構造の部分でもない``garbage''(ゴミ)を作り得ることが
-わかります。\link{Section 5.3.2}にてLispのメモリ管理システムが\newterm{garbage collector}(\jnewterm{ガベージコレクタ}、
-清掃局員)を持ち、それにより必要の無いペアにより使用されているメモリ空間を判断しリサイクルを行います。}
-
-
-
-\link{Figure 3.13}と\link{Figure 3.14}を比べてください。これは\code{x}と\code{y}が\link{Figure 3.12}の元のリストに
-束縛されている時に\code{(define z (cons y (cdr x)))}を実行した結果を図示しています。
-変数\code{z}はこれで\code{cons}命令により作成された新しいペアに束縛されます。\code{x}が束縛される
-リストは変更されません。
-
+\link{Figure 3.13}と\link{Figure 3.14}を見比べてみてください。後者は、\code{x}と\code{y}が
+\link{Figure 3.12}の元のリストに束縛されている状態で\code{(define z (cons y (cdr x)))}を
+実行した結果を示したものです。変数\code{z}は\code{cons}演算によって作られた新しいペアに
+束縛されるようになっていますが、\code{x}が束縛されているリストは変化していません。
 
 \begin{figure}[bp]
 \phantomsection\label{Figure 3.13}
@@ -14776,7 +14766,7 @@ x -->| * | *-+---->| * | *-+---->| * | / |
 \includegraphics[width=72mm]{fig/chap3/Fig3.13b.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.13:} \link{Figure 3.12}のリスト上での\code{(set\-/car! x y)}の効果
+\heading{Figure 3.13:} \link{Figure 3.12}のリストに対する\code{(set\-/car! x y)}の効果
 \end{figure}
 
 
@@ -14812,18 +14802,18 @@ z -->| * | *-+-+   +---+         +---+
 \end{comment}
 \includegraphics[width=72mm]{fig/chap3/Fig3.14b.pdf}
 \begin{quote}
-\heading{Figure 3.14:} \link{Figure 3.12}のリスト上での\code{(define z (cons y (cdr x)))}の効果
+\heading{Figure 3.14:} \link{Figure 3.12}のリストに対する\code{(define z (cons y (cdr x)))}の効果
 \end{quote}
 \end{figure}
 
 \clearpage
 
-
 \noindent
-\code{set\-/cdr!}命令は\code{set\-/car!}と同様です。違いは\code{car}ポインタでなく、\code{cdr}ポインタが置き換えられます。
-\link{Figure 3.12}のリスト上での\code{(set\-/cdr! x y)}の実行の結果は\link{Figure 3.15}に示されます。
-ここでは\code{x}の\code{cdr}ポインタは\code{(e f)}へのポインタにて置き換えられます。また\code{x}の\code{cdr}として用いられる
-リスト\\\code{(c d)}はこれで構造から取り外されます。
+\code{set\-/cdr!}演算は\code{set\-/car!}と似ています。唯一の違いは、置き換えるのが
+ペアの\code{car}ポインタではなく\code{cdr}ポインタだということです。\link{Figure 3.12}のリストに
+対して\code{(set\-/cdr! x y)}を実行したときの効果を\link{Figure 3.15}に示します。ここでは、
+\code{x}の\code{cdr}ポインタが\code{(e f)}に対するポインタに置き換えられています。また、
+\code{x}の\code{cdr}だったリスト\code{(c d)}は、今では構造から取り外されています。
 
 \enlargethispage{\baselineskip}
 
@@ -14860,16 +14850,19 @@ x -->| * | * |     | * | *-+---->| * | / |
 \includegraphics[width=72mm]{fig/chap3/Fig3.15b.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.15:} \link{Figure 3.12}のリスト上での\code{(set\-/cdr! x y)}の効果
+\heading{Figure 3.15:} \link{Figure 3.12}のリストに対する\code{(set\-/cdr! x y)}の効果
 \end{figure}
 
-\code{cons}は新しいリスト構造を新しいペアを作成することで構築します。一方、\code{set\-/car!}と\code{set\-/cdr!}は
-既存のペアを変更します。実際に2つのミューテータと既存のリスト構造の一部ではない新しいペアを返す
-\code{get\-/new\-/pair}を一緒に用いて\code{cons}を実装することができます。
-新しいペアを得てからその\code{car}と\code{cdr}ポインタに指定されたオブジェクトを設定し、\code{cons}の結果として
-返します。\footnote{
-\code{get\-/new\-/pair}はLisp実装にて必要とされるメモリ管理の一部として実装されなければならない
-命令の1つです。これについては \link{Section 5.3.1}にて議論します。}
+\code{cons}は新しいペアを作ることによって新しいリスト構造を組み立てるものですが、
+\code{set\-/car!}と\code{set\-/cdr!}は既存のペアを修正するものです。実際のところ、これら二つの
+ミューテータと、既存のリスト構造の一部でない新しいペアを返す\code{get\-/new\-/pair}という
+手続きがあれば、それらによって\code{cons}を実装することもできます。まず新しいペアを取得し、
+指定されたオブジェクトを\code{car}と\code{cdr}ポインタに設定し、その新しいペアを
+\code{cons}の結果として返します。
+\footnote{
+\code{get\-/new\-/pair}は、Lispの実装に必要となるメモリ管理の一部として実装する必要がある
+演算のひとつです。これについては \link{Section 5.3.1}にて検討します。}
+%%%
 
 \begin{scheme}
 (define (cons x y)
