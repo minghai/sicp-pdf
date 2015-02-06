@@ -14862,7 +14862,6 @@ x -->| * | * |     | * | *-+---->| * | / |
 \footnote{
 \code{get\-/new\-/pair}は、Lispの実装に必要となるメモリ管理の一部として実装する必要がある
 演算のひとつです。これについては \link{Section 5.3.1}にて検討します。}
-%%%
 
 \begin{scheme}
 (define (cons x y)
@@ -14876,7 +14875,8 @@ x -->| * | * |     | * | *-+---->| * | / |
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 3.12}Exercise 3.12:} 
-リストを接続するための以下の手続きは\link{Section 2.2.1}で紹介した。
+
+\link{Section 2.2.1}では、次のリスト追加手続きを紹介した。
 
 \begin{scheme}
 (define (append x y)
@@ -14885,13 +14885,11 @@ x -->| * | * |     | * | *-+---->| * | / |
       (cons (car x) (append (cdr x) y))))
 \end{scheme}
 
-
-
-\code{append}は\code{y}に連続して\code{x}の要素を\code{cons}することで新しいリストを作る。
-手続き\code{append!}は\code{append}と同様だが、コンストラクタではなくミューテータである。
-これは\code{x}の最後のペアを変更しその\code{cdr}を\code{y}にし両者を繋ぎ合わせることで
-append(付け加え)する。
-(\code{append!}を空の\code{x}にて呼ぶのはエラーとなる)。
+\code{append}は、\code{x}の要素を連続で\code{y}に\code{cons}していくことによって新しい
+リストを作る。手続き\code{append!}は\code{append}と似ているが、コンストラクタではなく
+ミューテータである。これは\code{x}の最後のペアを修正し、\code{cdr}が\code{y}になるように
+することによって二つのリストをつなぎ合わせることによって追加を行う(空の\code{x}で
+\code{append!}を呼ぶとエラーになる)。
 
 \begin{scheme}
 (define (append! x y)
@@ -14900,16 +14898,14 @@ append(付け加え)する。
 \end{scheme}
 
 
-ここで\code{last\-/pair}はその引数の最後のペアを返す手続きである。
+ここで、\code{last\-/pair}は引数の最後のペアを返す手続きである。
 
 \begin{scheme}
 (define (last-pair x)
   (if (null? (cdr x)) x (last-pair (cdr x))))
 \end{scheme}
 
-
-
-以下の応答について考えよ。
+次のやりとりについて考えよ。
 
 \begin{scheme}
 (define x (list 'a 'b))
@@ -14926,16 +14922,14 @@ w
 ~\( \dark \langle \)~~\var{\dark response}~~\( \dark \rangle \)~
 \end{scheme}
 
-
-
-欠けている\( \langle \)\var{response}\( \rangle \)は何か?
-箱とポインタの図をあなたの答を説明するために描け。
+空欄の\( \langle \)\var{response}\( \rangle \)はどのようになるだろうか。
+箱とポインタの図を描き、答えについて説明せよ。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 3.13}Exercise 3.13:}
-次の\code{make\-/cycle}手続きについて考えよ。これは\link{Exercise 3.12}で定義した
-\code{last\-/pair}手続きを用いる。
+次の\code{make\-/cycle}手続きについて考えよ。これは、\link{Exercise 3.12}で定義した
+\code{last\-/pair}手続きを使っている。
 
 \begin{scheme}
 (define (make-cycle x)
@@ -14943,20 +14937,18 @@ w
   x)
 \end{scheme}
 
-
-以下の様に作成される\code{z}を表す箱とポインタの図を描け。
+次の式のよって作られる構造\code{z}を表す箱とポインタの図を描け。
 
 \begin{scheme}
 (define z (make-cycle (list 'a 'b 'c)))
 \end{scheme}
 
-
-\code{(last\-/pair z)}を演算すると何が置こるか?
+\code{(last\-/pair z)}を計算しようとすると、どうなるだろうか。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 3.14}Exercise 3.14:} 
-以下の手続きはとても便利であるが不明瞭である。
+次の手続きはわかりにくいが、とても役に立つ。
 
 \begin{scheme}
 (define (mystery x)
@@ -14969,23 +14961,20 @@ w
   (loop x '()))
 \end{scheme}
 
-
-
-\code{loop}は``temporary''(一時的)な変数\code{temp}を用いて\code{x}の\code{cdr}を保存する。
-次の行の\code{set\-/cdr!}が\code{cdr}を破壊するためである。\code{mystery}が通常何を行うのか
-説明せよ。\code{v}が\code{(define v (list 'a 'b 'c 'd))}で定義されているとする。
-\code{v}が束縛されるリストを表す箱とポインタの図を描け。次に\code{(define w (mystery v))}を
+\code{loop}は``一時的''な変数\code{temp}を使って、\code{x}の\code{cdr}の古い値を保持する。
+これは、次の行の\code{set\-/cdr!}が\code{cdr}を破壊するためである。一般的に\code{mystery}が
+何をするのか説明せよ。\code{v}は\code{(define v (list 'a 'b 'c 'd))}によって定義されたものだと
+する。\code{v}が束縛されるリストを表す箱とポインタの図を描け。次に、\code{(define w (mystery v))}を
 評価したとする。この式を評価した後の\code{v}と\code{w}の構造を表す箱とポインタの図を描け。
-\code{v}と\code{w}の値として何が表示されるか?
+\code{v}と\code{w}の値として何が表示されるだろうか。
 \end{quote}
 
 \subsubsection*{共有と自己同一性}
 
-
-
-\link{Section 3.1.3}で代入の導入に伴う``同一性''と``変更''という論理的な問題について記述しました。
-これらの問題は実際の所個々のペアが異なるデータオブジェクトの間で\newterm{shared}(\jnewterm{共有})
-されている時に問題となります。例えば、以下の様に形成される構造について考えてみて下さい。
+\link{Section 3.1.3}では、代入を導入することによって出てくる``同一性''と``変更''という
+理論的な問題について触れました。これらの問題は、個々のペアが別々のデータオブジェクトの間で
+\newterm{shared}(\jnewterm{共有})されると実際に起こるようになります。例えば、以下のように
+作られる構造について考えてみましょう。
 
 \begin{scheme}
 (define x (list 'a 'b))
@@ -14993,24 +14982,27 @@ w
 \end{scheme}
 
 \noindent
-\link{Figure 3.16}で示されるように、\code{z1}はその\code{car}と\code{cdr}の両者が同じペア\code{x}を
-指している。この\code{z1}の\code{car}と\code{cdr}による\code{x}の共有は\code{cons}が
-直接的な方法で実装されていることによる結果です。一般的に\code{cons}を用いてリストを構築する
-ことは多くの個別のペアが多くの異なる構造において共有される、ペアの連結構造に帰着します。
+\link{Figure 3.16}に示したように、\code{z1}は、\code{car}と\code{cdr}が両方とも\code{x}という
+同じペアを指しています。このように、\code{z1}の\code{car}と\code{cdr}によって\code{x}が共有
+できるようになっているのは、\code{cons}が単純な方法で実装されているからです。一般的に、
+\code{cons}を使ってリストを構築すると、多くの個々のペアが多くの別々の構造によって共有される、
+ペアの絡まり合った構造ができます。
 
-
-\link{Figure 3.16}とは対照的に、\link{Figure 3.17}は以下の式で作成された構造を示します。
+\link{Figure 3.16}に対して、\link{Figure 3.17}は次の式によって作られる構造を示しています。
 
 \begin{scheme}
 (define z2 (cons (list 'a 'b) (list 'a 'b)))
 \end{scheme}
 
 \noindent
-この構造においては、2つの\code{(a b)}リスト内のペアは実際のシンボルが共有されていても区別可能です。\footnote{
-2つのペアは各\code{cons}呼出が新しいペアを返すため区別可能です。シンボルは共有されています。
-Schemeではどの与えられた名前にも固有のシンボルが存在します。Schemeがシンボルを変更する手段を
-全く提供しないため、この共有は判別不可能です。共有が単純にポインタの等価性をチェックする\code{eq?}を用いて
-シンボルで比較することを可能にする物であることにも注意して下さい。}
+この構造の中では、二つの\code{(a b)}リストに含まれるペアは、実際の記号は共有されていても、
+区別可能です。
+\footnote{
+\code{cons}を呼び出すたびに新しいペアが返されるため、二つのペアは区別可能です。記号は共有されて
+います。Schemeでは、どんな名前に対しても唯一の記号が存在します。Schemeは記号を変更する手段を
+提供していないため、この共有を検出することはできません。また、そのように記号が共有されていることに
+よって、単純にポインタが同じかどうかをチェックするだけの\code{eq?}によって記号の比較ができるように
+なっているということにも注意してください。}
 
 \begin{figure}[tb]
 \phantomsection\label{Figure 3.16}
@@ -15035,7 +15027,7 @@ z1 -->| * | * |
 \includegraphics[width=46mm]{fig/chap3/Fig3.16b.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.16:} \code{(cons x x)}.で形成されたリスト\code{z1}
+\heading{Figure 3.16:} \code{(cons x x)}によって作られるリスト\code{z1}
 \end{figure}
 
 \begin{figure}[tb]
@@ -15063,24 +15055,25 @@ z2 -->| * | *-+---->| * | *-+---->| * | / |
 \end{comment}
 \includegraphics[width=71mm]{fig/chap3/Fig3.17b.pdf}
 \begin{quote}
-\heading{Figure 3.17:} \code{(cons (list 'a 'b) (list 'a 'b))}により形成されたリスト\code{z2}
+\heading{Figure 3.17:} \code{(cons (list 'a 'b) (list 'a 'b))}によって作られるリスト\code{z2}
 \end{quote}
 \end{figure}
 
-リストとして考えた時、\code{z1}と\code{z2}の両方が``同じ''リスト\code{((a b) a b)}を表現します。
-一般的に共有はリスト上で用いる命令が\code{cons}, \code{car}, \code{cdr}だけならば完全に検出不可能です。
-しかしリスト構造上で変更を許可するのであれば、共有に気付くことができます。
-共有が作成できる違いの例として、適用された引数の構造の\code{car}を変更する以下の手続きについて
-考えてみましょう。
+リストとして考えると、\code{z1}と\code{z2}は両方とも``同じ''リスト、つまり\code{((a b) a b)}を
+表現しています。一般的に、リストに対して\code{cons}, \code{car}, \code{cdr}だけを使って
+操作するのであれば、完全に検出不可能です。しかし、リスト構造に対して変更を許可するとなると、
+共有は意味を持つようになります。共有によって違いが出てくる例として、次の手続きについて
+考えてみましょう。これは、適用対象の構造の\code{car}を修正するものです。
 
 \begin{scheme}
 (define (set-to-wow! x) (set-car! (car x) 'wow) x)
 \end{scheme}
 
 \noindent
-例え\code{z1}と\code{z2}が``同じ''構造だとしても、\code{set\-/to\-/wow!}をそれらに適用すると異なる結果を返します。
-\code{z1}では\code{car}の変更は\code{cdr}も変更します。\code{z1}では\code{car}と\code{cdr}が同じペアであるためです。
-\code{z2}では\code{car}と\code{cdr}は区別可能なので\code{set\-/to\-/wow!}は\code{car}のみを変更します。
+\code{z1}と\code{z2}は``同じ''構造のはずなのに、これらに\code{set\-/to\-/wow!}を適用すると、
+異なる結果が返ってきます。\code{z1}の場合は、\code{car}と\code{cdr}は同じペアなので、
+\code{car}を変更すると\code{cdr}も変更することになります。\code{z2}の場合は、\code{car}と
+\code{cdr}は別のものなので、\code{set\-/to\-/wow!}は\code{car}しか変更しません。
 
 \begin{scheme}
 z1
