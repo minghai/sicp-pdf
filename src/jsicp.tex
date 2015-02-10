@@ -15522,12 +15522,12 @@ Eva Lu Atorは、Benが挙動を誤解していると言う。``項目がキュ�
 Eva Luの話について解説せよ。具体的には、なぜBenの例がそのような表示結果を出力するのか説明せよ。
 キューを入力として取り、キュー内の項目列を表示する手続き\code{print\-/queue}を定義せよ。
 \end{quote}
-%%%
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 3.22}Exercise 3.22:} 
-キューをポインタのペアとして表現する代わりに、キューを局所状態を持つ手続きとして構築することができる。
-局所状態は通常のリストの先端と終端へのポインタから成る。従って\code{make\-/queue}手続きは以下の形式となる。
+キューは、ポインタのペアとして表現する以外に、局所状態を持つ手続きとして構築することもできる。
+局所状態は通常のリストの先端と終端へのポインタからなる。したがって、手続き\code{make\-/queue}は
+以下のような形になる。
 
 \begin{scheme}
 (define (make-queue)
@@ -15538,32 +15538,30 @@ Eva Luの話について解説せよ。具体的には、なぜBenの例がそ�
     dispatch))
 \end{scheme}
 
-\code{make\-/queue}の定義を完成させ、この表現を用いたキューの命令を実装せよ。
+\code{make\-/queue}の定義を完成させ、この表現によるキューの演算を実装せよ。
 \end{quote}
-
-
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 3.23}Exercise 3.23:} 
-\newterm{deque}(``double\-/ended queue''、\jnewterm{両頭キュー})はアイテムの挿入と消去が先端と終端の
-両方に対して行える列である。deque上の命令はコンストラクタ\code{make\-/deque}、述語\code{empty\-/deque?}、
-セレクタ\code{front\-/deque}と\code{rear\-/deque}、ミューテータ\code{front\-/insert\-/deque!},
-\code{rear\-/insert\-/deque!}, \code{front\-/delete\-/deque!}, \code{rear\-/delete\-/deque!}である。
-ペアを用いてどのようにdequeを表現するか示せ。また命令の実装を提供せよ。\footnote{
-インタプリタに循環を含む構造を表示させないように注意せよ。(\link{Exercise 3.13}参照)。}
-全ての命令は\( \Theta \)(1)ステップで達成すること。
+\newterm{deque}(\jnewterm{両端キュー})(``double\-/ended queue'')は、先端と終端のどちらに対しても
+項目の挿入と削除が行える列である。dequeに対する演算は、コンストラクタ\code{make\-/deque}、
+述語\code{empty\-/deque?}、セレクタ\code{front\-/deque}、\code{rear\-/deque}、
+ミューテータ\code{front\-/insert\-/deque!},\code{rear\-/insert\-/deque!},
+\code{front\-/delete\-/deque!}, \code{rear\-/delete\-/deque!}である。
+ペアによってdequeを表現するやり方を示せ。また、演算を実装せよ。
+\footnote{
+インタプリタに循環を含む構造を表示させないように注意せよ(\link{Exercise 3.13}参照)。}
+全ての演算は\( \Theta \)(1)ステップで完了しなければならない。
 \end{quote}
 
 \subsection{テーブルの表現}
 \label{Section 3.3.3}
 
-
-
-\link{Chapter 2}で種々の集合の表現について学んだ時、\link{Section 2.3.3}にてキーで同定する
-索引を持つレコードの表を保存する作業について述べました。\link{Section 2.4.3}での
-データ主導プログラミングの実装において二次元テーブルの広範な使用を行い、情報は
-2つのキーを用いて格納と取り出しされました。ここではどのように表をミュータブルなリスト構造として
-構築するかについて学びます。
+\link{Chapter 2}で、集合を表現するいろいろなやり方について学んだ際に、\link{Section 2.3.3}では、
+識別用キーによって索引づけされたレコードのテーブルを保持するというタスクについて触れました。
+\link{Section 2.4.3}のデータ主導プログラミングを実装するにあたっては、二つのキーによって
+情報を格納したり取り出したりする二次元のテーブルが大活躍しました。ここでは、可変リスト構造として
+テーブルを構築するやり方について見ていきます。
 
 \begin{figure}[tb]
 \phantomsection\label{Figure 3.22}
@@ -15590,17 +15588,18 @@ Eva Luの話について解説せよ。具体的には、なぜBenの例がそ�
 \includegraphics[width=81mm]{fig/chap3/Fig3.22c.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.22:} 頭出しリストとして表現されたテーブル
+\heading{Figure 3.22:} 頭つきリストとして表現されたテーブル
 \end{figure}
 
-最初は一次元の表について考えます。各値が単一のキーの下に格納されます。
-テーブルをレコードのリストとして実装し、各レコードははキーと関連する値から成るペアとして実装します。
-レコードは\code{car}が次のレコードを指すペアによりリストを形成する様に連結されます。
-これらの連結されたペアは表の\newterm{backbone}(\jnewterm{バックボーン}、基幹)と呼ばれます。
-テーブルに新しいレコードを追加する時に変更可能な場所を得るために、テーブルを
-\newterm{headed list}(\jnewterm{頭出しリスト})として構築します。頭出しリストは特別なバックボーンペアを
-最初に持ちます。これはダミーの``レコード''---今回の場合、自由裁量で選択したシンボル\code{*table*}---
-を持っています。\link{Figure 3.22}は以下のテーブルの箱とポインタの図を示しています。
+まず、一次元の表について考えます。一次元の表では、それぞれの値は単独のキーの下に格納されます。
+このテーブルをレコードの列として実装し、それぞれのレコードは、キーとそれに関連づけられた
+値とのペアとして実装します。レコードはペアによって連結して列状にします。各ペアの\code{car}}が
+連続したレコードを指しています。これらの連結用のペアは、テーブルの\newterm{backbone}
+(\jnewterm{背骨})といいます。テーブルに新しいレコードを追加するときに変更できる場所が必要なので、
+テーブルは\newterm{headed list}(\jnewterm{頭つきリスト})として構築します。頭つきリストは、
+先頭に特別な背骨のペアを持っています。これはダミーの``レコード''---今回の場合、適当に選んだ記号
+\code{*table*}---を持っています。\link{Figure 3.22}は、次のテーブルの箱とポインタの図を示した
+ものです。
 
 \begin{scheme}
 a:  1
@@ -15609,6 +15608,7 @@ c:  3
 \end{scheme}
 
 \noindent
+%%%
 テーブルから情報を抽出するには鍵を引数として取り相対する値(またはそのキーの下に
 値が格納されていない場合にはfalse)を返す\code{lookup}手続きを用います。
 \code{lookup}はキーとレコードのリストを引数として期待する\code{assoc}命令を用いて定義します。
