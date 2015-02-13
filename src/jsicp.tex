@@ -15803,11 +15803,10 @@ table
             (else (error "Unknown operation: TABLE" m))))
     dispatch))
 \end{scheme}
-%%%
 
 \noindent
-\code{make\-/table}を用いることで\link{Section 2.4.3}で用いたデータ主導プログラミングのための
-\code{get}と\code{put}を以下のように実装することができます。
+\code{make\-/table}を使うと、\link{Section 2.4.3}でデータ主導プログラミングに使った
+\code{get}と\code{put}を次のように実装できます。
 
 \begin{scheme}
 (define operation-table (make-table))
@@ -15816,37 +15815,38 @@ table
 \end{scheme}
 
 \noindent
-\code{get}は引数として2つのキーを取り、\code{put}は引数として2つのキーと値を取ります。
-両方の命令共に同じ局所テーブルをアクセスします。局所テーブルは\code{make\-/table}の
-呼出により作成されたオブジェクトの中にカブセル化されます。
+\code{get}は二つのキーを引数に取り、\code{put}は二つのキーと値を引数に取ります。どちらの操作も、
+\code{make\-/table}呼び出し時に作られるオブジェクトにカプセル化された同じ局所テーブルに
+アクセスします。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.24}Exercise 3.24:} 
-上記のテーブル実装において、キーは\code{equal?}を用いて等価試験を行う。
-(\code{assoc}により呼び出される)。これは常に適切な試験ではない。
-例として数値キーを用いるテーブルを用いる場合に、検索時に
-厳密に等しい必要が無く、ある許容範囲で数値を探したいかもしれない。
-キーの``等価性''を試験するのに用いられる\code{same\-/key?}手続きを引数として取る
-テーブルコンストラクタ\code{make\-/table}を定義せよ。
-\code{make\-/table}は内部テーブルに対して適切な手続き\code{lookup}と\code{insert!}に
-アクセスするのに使用可能な\code{dispatch}手続きを返さねばならない。
+\heading{\phantomsection\label{Exercise 3.24}Exercise 3.24:}
+上のテーブル実装では、キーの等価性は\code{equal?}(\code{assoc}に呼ばれる)によってテストされて
+いる。これは常に適切なテストというわけではない。例えば、数字をキーとするテーブルを扱っている場合、
+検索する数字に対して完全に一致する必要がなく、いくらかの誤差の範囲内のものであればいいということも
+考えられる。キーの``等価性''をテストするのに使う手続き\code{same\-/key?}を引数として取る
+テーブルコンストラクタ\code{make\-/table}を定義せよ。\code{make\-/table}は、局所テーブルに
+対する適切な\code{lookup}, \code{insert!}手続きにアクセスするために使用できる\code{dispatch}
+手続きを返すようにすること。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 3.25}Exercise 3.25:} 
-1次元と二次元のテーブルを一般化せよ。任意の数のキーの下で値を格納し、異なる値を
-異なる数のキーの下格納できるテーブルをどのように実装するか示せ。
-\code{lookup}と\code{insert!}手続きは入力としてキーのリストを取りテーブルにアクセスする。
+一次元と二次元のテーブルを一般化し、任意の数のキーの下に値を格納するテーブルを実装する
+やり方を示せ。値によってキーの数は異なることもある。\code{lookup}, \code{insert!}手続きは、
+テーブルにアクセスするためのキーのリストを入力として取る。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 3.26}Exercise 3.26:} 
-上で実装されたテーブルを検索するにはレコードのリストを走査しなければならない。
-これは基本的に\link{Section 2.3.3}の順序無しリスト表現である。大きなテーブルに対しては
-異なる様式でテーブルを構造化するほうが効率が良い。(キー, 値)のレコードが二分木を用いて
-体系化されるテーブルの実装を説明せよ。キーは何らかの方法にて順序付可能であると
-想定する。(\link{Chapter 2}の\link{Exercise 2.66}と比較せよ)。
+上のように実装したテーブルを検索するには、レコードのリストを走査する必要がある。
+これは、基本的に\link{Section 2.3.3}の順序なしリスト表現である。大きなテーブルに対しては、
+別のやり方でテーブルを構造化するほうが効率がよくなるかもしれない。(キー, 値)のレコードを
+二分木を使ってまとめるようなテーブルの実装について説明せよ。キーは、何らかの方法(数の大小順や
+アルファベット順など)によって順序づけができるものとする(\link{Chapter 2}の\link{Exercise 2.66}と
+比較せよ)。
 \end{quote}
+%%%
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 3.27}Exercise 3.27:} 
