@@ -16211,7 +16211,7 @@ C ------+   |     +-----+   |     +-----+   |     :  ------+   |
 このシミュレーションでは、線は二つの局所状態変数を持つ計算オブジェクトになります。
 信号の値\code{signal\-/value}(初期値は0)と、信号の値が変わるときに実行するアクション手続き
 \code{action\-/procedures}の集合です。メッセージパッシングスタイルを使い、
-局所手続きの集合に、適切な局所演算を選ぶ\code{dispatch}手続きを加えたものとして線を実装します。
+局所手続きの集合に適切な局所演算を選ぶ\code{dispatch}手続きを加えたものとして線を実装します。
 これは、\link{Section 3.1.1}で単純な銀行口座オブジェクトを実装したときと同じです。
 
 \begin{scheme}
@@ -16278,47 +16278,42 @@ C ------+   |     +-----+   |     +-----+   |     :  ------+   |
 います。新しい線が作られると、状態変数の新しいセットが(\code{make\-/wire}中の\code{let}式によって)
 割り当てられ、それらの新しい状態変数を含む環境を持つ新しい\code{dispatch}手続きが構築され、
 それが返されることになります。
-%%%
 
-配線は様々なデバイスの間で共有され、それらに対して接続されます。従ってあるデバイスとの応答により
-起こった変化はその配線に取り付けられた全ての他のデバイスに影響を与えます。配線は
-接続が開設された時に提供された行動手続きを呼ぶことによりその近傍に対し変化を通知します。
+線は、それに接続されたいろいろなデバイスの間で共有されます。そのため、ひとつのデバイスとの
+やりとりによって起こった変化が、その線につながったほかのすべてのデバイスに影響することに
+なります。線は、接続時に提供されたアクション手続きを呼ぶことによって、変化を近隣に伝えます。
 
 \subsubsection*{予定表}
 
-
-
-シミュレータを完成させるために必要な物は\code{after\-/delay}のみです。ここでのアイデアは
-\newterm{agenda}(\jnewterm{予定表})と呼ばれるデータ構造を保持し、それに行うべき予定を保存します。
-以下の命令は予定表のために定義されます。
+後は、\code{after\-/delay}さえあればシミュレータが完成します。ここでの考え方は、
+するべきことのスケジュールを持っておく\newterm{agenda}(\jnewterm{予定表})と呼ばれる
+データ構造を保持するということです。予定表に対しては、以下の演算が定義されます。
 
 \begin{itemize}
 
 \item
-\code{(make\-/agenda)}は新しい空の予定表を返す。
+\code{(make\-/agenda)}は、新しい空の予定表を返します。
 
 \item
-\code{(empty\-/agenda?}\( \;\;\langle\kern0.08em\hbox{\ttfamily\slshape agenda}\kern0.06em\rangle\hbox{\tt)} \)は
-指定した予定表が空であるなら真である。
+\code{(empty\-/agenda?}\( \;\;\langle\kern0.08em\hbox{\ttfamily\slshape agenda}\kern0.06em\rangle\hbox{\tt)} \)は、指定した予定表が空のときに真になります。
 
 \item
-\code{(first\-/agenda\-/item}\( \;\;\langle\kern0.08em\hbox{\ttfamily\slshape agenda}\kern0.06em\rangle\hbox{\tt)} \)は
-予定表の最初のアイテムを返す。
+\code{(first\-/agenda\-/item}\( \;\;\langle\kern0.08em\hbox{\ttfamily\slshape agenda}\kern0.06em\rangle\hbox{\tt)} \)は、予定表の最初の項目を返します。
 
 \item
-\code{(remove\-/first\-/agenda\-/item!}\( \;\langle\kern0.08em\hbox{\ttfamily\slshape agenda}\kern0.06em\rangle\hbox{\tt)} \) は
-予定表から最初のアイテムを削除する。
+\code{(remove\-/first\-/agenda\-/item!}\( \;\langle\kern0.08em\hbox{\ttfamily\slshape agenda}\kern0.06em\rangle\hbox{\tt)} \) は、最初の項目を削除することによって、予定表を変更します。
 
 \item
-\code{(add\-/to\-/agenda!}\( \;\;\langle\kern0.03em\hbox{\ttfamily\slshape time}\kern0.06em\rangle\;\;\langle\kern0.08em\hbox{\ttfamily\slshape action}\kern0.06em\rangle\;\;\langle\kern0.08em\hbox{\ttfamily\slshape agenda}\kern0.06em\rangle\hbox{\tt)} \)は指定された時間後に実行される行動手続きを追加する。
+\code{(add\-/to\-/agenda!}\( \;\;\langle\kern0.03em\hbox{\ttfamily\slshape time}\kern0.06em\rangle\;\;\langle\kern0.08em\hbox{\ttfamily\slshape action}\kern0.06em\rangle\;\;\langle\kern0.08em\hbox{\ttfamily\slshape agenda}\kern0.06em\rangle\hbox{\tt)} \)は、指定された時間に実行する
+アクション手続きを追加することによって、予定表を変更します。
 
 \item
-\code{(current\-/time}\( \;\;\langle\kern0.08em\hbox{\ttfamily\slshape agenda}\kern0.04em\rangle\hbox{\tt)} \)は現在のシミュレーション時間を返す。
+\code{(current\-/time}\( \;\;\langle\kern0.08em\hbox{\ttfamily\slshape agenda}\kern0.04em\rangle\hbox{\tt)} \)は、現在のシミュレーション時間を返します。
 \end{itemize}
 
 \noindent
-使用する予定表は\code{the\-/agenda}により指定されます。手続き\code{after\-/delay}は
-新しい要素を\code{the\-/agenda}に追加します。
+ここで使う特定の予定表は、\code{the\-/agenda}として示します。手続き\code{after\-/delay}は、
+\code{the\-/agenda}に新しい要素を追加します。
 
 \begin{scheme}
 (define (after-delay delay action)
@@ -16328,9 +16323,10 @@ C ------+   |     +-----+   |     +-----+   |     :  ------+   |
 \end{scheme}
 
 \noindent
-シミュレーションは手続き\code{propagate}(伝播)により駆動され、\code{the\-/agenda}上で操作を行い、
-予定表上の各手続きを順に実行します。一般的にシミュレータが実行されるにつれ、新しいアイテムが
-予定表に追加され、\code{propagate}はシミュレーションを予定表にアイテムが存在する間は続けます。
+シミュレーションを動かすのは、手続き\code{propagate}(伝播)です。この手続きは
+\code{the\-/agenda}を操作し、この予定表に載っているそれぞれの手続きを順番に実行します。
+一般的に、シミュレーションが進むにつれ、新しい項目が予定表に追加されていき、\code{propagate}は
+予定表に項目が存在する限りずっとシミュレーションを続けます。
 
 \begin{scheme}
 (define (propagate)
@@ -16342,12 +16338,10 @@ C ------+   |     +-----+   |     +-----+   |     :  ------+   |
         (propagate))))
 \end{scheme}
 
-\subsubsection*{サンプルシミュレーション}
+\subsubsection*{シミュレーション例}
 
-
-
-回路上に``probe''(プローブ、探針)を置く以下の手続きは実行中のシミュレータを表示します。
-プローブは配線に対し信号値が変わる度に新しい信号値を現在に時刻と配線を識別する名前を一緒に表示せよと命じます。
+次の手続きは、線に``probe''(プローブ)を置くというもので、シミュレータの動作を表示します。
+プローブは、信号値が変わるたびに新しい信号値・現在時刻・線の識別名を表示するよう線に伝えます。
 
 \begin{scheme}
 (define (probe name wire)
@@ -16362,7 +16356,7 @@ C ------+   |     +-----+   |     +-----+   |     :  ------+   |
 \end{scheme}
 
 \noindent
-予定表の初期化とプリミティブな関数箱に対し遅延時間を指定することから始めます。
+まず、予定表を初期化し、基本関数箱の遅延時間を規定します。
 
 \begin{scheme}
 (define the-agenda (make-agenda))
@@ -16372,7 +16366,7 @@ C ------+   |     +-----+   |     +-----+   |     :  ------+   |
 \end{scheme}
 
 \noindent
-ここで4つの配線を定義し、その内2つにプローブを仕込みます。
+次に、四つの配線を定義し、そのうち二つにはプローブを設置します。
 
 \begin{scheme}
 (define input-1 (make-wire))
@@ -16387,7 +16381,7 @@ C ------+   |     +-----+   |     +-----+   |     :  ------+   |
 \end{scheme}
 
 \noindent
-次に配線を(\link{Figure 3.25}の様に)半加算器回路に接続し、\code{input\-/1}上の信号を
+それから、線を(\link{Figure 3.25}のように)半加算器回路に接続し、\code{input\-/1}の信号を
 1に設定し、シミュレーションを実行します。
 
 \begin{scheme}
@@ -16407,8 +16401,8 @@ C ------+   |     +-----+   |     +-----+   |     :  ------+   |
 \end{scheme}
 
 \noindent
-\code{sum}の進行は時刻8において1に変化しました。シミュレーションの開始から8単位時間が経過しました。
-この時点で\code{input\-/2}上の信号を1に設定し値の伝播を許可します。
+\code{sum}の信号は、時刻8で1に変わります。シミュレーション開始から8単位時間がたったことになります。
+ここで、\code{input\-/2}の信号を1に設定し、値が伝播するようにします。
 
 \begin{scheme}
 (set-signal! input-2 1)
@@ -16423,14 +16417,15 @@ C ------+   |     +-----+   |     +-----+   |     :  ------+   |
 \end{scheme}
 
 \noindent
-\code{carry}は時刻11にて1に変化し、\code{sum}は時刻16において0に変化しました。
+\code{carry}は時刻11で1に変わり、\code{sum}は時刻16で0に変わります。
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 3.31}Exercise 3.31:} 
-\code{make\-/wire}内で定義された内部手続き\code{accept\-/action\-/procedure!}は新しい行動手続きが配線に
-追加された時に、その手続きが即座に実行された。この初期化がなぜ必要であるのか説明せよ。
-具体的には、上の段落の半加算器の例をトレースし、システムの応答が、\code{accept\-/action\-/procedure!}が
-以下のように定義されていた場合にどのように異なるかについて述べよ。
+\code{make\-/wire}の中で定義される内部手続き\code{accept\-/action\-/procedure!}は、
+新しいアクション手続きが線に追加されるときに、その手続きがすぐに実行されるということを
+規定している。この初期化がなぜ必要なのか説明せよ。具体的には、上の段落の半加算器の例をトレースし、
+\code{accept\-/action\-/procedure!}を以下のように定義した場合にシステムの応答がどのように
+変わるか述べよ。
 
 \begin{scheme}
 (define (accept-action-procedure! proc)
@@ -16441,15 +16436,12 @@ C ------+   |     +-----+   |     +-----+   |     :  ------+   |
 
 \subsubsection*{予定表の実装}
 
+最後に、予定表のデータ構造の詳細を記述します。このデータ構造は、将来実行するよう
+スケジュールされた手続きを持っておくものです。
 
-
-最後に将来に実行される予定の手続きを保存する予定表データ構造の詳細について説明します。
-
-
-予定表は\newterm{time segments}(\jnewterm{タイムセグメント}、時間区分)により構成されています。
-各タイムセグメントは数値(時刻)と、
-そのタイムセグメントの間に実行されるよう予定された手続きを持つキュー (\link{Exercise 3.32}参照)から
-成るペアです。
+予定表は、複数の\newterm{time segment}(\jnewterm{時間区分})によって構成されます。
+それぞれの時間区分は、数値(時刻)と、その時間区分の間に実行されるようスケジュールされた
+手続きを持っておくキュー (\link{Exercise 3.32}参照)からなるペアになっています。
 
 \begin{scheme}
 (define (make-time-segment time queue)
@@ -16459,9 +16451,8 @@ C ------+   |     +-----+   |     +-----+   |     :  ------+   |
 \end{scheme}
 
 \noindent
-タイムセグメントのキューは\link{Section 3.3.2}.で説明したキューの命令を用いて操作します。
-
-
+時間区分のキューは、\link{Section 3.3.2}で説明したキュー演算によって操作します。
+%%%
 
 予定表自身は1次元のタイムセグメントの表です。\link{Section 3.3.3}で説明された表との違いは
 セグメントが時間の増す順にソートされることです。加えて\newterm{current time}(\jnewterm{現在時刻})
