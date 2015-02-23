@@ -16944,11 +16944,9 @@ C -----+ m1      |  u  |      m1 +-------+ a1      |
 
 \subsubsection*{コネクタの表現}
 
-
-コネクタは局所状態変数を持つ手続き型のオブジェクトとして表現され、
-\code{value}はコネクタの現在地、\code{informant}はコネクタの値を設定したオブジェクト、
-そして\code{constraints}はコネクタが参加する制約のリストです。
-
+コネクタは手続きオブジェクトとして表現します。局所状態変数として、コネクタの現在の値
+\code{value}、コネクタの値を設定したオブジェクト\code{informant}、コネクタが参加する制約の
+リスト\code{constraints}を持ちます。
 
 \begin{scheme}
 (define (make-connector)
@@ -16990,12 +16988,14 @@ C -----+ m1      |  u  |      m1 +-------+ a1      |
 \end{scheme}
 
 \noindent
-コネクタの局所手続き\code{set\-/my\-/value}はコネクタの値を設定する要求が存在した時に呼ばれます。
-もしコネクタが現在値を持っていない場合、その値を設定し、値の設定を要求した制約を\code{informant}として
-記憶します。\footnote{\code{setter}は制約ではないかもしれません。気温の例では\code{user}を
-\code{setter}として使用しました。}次にコネクタは参加している制約全てに対し値の設定を要求した
-制約を除いて通知します。これは以下のiterator(イテレータ、繰り返す者)を用いて達成されます。
-イテレータは指定された手続きを与えられた1つを除いたリスト中の全てのアイテムに対して適用します。
+コネクタの局所手続き\code{set\-/my\-/value}は、コネクタの値を設定するよう要求されたときに
+呼ばれます。コネクタが現時点で値を持っていなければ、その値を設定し、値の設定を要求してきた
+制約を\code{informant}として覚えておきます。
+\footnote{\code{setter}は制約とは限りません。温度の例では、\code{user}を\code{setter}として
+使いました。}
+それからコネクタは、値の設定を要求してきた制約を除き、参加している制約すべてに通知を行います。
+これは、次のイテレータによって実現します。このイテレータは、与えられたひとつを除いて、
+リストのすべての項目に対して指定された手続きを適用します。
 
 \begin{scheme}
 (define (for-each-except exception procedure list)
@@ -17008,19 +17008,16 @@ C -----+ m1      |  u  |      m1 +-------+ a1      |
 \end{scheme}
 
 \noindent
-もしコネクタがその値を忘れるよう指示されたなら、局所手続き\code{forget\-/my\-/value}を
-実行し、最初に要求が元々値を設定した同じオブジェクトからであるかを確認します。
-もしそうならばコネクタは関連する制約に値の喪失について伝えます。
+コネクタが値を忘れるよう依頼されると、局所手続き\code{forget\-/my\-/value}を実行します。
+この手続きは、その要求が元々その値を設定したオブジェクトと同じオブジェクトから来たものか
+どうかを確認します。そうであれば、コネクタは関連づけられた制約に値を失ったことを伝えます。
 
+局所手続き\code{connect}は、もしリストになければ、制約リストに新しい制約を加えます。
+それから、コネクタが値を持っているなら、新しい制約にその事実を伝えます。
 
-
-局所手続き\code{connect}は指定された新しい制約を制約リストに、既に存在しない場合には追加します。
-次にもしコネクタが値を持っているのならば、新しい制約にその事実を伝えます。
-
-
-
-コネクタの手続き\code{me}は他の内部手続きを実行する役割を果たし、またコネクタをオブジェクトとして
-表現します。以下の手続きは起動のための文法上のインターフェイスを提供します。
+コネクタの手続き\code{me}は、ほかの内部手続きへのディスパッチを行う役割を果たし、また
+コネクタのオブジェクトとしての表現にもなっています。以下の手続きは、ディスパッチ用の
+構文インターフェイスを提供します。
 
 \begin{scheme}
 (define (has-value? connector) (connector 'has-value?))
@@ -17033,32 +17030,30 @@ C -----+ m1      |  u  |      m1 +-------+ a1      |
   ((connector 'connect) new-constraint))
 \end{scheme}
 
-\begin{quote}
-\heading{\phantomsection\label{Exercise 3.33}Exercise 3.33:} 
-プリミティブな乗算器、加算器、定数の制約を用いて、3つのコネクタ\code{a}, \code{b}, \code{c}を
-入力として取り、\code{c}の値が\code{a}と\code{b}の値の平均を見出す手続き\code{averager}を定義せよ。
+\begin{quote}\heading{\phantomsection\label{Exercise 3.33}Exercise 3.33:} 
+三つのコネクタ\code{a}, \code{b}, \code{c}を入力として取り、\code{c}の値が\code{a}と
+\code{b}の値の平均となるような制約を作る手続き\code{averager}を、基本の乗算器・加算器・
+定数制約を使って定義せよ。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 3.34}Exercise 3.34:} 
-Louis Reasonerは2つの端子を持ち、2つ目の端子上のコネクタ\code{b}が常に1つ目の端子上の値\code{a}
-の二乗である制約端末squarerを構築したいと考えた。彼は以下の簡単な乗算から作られた
-端末を提案した。
+Louis Reasonerは、squarerという制約を作りたいと思っている。squarerは二つの端子を持ち、
+二つ目の端子のコネクタ\code{b}は常に一つ目の端子の値\code{a}の二乗になる。彼は、ひとつの
+乗算器からなる次の単純な装置を提案した。
 
 \begin{scheme}
 (define (squarer a b) (multiplier a a b))
 \end{scheme}
 
-
-
-このアイデアには致命的な問題がある。説明せよ。
+このアイデアには重大な欠陥がある。説明せよ。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 3.35}Exercise 3.35:} 
-Ben BitdiddleはLouisに\link{Exercise 3.34}の問題を避ける1つの方法としてsquarerを
-新しいプリミティブな制約として定義することを伝えた。Benの新しい制約の輪郭の欠けて
-いる部分を埋めそのような文脈での実装を行え。
+Ben BitdiddleはLouisに、\link{Exercise 3.34}の問題を避ける方法のひとつは、squarerを
+新しい基本制約として定義することだと伝えた。Benが書いた手続き概略の欠けている部分を埋め、
+そのような制約を実装せよ。
 
 \begin{scheme}
 (define (squarer a b)
@@ -17078,7 +17073,7 @@ Ben BitdiddleはLouisに\link{Exercise 3.34}の問題を避ける1つの方法�
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 3.36}Exercise 3.36:} 
-以下のグローバル環境内の式の列を評価したとする。
+グローバル環境で、次のような式の列を評価するとする。
 
 \begin{scheme}
 (define a (make-connector))
@@ -17086,24 +17081,21 @@ Ben BitdiddleはLouisに\link{Exercise 3.34}の問題を避ける1つの方法�
 (set-value! a 10 'user)
 \end{scheme}
 
-
-
-\code{set\-/value!}の評価の間のある時点で、コネクタのローカル手続きから以下の式が評価される。
+\code{set\-/value!}の評価中のある時点で、コネクタの局所手続きの中の以下の式が評価される
+ことになる。
 
 \begin{scheme}
 (for-each-except 
   setter inform-about-value constraints)
 \end{scheme}
 
-
-
-上の式が評価される環境を示す環境の図を描け。
+上記の式が評価される環境を表す環境図を描け。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 3.37}Exercise 3.37:} 
-\code{celsius\-/fahrenheit\-/converter}(摂氏華氏変換器)手続きは以下のような式指向なスタイルと比べた時に
-煩わしい。
+\code{celsius\-/fahrenheit\-/converter}手続きは、以下のような式指向スタイルによる定義に
+比べると面倒だ。
 
 \begin{scheme}
 (define (celsius-fahrenheit-converter x)
@@ -17114,11 +17106,8 @@ Ben BitdiddleはLouisに\link{Exercise 3.34}の問題を避ける1つの方法�
 (define F (celsius-fahrenheit-converter C))
 \end{scheme}
 
-
-
-ここで\code{c+}, \code{c*}等は数値演算命令の``制約''版である。例えば\code{c+}は
-2つのコネクタを引数として取り、これらに関係するコネクタを加算器制約にて
-返す。
+ここで、\code{c+}, \code{c*}等は``制約''バージョンの数値演算である。例えば、\code{c+}は
+二つのコネクタを引数として取り、加算器制約によってそれらと関連づけられたコネクタを返す。
 
 \begin{scheme}
 (define (c+ x y)
@@ -17128,13 +17117,13 @@ Ben BitdiddleはLouisに\link{Exercise 3.34}の問題を避ける1つの方法�
 \end{scheme}
 
 
-同様の手続き\code{c\-/}, \code{c*}, \code{c/}, \code{cv}(定数)を定義し、複合制約を上記の変換器の
-例の様に定義できるようにせよ。\footnote｛
-式指向形式は便利です。それは演算の中間式に
-名前を付ける必要性を回避できるためです。私達の元々の制約言語の形式は多くの言語が複合データを
-取り扱う場合と同様に面倒でした。例として、変数がベクトルを表現する場合に
-積\( (a + b) \cdot (c + d) \)を求めたい時、``命令型スタイル''で指定されたベクトルの
-値を設定するけれどもそれ自身はベクトルを値として返さない手続きを用いて行うことは可能です。
+似たような手続き\code{c\-/}, \code{c*}, \code{c/}, \code{cv}(定数)を定義し、上記の変換器の
+例のように複合制約を定義できるようにせよ。
+\footnote｛式指向形式を使うと計算の中間の式に名前をつける必要がなくなるので便利です。
+元々の制約言語による定式化は面倒でした。これは、多くの言語で複合データを扱うのが面倒なのと
+同じです。例えば、変数がベクトルを表現しているとして、積\( (a + b) \cdot (c + d) \)を
+求めたいとすると、指定されたベクトル引数に値をセットするが手続き自身はベクトルを値として
+返さないような手続きを使って、``命令型スタイル''で作業をすることも可能です。
 
 \begin{smallscheme}
 (v-sum a b temp1)
