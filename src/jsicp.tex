@@ -18278,10 +18278,10 @@ Paulは進むことができません。どちらのプロセスも、お互い�
 \end{scheme}
 
 \noindent
-%%%
-これの意味する所は、私達はペアを用いてストリームを構築します。しかし、ペアの
-\code{cdr}にストリームの残りの値を置くのではなく、そこにプロミスを置き要求された
-時点で残りを計算します。これで\code{stream\-/car}と\code{stream\-/cdr}が手続きとして定義できます。
+つまり、ストリームを構築するのにはペアを使うということです。しかし、ストリームの残りの値を
+\code{cdr}に入れる代わりに、要求されることがあれば残りを計算するという約束を入れることにします。
+これで、\code{stream\-/car}と\code{stream\-/cdr}が次のように手続きとして定義できるように
+なります。
 
 \begin{scheme}
 (define (stream-car stream) (car stream))
@@ -18290,20 +18290,18 @@ Paulは進むことができません。どちらのプロセスも、お互い�
 
 \noindent
 \code{stream\-/car}はペアの\code{car}を選択します。\code{stream\-/cdr}はペアの\code{cdr}を選択し、
-そこに見つかった遅延表現を評価し、ストリームの残りを得ます。\footnote{\code{stream\-/car}と
-\code{stream\-/cdr}が手続きとして定義できるにも係わらず、\code{cons\-/stream}は特殊形式で
-なければなりません。もし\code{cons\-/stream}が手続きであるのならば、私達の評価モデルに従い、
-\code{(cons\-/stream <\var{a}> <\var{b}>)}の評価は自動的に\( \langle \)\var{b}\( \kern0.08em\rangle \)の
-評価を起こします。これは明らかに私たちにとって起こって欲しくないことです。
-同じ理由から\code{delay}も特殊形式でなければなりません。しかし\code{force}は
-通常の手続きになります。}
+そこに置かれた遅延表現を評価し、ストリームの残りを取得します。
+\footnote{\code{stream\-/car}と\code{stream\-/cdr}は手続きとして定義できるのですが、
+\code{cons\-/stream}は特殊形式である必要があります。\code{cons\-/stream}が手続きだったとすると、
+私たちの評価モデルによると、\code{(cons\-/stream <\var{a}> <\var{b}>)}を評価すると自動的に
+\( \langle \)\var{b}\( \kern0.08em\rangle \)が評価されることになります。これは避けたいところです。
+同じ理由から、\code{delay}も特殊形式でなければなりません。しかし、\code{force}は通常の手続きでも
+大丈夫です。}
 
-\subsubsection*{ストリーム実装の実践}
+\subsubsection*{ストリーム実装の動作}
 
-
-
-この実装がどのように振る舞うのかを見るために、先に見た``法外な''素数演算をストリームを
-用いて再定式化したものを分析してみましょう。
+この実装のふるまいを見るために、上で見た``とんでもない''素数計算をストリームによって
+定式化し直したものを解析してみましょう。
 
 \begin{scheme}
 (stream-car
@@ -18314,12 +18312,11 @@ Paulは進むことができません。どちらのプロセスも、お互い�
 \end{scheme}
 
 \noindent
-これが本当に効率的に働くことを見るでしょう。
+これが実際に効率的に動くということを見ていきます。
 
-
-\code{stream\-/enumerate\-/interval}を引数10,000と1,000,000と共に呼び出すことから始めます。
-\code{Stream\-/enumerate\-/interval}は\code{enumerate\-/interval} (\link{Section 2.2.3})の
-ストリーム版同等品です。
+まず、\code{stream\-/enumerate\-/interval}を10,000と1,000,000という引数で呼び出します。
+\code{stream\-/enumerate\-/interval}は、\code{enumerate\-/interval} (\link{Section 2.2.3})の
+ストリーム版です。
 
 \begin{scheme}
 (define (stream-enumerate-interval low high)
@@ -18331,11 +18328,11 @@ Paulは進むことができません。どちらのプロセスも、お互い�
 \end{scheme}
 
 \noindent
-従って\code{stream\-/enumerate\-/interval}で返される結果は、
-\code{cons\-/stream}で形成された\footnote{ここで示されている数値は遅延オブジェクトの
-中には実際には現れません。実際に現れるのは元の式であり、環境の中で変数は適切な
-数値に束縛されています。例えば\code{low}が10,000に束縛されながら\code{(+ low 1)}が
-\code{10001}が表示されている場所に現れます。}
+つまり、\code{stream\-/enumerate\-/interval}に返される結果は、\code{cons\-/stream}によって作られた
+次のようなものになります。
+\footnote{ここで示した数値は、実際には遅延オブジェクトの中にはありません。実際にあるのは
+元の式で、環境の中で変数が適切な数値に束縛されています。例えば、\code{10001}と示した場所には
+実際には\code{(+ low 1)}があり、その\code{low}が10,000に束縛されています。}
 
 \begin{scheme}
 (cons 10000
@@ -18343,10 +18340,10 @@ Paulは進むことができません。どちらのプロセスも、お互い�
 \end{scheme}
 
 \noindent
-つまり\code{stream\-/enumerate\-/interval}はペアとして表現されたストリームを返しその\code{car}は
-10,000で、その\code{cdr}はプロミスでありもし要求されれば区間のより多くを列挙します。
-このストリームはここでフィルタをかけ素数を残します。
-\code{filter}手続き(\link{Section 2.2.3})のストリーム版同等品を用います。
+つまり、\code{stream\-/enumerate\-/interval}はストリームを返すのですが、そのストリームの
+\code{car}には10,000が入っていて、\code{cdr}には、要求されたら区間の数え上げを続けるという
+約束が入っていることになります。次に、このストリームにフィルタをかけて素数を残します。
+それには、ストリーム版の\code{filter}手続き(\link{Section 2.2.3})を使います。
 
 \begin{scheme}
 (define (stream-filter pred stream)
@@ -18360,10 +18357,10 @@ Paulは進むことができません。どちらのプロセスも、お互い�
 \end{scheme}
 
 \noindent
-\code{stream\-/filter}はストリームの\code{stream\-/car}(ペアの\code{car}であり10,000)を
-テストします。これは素数ではないので\code{stream\-/filter}は入力ストリームの\code{stream\-/cdr}を
-調査します。\code{stream\-/cdr}の呼出は遅延化された\code{stream\-/enumerate\-/interval}の
-評価を強制します。これは今、以下を返します。
+\code{stream\-/filter}は、ストリームの\code{stream\-/car}(ペアの\code{car}、つまり10,000)を
+テストします。これは素数ではないので、\code{stream\-/filter}は入力ストリームの\code{stream\-/cdr}を
+調べます。\code{stream\-/cdr}を呼び出すと、遅延化された\code{stream\-/enumerate\-/interval}の
+評価を強制します。評価すると、次のものが返ってきます。
 
 \begin{scheme}
 (cons 10001
@@ -18371,10 +18368,10 @@ Paulは進むことができません。どちらのプロセスも、お互い�
 \end{scheme}
 
 \noindent
-\code{stream\-/filter}は今このストリームの\code{stream\-/car}である10,001を見て、
-これもまた素数ではないことを確認し、もう一度\code{stream\-/cdr}を強制します。
-これを\code{stream\-/enumerate\-/interval}が素数10,007を生じるまで繰り返し、すると
-直ぐに\code{stream\-/filter}はその定義に従い以下を返します。
+\code{stream\-/filter}は、今度はこのストリームの\code{stream\-/car}、つまり10,001を見て、
+これも素数ではないので、さらに\code{stream\-/cdr}を強制します。これを
+\code{stream\-/enumerate\-/interval}が素数10,007を作り出すまで繰り返します。
+10,007が返ってくると、\code{stream\-/filter}は定義通りに次のものを返します。
 
 \begin{scheme}
 (cons-stream (stream-car stream)
@@ -18382,7 +18379,7 @@ Paulは進むことができません。どちらのプロセスも、お互い�
 \end{scheme}
 
 \noindent
-これはこの場合以下のようになります。
+この場合は、以下のようになります。
 
 \begin{scheme}
 (cons 10007
@@ -18395,10 +18392,10 @@ Paulは進むことができません。どちらのプロセスも、お互い�
 \end{scheme}
 
 \noindent
-これでこの結果は元の式の\code{stream\-/cdr}に渡されます。これにより遅延された
-\code{stream\-/filter}が強制され、それが順に遅延された\code{stream\-/enumerate\-/interval}を
-次の素数、10,009を見つけるまで強制します。最終的に、結果が私達の元の式の
-\code{stream\-/car}に渡された物が以下です。
+この結果が、元の式の\code{stream\-/cdr}に渡されることになります。これによって、遅延化された
+\code{stream\-/filter}が強制評価され、\code{stream\-/filter}は次の素数である10,009が見つかるまで
+遅延化された\code{stream\-/enumerate\-/interval}の強制評価を続けます。
+最終的に、元の式の\code{stream\-/car}に渡される結果は次のようになります。
 
 \begin{scheme}
 (cons 10009
@@ -18411,17 +18408,15 @@ Paulは進むことができません。どちらのプロセスも、お互い�
 \end{scheme}
 
 \noindent
-\code{stream\-/car}が10,009を返し計算が完了します。2つ目の素数を見つけるのに必要なだけの
-整数が素数性のテストを受け、区間は素数フィルタに入力するのに必要なだけ列挙されました。
+\code{stream\-/car}は10,009を返し、これで計算が完了します。二つ目の素数を見つけるために
+必要なだけの整数のみがテストされ、素数フィルタに与えるのに必要な分だけの区間だけが列挙
+されています。
 
-
-
-一般的に、遅延評価は``demand-driven''(要求駆動)プログラミングだと考えることができ、
-ストリーム処理の各ステージは次のステージを満たすのに十分な場合にのみ稼動されます。
-私達がここで行ったことは手続きの見掛け上の構造から実際のイベントの順を分断することです。
-手続きをストリームが``一度に揃って''存在するかのように書くが、実際には演算は漸増的に
-伝統的なプログラミングスタイルのように実行されます。
-
+一般的に、遅延評価は``要求駆動''プログラミングと考えることができます。要求駆動プログラミングでは、
+ストリーム処理の各段階は、次の段階を満足させるのに十分なだけしか動かされません。ここまでで
+やったことは、計算の中で起こることの実際の順番と、手続きの見かけ上の構造とを切り離すという
+ことです。手続きを書くときには、ストリームが``すべて同時に''存在するかのように考えて書くのですが、
+実際には、計算は伝統的なプログラミングスタイルの場合と同じように漸進的に実行されることになります。
 
 \subsubsection*{\code{delay}と\code{force}の実装}
 
