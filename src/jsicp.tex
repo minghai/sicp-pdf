@@ -18393,8 +18393,8 @@ Paulは進むことができません。どちらのプロセスも、お互い�
 
 \noindent
 この結果が、元の式の\code{stream\-/cdr}に渡されることになります。これによって、遅延化された
-\code{stream\-/filter}が強制評価され、\code{stream\-/filter}は次の素数である10,009が見つかるまで
-遅延化された\code{stream\-/enumerate\-/interval}の強制評価を続けます。
+\code{stream\-/filter}が強制され、\code{stream\-/filter}は次の素数である10,009が見つかるまで
+遅延化された\code{stream\-/enumerate\-/interval}の強制を続けます。
 最終的に、元の式の\code{stream\-/car}に渡される結果は次のようになります。
 
 \begin{scheme}
@@ -18447,10 +18447,10 @@ Paulは進むことができません。どちらのプロセスも、お互い�
 \noindent
 \code{delay}と\code{force}が仕様通りに動くようにするだけなら、この実装で十分です。しかし、
 重要な最適化をひとつ取り入れる余地があります。多くの応用では、同じ遅延オブジェクトを
-何回も強制評価するはめになります。これは、ストリームを使った再帰プログラムで、深刻な
+何回も強制するはめになります。これは、ストリームを使った再帰プログラムで、深刻な
 非効率性の原因となることがあります(\link{Exercise 3.57}参照)。これを解決するには、遅延
-オブジェクトが最初に強制評価される際に計算した値を格納するように遅延オブジェクトを構築します。
-二回目以降の強制評価では、計算を繰り返すことはしないで、格納した値をそのまま返します。
+オブジェクトが最初に強制される際に計算した値を格納するように遅延オブジェクトを構築します。
+二回目以降の強制では、計算を繰り返すことはしないで、格納した値をそのまま返します。
 つまり、\link{Exercise 3.27}で説明したものと同じような、特殊目的のメモ化手続きとして
 \code{delay}を実装するということです。これを実現する方法のひとつとして、(引数なしの)
 手続きをひとつ引数として取り、その手続きのメモ化バージョンを返す手続きを使うというものが
@@ -18846,34 +18846,32 @@ P. L. Chebyshevが、すべての\( n \)に対し、\( p_{n+1} \le 2p_n \)であ
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.56}Exercise 3.56:} 
-%%%
-R. Hamming(リチャード ハミング)により取り上げられた有名な問題に、昇順に、重複無く、
-2, 3, 5以外の素因数を持たない正の整数を列挙せよというものがある。これを行う
-1つの明らかな方法は単純に各整数を順に2, 3, 5以外の素因数を持つかどうかテストする
-方法です。しかしこれはとても非効率です。整数が大きくなる程に要求に合う数はより
-少なくなるためです。代替法として、要求された数のストリームを\code{S}と呼び、以下の
-事実について注目してみましょう。
+\heading{\phantomsection\label{Exercise 3.56}Exercise 3.56:}
+R. Hammingが提起した有名な問題に、素因数が2, 3, 5のみからなる正の整数を昇順に重複なく
+列挙するというものがある。すぐ思いつく方法は、整数をひとつずつ見ていって、2, 3, 5以外の
+素因数がないかどうか調べるというものだ。しかし、これは非常に非効率である。これは、整数が
+大きくなるにつれて、要求を満たすものはどんどん少なくなっていくことによる。別の方法として、
+求める数値ストリームを\code{S}として、以下の事実に注目してみる。
 
 \begin{itemize}
 
 \item
-\code{S}は1で始まる。
+\code{S}は1から始まる。
 
 \item
-\code{(scale\-/stream S 2)}の要素もまた\code{S}の要素である。
+\code{(scale\-/stream S 2)}の要素もまた、\code{S}の要素である。
 
 \item
-同じことが\code{(scale\-/stream S 3)}と\code{(scale\-/stream 5 S)}に対しても真である。
+同じことが、\code{(scale\-/stream S 3)}と\code{(scale\-/stream 5 S)}についても言える。
 
 \item
-これらは全て\code{S}の要素である。
+これらが\code{S}の要素のすべてである。
 
 \end{itemize}
 
-さて私達が行わなければならないこと全てはこれらの情報から要素を結合することである。
-このために2つの順序有りストリームを重複を省き1つの順序付けられた結果のストリームに結合する
-手続き\code{merge}を定義する。
+つまり、これらの供給源から来る要素を組み合わせればよいということになる。そのために、
+二つの順序つきストリームを、重複を除きつつ、ひとつの順序つきストリームにまとめたものを
+返す手続き\code{merge}を定義する。
 
 \begin{scheme}
 (define (merge s1 s2)
@@ -18897,30 +18895,30 @@ R. Hamming(リチャード ハミング)により取り上げられた有名な�
                           (stream-cdr s2)))))))))
 \end{scheme}
 
-次に要求されたストリームが\code{merge}を用いて以下のよう構築されるだろう。
+こうすると、求めるストリームは\code{merge}を使って次のように構築できる。
 
 \begin{scheme}
 (define S (cons-stream 1 (merge ~\( \dark \langle \)~~\var{\dark ??}~~\( \dark \rangle \)~ ~\( \dark \langle \)~~\var{\dark ??}~~\( \dark \rangle \)~)))
 \end{scheme}
 
-上で\( \langle \)\var{??}\( \kern0.08em\rangle \)とマークされた箇所の欠けた式を埋めよ。
+\( \langle \)\var{??}\( \kern0.08em\rangle \)となっている箇所に欠けている式を埋めよ。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 3.57}Exercise 3.57:} 
-\( n \)番目のフィボナッチ数を\code{add\-/streams}手続きを基にした\code{fibs}の定義を用いて
-計算した場合に加算は何回実行されるか? 加算回数が\code{(delay <\var{exp}>)}を単純に
-\link{Section 3.5.1}で説明した\code{memo\-/proc}手続きにより提供される最適化を用いずに、
-\code{(lambda () <\var{exp}>)}として実装した場合に指数関数的に増加することを示せ。\footnote{この課題は
-call\-/by\-/needが\link{Exercise 3.27}で説明された通常のメモ化に密接に関係していることを示します。
-その課題では代入を明示的にローカルの表の構築に用いました。私達のcall-by-needストリームの
-最適化は効果的にそのようなテーブルを自動的に構築し、ストリームの以前に強制された部分の値を
-格納します。}
+\code{add\-/streams}手続きによる\code{fibs}の定義を使って\( n \)番目のフィボナッチ数を
+計算する際に、加算は何回実行されるだろうか。\code{(delay <\var{exp}>)}の実装を単純に
+\code{(lambda () <\var{exp}>)}として、\link{Section 3.5.1}で述べた\code{memo\-/proc}手続きによって
+提供される最適化を使わない場合、加算回数が指数的に増加することを示せ。
+\footnote{この練習問題は、必要呼びが\link{Exercise 3.27}で述べた通常のメモ化と密接に関係している
+ことを示しています。\link{Exercise 3.27}では、局所テーブルを明示的に構築するために代入を
+使いましたが、ここでの必要呼びによるストリームの最適化では、ストリームの以前に強制された部分の
+値を格納することによって、事実上、そのようなテーブルを自動的に構築していることになります。}
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 3.58}Exercise 3.58:} 
-以下の手続きにより計算されるストリームの解説を与えよ。
+以下の手続きによって計算されるストリームを解釈せよ。
 
 \begin{scheme}
 (define (expand num den radix)
@@ -18930,16 +18928,14 @@ call\-/by\-/needが\link{Exercise 3.27}で説明された通常のメモ化に�
 \end{scheme}
 
 
-(\code{quotient}はプリミティブであり、2つの整数の、整数の商を返す)。
-\code{(expand 1 7 10)}により生成される一連の要素は何か?
-\code{(expand 3 8 10)}では何が生成されるか?
+(\code{quotient}は、二つの整数の、整数の商を返す基本要素である。)\code{(expand 1 7 10)}は
+どのような要素列を生成するだろうか。また、\code{(expand 3 8 10)}ではどうか。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 3.59}Exercise 3.59:} 
-\link{Section 2.5.3}にて多項式を項のリストとして表現する多項式数値演算システムをどのように
-実装するかについて学んだ。同様な方法で以下のような\newterm{power series}(\jnewterm{べき級数})に
-ついても扱うことができる。
+\link{Section 2.5.3}では、多項式を項のリストとして表現する多項式数値演算システムの
+実装方法を学んだ。似たような方法で、以下のような\newterm{power series}(\jnewterm{冪級数})を、
 \begin{comment}
 
 \begin{example}
@@ -18967,9 +18963,9 @@ e^x = 1 + x + \displaystyle\frac{x^2}{2} + \displaystyle\frac{x^3}{3 \cdot 2} + 
 \sin x = x - \displaystyle\frac{x^3}{3 \cdot 2} + \displaystyle\frac{x^5}{5 \cdot 4 \cdot 3 \cdot 2} - \dots 
 \end{displaymath}
 \noindent
-これらは無限ストリームとして表現されている。数列\( a_0 +
-a_1 x + a_2 x^2 + a_3 x^3 + \dots \)を要素が係数\( a_0 \), \( a_1 \), \( a_2 \), \( a_3 \), \( \dots \)
-のストリームとして表すことにする。
+無限ストリームとして表現したものを扱うことができる。級数\( a_0 +a_1 x + a_2 x^2 + a_3 x^3 +
+\dots \)は、係数\( a_0 \), \( a_1 \), \( a_2 \), \( a_3 \), \( \dots \)を要素として持つ
+ストリームとして表すことにする。
 
 \begin{enumerate}[a]
 
@@ -18988,22 +18984,22 @@ c + a_0 x + --- a_1 x^2 + --- a_2 x^3 + --- a_3 x^4 + ...
  c + a_0 x + {1\over2} a_1 x^2 + {1\over3} a_2 x^3 + {1\over4} a_3 x^4 + \dots, 
 \end{displaymath}
 \noindent
-ここで\( c \)は任意の定数である。羃級数を表すストリーム\( a_0 \), \( a_1 \), \( a_2 \), \( \dots \)を
-入力として取り、その級数の積分の非定数項の係数のストリーム\( a_0 \), \( {1\over2}a_1 \), \( {1\over3}a_2 \), \( \dots \)を
-返す手続き\code{integrate\-/series}を定義せよ。(結果が定数項を持たないため、それは羃級数では無い。
-\code{integrate\-/series}を使う時、後で適切な定数を\code{cons}する。)
+ここで、\( c \)は任意の定数である。羃級数を表すストリーム\( a_0 \), \( a_1 \), \( a_2 \),
+\( \dots \)を入力として取り、その級数の積分の係数(定数項を除く)のストリーム\( a_0 \),
+\( {1\over2}a_1 \), \( {1\over3}a_2 \), \( \dots \)を返す手続き\code{integrate\-/series}を定義せよ
+(結果は定数項を持たないため、羃級数を表していない。\code{integrate\-/series}を使う際には、
+適切な定数に\code{cons}することにする)。
 
 \item
-関数\( x \mapsto e^x \)はそれ自身導関数である。これは\( e^x \)と\( e^x \)の不定積分が
-定数項を除いて同じ級数になることを暗示する。定数項は\( e^0 = 1 \)である。結果的に、
-\( e^x \)の級数を次のように生成できる。
+関数\( x \mapsto e^x \)は、自分自身の導関数となっている。つまり、\( e^x \)と、
+\( e^x \)の積分が、定数項\( e^0 = 1 \)を除いて同じ級数になるということになる。
+したがって、\( e^x \)の級数は次のように生成できる。
 
 \begin{scheme}
 (define exp-series
   (cons-stream 1 (integrate-series exp-series)))
 \end{scheme}
-
-
+%%%
 
 sinとcosの級数をどのように生成するか示せ。sinの導関数がcosであり、cosの導関数が
 負のsinであることから始めよ。
