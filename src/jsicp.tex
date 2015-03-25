@@ -19417,8 +19417,8 @@ $ (S_0, T_0) $ 	& $ (S_0, T_1) $ 	& $ (S_0, T_2) $ 	& $ \dots $ \cr
 (\( S \)と\( T \)を両方とも整数のストリームとすると、これが求めるストリーム\code{int\-/pairs}
 になります。)
 
-一般的なペアのストリームを\code{(pairs S T)}と呼び、それを三つの部分からなるものとして考えます。
-ペア\( (S_0, T_0) \)、一行目の残りのペア、それ以外のペアです。
+一般的なペアのストリームを\code{(pairs S T)}と呼び、それを三つの部分からなるものとして
+考えます。ペア\( (S_0, T_0) \)、一行目の残りのペア、それ以外のペアです。
 \footnote{このような分解方法を選ぶ理由となる洞察については\link{Exercise 3.68}を参照してください。}
 \begin{comment}
 
@@ -19447,8 +19447,9 @@ $ (S_0, T_0) $ 	& $ (S_0, T_1) $ 	& $ (S_0, T_2) $ 	& $ \dots $ \cr
 		& 			& 			& $ \dots $ \cr }
 } 
 \end{displaymath}
-この分解の三つ目の部分(一行目以外にあるペア)は、\code{(stream\-/cdr S)}と\code{(stream\-/cdr T)}
-によって(再帰的に)作られるペアです。また、二番目の部分(一行目の残り)は以下のように表現されます。
+この分解の三つ目の部分(一行目以外にあるペア)は、\code{(stream\-/cdr S)}と
+\code{(stream\-/cdr T)}によって(再帰的に)作られるペアです。また、二番目の部分
+(一行目の残り)は以下のように表現されます。
 
 \begin{scheme}
 (stream-map (lambda (x) (list (stream-car s) x))
@@ -19462,7 +19463,7 @@ $ (S_0, T_0) $ 	& $ (S_0, T_1) $ 	& $ (S_0, T_2) $ 	& $ \dots $ \cr
 (define (pairs s t)
   (cons-stream
    (list (stream-car s) (stream-car t))
-   (~\( \dark \langle \)~~\var{\dark combine-in-some-way}~~\( \dark \rangle \)~
+   (~\( \dark \langle \)~~\var{\dark 何らかの方法で組み合わせる}~~\( \dark \rangle \)~
      (stream-map (lambda (x) (list (stream-car s) x))
                  (stream-cdr t))
      (pairs (stream-cdr s) (stream-cdr t)))))
@@ -19512,13 +19513,10 @@ $ (S_0, T_0) $ 	& $ (S_0, T_1) $ 	& $ (S_0, T_2) $ 	& $ \dots $ \cr
 \end{scheme}
 
 \noindent
-\code{interleave}は2つのストリームから交代に要素を得るため、2つ目のストリームの各要素が
-いつかは相互配置ストリームへ入ることが、例え最初のストリームが無限でもわかります。
+\code{interleave}は要素を二つのストリームから交互に取るので、最初のストリームが無限であっても、
+二つ目のストリームの要素はすべて、混ぜ合わせたストリームにいつかは入ることになります。
 
-
-
-従って要求されたペアのストリームを以下のように生成できます。
-
+よって、求めるペアのストリームは以下のように生成できます。
 \begin{scheme}
 (define (pairs s t)
   (cons-stream
@@ -19531,6 +19529,7 @@ $ (S_0, T_0) $ 	& $ (S_0, T_1) $ 	& $ (S_0, T_2) $ 	& $ \dots $ \cr
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 3.66}Exercise 3.66:} 
+%%%
 ストリーム\code{(pairs integers integers)}を試験せよ。pairsがストリーム内に配置する順に
 ついて全体的なコメントを行え。例えばペア(1, 100)の前にはおよそどれだけの数のペアが
 先行するか? (99, 100)と(100, 100)の場合についても答えよ。(もし正確な数学上の説明が
