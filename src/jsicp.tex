@@ -19761,13 +19761,10 @@ Alyssa P. Hackerは物理センサから来る信号を処理するシステム�
 ~%~ ~\( \dots \)~1  2  1.5  1  0.5  -0.1  -2  -3  -2  -0.5  0.2  3  4~\( \dots \)~
 ~%~ ~\( \dots \)~0  0   0   0   0    -1    0   0   0    0    1   0  0~\( \dots \)~
 ~%~ \end{smallscheme}
-%%%
-
-Alyssaのシステムではセンサからの信号はストリーム\code{sense\-/data}で表され、
-ストリーム\code{zero\-/crossings}が関連するゼロ交差のストリームである。
-Alyssaは最初に手続き\code{sign\-/change\-/detector}を書いた。これは2つの値を引数として
-取り値の符号を比べ値に対応した0, 1, -1を生成する。次にゼロ交差ストリームを以下の
-ように構築した。
+Alyssaのシステムでは、センサからの信号はストリーム\code{sense\-/data}で表され、
+対応するゼロ交差のストリームはストリーム\code{zero\-/crossings}とする。
+Alyssaは、二つの値を引数として取り、値の符号を比較し、0, 1, -1を適切に返す手続き
+\code{sign\-/change\-/detector}を書いた。次に、ゼロ交差ストリームを以下のように構築した。
 
 \begin{scheme}
 (define (make-zero-crossings 
@@ -19783,9 +19780,9 @@ Alyssaは最初に手続き\code{sign\-/change\-/detector}を書いた。これ�
   (make-zero-crossings sense-data 0))
 \end{scheme}
 
-
-Alyssaの上司、Eva Lu Atorが歩み寄り、このプログラムは以下の、\link{Exercise 3.50}の
-\code{stream-map}を一般化した版を使用した物とほぼ同じであると提案した。
+そこに通りがかったAlyssaの上司 Eva Lu Atorは、このプログラムは以下のプログラムとほぼ等価だと
+言った。このプログラムでは、\link{Exercise 3.50}で出てきた、一般化したバージョンの
+\code{stream-map}を使っている。
 
 \begin{scheme}
 (define zero-crossings
@@ -19794,20 +19791,17 @@ Alyssaの上司、Eva Lu Atorが歩み寄り、このプログラムは以下の
               ~\( \dark \langle \)~~\var{\dark expression}~~\( \dark \rangle \)~))
 \end{scheme}
 
-
-
-\( \langle \)\var{expression}\( \rangle \)で示された部分を与えてプログラムを完成させよ。
+\( \langle \)\var{expression}\( \rangle \)によって示された部分を埋め、プログラムを完成させよ。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 3.75}Exercise 3.75:} 
-残念なことに、\link{Exercise 3.74}のAlyssaのゼロ交差判別器は十分でないことが証明された。
-センサからのノイズの多い信号が誤ったゼロ交差へと導くためである。ハードウェアのスペシャリスト、
-Lem E. TweakitはAlyssaにゼロ交差を試験する前にノイズを排除するために信号を滑らかに
-することを提案した。Alyssaは彼のアドバイスを受け入れ、センサのデータの各値を前の値との
-平均を取ることで構築された信号からゼロ交差を抽出することを決めた。彼女は問題を彼女の
-アシスタント、Louis Reasonerに伝えた。彼はその考えを実装しようと試み、Alyssaのプログラムを
-以下のように変更した。
+残念なことに、\link{Exercise 3.74}のAlyssaのゼロ交差判別器は十分でないということがわかった。
+ハードウェアのスペシャリストLem E. Tweakitは、ゼロ交差を検出する前に信号を平滑化してノイズを
+フィルタリングすることをAlyssaに提案した。Alyssaは彼のアドバイスに従い、センサデータの値と
+直前の値との平均を取ることによって構築した信号からゼロ交差を検出することにした。彼女は
+この問題について助手のouis Reasonerに説明した。彼は、Alyssaのプログラムを次のように修正して、
+この考え方を実装しようとした。
 
 \begin{scheme}
 (define (make-zero-crossings
@@ -19821,33 +19815,28 @@ Lem E. TweakitはAlyssaにゼロ交差を試験する前にノイズを排除す
       (stream-cdr input-stream) avpt))))
 \end{scheme}
 
-
-
-これはAlyssaの計画を正しく実装していない。Louisが入れてしまったバグを見つけ
-プログラムの構造を変更せずに直せ。(ヒント：\code{make\-/zero\-/crossings}の引数の数を
-増やす必要がある。)
+これはAlyssaの計画を正しく実装していない。Louisが入れてしまったバグを探し、プログラムの構造を
+変更せずに直せ(ヒント：\code{make\-/zero\-/crossings}の引数の数を増やす必要がある)。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 3.76}Exercise 3.76:} 
-Eva Lu Atorは\link{Exercise 3.75}におけるLouisの取り組み方を批判した。彼が書いた
-プログラムはモジュラ化されていない。滑らかにする操作とゼロ交差抽出が混ざってしまって
-いるためである。例えば抽出器はAlyssaが入力信号を調整するより良い手段を見つければ
-変更する必要が無かった。Louisを手助けし、入力としてストリームを取り、2つの連続する
-入力ストリームの要素の平均を要素とするストリームを生成する手続き\code{smooth}を書け。
-次に\code{smooth}をゼロ交差判定機を実装するためのコンポーネントとしてよりモジュラー化
-スタイルにて用いよ。
+Eva Lu Atorは、\link{Exercise 3.75}でのLouisのアプローチに批判的だ。彼が書いた
+プログラムは、平滑化演算とゼロ交差検出が交じってしまっていて、モジュール化されていないと
+いうのが彼女の意見だ。例えば、入力信号を調整するよりよい方法をAlyssaが見つけていれば、
+検出器は変更する必要がなかったはずだ。Louisを手伝って、入力としてひとつのストリームを取り、
+入力ストリームの連続する二つの要素の平均を要素とするストリームを生成する手続き\code{smooth}を
+書け。次に、\code{smooth}をコンポーネントとして使い、ゼロ交差判定機をよりモジュラー化された
+スタイルで実装せよ。
 \end{quote}
 
 \subsection{ストリームと遅延評価}
 \label{Section 3.5.4}
 
-
-
-先の節の終わりの\code{integral}手続きはどのようにストリームを用いてフィードバックループを
-持つ信号処理システムをモデル化できるかを示しています。\link{Figure 3.32}に示される加算器の
-フィードバックループは\code{integral}の内部ストリーム\code{int}がそれ自身を用いて定義されている
-事実によりモデル化されています。
+前節の終わりのほうにあった\code{integral}手続きは、ストリームを使うことによって、
+フィードバックループを持つ信号処理システムをモデル化する方法を示しています。
+\link{Figure 3.32}に示した加算器のフィードバックループは、\code{integral}の内部ストリーム
+\code{int}が自分自身によって定義されることによってモデル化されています。
 
 \begin{scheme}
 (define int
@@ -19858,12 +19847,14 @@ Eva Lu Atorは\link{Exercise 3.75}におけるLouisの取り組み方を批判�
 \end{scheme}
 
 \noindent
-暗黙的定義のような物を扱うインタプリタの能力は\code{cons\-/stream}に組込まれている
-\code{delay}に依存している。この\code{delay}無しではインタプリタは、\code{int}が既に定義されている
-ことを要件とする\code{cons\-/stream}への引数両方を評価する前には\code{int}を構築することができませんでした。
-一般的に、\code{delay}はストリームを用いてループを含む信号処理システムをモデル化するのに不可欠です。
-\code{delay}無しでは任意の信号処理コンポーネントへの入力が、出力を生成する前に
-完全に評価されるように、私達のモデルが定式化されなければなりません。
+暗黙的定義のようなものを扱うインタプリタの能力は、\code{cons\-/stream}に組込まれている
+\code{delay}に依存している。この\code{delay}がなければ、インタプリタは\code{cons\-/stream}の
+二つの引数を評価してからでないと\code{int}を構築できないところですが、二つの引数を評価するには
+\code{int}がすでに定義されている必要があります。
+一般的に、\code{delay}はループを含む信号処理システムをストリームを使ってモデル化するときに
+鍵となる部分です。\code{delay}がなければ、出力を返す前に、信号処理コンポーネントに対する
+入力が完全に評価されているようにモデルを定式化しなければいけません。この場合、ループは
+禁止されることになります。
 
 \begin{figure}[tb]
 \phantomsection\label{Figure 3.34}
@@ -19885,18 +19876,17 @@ Eva Lu Atorは\link{Exercise 3.75}におけるLouisの取り組み方を批判�
 \includegraphics[width=67mm]{fig/chap3/Fig3.34.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.34:} 方程式\( dy / dt = f(y) \)を解く``アナログ演算回路''
+\heading{Figure 3.34:} 方程式\( dy / dt = f(y) \)を解く``アナログ計算回路''
 \end{figure}
 
-残念なことに、ループを伴うシステムのストリームモデルは\code{cons\-/stream}により提供される
-``隠れた''\code{delay}を越えて、\code{delay}の使用を要求します。例えば\link{Figure 3.34}は
-\( f \)が与えられた関数である場合に微分方程式信号\( dy / dt = f(y) \)を
-解く処理システムを示しています。図は\( f \)をその入力信号に適用するマッピング
-コンポーネント(map)を示しています。mapはフィードバックループの中に積分器へ向けて
-実際にそのような方程式を解くために利用されているアナログ計算機回路にとても似た作法で
-接続されています。
-
-
+残念ながら、ループを含むシステムに対するストリームモデルを構築するには、
+\code{cons\-/stream}の提供する``隠れた''\code{delay}だけでは足りず、それを超えて
+\code{delay}を使うことが求められることがあります。例えば、\link{Figure 3.34}は、
+\( f \)を与えられた関数として、微分方程式\( dy / dt = f(y) \)を解く信号処理システムを
+示しています。この図には、\( f \)を入力信号に適用するマップコンポーネントがあります。
+マップコンポーネントは、このような方程式を解くために実際に使われるアナログ計算機回路と
+似たやり方で、積分器に対するフィードバックループに接続されています。
+%%%
 
 \( y \)に対し初期値\( y_0 \)を与えられたとした時、このシステムを以下の手続きを用いて
 モデル化を試みることができるでしょう。
