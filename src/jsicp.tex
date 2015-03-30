@@ -19886,10 +19886,9 @@ Eva Lu Atorは、\link{Exercise 3.75}でのLouisのアプローチに批判的�
 示しています。この図には、\( f \)を入力信号に適用するマップコンポーネントがあります。
 マップコンポーネントは、このような方程式を解くために実際に使われるアナログ計算機回路と
 似たやり方で、積分器に対するフィードバックループに接続されています。
-%%%
 
-\( y \)に対し初期値\( y_0 \)を与えられたとした時、このシステムを以下の手続きを用いて
-モデル化を試みることができるでしょう。
+\( y \)の初期値\( y_0 \)が与えられているとすると、モデル化に次のような手続きを使うことが
+考えられます。
 
 \begin{scheme}
 (define (solve f y0 dt)
@@ -19899,26 +19898,23 @@ Eva Lu Atorは、\link{Exercise 3.75}でのLouisのアプローチに批判的�
 \end{scheme}
 
 \noindent
-この手続きはうまく行きません。\code{solve}の最初の行にて\code{integral}の呼出は
-入力\code{dy}が定義されてることを要求します。これは\code{solve}の二行目までは
-起こり得ません。
+この手続きはうまくいきません。\code{solve}の一行目では\code{integral}を呼び出していますが、
+この呼び出しのためには入力\code{dy}が定義されている必要があります。しかし、\code{dy}は
+\code{solve}の二行目まで定義されません。
 
+一方で、この定義の意図するところは理解できます。原則として、\code{dy}を知らなくても、
+\code{y}のストリームの生成を始められるからです。実際、\code{integral}等の多くのストリーム
+演算は、引数に関する部分的な情報しかない状況で答えの一部を生成できるという意味で、
+\code{cons\-/stream}に似た性質を持っています。\code{integral}では、出力ストリームの
+最初の要素は\code{initial\-/value}によって与えられます。そのため、出力ストリームの最初の要素は
+被積分値\code{dy}を評価しなくても生成できます。\code{y}の最初の要素さえわかれば、
+\code{solve}の二行目にある\code{stream\-/map}が動作し、\code{dy}の最初の要素を生成します。
+これによって\code{y}の次の要素が生成されます。以下、この繰り返しとなります。
 
-一方で、私達の定義の意図もつじつまが合いません。原理上は、\code{y}ストリームを
-\code{dy}を知らずに生成し始めることができます。再に\code{integral}や他の多くのストリーム
-命令は\code{cons\-/stream}に、引数に関する部分的な情報を与えられただけで応答の部分を
-生成できるという点で似た性質を持っています。\code{integral}では出力ストリームの
-最初の要素は\code{initial\-/value}で与えられます。従って出力ストリームの最初の要素を
-被積分関数\code{dy}を評価せずに生成することができます。一度\code{y}の最初の要素を知る
-ことができれば、\code{solve}の2行目の\code{stream\-/map}は\code{dy}の最初の要素を生成する
-仕事を開始できます。これにより\code{y}の次の要素を生成することもでき、以下繰り返し
-となります。
-
-
-この考えの利点を得るために、\code{integral}を再定義し、被積分関数ストリームが
-\newterm{delayed argument}(\jnewterm{遅延引数})を要求するようにします。\code{Integral}は
-出力ストリームの最初の要素より多くを生成することを要求された時のみ、被積分関数を
-\code{force}し評価させます。
+この考え方を生かして、\code{integral}を定義し直し、被積分ストリームを
+\newterm{delayed argument}(\jnewterm{遅延引数})として受け入れるようにします。
+\code{Integral}は、出力ストリームの二番目以降の要素の生成が要求されて初めて、被積分値を
+\code{force}し、評価されるようにします。
 
 \begin{scheme}
 (define (integral delayed-integrand initial-value dt)
@@ -19932,9 +19928,11 @@ Eva Lu Atorは、\link{Exercise 3.75}でのLouisのアプローチに批判的�
 \end{scheme}
 
 \noindent
-これで\code{solve}手続きの実装が、\code{y}の定義内で\code{dy}を遅延させればできます。\footnote{この
-手続きは全てのScheme実装で動くことが保証されていません。とはいえ、任意の実装に対して簡単な
-変更で動作します。問題はScheme実装の内部定義の扱い方に関係があります。(\link{Section 4.1.6}参照)}
+これで、\code{y}の定義の中で\code{dy}の評価を遅延させることによって、\code{solve}手続きが
+実装できます。
+\footnote{この手続きは、すべてのScheme実装で動くことが保証されているわけではありません。
+とはいえ、どの実装でも単純な変更で動作させることができます。問題は、Scheme実装が内部定義を
+扱うやり方に微妙な違いがあるということにあります(\link{Section 4.1.6}参照)。}
 
 \begin{scheme}
 (define (solve f y0 dt)
@@ -19944,10 +19942,10 @@ Eva Lu Atorは、\link{Exercise 3.75}でのLouisのアプローチに批判的�
 \end{scheme}
 
 \noindent
-全体的に、\code{integral}を呼び出す者は今では被積分関数を\code{delay}しなければなりません。
-\( e \approx 2.718 \)の近似値を微分方程式\( dy / dt = y \)に対する
-解が\( y = 1 \)の場合の値を初期条件\( y(0) = 1 \)で求めることで\code{solve}手続きが
-うまく働くことを実演できます。
+一般的に、\code{integral}を呼び出す側は、被積分引数を\code{delay}しなければいけないように
+なっています。\code{solve}手続きがちゃんと動作するということは、初期条件\( y(0) = 1 \)として、
+微分方程式\( dy / dt = y \)の解について\( y = 1 \)での値を求めることで\( e \approx 2.718 \)の
+近似値を求めることによって示すことができます。
 
 \begin{scheme}
 (stream-ref (solve (lambda (y) y) 1 0.001) 1000)
@@ -19956,9 +19954,9 @@ Eva Lu Atorは、\link{Exercise 3.75}でのLouisのアプローチに批判的�
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 3.77}Exercise 3.77:} 
-上で使用された\code{integral}手続きは\link{Section 3.5.2}の整数無限ストリームの``暗示的''定義に
-似ている。代替的に、より\code{integers\-/starting\-/from}に似た\code{integral}の定義を
-与えることができない。(これも\link{Section 3.5.2}参照)
+上で使った\code{integral}手続きは、\link{Section 3.5.2}に出てきた、整数の無限ストリームの
+``暗示的''定義に似ている。別のやり方として、\code{integral}の定義を、
+(同じく\link{Section 3.5.2}の)\code{integers\-/starting\-/from}に似たものにすることもできる。
 
 \begin{smallscheme}
 (define (integral integrand initial-value dt)
@@ -19972,14 +19970,14 @@ Eva Lu Atorは、\link{Exercise 3.75}でのLouisのアプローチに批判的�
                  dt))))
 \end{smallscheme}
 
-
-ループを持つシステム内で利用された場合、この手続きは\code{integral}の元の版が抱えた
-問題と同じ問題を持つ。手続きを変更して\code{integrand}に対し遅延された引数を要求する
-ようにし、それ故に上で示されたように\code{solve}手続きで利用できるようにせよ。
+ループを含むシステムについて使うと、この手続きは\code{integral}の元のバージョンと
+同じ問題を持つことになる。手続きを修正し、遅延された引数を\code{integrand}として
+受け入れるようにして、上に示した\code{solve}手続きで使えるようにせよ。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 3.78}Exercise 3.78:} 
+%%%
 単項二次線形微分方程式を学ぶための信号処理システムの設計問題について考えよ。
 \begin{comment}
 
