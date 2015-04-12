@@ -20792,15 +20792,14 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 \code{eval}が識別できる新たな式の型を、\code{eval}そのものの定義を修正することなしに
 ユーザが追加できるようになっています(\link{Exercise 4.3}参照)。
 
-\subsubsection*{Apply}
-%%%
+\subsubsection*{apply}
 
-\code{apply}は2つの引数、手続きと手続きが適用されるべき引数のリストを取ります。
-\code{apply}は手続きを2つ種類に分類します。プリミティブの適用には
-\code{apply\-/primitive\-/procedure}を呼びます。複合手続きの適用には手続きのボディを
-作る式を連続して評価することにより行います。複合手続きのボディの評価のための
-環境は手続きにより運ばれた基礎環境を拡張することで構築し、手続きのパラメタを手続きが
-適用される引数に束縛するフレームを含めます。以下が\code{apply}の定義です。
+\code{apply}は二つの引数を取ります。手続きと、その手続きを適用する引数のリストです。
+\code{apply}は手続きを二種類に分類します。基本演算の場合は、\code{apply\-/primitive\-/procedure}を
+呼んで適用します。複合手続きの場合は、手続きの本体を構成する式を順番に評価していくことによって
+適用を行います。複合手続きの本体を評価する環境は、手続きの持つ基本環境を拡張して、手続きの仮引数を
+手続き適用対象の引数に束縛するフレームを追加することによって構築します。\code{apply}の定義は
+以下のようになります。
 
 \begin{scheme}
 (define (apply procedure arguments)
@@ -20820,16 +20819,14 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 
 \subsubsection*{手続きの引数}
 
-
-
-\code{eval}が手続き適用を処理する時、\code{list\-/of\-/values}を用いて手続きが適用される引数の
-リストを生成します。\code{list\-/of\-/values}は引数として組み合わせのオペランドを取ります。
-各オペランドを評価し対応する値のリストを返します。\footnote{\code{eval}の
-\code{application?}節は明示的に\code{list\-/of\-/values}手続きを書くのではなく、\code{map}を
-用いることで(そして\code{operands}がリストを返すよう規定することで)より単純にすることが
-できました。ここでは\code{map}を用いないことを選択することで高階手続きを用いなくとも、
-例え評価器がサポートする言語が高階手続きをサポートすることになっても、評価器が
-実装できることを強調しました。(従って高階手続きを持たない言語で評価器を書くことも可能です)。}
+\code{eval}が手続き適用を処理する際には、\code{list\-/of\-/values}を使って、手続き適用対象の
+引数のリストを作ります。\code{list\-/of\-/values}は、組み合わせのオペランドを引数に取り、
+各オペランドを評価し、対応する値のリストを返します。
+\footnote{\code{eval}の\code{application?}節は、明示的に\code{list\-/of\-/values}手続きを
+書くよりも、\code{map}を使えば(また、\code{operands}がリストを返すよう規定すれば)
+もっと簡単に書けたところです。ここで\code{map}を使わないことにしたのは、
+評価器がサポートする言語が高階手続きを持っているとしても、評価器は高階手続きを使わずに
+(つまり、高階手続きを持たない言語でも)実装できるということを強調したかったからです。}
 
 \begin{scheme}
 (define (list-of-values exps env)
@@ -20841,10 +20838,9 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 
 \subsubsection*{条件文}
 
-
-\code{eval\-/if}は与えられた環境において\code{if}式の述語部分を評価します。
-もし結果が真なら\code{eval\-/if}はconsequent(結果)を評価し、そうでなければ
-alternative(代替)を評価します。
+\code{eval\-/if}は、与えられた環境の中で\code{if}式の述語部分を評価します。
+もし結果が真であれば、\code{eval\-/if}は結果式(consequent)を評価し、そうでなければ
+代替式(alternative)を評価します。
 
 \begin{scheme}
 (define (eval-if exp env)
@@ -20854,21 +20850,18 @@ alternative(代替)を評価します。
 \end{scheme}
 
 \noindent
-\code{eval\-/if}内での\code{true?}の使用は実装言語と被実装言語の間の接続の問題を強調します。
-\code{if\-/predicate}は被実装言語にて評価されるのでその言語の値を生じます。
-インタプリタの述語\code{true?}はその値を実装言語の\code{if}でテストできる値に翻訳します。
-真実性のメタ循環表現は根底をなすSchemeのそれとは同じではないかもしれません。\footnote{今回は
-実装言語と被実装言語は同じです。ここでの\code{true?}の意味に対する熟考は本質を誤解
-することなく理解の発展を促します。}
+\code{eval\-/if}内で\code{true?}を使うことは、被実装言語と実装言語の接続という問題を
+浮き彫りにします。\code{if\-/predicate}は被実装言語によって評価されるため、これは
+その言語での値を返すことになります。インタプリタの述語\code{true?}は、その値を実装言語の
+\code{if}でテストできる値に翻訳します。真であることのメタ循環表現は、基層となるSchemeの
+表現と異なるかもしれないからです。\footnote{今回は、実装言語と被実装言語は同じです。
+ここでの\code{true?}の意味をよく考えると、薬物に頼ることなく、意識を拡張することができます。}
 
 \subsubsection*{列}
 
-
-
-\code{eval\-/sequence}は\code{apply}により用いられ手続きのボディの中にある連続した式を
-評価します。また\code{eval}でも使用され\code{begin}式の中の一連の式を評価します。
-引数として一連の式と環境を取り、式が現われる順で評価します。返り値は最後の
-式の値です。
+\code{eval\-/sequence}は、\code{apply}が手続きの本体中の式の列を評価するときや、
+\code{eval}が\code{begin}式中の式の列を評価するときに使います。引数として式の列と環境を取り、
+出現順に式を評価していきます。返り値は最後の式の値です。
 
 \begin{scheme}
 (define (eval-sequence exps env)
@@ -20881,10 +20874,8 @@ alternative(代替)を評価します。
 
 \subsubsection*{代入と定義}
 
-
-以下の手続きは変数への代入を扱います。\code{eval}を呼び代入される値を見つけ
-値と結果となる変数を\code{set\-/variable\-/value!}へ転送することで指定された
-環境へ設定されるようにします。
+以下の手続きは変数への代入を扱います。\code{eval}を呼ぶことによって代入する値を求め、
+変数とその値を\code{set\-/variable\-/value!}に渡すことによって指定された環境に設定します。
 
 \begin{scheme}
 (define (eval-assignment exp env)
@@ -20895,9 +20886,9 @@ alternative(代替)を評価します。
 \end{scheme}
 
 \noindent
-変数の定義は同様の方法で扱われます。\footnote{この\code{define}の実装は内部定義の
-扱いの微妙な問題を無視します。しかし多くの場合では正しく動きます。問題が何か、
-どのようにして解決するかについては\link{Section 4.1.6}で学びます。}
+変数の定義も似たようなやり方で扱います。
+\footnote{この\code{define}の実装は、多くの場合正しく動くのですが、内部定義の扱いに関する
+難しい問題を無視しています。問題の性質や解決方法については\link{Section 4.1.6}で見ていきます。}
 
 \begin{scheme}
 (define (eval-definition exp env)
@@ -20908,24 +20899,24 @@ alternative(代替)を評価します。
 \end{scheme}
 
 \noindent
-ここで代入、または定義の値としてシンボル\code{ok}を返すことを選択しました。\footnote{\code{define}と
-\code{set!}を導入した時に述べたように、これらの値はSchemeの実装依存です---つまり、
-実装者がどんな値を返すのか選択できます。}
+ここでは、代入や定義の値として記号\code{ok}を返すことにしています。
+\footnote{\code{define}と\code{set!}を紹介したときに述べたように、これらの値はSchemeの
+実装依存です---つまり、返す値は実装者が決めることができます。}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.1}Exercise 4.1:} 
-メタ循環評価器がオペランドを左から右へ評価するのか、右から左へなのか
-判断が付かないことに注意せよ。評価順は下位に横たわるLispから継承する。もし
-\code{list\-/of\-/values}内の\code{cons}の引数が左から右へ評価されるのなら、
-\code{list\-/of\-/values}はオペランドを左から右へと評価する。もし\code{cons}の引数が
-右から左へ評価されるなら、\code{list\-/of\-/values}は右から左へ評価する。
+メタ循環評価器がオペランドを評価する順番は、左から右なのか、右から左なのかわからないという
+ことに注意せよ。評価順は、基層となるLispのものを引き継ぐ。つまり、\code{list\-/of\-/values}にある
+\code{cons}の引数が左から右という順で評価されるのであれば、\code{list\-/of\-/values}はオペランドを
+左から右に評価することになる。\code{cons}の引数が右から左という順で評価されるのであれば、
+\code{list\-/of\-/values}はオペランドを右から左に評価することになる。
 
-
-
-オペランドを左から右へと下位に横たわるLispの評価順に係らず評価する\code{list\-/of\-/values}の
-版を書け。またオペランドを右から左へ評価する\code{list\-/of\-/values}の版も書け。
+基層となるLispの評価順によらず、オペランドを左から右に評価するようにしたバージョンの
+\code{list\-/of\-/values}を書け。また、オペランドを右から左に評価するバージョンの
+\code{list\-/of\-/values}も書け。
 \end{quote}
 
+%%%
 \subsection{式の表現}
 \label{Sec. 4.1.2}
 \label{Section 4.1.2}
