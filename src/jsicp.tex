@@ -20916,29 +20916,24 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 \code{list\-/of\-/values}も書け。
 \end{quote}
 
-%%%
 \subsection{式の表現}
 \label{Sec. 4.1.2}
 \label{Section 4.1.2}
 
+この評価器は、\link{Section 2.3.2}で検討した記号微分プログラムと共通するところがあります。
+どちらのプログラムも記号式の演算を行います。どちらのプログラムでも、複合式の演算結果は、
+式の各部品に対して演算を行い、その結果を式の型に従って組み合わせることによって得られます。
+どちらのプログラムでも、データ抽象化を使って、演算の一般的なルールと式の表現方法の詳細を
+切り離しています。微分プログラムでは、このことによって、同じ微分手続きを使って前置・中置・後置
+その他の形式の数式を扱えるようになっていました。評価器の場合は、評価対象の言語の文法が、
+純粋に式の部品を分類し抽出する手続きのみによって決まるという結果になります。
 
-
-評価器は\link{Section 2.3.2}で議論された記号微分プログラムを思い出させます。
-双方のプログラムが記号式を操作します。両方のプログラムにおいて、複合式上の操作の
-結果は式の断片を再帰的に操作し、式の型に依存した方法で結合することにより決定します。
-両方のプログラムにおいて、私達はデータ抽象化を用いて式がどのように表現されるかの
-詳細から命令の一般的なルールを分離します。微分プログラムではこのことが、同じ微分手続きが
-接頭辞形式、接中辞形式、またはいくつかの他の形式の代数式を扱えることを意味しました。
-評価器にとっては、これは評価される言語の文法がもっぱら式を分類し、断片を抽出する
-手続きにより決定されることを意味します。
-
-
-以下に私達の言語の構文の仕様を示します。
+以下は、この言語の構文の仕様です。
 
 \begin{itemize}
 
 \item
-自己評価アイテムは数値と文字列のみです。
+自己評価式は数値と文字列しかありません。
 
 \begin{scheme}
 (define (self-evaluating? exp)
@@ -20948,26 +20943,25 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 \end{scheme}
 
 \item
-変数はシンボルにより表現されます。
+変数は記号によって表現されます。
 
 \begin{scheme}
 (define (variable? exp) (symbol? exp))
 \end{scheme}
 
 \item
-引用は\code{(quote <\var{text\-/of\-/quotation}>)}の形式を持ちます。\footnote{\link{Section 2.3.1}で
-述べたとおり、評価器は引用(quote)された式を\code{quote}で始まるリストだと見ます。
-例え式がクォーテーションマークで入力されていてもです。例えば式\code{'a}は
-この評価器では\code{(quote a)}と見られます。\link{Exercise 2.55}を参照して下さい。}
+クォート式は\code{(quote <\var{text\-/of\-/quotation}>)}という形式です。
+\footnote{\link{Section 2.3.1}で触れたように、評価器はクォート式を\code{quote}から始まる
+リストとして扱います。これは、クォート式に引用符が使われている場合でも同じです。例えば、
+式\code{'a}は、この評価器によって\code{(quote a)}として扱われます。\link{Exercise 2.55}参照。}
 
 \begin{scheme}
 (define (quoted? exp) (tagged-list? exp 'quote))
 (define (text-of-quotation exp) (cadr exp))
 \end{scheme}
 
-
-\code{quoted?}は手続き\code{tagged\-/list?}を用いて定義されます。これはリストが指定された
-シンボルで開始するかを判断します。
+\code{quoted?}は、リストが指定された記号から始まるかどうかを確認する手続き\code{tagged\-/list?}
+を使って定義します。
 
 \begin{scheme}
 (define (tagged-list? exp tag)
@@ -20977,7 +20971,7 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 \end{scheme}
 
 \item
-代入は\code{(set! <\var{var}> <\var{value}>)}の形式を取ります。
+代入は\code{(set! <\var{var}> <\var{value}>)}という形式です。
 
 \begin{scheme}
 (define (assignment? exp) (tagged-list? exp 'set!))
@@ -20986,22 +20980,21 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 \end{scheme}
 
 \item
-定義は以下の形式を取ります。
+定義は以下の形式か、
 
 \begin{scheme}
 (define ~\( \dark \langle \)~~\var{\dark var}~~\( \dark \rangle \)~ ~\( \dark \langle \)~~\var{\dark value}~~\( \dark \rangle \)~)
 \end{scheme}
 
 \noindent
-または以下の形式になります。
+以下の形式です。
 
 \begin{scheme}
 (define (~\( \dark \langle \)~~\var{\dark var}~~\( \dark \rangle \)~ ~\( \dark \langle \)~~\( \dark parameter_1 \)~~\( \dark \rangle \)~ ~\( \dots \)~ ~\( \dark \langle \)~~\( \dark parameter_n \)~~\( \dark \rangle \)~)
   ~\( \dark \langle \)~~\var{\dark body}~~\( \dark \rangle \)~)
 \end{scheme}
 
-
-後者の形式(標準手続き定義)は以下に対する構文糖です。
+後者の形式(標準手続き定義)は、以下のシンタックスシュガーです。
 
 \begin{scheme}
 (define ~\( \dark \langle \)~~\var{\dark var}~~\( \dark \rangle \)~
@@ -21009,9 +21002,7 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
     ~\( \dark \langle \)~~\var{\dark body}~~\( \dark \rangle \)~))
 \end{scheme}
 
-
-
-対応する構文手続きは以下となります。
+これに対応する構文手続きは以下の通りです。
 
 \begin{scheme}
 (define (definition? exp) (tagged-list? exp 'define))
@@ -21027,7 +21018,7 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 \end{scheme}
 
 \item
-\code{lambda}式はシンボル\code{lambda}で始まるリストです。
+\code{lambda}式は、記号\code{lambda}から始まるリストです。
 
 \begin{scheme}
 (define (lambda? exp) (tagged-list? exp 'lambda))
@@ -21035,9 +21026,8 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 (define (lambda-body exp) (cddr exp))
 \end{scheme}
 
-
-また\code{lambda}式に対するコンストラクタも提供します。これは
-上記の\code{definition\-/value}で使用されます。
+また、\code{lambda}式のコンストラクタも提供します。これは、上記の\code{definition\-/value}で
+使われています。
 
 \begin{scheme}
 (define (make-lambda parameters body)
@@ -21045,11 +21035,11 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 \end{scheme}
 
 \item
-条件式は\code{if}で始まり述語、結果式を持ち、(任意で)代替式を持ちます。もし式が代替式
-の部分を持たないのであれば代替式として\code{false}を与えます。\footnote{述語がfalseになり
-代替式が存在しない場合の\code{if}式の値はSchemeでは未定義です。ここでは私達はfalseにする
-ことを選択しました。私達は変数\code{true}と\code{false}の式内での利用をサポートし、グローバル
-環境でのそれらの束縛により評価されるようにします。\link{Section 4.1.4}参照。}
+条件式は\code{if}で始まり、述語・結果式・(オプションで)代替式を持ちます。式が代替式部分を
+持たない場合は、代替式として\code{false}を使います。
+\footnote{述語がfalseで代替式が存在しない場合の\code{if}式の値は、Schemeでは規定されていません。
+ここではfalseにすることにしました。変数\code{true}と\code{false}は、グローバル環境で束縛することに
+よって、式の中で使えるようにします。\link{Section 4.1.4}参照。}
 
 \begin{scheme}
 (define (if? exp) (tagged-list? exp 'if))
@@ -21061,10 +21051,8 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
       'false))
 \end{scheme}
 
-
-
-また\code{if}式に対するコンストラクタも提供します。これは\code{cond\-/>if}により
-\code{cond}式を\code{if}式に変換するのに用いられます。
+また、\code{if}式に対するコンストラクタも提供します。これは、\code{cond\-/>if}が\code{cond}式を
+\code{if}式に変換するのに使われます。
 
 \begin{scheme}
 (define (make-if predicate consequent alternative)
@@ -21072,11 +21060,11 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 \end{scheme}
 
 \item
-\code{begin}は一連の式を1つの式へとまとめます。\code{begin}式から実際の列を取り出す命令と同時に、
-列の最初の式とその残りの式を返すセレクタも含まれます。\footnote{式のリストに対する
-これらのセレクタ---それに対応するオペランドのリスト向けのものも含めて---はデータ抽象化を
-意図するものではありません。それらは基本的なリスト命令のためのmnemonic(ニーモニック)名として
-\link{Section 5.4}にて明示的コントロール評価器を理解することを易しくするために導入されます。}
+\code{begin}は、式の列を単独の式にパッケージ化します。構文演算として、\code{begin}式から
+実際の列を取り出す演算と、列の最初の式と残りの式を返すセレクタを用意します。
+\footnote{式のリストに対するこれらのセレクタ---また、これに対応するオペランドのリストに対する
+セレクタ---は、データ抽象化のためのものではありません。これらは、\link{Section 5.4}の明示的
+制御評価器の理解を助けるために導入した、基本的なリスト演算を覚えやすくするための名前です。}
 
 \begin{scheme}
 (define (begin? exp) (tagged-list? exp 'begin))
@@ -21086,9 +21074,8 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 (define (rest-exps seq) (cdr seq))
 \end{scheme}
 
-
-また\code{cond\-/>if}で用いるコンストラクタ\code{sequence\-/>exp}も含めます。これは
-列を単一の式に、必要ならば\code{begin}を用いて、変換します。
+また、\code{cond\-/>if}で使うために、コンストラクタ\code{sequence\-/>exp}も用意します。これは
+列を単一の式に変換するもので、必要であれば\code{begin}を使います。
 
 \begin{scheme}
 (define (sequence->exp seq)
@@ -21099,7 +21086,7 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 \end{scheme}
 
 \item
-手続きの適用は上記の式の型ではない任意の複合式です。その式の\code{car}は演算子であり、
+手続き適用は、ここまで挙げた式の型に含まれない任意の複合式です。式の\code{car}は演算子で、
 \code{cdr}はオペランドのリストです。
 
 \begin{scheme}
@@ -21115,10 +21102,9 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 
 \subsubsection*{派生式}
 
-
-いくつかの私達の言語内での特殊形式は直接実装されるのでなく、他の特殊形式を含む式を用いて定義できます。
-例の1つは\code{cond}です。これは入れ子の\code{if}式として実装できます。例えば以下の式の評価上の
-問題を、
+この言語の特殊形式の中には、直接実装するのではなく、ほかの特殊形式を使った式によって定義できる
+ものもあります。そのひとつの例が\code{cond}で、入れ子の\code{if}式として実装できます。
+例えば、次の式を評価するという問題は、
 
 \begin{scheme}
 (cond ((> x 0) x)
@@ -21127,7 +21113,7 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 \end{scheme}
 
 \noindent
-次の\code{if}と\code{begin}の式を含む式の評価問題へと簡約することができます。
+\code{if}と\code{begin}式を持つ次の式を評価するという問題に簡約することができます。
 
 \begin{scheme}
 (if (> x 0)
@@ -21138,17 +21124,14 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 \end{scheme}
 
 \noindent
-\code{cond}の評価をこのように実装することは評価器を簡略化します。評価過程が明示的に
-指定されねばならない特殊形式の数を減らすことができるからです。
+\code{cond}をこのように実装することで、評価器を単純にできます。明示的に評価プロセスを規定しなければ
+ならない特殊形式の数を減らすことができるからです。
 
-
-
-\code{cond}式の部分を抽出する構文手続きと\code{cond}式を\code{if}式に変形する式\code{cond->if}を
-含めます。事例分析は\code{cond}で始まり述語-行動節のリストを持ちます。節はもし
-その述語がシンボル\code{else}ならば\code{else}節です。\footnote{全ての述語がfalseで
-\code{else}節が存在しない場合の\code{cond}式の値はSchemeでは未定義です。ここでは
-それをfalseにしました。}
-
+\code{cond}式の部品を抽出する構文手続きと、\code{cond}式を\code{if}式に変形する手続き
+\code{cond->if}を用意します。場合分けは、\code{cond}から始まり、述語-アクション節のリストを
+持ちます。節は、述語が記号\code{else}であれば\code{else}節となります。
+\footnote{すべての述語がfalseで\code{else}節が存在しない場合、Schemeでは\code{cond}式の値は
+規定されていません。ここではfalseとしています。}
 
 \begin{scheme}
 (define (cond? exp) (tagged-list? exp 'cond))
@@ -21172,7 +21155,7 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
                      (sequence->exp (cond-actions first))
                      (expand-clauses rest))))))
 \end{scheme}
-
+%%%
 \noindent
 文法上の変形を実装することを選択した\code{cond}のような式は
 \newterm{derived expressions}(\jnewterm{派生式})と呼ばれます。\code{let}式もまた派生式です。
