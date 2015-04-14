@@ -21052,7 +21052,7 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 \end{scheme}
 
 また、\code{if}式に対するコンストラクタも提供します。これは、\code{cond\-/>if}が\code{cond}式を
-\code{if}式に変換するのに使われます。
+\code{if}式に変形するのに使われます。
 
 \begin{scheme}
 (define (make-if predicate consequent alternative)
@@ -21075,7 +21075,7 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 \end{scheme}
 
 また、\code{cond\-/>if}で使うために、コンストラクタ\code{sequence\-/>exp}も用意します。これは
-列を単一の式に変換するもので、必要であれば\code{begin}を使います。
+列を単一の式に変形するもので、必要であれば\code{begin}を使います。
 
 \begin{scheme}
 (define (sequence->exp seq)
@@ -21155,78 +21155,81 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
                      (sequence->exp (cond-actions first))
                      (expand-clauses rest))))))
 \end{scheme}
-%%%
+
 \noindent
-文法上の変形を実装することを選択した\code{cond}のような式は
-\newterm{derived expressions}(\jnewterm{派生式})と呼ばれます。\code{let}式もまた派生式です。
-(\link{Exercise 4.6}参照)\footnote{実用的なLispシステムはユーザに対し新しい派生式を
-追加し、評価器の変更無しに文法上の変形としての実装を指定できる仕組みを提供します。
-そのようなユーザ定義変形は\newterm{macro}(\jnewterm{マクロ})と呼ばれます。マクロ定義の初歩的な仕組みを
-追加することは簡単なのですが、結果的にその言語は微妙な名前衝突の問題を持ちます。
-これらの困難をもたらさないマクロ定義の仕組みに関する多くの研究が存在します。
-例えば\link{Kohlbecker 1986}, \link{Clinger and Rees 1991}, \link{Hanson 1991}を
-参照して下さい。}
+\code{cond}のような、構文変形として実装するようにした式のことは\newterm{derived expressions}
+(\jnewterm{派生式})といいます。\code{let}式も同じく派生式です(\link{Exercise 4.6}参照)。
+\footnote{実用的なLispシステムでは、ユーザが新しい派生式を追加し、評価器を修正することなく
+構文変形としての実装を規定することができる仕組みを提供しています。そのようなユーザ定義の変形は
+\newterm{macro}(\jnewterm{マクロ})と呼ばれます。単純なマクロ定義の仕組みを追加することは
+簡単なのですが、そうすると言語が名前の衝突という厄介な問題を持つことになります。
+そのような問題のないマクロ定義の仕組みについては多くの研究がなされています。
+例えば、\link{Kohlbecker 1986}, \link{Clinger and Rees 1991}, \link{Hanson 1991}を
+参照してください。}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.2}Exercise 4.2:} 
-Louis Reasonerは\code{eval}の\code{cond}の順を変えて手続き適用の節が代入のための節の前に
-なるようにする計画を立てた。彼はこうすることでインタプリタをより効率良くできると
-主張した。プログラムは通常代入、定義等より適用を含んでいるためだ、と。
-彼の変更した\code{eval}は元の\code{eval}よりも通常より少ない節を式の型が判明する前に
-チェックするだろうという主張だ
+Louis Reasonerは、\code{eval}の\code{cond}を並べ替えて、手続き適用の節が代入の節より前に来るように
+しようとしている。彼は、こうするとインタプリタの効率がよくなると言う。プログラムは通常、
+代入や定義などより適用を多く含んでいるのだから、修正版の\code{eval}は、元の\code{eval}よりも
+式の型を判別するまでにチェックする節の数が少なくなると言うのだ。
 
 \begin{enumerate}[a]
 
 \item
-Louisの計画の何が間違っているか? (ヒント：Louisの評価器は式\code{(define x 3)}に
-対し何を行うか?)
+Louisの計画はどこがまずいのだろうか(ヒント：Louisの評価器は、式\code{(define x 3)}をどのように
+処理することになるだろうか)。
 
 \item
-Louisは彼の計画がうまく行かないことに激昂した。彼は他の多くの型の式をチェックする
-前に彼の評価器をいくらでも長くして手続き適用を認識させようとしている。評価される
-言語を変更し手続き適用が\code{call}で始まるようにすることで彼の手助けをせよ。
-例えば\code{(factorial 3)}の代わりに変更後は\code{(call factorial 3)}と書かねばならず、
-\code{(+ 1 2)}は\code{(call + 1 2)}と書かねばならない。
+Louisは計画がうまくいかないのでイライラしている。彼は、何が何でも、ほかの大部分の型に対する
+チェックよりも先に、評価器に手続き適用を認識させたいと思っている。評価対象の言語の構文を変更し、
+手続き適用が\code{call}で始まるようすることで、彼の手伝いをせよ。例えば、\code{(factorial 3)}と
+書いていたところで、変更後は\code{(call factorial 3)}と書かなければならなくなる。
+\code{(+ 1 2)}は、\code{(call + 1 2)}と書かなければならない。
 
 \end{enumerate}
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.3}Exercise 4.3:} 
-\code{eval}を書き直し呼出がデータ主導スタイルにて行われるようにせよ。これを
-\link{Exercise 2.73}のデータ主導型微分手続きと比較せよ。この節で実装された文法
-に適切であるとおり、(複合式の\code{car}を式の型として用いてよい。
+ディスパッチをデータ主導スタイルで行うように\code{eval}を書き直せ。これを
+\link{Exercise 2.73}のデータ主導型微分手続きと比較せよ(式の型としては、複合式の\code{car}を
+使ってよい。この節で実装した構文ではそれが適切である)。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.4}Exercise 4.4:} 
-\link{Chapter 1}の特殊形式\code{and}と\code{or}の定義を思い出せ。
+\link{Chapter 1}で出てきた特殊形式である\code{and}と\code{or}の定義を思い出そう。
 
 \begin{itemize}
 
 \item
-\code{and}: 式は左から右へと評価される。もし任意の式がfalseと評価されるならfalseが返される。
-残りの式全ては評価されない。もし全ての式がtrueの値に評価されるなら最後の式の評価値が
-返される。もし式が全く存在しないならtrueが返される。
+\code{and}: 式は左から右へと評価される。式のいずれかが偽と評価されたら偽を返す。
+残りの式はすべて評価されない。すべての式が真の値として評価されるなら、最後の式の評価値を
+返す。式がなければ真を返す。
 
 \item
+\code{or}: 式は左から右へと評価される。式のいずれかが真の値として評価されたらその値を返す。
+残りの式はすべて評価されない。すべての式が偽と評価されるか、式が存在しない場合は、偽を返す。
+
 \code{or}: 式は左から右へと評価される。もし任意の式がtrueと評価されるのならその値が
 返される。残りの式全ては評価されない。もし全ての式がfalseと評価されるのなら、または
 もし式が全く存在しないなら、falseが返される。
 
 \end{itemize}
-\code{and}と\code{or}を評価器に対する新しい特殊形式として適切な構文手続きと
-評価手続き\code{eval\-/and}と\code{eval\-/or}を定義することで導入せよ。
-代替法として、\code{and}と\code{or}を派生式として実装する方法を示せ。
+
+適切な構文手続きと、評価手続き\code{eval\-/and}, \code{eval\-/or}を定義し、評価器の新たな
+特殊形式として\code{and}と\code{or}を組み込め。また、別のやり方として、\code{and}と\code{or}を
+派生式として実装する方法を示せ。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.5}Exercise 4.5:} 
-Schemeは\code{cond}の節に追加の文法、\code{(<\var{test}> => <\var{recipient}>)}を認めている。
-もし\( \langle \)\var{test}\( \kern0.08em\rangle \)がtrueとして評価されるなら、
-\( \langle \)\var{recipient}\( \kern0.08em\rangle \)が評価される。その値は1引数の手続きでなければならない。
-そしてこの手続きが\( \langle \)\var{test}\( \kern0.08em\rangle \)の値で起動され、その結果が\code{cond}式の値と
-して返される。例えば、
+Schemeには、\code{cond}節の別の構文として、\code{(<\var{test}> => <\var{recipient}>)}というものが
+ある。これは、\( \langle \)\var{test}\( \kern0.08em\rangle \)が真の値として評価される場合、
+\( \langle \)\var{recipient}\( \kern0.08em\rangle \)が評価される。その値は1引数の手続きである
+必要がある。そして、この手続きが\( \langle \)\var{test}\( \kern0.08em\rangle \)という値で
+呼び出され、その結果が\code{cond}式の値として返される。例えば、
 
 \begin{scheme}
 (cond ((assoc 'b '((a 1) (b 2))) => cadr)
@@ -21234,12 +21237,12 @@ Schemeは\code{cond}の節に追加の文法、\code{(<\var{test}> => <\var{reci
 \end{scheme}
 
 \noindent
-は2を返す。\code{cond}を変更してこの拡張文法をサポートするようにせよ。
+は2を返す。この拡張構文をサポートするよう\code{cond}の処理を修正せよ。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.6}Exercise 4.6:} 
-\code{let}式は派生式である。なぜなら、
+\code{let}式は派生式である。以下は、
 
 \begin{scheme}
 (let ((~\( \dark \langle \)~~\( \dark var_1 \)~~\( \dark \rangle \)~ ~\( \dark \langle \)~~\( \dark exp_1 \)~~\( \dark \rangle \)~) ~\( \dots \)~ (~\( \dark \langle \)~~\( \dark var_n \)~~\( \dark \rangle \)~ ~\( \dark \langle \)~~\( \dark exp_n \)~~\( \dark \rangle \)~))
@@ -21247,7 +21250,7 @@ Schemeは\code{cond}の節に追加の文法、\code{(<\var{test}> => <\var{reci
 \end{scheme}
 
 \noindent
-は以下と等価である。
+次のものと等価だからだ。
 
 \begin{scheme}
 ((lambda (~\( \dark \langle \)~~\( \dark var_1 \)~~\( \dark \rangle \)~ ~\( \dots \)~ ~\( \dark \langle \)~~\( \dark var_n \)~~\( \dark \rangle \)~)
@@ -21257,13 +21260,13 @@ Schemeは\code{cond}の節に追加の文法、\code{(<\var{test}> => <\var{reci
  ~\( \dark \langle \)~~\( \dark exp_n \)~~\( \dark \rangle \)~)
 \end{scheme}
 
-文法上の変形\code{let\-/>combination}を実装せよ。これは\code{let}式の評価を上記で示された
-型の組み合わせの評価へと簡約する。そして\code{let}式を扱うために\code{eval}に適切な節を
-追加する。
+\code{let}式の評価を、上記のような組み合わせの評価に簡約する構文変形\code{let\-/>combination}を
+実装せよ。また、\code{eval}に適切な節を追加し、\code{let}式を扱えるようにせよ。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.7}Exercise 4.7:}
+%%%
 \code{let*}は\code{let}に似ているが、\code{let*}の変数の束縛が左から右へと続けて実行され、
 全ての先行する束縛が可視となるよう各束縛が環境へ追加されていく。例えば、
 
