@@ -775,7 +775,7 @@ New Haven, Connecticut
 
 この版では、いくつかの新しいテーマに重点を置いています。これらの中で最も重要なものは、
 複数の計算モデルの中で時間を扱う異なるアプローチの中心的な役割を果たしているものです。
-それらは状態付きのオブジェクト、並行プログラミング、関数型プログラミング、遅延評価、そして
+それらは状態つきのオブジェクト、並行プログラミング、関数型プログラミング、遅延評価、そして
 非決定性プログラミングです。並行性と非決定性については新たに節を設け、本全体を通して
 このテーマを統合させるよう力を尽くしました。
 
@@ -888,7 +888,7 @@ Lispウィザードたちに感謝の気持ちを捧げます。
 
 Schemeは私たちが使うLispの方言なのですが、これはLispとAlgolのパワーと優美さを
 ひとつにまとめようとしたものです。Lispからは、シンプルな構文によるメタ言語的なパワー、
-プログラムをデータオブジェクトとして表す統一的なやり方、ガベージコレクション付きヒープへの
+プログラムをデータオブジェクトとして表す統一的なやり方、ガベージコレクションつきヒープへの
 データ割り当てを取り込んでいます。Algolからは、レキシカルスコープとブロック構造を
 取り込みました。これらは、Algol委員会のプログラミング言語設計の先駆者たちからの
 贈り物です。チャーチの\( \lambda \)計算とプログラミング言語の構造との間の関係についての
@@ -1966,7 +1966,7 @@ Schemeでは、二つの特殊な値が存在し、\code{\#t}、\code{\#f}とい
 
 \noindent
 ここでは、\code{if}という特殊形式を使っています。これは、場合分けがちょうど二つの場合から
-なる場合に使える、制約付きの条件式です。\code{if}式の一般形式は以下の通りです。
+なる場合に使える、制約つきの条件式です。\code{if}式の一般形式は以下の通りです。
 
 
 \begin{scheme}
@@ -10741,7 +10741,7 @@ y = r sin A     A = arctan(y,x)
 \code{mul\-/complex}, \code{div\-/complex}の同じ実装が、Benの表現とAlyssaの表現の
 どちらに対してもうまく動くということが保証されます。
 
-\subsection{タグ付きデータ}
+\subsection{タグつきデータ}
 \label{Section 2.4.2}
 
 データ抽象化は、``最小責任の原則''の応用として見ることもできます。
@@ -21266,9 +21266,10 @@ Schemeには、\code{cond}節の別の構文として、\code{(<\var{test}> => <
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.7}Exercise 4.7:}
-%%%
-\code{let*}は\code{let}に似ているが、\code{let*}の変数の束縛が左から右へと続けて実行され、
-全ての先行する束縛が可視となるよう各束縛が環境へ追加されていく。例えば、
+
+\code{let*}は\code{let}に似ているが、\code{let*}変数の束縛は左から右へ順番に行われ、
+それぞれの束縛は、それまでの束縛がすべて見える環境の中で行われるというところが違う。
+例えば、
 
 \begin{scheme}
 (let* ((x 3)  (y (+ x 2))  (z (+ x y 5)))
@@ -21276,36 +21277,37 @@ Schemeには、\code{cond}節の別の構文として、\code{(<\var{test}> => <
 \end{scheme}
 
 \noindent
-は39を返す。\code{let*}式が入れ子の\code{let}式の集合としてどのように書き直すことができるか
-説明せよ。そしてこの変形を実行する手続き\code{let*\-/>nested\-/lets}を書け。
-もし私達が既に\code{let}を実装していて(\link{Exercise 4.6})、評価器を拡張し\code{let*}を
-扱いたいとしたら、以下の処理を行う節を\code{eval}に追加することは十分であろうか?
+は39を返す。\code{let*}式を入れ子の\code{let}式の集合として書き直す方法を説明せよ。また、
+この変形を実行する手続き\code{let*\-/>nested\-/lets}を書け。もしすでに\code{let}を実装していて
+(\link{Exercise 4.6})、\code{let*}を扱えるように評価器を拡張したいとしたら、以下のアクションを持つ
+節を\code{eval}に追加することで足りるだろうか。
 
 \begin{scheme}
 (eval (let*->nested-lets exp) env)
 \end{scheme}
 
 \noindent
-または私達は明示的に\code{let*}を非派生式を用いて拡張するべきであろうか?
+それとも、非派生式によって明示的に\code{let*}を拡張する必要があるだろうか。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.8}Exercise 4.8:} 
-``名前付き\code{let}''は\code{let}の変種であり以下の形式を持つ。
+``名前つき\code{let}''は\code{let}の変種で、以下の形式を持つ。
 
 \begin{scheme}
 (let ~\( \dark \langle \)~~\var{\dark var}~~\( \dark \rangle \)~ ~\( \dark \langle \)~~\var{\dark bindings}~~\( \dark \rangle \)~ ~\( \dark \langle \)~~\var{\dark body}~~\( \dark \rangle \)~)
 \end{scheme}
 
-
-\( \langle \)\var{bindings}\( \kern0.08em\rangle \)と\( \langle \)\var{body}\( \kern0.08em\rangle \)は
-通常の\code{let}と同様である。しかし\( \langle \)\var{var}\( \kern0.08em\rangle \)が
-\( \langle \)\var{body}\( \kern0.08em\rangle \)内部で束縛される手続きであり、
-ボディが\( \langle \)\var{body}\( \kern0.08em\rangle \)であり、
-かつパラメタが\( \langle \)\var{bindings}\( \kern0.08em\rangle \)の変数である点が異なる。
-従って\( \langle \)\var{var}\( \kern0.08em\rangle \)で名付けられた手続きを呼び出すことで
-繰り返し\( \langle \)\var{body}\( \kern0.08em\rangle \)を実行することができる。例えば、
-反復フィボナッチ手続き(\link{Section 1.2.2})は名前付き\code{let}を用いて以下のように書き直すことができる。
+\( \langle \)\var{bindings}\( \kern0.08em\rangle \)と
+\( \langle \)\var{body}\( \kern0.08em\rangle \)は通常の\code{let}と同じである。違うのは、
+\( \langle \)\var{body}\( \kern0.08em\rangle \)内部で
+\( \langle \)\var{var}\( \kern0.08em\rangle \)が、
+本体が\( \langle \)\var{body}\( \kern0.08em\rangle \)で
+引数が\( \langle \)\var{bindings}\( \kern0.08em\rangle \)内の変数である手続きに束縛されるという
+ところだ。このことによって、\( \langle \)\var{var}\( \kern0.08em\rangle \)という名前の
+手続きを呼び出すことによって、繰り返し\( \langle \)\var{body}\( \kern0.08em\rangle \)を実行できる。
+例えば、反復フィボナッチ手続き(\link{Section 1.2.2})は、名前つき\code{let}を使って次のように
+書き直すことができる。
 \begin{scheme}
 (define (fib n)
   (let fib-iter ((a 1)
@@ -21315,37 +21317,36 @@ Schemeには、\code{cond}節の別の構文として、\code{(<\var{test}> => <
         b
         (fib-iter (+ a b) a (- count 1)))))
 \end{scheme}
-
-
-\link{Exercise 4.6}の\code{let\-/>combination}を変更して名前付き\code{let}もサポートするようにせよ。
+\link{Exercise 4.6}の\code{let\-/>combination}を修正し、名前つき\code{let}もサポートするようにせよ。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.9}Exercise 4.9:} 
-多くの言語が\code{do}, \code{for}, \code{while}, \code{until}のような多様な反復構造をサポートする。
-Schemeでは反復処理が通常の手続き呼出を用いて表現できるため特別な反復構造が演算能力に対し
-本質的な利益を与えることはない。一方でそのような構造は時折便利でもある。いくつかの
-反復構造を設計せよ。それらの使用の例を与えどのように派生式として実装するかについて示せ。
+多くの言語では、\code{do}, \code{for}, \code{while}, \code{until}のようないろいろな反復構造を
+サポートしている。Schemeでは、反復処理は通常の手続き呼び出しによって表現できるので、特別な
+反復構造を入れても計算能力が本質的に上がるわけではない。一方で、そのような構造を持っていると
+便利なことも多い。いくつかの反復構造を設計し、使用例を示し、それらを派生式として実装するやり方を
+示せ。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.10}Exercise 4.10:}
-データ抽象化を用いることで、評価されるべき言語の特定の文法から独立した\code{eval}手続きを
-書くことができる。これを説明するために\code{eval}と\code{apply}を変更すること
-なくこの節の手続きを変更することでSchemeの新しい文法を設計し、実装せよ。
+データ抽象化を使うことで、評価対象言語の個別の文法とは独立した\code{eval}手続きを書くことができた。
+そのことを示すために、\code{eval}と\code{apply}を変更せずに、この節の手続きを変更することによって
+Schemeの新しい文法を設計・実装せよ。
 \end{quote}
 
 \subsection{評価器のデータ構造}
 \label{Sec. 4.1.3}
 \label{Section 4.1.3}
 
-式の外側の文法を定義するのに加えて、評価器の実装は評価器が内部的に操作するデータ構造も
-プログラムの実行の一部として、手続きと環境の表現やtrueとfalseの表現を定義しなければなりません。
+評価器を実装するときには、式の外部文法の定義だけではなく、評価器がプログラム実行の一部として
+内部で操作するデータ構造も定義する必要がある。これには、手続きや環境の表現、trueとfalseの表現
+のようなものがある。
 
 \subsubsection*{述語のテスト}
 
-
-条件節に対しては真になるものは全て受け入れます。真とは明示的な\code{false}オブジェクトでは無いものです。
+条件式については、明示的な\code{false}オブジェクト以外はすべてtrueとして受け入れます。
 
 \begin{scheme}
 (define (true? x)  (not (eq? x false)))
@@ -21354,8 +21355,7 @@ Schemeでは反復処理が通常の手続き呼出を用いて表現できる�
 
 \subsubsection*{手続きの表現}
 
-
-プリミティブを扱うために、以下の手続きが利用可能であると仮定します。
+基本手続きを扱うときには、以下の手続きが利用できるものとします。
 
 \begin{itemize}
 
@@ -21363,23 +21363,22 @@ Schemeでは反復処理が通常の手続き呼出を用いて表現できる�
 \code{(apply\-/primitive\-/procedure <\var{proc}> <\var{args}>)}
 
 \noindent
-与えられたプリミティブな手続きをリスト\( \langle \)\var{args}\( \kern0.08em\rangle \)中の
-引数の値に適用し、適用の結果を返します。
+これは、与えられた基本手続きをリスト\( \langle \)\var{args}\( \kern0.08em\rangle \)中の
+引数の値に適用し、その結果を返します。
 
 \item
 \code{(primitive\-/procedure? <\var{proc}>)}
 
 \noindent
-\( \langle \)\var{proc}\( \kern0.08em\rangle \)がプリミティブな手続きであるか確認します。
+これは、\( \langle \)\var{proc}\( \kern0.08em\rangle \)が基本手続きかどうかテストします。
 
 \end{itemize}
 
 \noindent
-プリミティブを扱うこれらの仕組みは\link{Section 4.1.4}でさらに説明されます。
+これらの基本手続きを扱う仕組みについては、\link{Section 4.1.4}でさらに詳しく説明します。
 
-
-複合手続きはパラメタ、手続きのボディ、環境からコンストラクタ\code{make\-/procedure}を用いて
-構築されます。
+複合手続きは、コンストラクタ\code{make\-/procedure}を使って、仮引数・手続き本体・環境によって
+構築します。
 
 \begin{scheme}
 (define (make-procedure parameters body env)
@@ -21391,47 +21390,47 @@ Schemeでは反復処理が通常の手続き呼出を用いて表現できる�
 (define (procedure-environment p) (cadddr p))
 \end{scheme}
 
-\subsubsection*{環境上の命令}
+\subsubsection*{環境に対する演算}
 
-
-評価器は環境を操作する命令を必要とします。\link{Section 3.2}で説明された通り、環境は
-連続するフレームであり、各フレームは変数をその対応する値に関連付ける束縛のテーブルです。
-以下の命令を用いて環境を操作します。
+評価器には環境を操作する演算が必要となる。\link{Section 3.2}で説明したように、環境は
+フレームの列で、各フレームは変数を対応する値に関連づける束縛テーブルです。環境を操作するには
+以下の演算を使います。
 
 \begin{itemize}
 
 \item
 \code{(lookup\-/variable\-/value <\var{var}> <\var{env}>)}
 
-
-環境\( \langle \)\var{env}\( \kern0.08em\rangle \)内でシンボル\( \langle \)\var{var}\( \kern0.08em\rangle \)に
-束縛された値を返します。または変数が束縛されていない場合エラーを発します。
+これは、環境\( \langle \)\var{env}\( \kern0.08em\rangle \)内で
+記号\( \langle \)\var{var}\( \kern0.08em\rangle \)に束縛されている値を返します。
+変数が束縛されていない場合、エラーを発生させます。
 
 \item
 \code{(extend\-/environment <\var{variables}> <\var{values}> <\var{base\-/env}>)}
 
-新しいフレームから成る環境を返します。フレームの中ではリスト\( \langle \)\var{variables}\( \kern0.08em\rangle \)中の
-シンボルがリスト中\( \langle \)\var{values}\( \kern0.08em\rangle \)の対応する要素に束縛されます。
-取り囲む環境は環境\( \langle \)\var{base\-/env}\( \kern0.08em\rangle \)です。
+これは、リスト\( \langle \)\var{variables}\( \kern0.08em\rangle \)の記号が
+リスト\( \langle \)\var{values}\( \kern0.08em\rangle \)の対応する要素に束縛されている
+新しいフレームひとつからなる新しい環境を返します。
+環境\( \langle \)\var{base\-/env}\( \kern0.08em\rangle \)が外側の環境となります。
+
 \item
 \code{(define\-/variable! <\var{var}> <\var{value}> <\var{env}>)}
 
-
-環境\( \langle \)\var{env}\( \kern0.08em\rangle \)の最初のフレームに
-変数\( \langle \)\var{var}\( \kern0.08em\rangle \)を
-値\( \langle \)\var{value}\( \kern0.08em\rangle \)に関連付ける新しい束縛を追加します。
+これは、環境\( \langle \)\var{env}\( \kern0.08em\rangle \)の一番目のフレームに、
+変数\( \langle \)\var{var}\( \kern0.08em\rangle \)と
+値\( \langle \)\var{value}\( \kern0.08em\rangle \)を関連づける新たな束縛を追加します。
 \item
 \code{(set\-/variable\-/value! <\var{var}> <\var{value}> <\var{env}>)}
 
-
-環境\( \langle \)\var{env}\( \kern0.08em\rangle \)中の変数\( \langle \)\var{var}\( \kern0.08em\rangle \)の束縛を変更し、
-その変数が新しく値\( \langle \)\var{value}\( \kern0.08em\rangle \)に束縛されるようにします。
-またはもし変数が束縛されていない場合にはエラーを発します。
+これは、環境\( \langle \)\var{env}\( \kern0.08em\rangle \)中の変数
+\( \langle \)\var{var}\( \kern0.08em\rangle \)の束縛を変更して、変数を値\( \langle \)\var{value}
+\( \kern0.08em\rangle \)に束縛し直します。
+変数が未束縛であればエラーを発生させます。
 \end{itemize}
 
 \noindent
-これらの命令を実装するためには環境をフレームのリストとして表現します。
-環境を内包する環境はリストの\code{cdr}です。空の環境は単純に空リストです。
+これらの演算を実装するために、環境はフレームのリストとして表現することにします。
+リストの\code{cdr}が外側の環境となります。空の環境は、単純に空リストです。
 
 \begin{scheme}
 (define (enclosing-environment env) (cdr env))
@@ -21440,6 +21439,7 @@ Schemeでは反復処理が通常の手続き呼出を用いて表現できる�
 \end{scheme}
 
 \noindent
+%%%
 環境の各フレームはリストのペアとして表現されます。フレームに束縛される変数のリストと
 対応する値のリストです。\footnote{フレームは実際には以下のコードにおいてデータ抽象化されていません。
 \code{Set\-/variable\-/value!}と\code{define\-/variable!}は\code{set\-/car!}を用いて直接フレームの値を変更しています。
