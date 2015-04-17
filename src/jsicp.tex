@@ -21568,7 +21568,7 @@ Schemeでは、\code{define}によって新しい束縛を作ることができ�
 これは、評価規則を実験するフレームワークの役割を果たします。この章の後のほうでは、そのような実験を
 行います。
 
-評価器プログラムが式を簡約してくと、最終的には基本手続きの適用になります。そのため、評価器を
+評価器プログラムが式を簡約していくと、最終的には基本手続きの適用になります。そのため、評価器を
 実行するのに必要なのは、基本手続きの適用をモデル化するために基層となるLispシステムを
 呼び出す仕組みを作ることだけです。
 
@@ -21628,7 +21628,7 @@ Schemeそのものだという理由です。つまり、例えば\code{(list 'f
 \noindent
 基本手続きを適用するには、基層Lispシステムを使って実装手続きを引数に適用するだけです。
 \footnote{
-\code{apply\-/in\-/underlying\-/scheme}は、ここまでの章で使ってきた\code{apply}手続きです。
+\code{apply\-/in\-/underlying\-/scheme}は、以前の章で使ってきた\code{apply}手続きです。
 メタ循環評価器の\code{apply}手続き(\link{Section 4.1.1})は、この基本手続きの動作を
 モデル化したものです。\code{apply}という名前のものが二つあると、メタ循環評価器を実行する際に
 技術的な問題が起こります。これは、メタ循環評価器の\code{apply}を定義すると、
@@ -21649,6 +21649,7 @@ Schemeそのものだという理由です。つまり、例えば\code{(list 'f
   (apply-in-underlying-scheme
    (primitive-implementation proc) args))
 \end{scheme}
+%%%
 
 \noindent
 メタ循環評価器実行時の利便性のために、低層のLispシステムのread-eval-print loop (REPL:レプル)を
