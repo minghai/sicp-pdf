@@ -22080,22 +22080,21 @@ Evaの意見はどちらとも違う。彼女は、\code{a}と\code{b}の定義�
 \code{b}を評価する際には\code{a}の値として5を使うべきだと言う。よって、Evaの見方では、
 \code{a}は5となり、\code{b}は15となり、結果は20となるべきだということになる。
 これらの見方の中で、(支持できるものがあるとすれば)あなたはどの見方を支持するか。
-%%%
-
-あなたはEvaが好んだように振る舞う内部定義を実装する方法を考案できるか?\footnote{\acronym{MIT} Schemeの
-実装者達は次の根拠に従ってAlyssaを支持する。Evaは原理上は正しい。定義は同時だと見なされる
-べきだ。しかしEvaが要求することを行う一般的でかつ効率的な仕組みを実装することは難しく
-見える。そのような仕組みが不足している状況では、同時定義の難しい場合についてはエラーを
-生成するほうが(Alyssaの意見)、正しくない答を生成するよりも(Benの様に)、より良いだろう。}
+また、Evaの言うようにふるまう内部定義を実装する方法を考えよ。
+\footnote{\acronym{MIT} Schemeの実装者達は次のような理由によってAlyssaを支持しています。
+まず、Evaは原理上は正しいことになります。定義は同時だと見なされるべきだからです。
+しかし、Evaが求めることを行う一般的で効率的な仕組みを実装するのは難しいようです。
+そのような仕組みが作れない以上は、同時定義の難しいケースではエラーを発生させる
+(Alyssaの考え)ほうが、正しくない答えを出す(Benのやり方)よりもよいということです。}
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.20}Exercise 4.20:}
-内部定義は逐次的に見えるが実際には同時であるため、いくらかの人々はこれを完全に
-回避するほうを好むだろう。そして特殊形式\code{letrec}を代わりに用いる。
-\code{letrec}は\code{let}に似ているため、それが束縛する変数が同時に束縛されお互いに
-同じスコープを持つことは不思議ではないだろう。上記のサンプル手続き\code{f}は内部手続きを
-用いずに、しかし全く同じ意味を持つように書くことができる。
+内部定義は逐次的に見えるのに実際は同時だということから、内部定義を完全に回避し、
+代わりに特殊形式\code{letrec}を使うという人もいる。
+\code{letrec}は\code{let}に似ているので、そこで束縛される変数が同時に束縛され、お互いに
+同じスコープを持つことは不自然ではない。上記の例の手続き\code{f}は、内部手続きを使わずに、
+まったく同じ意味を持つものを書くことができる。
 
 \begin{scheme}
 (define (f x)
@@ -22104,7 +22103,7 @@ Evaの意見はどちらとも違う。彼女は、\code{a}と\code{b}の定義�
               (if (= n 0) true  (odd?  (- n 1)))))
      (odd?  (lambda (n)
               (if (= n 0) false (even? (- n 1))))))
-    ~\( \dark \langle \)~~\var{\dark rest of body of \code{f}}~~\( \dark \rangle \)~))
+    ~\( \dark \langle \)~~\var{\dark \code{f}の本体の残り}~~\( \dark \rangle \)~))
 \end{scheme}
 
 \code{letrec}式は以下の形式を持つ。
@@ -22115,10 +22114,10 @@ Evaの意見はどちらとも違う。彼女は、\code{a}と\code{b}の定義�
 \end{scheme}
 
 \noindent
-\code{letrec}式は\code{let}の亜種であり、変数\( \langle \)\( var_k \)\( \kern0.08em\rangle \)に
-初期値を与える式\( \langle \)\( exp_k \)\( \kern0.08em\rangle \)は、全ての\code{letrec}の束縛を
-含む環境にて評価される。これは上の例においての\code{even?}と\code{odd?}の相互再帰のような束縛の中での再帰を許す。
-または以下の様な10の階乗の評価も可能である。
+\code{letrec}式は\code{let}の亜種で、変数\( \langle \)\( var_k \)\( \kern0.08em\rangle \)に
+初期値を与える式\( \langle \)\( exp_k \)\( \kern0.08em\rangle \)は、すべての\code{letrec}の束縛を
+含む環境の中で評価される。このことによって、上の例での\code{even?}と\code{odd?}の相互再帰や、
+以下のように10の階乗を評価する場合のように、束縛内での再帰が使えるようになる。
 
 \begin{scheme}
 (letrec
@@ -22130,34 +22129,32 @@ Evaの意見はどちらとも違う。彼女は、\code{a}と\code{b}の定義�
 \begin{enumerate}[a]
 
 \item
-\code{letrec}を派生式として実装せよ。\code{letrec}式を\code{let}を上で示したように、
-または\link{Exercise 4.18}の様に変形することで行え。
-即ち、\code{letrec}の変数は\code{let}を用いて作成しなければならず、そして次に
-それらの値を\code{set!}で代入すること。
+\code{letrec}を派生式として実装せよ。上の本文や\link{Exercise 4.18}で示したように、
+\code{letrec}式を\code{let}式に変形すること。つまり、\code{letrec}の変数を
+\code{let}によって作り、値を\code{set!}で代入するということになる。
 
 \item
-Louis Reasonerは内部定義に関するこの全ての空騒ぎにより混乱してしまった。
-彼の見解は、もし手続きの中での\code{define}の使用を好まないのであれば、単に
-\code{let}を使えるのではないかである。彼のreasoning(推測)の何が緩いのかを、この課題と同様に
-定義された\code{f}を用いて、式\code{(f 5)}の評価の間に
-\( \langle \)\var{rest of body of \code{f}}\( \kern0.08em\rangle \)が評価された
-環境を示す環境図を書くことによって説明せよ。
-同じ環境の、ただし\code{f}の定義中の\code{letrec}の場所に\code{let}を用いた場合の環境図を書け。
+Louis Reasonerは、内部定義について考えるうちに混乱してしまった。手続きの中で\code{define}を
+使いたくないなら\code{let}を使えばいいじゃないかというのが彼の考えだ。
+この練習問題で定義した\code{f}について、式\code{(f 5)}の評価中に
+\( \langle \)\var{\code{f}の本体の残り}\( \kern0.08em\rangle \)が評価される環境を示した
+環境図を描き、彼の考えの穴を示せ。同じ式の評価で、\code{f}の定義中の\code{letrec}の代わりに
+\code{let}が使われている場合の環境図も書け。
 
 \end{enumerate}
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.21}Exercise 4.21:}
-驚くべきことに、\link{Exercise 4.20}におけるLouisの直感は正しい。\code{letrec}を(または
-\code{define}すらも)用いずに再帰手続きを指定することは本当に可能である。しかしこれを
-達成する手法はLouisが存在したよりもずっと繊細である。以下の式は10の階乗を再帰
-階乗手続きを適用することで求めている。\footnote{この例は再帰手続きを\code{define}を用いずに
-定式化するためのプログラミング上の技を説明しています。最も一般的なこの種の技は
-\( Y \) \newterm{operator}(\jnewterm{Yコンビネータ}、不動点演算子)です。これは
-``pure \( \lambda \)-calculus''(純粋ラムダ計算)による再帰の実装を与えます。(\( \lambda \)計算の
-詳細については\link{Stoy 1977}を参照して下さい。またSchemeによる\( Y \)コンビネータの
-解説については\link{Gabriel 1988}を参照して下さい。}
+驚くべきことに、\link{Exercise 4.20}でのLouisの直感は正しい。\code{letrec}を
+(それどころか、\code{define}さえ)使わずに再帰手続きを規定することは実際に可能だ。
+しかし、これを実現する方法はLouisの想像よりもずっと難しいものになる。次の式は、
+再帰的な階乗手続きを適用することによって10の階乗を求めている。
+\footnote{この例は、\code{define}を使わずに再帰手続きを定式化するプログラミングトリックを
+示したものです。この種のトリックとして最も一般的なものは\( Y \) \newterm{operator}
+(\jnewterm{Yコンビネータ})です。これを使うと、``純粋ラムダ計算''による再帰の実装が可能です
+(\( \lambda \)計算の詳細については\link{Stoy 1977}を、またSchemeによる\( Y \)コンビネータの
+解説については\link{Gabriel 1988}を参照)。}
 
 \begin{scheme}
 ((lambda (n)
@@ -22170,6 +22167,7 @@ Louis Reasonerは内部定義に関するこの全ての空騒ぎにより混乱
 \begin{enumerate}[a]
 
 \item
+%%%
 (式を評価することで)これが実際に階乗を計算することを確認せよ。
 フィボナッチ数を計算する同様な式を工夫せよ。
 
