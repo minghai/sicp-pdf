@@ -1518,7 +1518,7 @@ Lispの非公式な進化は何年も続き、Lispユーザのコミュニティ
 お互いに大きな違いを持ちます。この本で使用されるLispの方言はSchemeと呼ばれます。\footnote{
 1970年代に最もメジャーなLispプログラムの記述に用いられた2つの方言は\acronym{MIT}のプロジェクト
 \acronym{MAC}で開発されたMacLisp (\link{Moon 1978}; \link{Pitman 1983})と
-Bolt Beranek and Newman Inc.とXerox Palo Alto研究センターににて開発された
+Bolt Beranek and Newman Inc.とXerox Palo Alto研究センターにて開発された
 Interlisp (\link{Teitelman 1974})でした。Portable Standard Lisp (\link{Hearn 1969}; \link{Griss 1981})
 は簡単に、異なるマシンの間で移植可能にするよう設計されたLisp方言です。MacLispは
 カリフォルニア大学バークレー校により開発されたFranz Lispや\acronym{MIT}人工知能研究所が
@@ -19367,7 +19367,7 @@ system that have a ``need to know.''}
 されたと言います。カプセル化は\newterm{hiding principle}(隠蔽原則)として知られる
 一般的なシステム設計の原則を反映しています。隠蔽原則とはシステムの部分をお互いから守ることで
 よりモジュール化の推進と頑強なシステムを作成することができるということです。それはつまり
-情報へのアクセスを``知ることを必要とする''システムの部分ににも与えることによります。}
+情報へのアクセスを``知ることを必要とする''システムの部分にも与えることによります。}
 
 Combining \code{set!} with local variables is the general programming technique
 we will use for constructing computational objects with local state.
@@ -23049,7 +23049,7 @@ list has a special backbone pair at the beginning, which holds a dummy
 \link{Figure 3.22} shows the box-and-pointer diagram for the table
 
 最初は一次元の表について考えます。各値が単一のキーの下に格納されます。
-テーブルをレコードのリストとして実装し、各レコードははキーと関連する値から成るペアとして実装します。
+テーブルをレコードのリストとして実装し、各レコードはキーと関連する値から成るペアとして実装します。
 レコードは\code{car}が次のレコードを指すペアによりリストを形成する様に連結されます。
 これらの連結されたペアは表の\newterm{backbone}(バックボーン、基幹)と呼ばれます。
 テーブルに新しいレコードを追加する時に変更可能な場所を得るために、テーブルを
@@ -35215,7 +35215,7 @@ must undo the effects of \code{set!} operations when it backtracks.}
 ないことを要求し、また指定されたリストの単語で始まることを要求します。もしそうで
 あるならその単語を\code{*unparsed*}から削除し、その単語をその品詞(これはリストの先頭に
 見つかります)と共に返します。\footnote{\code{parse\-/word}がparseされていない入力リストの
-変更するのに\code{set!}を用いているおおに注意して下さい。これをうまく行うためには、
+変更するのに\code{set!}を用いていることに注意して下さい。これをうまく行うためには、
 \code{amb}評価機は\code{set!}命令の効果をバックトラックする時に取り消しできなければいけません。}
 
 \begin{scheme}
@@ -38591,7 +38591,7 @@ to be effective and efficient.  At the same time, we should be able to view the
 result of the computation (``what'' to compute) as a simple consequence of the
 laws of logic.
 
-論理プログラミングの目的はプログラマに演算問題を2つの分離された問題、``何''が求めらるべきかと
+論理プログラミングの目的はプログラマに演算問題を2つの分離された問題、``何''が求められるべきかと
 ``どのように''これが求められるべきかに分解する技術を与えることです。
 これは記号論理学の命題の部分集合を選択することで達成されます。これは人が演算したい
 対象全てを記述するのに十分に強く、けれども制御可能な手続的解釈を行うに十分に弱い
@@ -40281,7 +40281,7 @@ procedure here explicitly.
 多くの
 Lispシステムは通常の\code{read}手続を\newterm{reader macro characters}(リーダ
 マクロキャラクタ)を定義することにより変更し、そのような変形を実行させる能力を
-ユーザにに与えています。クォートされた式は既にこのような取り扱われています。
+ユーザに与えています。クォートされた式は既にこのような取り扱われています。
 リーダーは評価機が式を見る前に自動的に\code{'expression}を\code{(quote expression)}に
 変形します。私達は同様に\code{?expression}が\code{(? expression)}に変形されるように
 準備することも可能でした。しかし、明快さのために、私達はここに明示的に変形手続を
@@ -41682,7 +41682,7 @@ as the first.  If we do this, we obtain the controller sequence shown in
 複製を防ぎます。もしレジスタ\code{a}と\code{b}の値がコントローラが\code{gcd\-/2}に取り掛かって
 いる時に必要無いのであれば(またはもしこれらの値が安全のために他のレジスタに移動して
 おくことができるのならば)、機械を変更し、レジスタ\code{c}と\code{d}でなく、レジスタ\code{a}と
-\code{b}を2つ目の\acronym{GCD}を1つ目と同じに求めるおおができます。もしこれを行うなら、
+\code{b}を2つ目の\acronym{GCD}を1つ目と同じように求めることができます。もしこれを行うなら、
 \link{Figure 5.8}に示されるコントローラシーケンスを得ます。
 
 \begin{quote}
@@ -49421,7 +49421,7 @@ of error checking in the compiled code.
 
 実行
 戦略とは独立して、もしユーザプログラムを実行した場合にエラーに遭遇した時にシステムを
-殺すことや間違った値を生成するおおを許可するのではなく、エラーが発見され、その旨が
+殺すことや間違った値を生成することを許可するのではなく、エラーが発見され、その旨が
 伝えられることを望むのならば、明らかなオーバヘッドを経験することになります。
 例えば、配列の境界外参照は実行する前に参照の有効性をチェックすることで発見することが
 できます。しかし、チェックのオーバヘッドは配列参照自体の何倍ものコストに成り得ます。
