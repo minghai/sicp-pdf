@@ -22642,11 +22642,10 @@ Ben BitdiddleとAlyssa P. Hackerは、\code{unless}のようなものを実装�
                      procedure))))
 \end{scheme}
 
-%%%
 \noindent
-引数を処理する手続きは\link{Section 4.1.1}の\code{list\-/of\-/values}そっくりです。しかし
-\code{list\-/of\-/delayed\-/args}が引数を評価するのではなく遅延化することと、
-\code{list\-/of\-/arg\-/values}が\code{eval}の代わりに\code{actual\-/value}を用いることが違います。
+引数を処理する手続きはほとんど\link{Section 4.1.1}の\code{list\-/of\-/values}そのままですが、
+違うのは\code{list\-/of\-/delayed\-/args}が引数を評価するのではなく遅延化すること、
+\code{list\-/of\-/arg\-/values}が\code{eval}ではなく\code{actual\-/value}を使うということです。
 
 \begin{scheme}
 (define (list-of-arg-values exps env)
@@ -22666,9 +22665,9 @@ Ben BitdiddleとAlyssa P. Hackerは、\code{unless}のようなものを実装�
 \end{scheme}
 
 \noindent
-評価器で変更しなければいけない他の場所は\code{if}の取扱の中にあります。
-そこでは\code{eval}の代わりに\code{actual\-/value}を使用して述語が真であるか偽で
-あるかテストする前に、述語式の値を取らねばなりません。
+ほかに評価器を修正しなければならないところは\code{if}の処理の中にあります。
+ここでは、述語式の真偽をテストする前に、\code{eval}ではなく\code{actual\-/value}を使って
+述語式の値を取る必要があります。
 
 \begin{scheme}
 (define (eval-if exp env)
@@ -22679,9 +22678,9 @@ Ben BitdiddleとAlyssa P. Hackerは、\code{unless}のようなものを実装�
 
 \noindent
 最後に、\link{Section 4.1.4}の\code{driver\-/loop}手続きを変更して、\code{eval}の代わりに
-\code{actual\-/value}を使用せねばなりあせん。そうすることでもし遅延化された値が
-REPLに伝播して返った場合に、表示される前に強制されます。またプロンプトも
-変更してこれが遅延評価であることを示します。
+\code{actual\-/value}を使うようにする必要があります。これは、遅延化された値が
+REPLまで返された場合、表示前に強制するようにするためです。
+また、この評価器が遅延評価器であることを示すためにプロンプトも変更しておきます。
 
 \begin{scheme}
 (define input-prompt  ";;; L-Eval input:")
@@ -22698,9 +22697,8 @@ REPLに伝播して返った場合に、表示される前に強制されます�
 \end{scheme}
 
 \noindent
-これらの変更を行うことで、評価器を開始しテストすることができます。
-\link{Section 4.2.1}で議論された\code{try}式の評価の成功はインタプリタが遅延評価を
-実行していることを示しています。
+これらの変更を行ったら、評価器を動かしてテストできます。\link{Section 4.2.1}で検討した
+\code{try}式の評価がうまくいったら、インタプリタが遅延評価を実行しているということになります。
 
 \begin{scheme}
 (define the-global-environment (setup-environment))
@@ -22717,13 +22715,12 @@ REPLに伝播して返った場合に、表示される前に強制されます�
 
 \subsubsection*{サンクの表現}
 
-
-私達の評価器は手続きが引数に適用される時にサンクを作成することと、これらのサンクを
-後で強制することの準備をせねばなりません。サンクは式を環境と一緒にまとめなければ
-なりません。そうすることで引数が後から生成されることができます。
-サンクを強制するためには単純に式と環境をサンクから取り出しその環境の中で式を評価します。
-\code{eval}ではなく\code{actual\-/value}を用いることで式の値それ自身がサンクである場合にその
-強制をサンクでない物に辿り着くまで繰り返します。
+この評価器は、手続きが引数に適用されるときにサンクを作り、後でそれらのサンクを強制するように
+しなければなりません。サンクは、後で引数を生成できるように、式と環境をまとめておく必要が
+あります。サンクを強制するには、単純にサンクから式と環境を取り出し、その環境の中で式を
+評価します。サンクを強制するためには単純に式と環境をサンクから取り出しその環境の中で式を評価します。
+ここでは\code{eval}ではなく\code{actual\-/value}を使います。これは、式の値がそれ自身サンクであった
+場合、サンクでないものにたどり着くまで強制を続けるようにするためです。
 
 \begin{scheme}
 (define (force-it obj)
@@ -22733,8 +22730,8 @@ REPLに伝播して返った場合に、表示される前に強制されます�
 \end{scheme}
 
 \noindent
-式と環境をまとめる1つの簡単な方法はその式と環境を含むリストを作成することです。
-従ってサンクを以下のように作成します。
+式と環境をまとめる簡単な方法のひとつは、式と環境を含むリストを作るということです。
+そこで、サンクは次のように作ることにします。
 
 \begin{scheme}
 (define (delay-it exp env)
@@ -22746,21 +22743,19 @@ REPLに伝播して返った場合に、表示される前に強制されます�
 \end{scheme}
 
 \noindent
-実際に私達のインタプリタに欲っしたものはこれではなく、メモ化されたサンクです。
-サンクが強制された時に格納された式とその値に置き換え、
-\code{thunk}タグを変更することでサンクをサンクが評価された物に変更することで、
-既に評価されたと認識させることができます。\footnote{
-一度式の値が計算されれば
-サンクから\code{env}もまた消去します。これによりインタプリタにより返される値に違いは
-生じません。しかしこれはスペースを本当に節約します。サンクから\code{env}への参照を
-必要が無くなったら直ぐに削除することで、この構造が
-\newterm{garbage-collected}(\jnewterm{ガベージコレクション}、GC、ゴミ集め)され、そのスペースは
-\link{Section 5.3}で議論されるようにリサイクルされます。
+実際のところは、評価器に入れたいものはこれとはちょっと違います。必要なのはメモ化されたサンクです。
+ですので、サンクが強制されたときに、格納された式をその値で置き換え、\code{thunk}タグを
+別のものに変えることで、評価済みだということがわかるようにします。
+\footnote{ここで気をつけるところは、式の値を評価したら、サンクから\code{env}も消すということです。
+こうしても、インタプリタから返される値は変わりません。しかし、空間の節約にはなります。
+\link{Section 5.3}で検討するように、必要がなくなり次第サンクから\code{env}への参照を削除するように
+すると、この構造は\newterm{garbage-collect}(\jnewterm{ガベージコレクション})され、空間はリサイクル
+されるからです。
 
-
-同様に、\link{Section 3.5.1}のメモ化、遅延化されたオブジェクトの中の不必要な環境をGCされるように
-許可することも、\code{memo\-/proc}に\code{(set! proc '())}の様な何かを行わせて
-(\code{delay}が中で評価される環境を含む)手続き\code{proc}をその値を格納した後に捨てることでできました。}
+同様に、\link{Section 3.5.1}のメモ化した遅延オブジェクトの場合も、必要のなくなった環境は
+削除できるところです。そのためには、\code{memo\-/proc}で\code{(set! proc '())}のようなことを
+行って、(\code{delay}が評価された環境を含む)手続き\code{proc}を値を格納した後に捨てる
+ようにします。}
 
 \begin{scheme}
 (define (evaluated-thunk? obj)
@@ -22775,14 +22770,15 @@ REPLに伝播して返った場合に、表示される前に強制されます�
            (set-car! (cdr obj) 
                      result)     ;~\textrm{\code{exp}をその値で置き換える}~
            (set-cdr! (cdr obj) 
-                     '())        ;~\textrm{不必要な\code{env}を忘れる}~
+                     '())        ;~\textrm{必要のなくなった\code{env}を忘れる}~
            result))
         ((evaluated-thunk? obj) (thunk-value obj))
         (else obj)))
 \end{scheme}
 
 \noindent
-同じ\code{delay\-/it}手続きがメモ化有りでも無しでも動作することに注意して下さい。
+\code{delay\-/it}手続きは、そのままでメモ化ありでもメモ化なしでも動くというところに
+注意してください。
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.27}Exercise 4.27:}
@@ -22793,10 +22789,9 @@ REPLに伝播して返った場合に、表示される前に強制されます�
 (define (id x) (set! count (+ count 1)) x)
 \end{scheme}
 
-
-以下の一連の応答の欠けた値を与えよ。そして貴方の回答について説明せよ。\footnote{この
-課題は遅延評価と副作用の間の応答が大きな混乱の原因となりえることを実演している。
-これこそが\link{Chapter 3}の議論からあなたが予期するかもしれないことである。}
+以下の一連のやりとりの空欄の値を埋め、回答について説明せよ。
+\footnote{この練習問題は、遅延評価と副作用との干渉や副作用が大きな混乱のもとになるということを
+示しています。これは、\link{Chapter 3}の議論から予想できる範囲内のことです。}
 
 \begin{scheme}
 (define w (id (id 10)))
@@ -22817,16 +22812,16 @@ count
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.28}Exercise 4.28:}
-\code{eval}は\code{eval}でなく\code{actual\-/value}を用いて\code{apply}に渡す前に
-演算子を評価する。演算子の値を強制するためである。この強制の必要性を実演する
-例を与えよ。
+\code{eval}は、演算子を\code{apply}に渡す前に、\code{eval}ではなく\code{actual\-/value}を使って
+演算子を評価する。これは、演算子の値を強制するためである。ここで強制を行う必要があるということが
+わかるような例を示せ。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.29}Exercise 4.29:}
-メモ化しない場合に、メモ化した場合よりも非常に遅く実行されると予測するプログラムを
-示せ。また以下の応答について考えよ。\code{id}手続きは\link{Exercise 4.27}と同じに定義され
-\code{count}は0から始める。
+メモ化しなければ、メモ化した場合よりも実行がずっと遅くなりそうなプログラムを示せ。
+また、以下のやりとりについて考えよ。このやりとりの中では、\code{id}手続きの定義は
+\link{Exercise 4.27}と同じで、\code{count}は0から始める。
 
 \begin{scheme}
 (define (square x) (* x x))
@@ -22841,11 +22836,12 @@ count
 \end{scheme}
 
 
-評価器がメモ化された場合とメモ化されない場合の両方について応答を与えよ。
+評価器がメモ化されている場合とメモ化されていない場合の両方について、応答を示せ。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.30}Exercise 4.30:}
+%%%
 Cy D. Fectは元C言語プログラマである。彼はいくつかのside effects(副作用)が起こらない
 のではないかと心配している。遅延評価が列内の式に強制を行わないためである。
 最後の1つ以外の列内の式の値は使用されないため(式は変数への代入や表示等の作用のため
