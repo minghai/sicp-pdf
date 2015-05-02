@@ -22964,7 +22964,7 @@ Schemeに加えてしまっているからだ。遅延評価を\newterm{upward-c
 どんな手続きによる表現(例えば、メッセージパッシングによる実装)を使っても問題はありません。
 これらの定義は、ドライバループに入力すれば遅延評価器に組み込むことができます。元々
 \code{cons}, \code{car}, \code{cdr}をグローバル環境の基本手続きに入れていたとしたら、
-それらは再定義されることになります。(\link{Exercise 4.33}と\link{Exercise 4.34}も参照してください。}
+それらは再定義されることになります(\link{Exercise 4.33}と\link{Exercise 4.34}も参照してください)。}
 
 \begin{scheme}
 (define (cons x y) (lambda (m) (m x y)))
