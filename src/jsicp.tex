@@ -23573,9 +23573,8 @@ Lornaの父親は誰か。
 \end{scheme}
 
 \noindent
-%%%
-パースを始めるために行わなければいけないこと全ては\code{*unparsed*}に入力全体を設定し、
-文のパースを試み、何も残っていないことをチェックすることです。
+解析を始めるには、\code{*unparsed*}を入力全体に設定し、文の解析を試み、残っているものがないことを
+チェックするだけで大丈夫です。
 
 \begin{scheme}
 (define *unparsed* '())
@@ -23586,8 +23585,7 @@ Lornaの父親は誰か。
 \end{scheme}
 
 \noindent
-これでパーザ(parser、パースを行うプログラム)を試し、簡単なテスト文に対してうまく働くこと
-を確認することができます。
+これで、構文解析器を試し、先ほどの簡単なテスト文に対してうまく動くか確認することができます。
 
 \begin{scheme}
 ~\textit{;;; Amb-Eval input:}~
@@ -23600,20 +23598,19 @@ Lornaの父親は誰か。
 \end{smallscheme}
 
 \noindent
-\code{amb}評価器はここでとても役立ちます。\code{require}の助けを用いてパースする上での
-制約を表現するのにとても便利なためです。しかし、自動的な探索とバックトラックが
-本当に効果を生むのはより複雑な文法について考えた時に、1つの単位の分解方法に
-多数の選択肢が存在する場合です。
 
+\code{amb}評価器は、構文解析上の制約を\code{require}の助けを借りて便利に表現するできるという
+意味で役に立っています。しかし、自動探索とバックトラックが本当に効果を上げるのは、
+要素を分解する方法に複数の選択肢があるようなより複雑な文法について考える場合です。
 
-私達の文法に前置詞を追加してみましょう。
+この文法に前置詞を追加してみましょう。
 
 \begin{scheme}
 (define prepositions '(prep for to in by with))
 \end{scheme}
 
 \noindent
-そして前置詞句(例えば``for the cat''(猫のために))を名詞句の前の前置詞として定義します。
+そして、前置詞句(例えば``for the cat'')を前置詞に名詞句が続くものとして定義します。
 
 \begin{scheme}
 (define (parse-prepositional-phrase)
@@ -23623,9 +23620,10 @@ Lornaの父親は誰か。
 \end{scheme}
 
 \noindent
-これで文は名詞句に動詞句が続くと定義でき、動詞句は動詞か、または前置詞句で拡張された動詞句
-となります。\footnote{この定義が再帰的であることに注意して下さい。動詞には任意の数の
-前置詞句が続けられます。}
+文は名詞句に動詞句が続くものと定義できます。動詞句は、動詞か、または前置詞句が後ろにくっついた
+動詞句のどちらかであるとします。
+\footnote{この定義が再帰的であることに注意してください。動詞には、任意の数の前置詞句が続けられる
+ことになります。}
 
 \begin{scheme}
 (define (parse-sentence)
@@ -23641,10 +23639,9 @@ Lornaの父親は誰か。
 \end{scheme}
 
 \noindent
-ここまでを行っている間に、名詞句の定義に``a cat in the class''(クラスの猫)のような
-物を認めるよう詳細を詰めることができます。今まで名詞句と呼んできた物はこれからは
-シンプルな名詞句と呼びます。そして名詞句はこれからシンプルな名詞句か前置詞句で
-拡張した名詞句となります。
+ついでに、名詞句の定義にも手を加えて、``a cat in the class''のようなものを認めるようにします。
+ここまで名詞句と呼んできたものは、ここからは単純な名詞句と呼ぶことにします。そして、今後は
+名詞句は、単純な名詞句か、前置詞句が後ろにくっついた名詞句のどちらかということにします。
 
 \begin{scheme}
 (define (parse-simple-noun-phrase)
@@ -23662,14 +23659,14 @@ Lornaの父親は誰か。
 \end{scheme}
 
 \noindent
-私達の新しい文法はより複雑な文をパースできます。例えば、
+この新しい文法を使うと、より複雑な文を構文解析できます。例えば、次の文を解析すると、
 
 \begin{scheme}
 (parse '(the student with the cat sleeps in the class))
 \end{scheme}
 
 \noindent
-(猫と一緒にその生徒はクラスで寝ている)は以下を生成します。
+以下の結果となります。
 
 \begin{scheme}
 (sentence
@@ -23686,17 +23683,17 @@ Lornaの父親は誰か。
 \end{scheme}
 
 \noindent
-与えられた入力が二つ以上の有効な分析結果を持つかもしれないことを確認して下さい。
-文``The professor lectures to the student with the cat''はprofessor(教授)が猫と一緒に
-講義をしている場合と、学生が猫を持っている場合が有り得ます。
-私達の非決定性プログラムは両方の可能性を見つけます。
+ある入力に対して二つ以上の合法な解析結果がある可能性があるというところに注意してください。
+文``The professor lectures to the student with the cat''では、教授が猫と一緒に講義をしている
+のかもしれませんし、学生が猫を持っているのかもしれません。私たちの非決定性プログラムは、
+両方の可能性を見つけます。
 
 \begin{scheme}
 (parse '(the professor lectures to the student with the cat))
 \end{scheme}
 
 \noindent
-は以下を生成します。
+これを実行すると、以下の結果となります。
 
 \begin{scheme}
 (sentence
@@ -23713,7 +23710,7 @@ Lornaの父親は誰か。
 \end{scheme}
 
 \noindent
-評価器にもう一度試行を命ずると以下を生じます。
+評価器に再試行を依頼すると、以下の結果となります。
 
 \begin{scheme}
 (sentence
@@ -23731,25 +23728,24 @@ Lornaの父親は誰か。
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.45}Exercise 4.45:}
-上で与えられた文法を用いて次の文は5通りにパースできる。 ``The professor
-lectures to the student in the class with the cat''。5通りの結果を与えて
-それらの間の様々な意味の違いを説明せよ。
+上の文法では、次の文の構文解析結果には5通りある。``The professor
+lectures to the student in the class with the cat''。5通りの解析結果を示し、それぞれのニュアンスの
+違いを説明せよ。
 
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.46}Exercise 4.46:} 
-\link{Section 4.1}と\link{Section 4.2}は評価器はどの順でオペランドが評価されるかを決定しない。
-我々は\code{amb}評価器がそれらを左から右へと評価するのを見るだろう。
-なぜ我々のパーザはオペランドが何らかの他の順で評価されたならうまく働かないのか
-説明せよ。
+\link{Section 4.1}と\link{Section 4.2}の評価器は、オペランドの評価順を決めていなかった。
+\code{amb}評価器はオペランドを左から右に評価するということを今後見ていく。
+オペランドの評価順がそれと違うものであったら我々の構文解析器がうまく動作しないのはなぜか説明せよ。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.47}Exercise 4.47:}
-Louis Reasonerは動詞句は動詞か前置詞句が続く動詞句であるのだから、
-手続き\code{parse\-/verb\-/phrase}を以下のように(そして同様に名詞句に対しても)
-定義すればずっと簡単になるのではないかと提案した。
+Louis Reasonerは、動詞句は、動詞か、前置詞句が後ろに続く動詞句なのだから、
+手続き\code{parse\-/verb\-/phrase}は次のように定義するほうがずっと素直なのではないかと言う
+(名詞句も同じようにする)。
 
 \begin{scheme}
 (define (parse-verb-phrase)
@@ -23759,22 +23755,23 @@ Louis Reasonerは動詞句は動詞か前置詞句が続く動詞句であるの
              (parse-prepositional-phrase))))
 \end{scheme}
 
-これはうまく行くだろうか? このプログラムの振舞はもし\code{amb}内の式の順を置き換えたら
-変わるだろうか?
+これはうまく動くだろうか。\code{amb}内の式の順番を入れ替えたら、プログラムのふるまいは
+変わるだろうか。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.48}Exercise 4.48:}
-上で与えられた文法をより複雑な文を取り扱うように拡張せよ。例えば、名詞句と動詞句を
-拡張し形容詞と福祉を含める、または複合文を取り扱えるようできるだろう。\footnote{この種の
-文法は任意の複雑さに成り得ます。しかし現実の言語の理解を考える限りはただの玩具に
-過ぎません。現実の自然言語のコンピュータによる理解は構文解析と意味解釈の念入りな
-混合が要求されます。一方で、例えおもちゃのパーザでもプログラムのための柔軟な命令言語、
-例えば情報取得システム等をサポートするには実用的です。\link{Winston 1992}は
-計算機による自然言語理解への取り組みと共に簡単な文法の命令言語のアプリケーションについても
-議論しています。}
+上の文法を拡張子、より複雑な文が扱えるようにせよ。例えば、形容詞や副詞を含むように
+名詞句や動詞句を拡張してもよい。または、重文を取り扱えるようにしてもよい。
+\footnote{この種の文法は、いくらでも複雑なものにすることができます。しかし、実際の言語理解を
+考えると、このような文法はおもちゃにすぎません。実際の自然言語をコンピュータで理解するためには、
+構文解析と意味解釈を巧妙に組み合わせる必要があります。一方、おもちゃの構文解析器であっても、
+情報検索システムのようなプログラムの柔軟なコマンド言語をサポートするのには役に立ちます。
+\link{Winston 1992}では、コンピュータによる自然言語理解のアプローチと、簡単な文法の
+コマンド言語への応用について論じています。}
 \end{quote}
 
+%%%
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.49}Exercise 4.49:}
 Alyssa P. Hackerはパースするよりも面白い文を生成することにより興味を持っている。
