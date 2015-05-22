@@ -23500,7 +23500,7 @@ Lornaの父親は誰か。
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.44}Exercise 4.44:}
-\link{Exercise 2.42}では、``8クイーンパズル''という、どの2つもお互いに利き筋に入らないように
+\link{Exercise 2.42}では、``8クイーンパズル''という、どの2つも互いに利き筋に入らないように
 8つのクイーンをチェス盤に置くパズルについて記述した。このパズルを解く非決定性プログラムを書け。
 \end{quote}
 
@@ -24947,7 +24947,7 @@ Ben Bitdiddleよりも給料が少ないすべての人と、その給料と、B
 \end{scheme}
 
 \noindent
-以下の規則は、ある人が、誰かを監督する人を監督している場合、その人を組織内での
+以下の規則は、ある人が誰かを監督する人を監督している場合、その人を組織内での
 ``wheel''(重要人物)であると宣言するものです。
 
 \begin{scheme}
@@ -25011,37 +25011,35 @@ Ben Bitdiddleの近くに住むコンピュータプログラマをすべて検�
 ある職員(\code{staff-person})について、ボス(\code{boss})がその人の上司であるか、
 (再帰的に)その職員の上司よりそのボスが地位が上(\code{outranked})であれば、
 そのボスはその職員より地位が上であるというものです。
-%%%
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.57}Exercise 4.57:}
-人(person)その1が人その2を置き換えられるとは人その1が人その2と同じ仕事をしているか、
-または第三者(someone)が人その1と同じ仕事をしつつ、かつ人その2の仕事も行え、そして
-人その1と人その2が異なる人である場合であると述べる規則を定義せよ。
-その規則を用いて以下の条件を見つけるクエリを与えよ。
+人1が人2と同じ職務を持っているか、人1の職務を持つ人には人2の職務もできるという場合で、
+人1と人2が同一人物でない場合、人1は人2を代替(\code{replace})できるとする規則を定義せよ。
+この規則を使って、以下の検索を行うクエリを示せ。
 
 \begin{enumerate}[a]
 
 \item
-Cy D. Fectを置き換えられる全ての人
+Cy D. Fectを代替できるすべての人
 
 \item
-自分より給料の高い誰かを置き換えられる全ての人を二人の給料と一緒に。
+自分より給料の高い誰かを代替できるすべての人と、その二つの給料
 
 \end{enumerate}
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.58}Exercise 4.58:}
-ある人が自分が働いている同じ部署に上司(監督者)がいない場合にその人を``big shot''(有力者)である
-と述べる規則を定義せよ。
+ある人が、自分の勤める部署に勤める監督者がいない場合、その人を``big shot''(重要人物)であると
+する規則を定義せよ。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.59}Exercise 4.59:}
-Ben Bitdiddleはある会議を何度も欠席してしまった。彼の会議を忘れる癖は仕事を失う
-恐れがある。Benは何かしなければならないと決心した。彼は会社の週次ミーティング全てを
-Microshaftデータベースに以下の表明として加えた。
+Ben Bitdiddleはある会議を何度も欠席してしまった。この会議を忘れる癖を何とかしないと首になると
+思って、Benは対策を取ることを決めた。彼は、以下のような表明として会社の週次ミーティングを
+Microshaftのデータベースにすべて追加した。
 
 \begin{scheme}
 (meeting accounting (Monday 9am))
@@ -25050,8 +25048,8 @@ Microshaftデータベースに以下の表明として加えた。
 (meeting administration (Friday 1pm))
 \end{scheme}
 
-各表明は部門の全体ミーティングのためのものだ。Benはまた全ての部門に渡る
-全社会議のエントリを追加した。会社の全従業員がこの会議に参加する。
+それぞれの表明は部門の全体会議のものだ。それに加えて、Benは全部門にわたる全社会議の
+エントリも追加した。この会議には会社の全従業員が参加する。
 
 \begin{scheme}
 (meeting whole-company (Wednesday 4pm))
@@ -25060,14 +25058,14 @@ Microshaftデータベースに以下の表明として加えた。
 \begin{enumerate}[a]
 
 \item
-金曜の朝に、Benはその日の全ての会議をデータベースからクエリしたいと思った。
-彼のクエリはどのような物になるか?
+金曜の朝、Benはその日にあるすべての会議についてデータベースに問い合わせようと思った。
+彼はどのようなクエリを使うべきだろうか。
 
 \item
-Alyssa P. Hackerは感心しなかった。彼女は自分の名前を指定することで彼女の会議を
-尋ねることができればより便利になるだろうと考えた。そのため彼女はある人の会議は
-全ての\code{whole\-/company}(全社)会議に加えてその人の部門会議を全て含むと言う規則を
-設計した。Alyssaの規則のボディを埋めよ。
+Alyssa P. Hackerは、このやり方はあまりよくないと思った。彼女は、自分の名前を指定して
+自分の会議について聞くことができたほうがずっと便利だろうと考えた。そこで、彼女は規則を
+設計することにした。その規則は、ある人の会議は全社(\code{whole\-/company})会議と
+その人の部門会議をすべて含むというものだ。Alyssaの規則に本体を補え。
 
 \begin{scheme}
 (rule (meeting-time ?person ?day-and-time)
@@ -25075,71 +25073,68 @@ Alyssa P. Hackerは感心しなかった。彼女は自分の名前を指定す�
 \end{scheme}
 
 \item
-Alyssaは水曜の朝に仕事場に到着し、その日に何の会議があるかについて考えた。
-上記の規則を定義した上で、彼女のがこのことを見つけるためにはどのようなクエリを
-行うべきか?
+Alyssaは水曜の朝に職場に着き、その日にどんな会議があるか考えた。上記の規則を定義してあるとして、
+この検索を行うには、彼女はどのようなクエリを作るべきだろうか。
 
 \end{enumerate}
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.60}Exercise 4.60:}
-以下のクエリを与えることにより、
+以下のクエリによって、
 
 \begin{scheme}
 (lives-near ?person (Hacker Alyssa P))
 \end{scheme}
 
-Alyssa P. Hackerは仕事場に相乗りできる、彼女の近所に住む人を見つけることができる。
-一方で、お互いが近所に住んでいる全ての人々のペアを見つけたい場合には以下のクエリを
-用いる。
+自分の近所に住んでいて会社まで車の相乗りができる人をAlyssa P. Hackerは探すことができている。
+一方、彼女が次のクエリを使って互いに近所に住んでいる人のペアをすべて検索しようとしたとき、
 
 \begin{scheme}
 (lives-near ?person-1 ?person-2)
 \end{scheme}
 
 \noindent
-彼女はお互いに近所に住んでいる人々の各ペアが二度づつ挙げられていることに気付いた。
-例えば、
+互いに近所に住んでいる人のペアがそれぞれ二回ずつ表示されていることに気がついた。
+例えば、次のようなものだ。
 
 \begin{scheme}
 (lives-near (Hacker Alyssa P) (Fect Cy D))
 (lives-near (Fect Cy D) (Hacker Alyssa P))
 \end{scheme}
 
-なぜこれが起こるのか?  お互いに近くに住んでいる人々のリストを各ペアが一度しか現れないように
-見つける方法は存在するか? 説明せよ。
+これはなぜ起こるのだろうか。それぞれのペアが一回ずつしか現れないようにして、互いに近所に
+住んでいる人のリストを検索する方法はあるだろうか。説明せよ。
 \end{quote}
 
 \subsubsection*{プログラムとしての論理}
 
-
-規則を論理的意味合いの一種であると見なすことができます。\emph{もし}パターン変数に
-対する値の割り当てがボディを満たす場合、\emph{それならば}結論を満たします。必然的に、
-クエリ言語は規則を基にした\newterm{logical deductions}(\jnewterm{論理的推理})を実行する能力を
-有すると見なすことができます。例として、\link{Section 4.4}の始めに説明した\code{append}命令について
-考えてみましょう。既に述べたように、\code{append}は以下の2つの規則にて特徴づけられます。
+規則は論理的含意の一種と見なすことができます。\emph{もし}パターン変数に対する値の代入が本体を
+満たす\emph{のであれば}、その代入は結論を満たします。したがって、クエリ言語は規則に基づき
+\newterm{logical deductions}(\jnewterm{論理的推論})を行う能力があるものと見なすことができます。
+例として、\link{Section 4.4}の始めに記述した\code{append}演算について考えてみましょう。
+すでに述べたように、\code{append}は次の二つの規則によって特徴づけられます。
 
 \begin{itemize}
 
 \item
-任意のリスト\code{y}に対し、空リストと\code{y}の\code{append}は\code{y}を形成する。
+任意のリスト\code{y}について、空リストと\code{y}を\code{append}すると\code{y}になる。
 
 \item
-任意の\code{u}, \code{v}, \code{y}, \code{z}に対し、\code{(cons u v)}と\code{y}の\code{append}は
-もし\code{v}と\code{y}\code{append}が\code{z}を形成する場合、\code{(cons u z)}を形成する。
+任意の\code{u}, \code{v}, \code{y}, \code{z}について、\code{v}と\code{y}を\code{append}すると
+\code{z}になるならば、\code{(cons u v)}と\code{y}を\code{append}すると\code{(cons u z)}になる。
 
 \end{itemize}
 
 \noindent
-これを私達のクエリ言語で表現するために、以下の関係に対する2つの規則を定義します。
+これを私たちのクエリ言語で表現するために、次の関係に対して二つの規則を定義します。
 
 \begin{scheme}
 (append-to-form x y z)
 \end{scheme}
 
 \noindent
-上の関係は``\code{x}と\code{y}の\code{append}は\code{z}を形成する''ことを意味すると解釈できます。
+この関係は、``\code{x}と\code{y}を\code{append}すると\code{z}になる''ということだと解釈できます。
 
 \begin{scheme}
 (rule (append-to-form () ?y ?y))
@@ -25147,6 +25142,7 @@ Alyssa P. Hackerは仕事場に相乗りできる、彼女の近所に住む人�
       (append-to-form ?v ?y ?z))
 \end{scheme}
 
+%%%
 \noindent
 最初の規則にはボディがありません。これは結果部分が\code{?y}の任意の値を保持することを
 意味します。2つ目の規則がどのようにドット付き末尾記述をリストの\code{car}と\code{cdr}に
