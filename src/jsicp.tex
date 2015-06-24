@@ -25881,19 +25881,16 @@ Minnie Mickey)}
 があるとき、システムはどんな\code{not}命題でも、
 例えばBen Bitdiddleは野球ファンではない、外で雨は降っていない、2 + 2 は4ではない、といったものでも、
 喜んで推論してくれるでしょう。
-%%%
-\footnote{クエリ
-\code{(not (baseball\-/fan (Bitdiddle Ben)))}について考えてみましょう。システムは
-データベースに\code{(baseball\-/fan (Bitdiddle Ben))}が無いことを知り、そのため空フレームは
-パターンを満たさず初期値のフレームのストリームから取り除かれません。クエリの結果は
-従って空フレームであり、これが入力クエリの実体化に用いられ、
+\footnote{\code{(not (baseball\-/fan (Bitdiddle Ben)))}というクエリについて考えてみましょう。
+システムは、データベースに\code{(baseball\-/fan (Bitdiddle Ben))}がないということを発見し、
+そのため空フレームはパターンを満たさないことになり、最初のフレームのストリームから取り除かれません。したがって、クエリの結果はその空フレームとなり、それが入力クエリを実体化するために使われて、
 \code{(not (baseball\-/fan (Bitdiddle Ben)))}が生成されます。}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.64}Exercise 4.64:}
 Louis Reasonerは誤って\code{outranked\-/by}規則(\link{Section 4.4.1})をデータベースから削除して
-しまった。彼はこのことに気付いた時、直ぐに再インストールした。残念なことに、
-彼は規則にわずかな変更を行い、以下のように入力した。
+しまった。彼がこのことに気づいたとき、すぐにまたその規則を組み込んだ。困ったことに、
+彼は規則を少し変更してしまい、次のように入力した。
 
 \begin{scheme}
 (rule (outranked-by ?staff-person ?boss)
@@ -25903,29 +25900,26 @@ Louis Reasonerは誤って\code{outranked\-/by}規則(\link{Section 4.4.1})を�
                            ?middle-manager))))
 \end{scheme}
 
-
-Louisがこの情報をシステムに入力して直ぐに、DeWitt AullがやってきてBen Bitdiddleの
-上司は誰かを調べようとした。彼は以下のクエリを入力した。
+Louisがこの情報をシステムに入力してすぐDeWitt Aullがやってきて、Ben Bitdiddleよりも地位が上の人には
+誰がいるかを調べようとした。彼は次のクエリを入力した。
 
 \begin{scheme}
 (outranked-by (Bitdiddle Ben) ?who)
 \end{scheme}
 
-
-回答を行った後、システムは無限ループへと陥った。何故であるか、説明せよ。
+応答の後、システムは無限ループに陥った。理由を説明せよ。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.65}Exercise 4.65:}
-組織内での昇進の日を待ち望んでいるCy D. Fectは全ての重役を探すクエリを入力
-してみた(\link{Section 4.4.1}の規則\code{wheel}を用いた)。
+組織内での昇進の日を待ち望んでいるCy D. Fectは、(\link{Section 4.4.1}の規則\code{wheel}を使って)
+組織の重要人物をすべて検索するクエリを入力してみた。
 
 \begin{scheme}
 (wheel ?who)
 \end{scheme}
 
-
-驚いたことにシステムは以下の内容を応答した。
+彼はシステムからの応答に驚いた。
 
 \begin{scheme}
 ~\textit{;;; Query results:}~
@@ -25936,69 +25930,65 @@ Louisがこの情報をシステムに入力して直ぐに、DeWitt Aullがや�
 (wheel (Warbucks Oliver))
 \end{scheme}
 
-何故、Oliver Warbucksは4度表示されたのか?
+Oliver Warbucksはなぜ四回表示されたのだろうか。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.66}Exercise 4.66:}
-Benはクエリシステムを一般化し会社に関する統計を提供する。例えば、全ての
-コンピュータプログラマの給料の合計を求めるためには、以下のように入力することが
-できるだろう。
+Benは、会社についての統計データを出せるようにクエリシステムを一般化する作業をしているところだ。
+例えば、以下のように入力することで、すべてのコンピュータプログラマの給料の合計を求めることが
+できるようになる。
 
 \begin{scheme}
 (sum ?amount (and (job ?x (computer programmer))
                   (salary ?x ?amount)))
 \end{scheme}
 
-
-全般に、Benの新しいシステムは以下の形式の式を可能にする。
+一般的に、Benの新しいシステムは次の形式の式を受け入れる。
 
 \begin{scheme}
 (accumulation-function ~\( \dark \langle \)~~\var{\dark variable}~~\( \dark \rangle \)~ ~\( \dark \langle \)~~\var{\dark query pattern}~~\( \dark \rangle \)~)
 \end{scheme}
 
 \noindent
-ここで\code{accumulation\-/function}は\code{sum}, \code{average}, または\code{maximum}のような物である。
-Benはこれを実装するのは簡単なはずだと考えた。単純にクエリパターンを\code{qeval}に追加するだろう。
-これはフレームのストリームを生成するだろう。すると彼はこのストリームをmap関数を通すことで
-ストリーム内の各フレームから指定した変数の値を抽出し、結果の値のストリームをaccumulation(集積)
-関数へと与えるだろう。Benが実装を完成し、丁度試験を行おうとした時にCyが依然として\link{Exercise 4.65}の
-\code{wheel}クエリの結果に悩みながら歩いてきた。CyがBenにシステムの応答を見せた時、Benはうなってから
-``なんてこった。私の簡単な集積の仕組みは動かない!''と述べた。
+ここで、\code{accumulation\-/function}は\code{sum}, \code{average}, \code{maximum}のようなものだ。
+Benは、この実装は朝飯前だろうと考えた。クエリパターンを単純に\code{qeval}に与えればいい。
+そうするとフレームのストリームができる。それから、このストリームを、各フレームから指定された
+変数の値を取り出しその結果のストリームを蓄積関数に渡すマップ関数に渡す。Benが実装を終えて
+動作確認をしようとしていたところ、Cyがやってきた。Cyは相変わらず\link{Exercise 4.65}の
+\code{wheel}クエリの結果に悩んでいた。CyがBenにシステムの応答を見せると、Benは
+``あぁ、ダメだ。これじゃこの単純な蓄積計画はうまくいかないな''とうめいた。
 
-
-Benは何に気付いたのか? この状況を救い出すため用いられる手段の要点を述べよ。
+Benは何に気づいたのだろうか。状況打開に使える方法の概要を述べよ。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.67}Exercise 4.67:}
-クエリシステムにループ検知器をインストールし、テキストと\link{Exercise 4.64}で
-説明されたような単純なループを防ぐための手段を工夫せよ。
-一般的なアイデアは、システムに現在の推論の連鎖のある種の履歴を管理させ、既に取り組んでいる
-クエリの処理を始めないようにすることである。どのような種類の情報(パターンとフレーム)が
-この履歴に含まれるか、そしてどのように検査が行われるべきかについて説明せよ。(\link{Section 4.4.4}に
-おけるクエリシステムの実装の詳細を学んだ後に、あなたはシステムを変更してループ検知器を
-入れたいと思うだろう)。
+本文や\link{Exercise 4.64}で示したような種類の単純なループを防ぐために、クエリシステムに
+ループ検知器を組み込む方法を考えよ。考え方の概要は、システムが現在の推論のつながりについて
+何らかの形で履歴を管理するようにして、すでに実行中のクエリの処理を始めないようにするという
+ものである。この履歴にはどのような種類の情報(パターンとフレーム)が含まれるか、また
+どのようにチェックを行うかを説明せよ(\link{Section 4.4.4}でクエリシステムの実装の詳細を学んでから、
+システムを修正してループ検知器を組み入れてみるのもいいだろう)。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.68}Exercise 4.68:}
-\link{Exercise 2.18}の\code{reverse}命令を実装する規則を定義せよ。これは与えられたリストの
-逆順で同じ要素を含むリストを返す。(ヒント：\code{append\-/to\-/form}を使用せよ)。あなたの
-規則は\code{(reverse (1 2 3) ?x)}と\code{(reverse ?x (1 2 3))}の両方に回答することができるだろうか?
+与えられたリストと同じ要素を逆順で持つリストを返す、\link{Exercise 2.18}の\code{reverse}演算を
+実装する規則を定義せよ(ヒント：\code{append\-/to\-/form}を使う)。その規則は
+\code{(reverse (1 2 3) ?x)}と\code{(reverse ?x (1 2 3))}の両方に答えることができるだろうか。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.69}Exercise 4.69:}
-\link{Exercise 4.63}で策定したデータベースと規則から始めて、孫の関係に``great''を
-追加するための規則を工夫せよ。これはシステムに対しIradがAdamのgreat-grandson(ひ孫)である
-こと、またJabalとJubalがgreat-great-great-great-great-grandsons(ひひひひひ孫)であることを
-推論することを可能にしなければならない。(ヒント：例えばIradに関する事実を
-\code{((great grandson) Adam Irad)}として表現する。リストの終端が単語\code{grandson}であるかを
-決定する規則を書け。これを用いて\code{?rel}が\code{grandson}で終わるリストである場合に、
-関係\code{((great .  ?rel) ?x ?y)}を導き出すことが可能な規則を表現せよ)。
-あなたの規則を\code{((great grandson) ?g ?ggs)}と\code{(?relationship Adam Irad)}のような
-クエリを用いて確認せよ。
+\link{Exercise 4.63}で作ったデータベースと規則をもとに、孫(grandson)の関係に``great''を
+追加する規則を考えよ。これによって、システムはIradがAdamのgreat-grandson(ひ孫)であることや、
+JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ孫)であることが
+推論できるようになる(ヒント：Iradについての事実を、例えば\code{((great grandson) Adam Irad)}と
+表現する。また、リストの末尾が単語\code{grandson}であるかどうか決定する規則を書く。これを使って、
+\code{?rel}が\code{grandson}で終わるリストであるとき、\code{((great .  ?rel) ?x ?y)}という関係を
+導出できる規則を表現する)。これらの規則を、\code{((great grandson) ?g ?ggs)}や
+\code{(?relationship Adam Irad)}のようなクエリによって確認せよ。
 \end{quote}
 
 \subsection{クエリシステムの実装}
