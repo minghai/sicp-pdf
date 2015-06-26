@@ -25321,10 +25321,10 @@ Alyssaは水曜の朝に職場に着き、その日にどんな会議がある�
 ここでの実装は、そのような最適化を単純にしたものを含んでいます。}
 
 私たちのシステムでは、\link{Figure 4.4}に示すように、クエリはフレームの入力ストリームを取り、
-ストリーム内の各フレームに対して上記のマッチング処理を行います。つまり、クエリは入力ストリーム内の
+ストリームの各フレームに対して上記のマッチング処理を行います。つまり、クエリは入力ストリームの
 各フレームに対して、データベース内の表明へのマッチによるそのフレームへの拡張すべてからなる
 新しいストリームを生成するということです。次に、これらのストリームがすべて組み合わされ、
-ひとつの巨大なストリームが作られます。このストリームは入力ストリーム内の各フレームに対する
+ひとつの巨大なストリームが作られます。このストリームは入力ストリームの各フレームに対する
 すべての可能な拡張を含んでいます。このストリームがクエリの出力となります。
 
 単純クエリに答えるには、ひとつの空フレームからなる入力ストリームとともにクエリを使います。
@@ -25379,7 +25379,7 @@ Alyssaは水曜の朝に職場に着き、その日にどんな会議がある�
 
 \noindent
 すると、それぞれのフレームが\code{?x}に対する束縛を持つフレームのストリームができます。
-次に、ストリーム内の各フレームについて、与えられた\code{?x}に対する束縛に矛盾しない形で
+次に、ストリームの各フレームについて、与えられた\code{?x}に対する束縛に矛盾しない形で
 次のパターンにマッチするエントリをすべて探します。
 
 \begin{scheme}
@@ -25494,7 +25494,7 @@ frames     | |    ^          +-------+ |  frames
 微妙な違いがあります。\link{Section 4.4.3}参照。}
 
 \code{lisp\-/value}特殊形式は、フレームのストリームに対する同じようなフィルタとして実装します。
-ストリーム内のそれぞれのフレームを使い、パターン内に変数があれば具体化し、
+ストリームのそれぞれのフレームを使い、パターン内に変数があれば具体化し、
 それからLisp手続きを適用します。述語が失敗するフレームをすべて入力ストリームから削除します。
 
 \subsubsection*{ユニフィケーション}
@@ -25650,7 +25650,7 @@ frames     | |    ^          +-------+ |  frames
 ここまでで学んだため、規則と表明の両方を使って単純クエリを評価するやり方についても
 記述することができるようになります。
 
-クエリパターンとフレームのストリームが与えられたとき、入力ストリーム内の各フレームに対して、
+クエリパターンとフレームのストリームが与えられたとき、入力ストリームの各フレームに対して、
 二つのストリームを生成します。
 
 \begin{itemize}
@@ -26120,16 +26120,15 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 ついてのこのストリームは\code{stream\-/flatmap} (\link{Section 4.4.4.6})によって組み合わされ、
 元の入力ストリームの任意のフレームを拡張して与えられたパターンとのマッチを作るすべての
 方法の大きなストリームがひとつできます。
-%%%
 
 \subsubsection*{複合クエリ}
 
-\code{and}クエリは\link{Figure 4.5}にて説明されているように\code{conjoin}手続きにより
-扱われます。\code{conjoin}は入力として結合(conjuncts)とフレームのストリームを
-取り、拡張されたフレームのストリームを返します。最初に\code{conjoin}はフレームの
-ストリームを処理し、結合内の最初のクエリを満たす全ての可能なフレームの拡張の
-ストリームを探します。次に、これを新しいフレームのストリームとして用いて、
-再帰的にクエリの残りに対して\code{conjoin}を適用します。
+\code{and}クエリは、\link{Figure 4.5}で図示したように、\code{conjoin}手続きによって
+扱われます。\code{conjoin}は、入力として連言肢(conjunct)とフレームのストリームを取り、
+拡張されたフレームのストリームを返します。まず、\code{conjoin}はフレームのストリームを
+処理して、連言(conjunction)の最初のクエリを満たすフレームの可能な拡張をすべて探します。
+次に、これを新しいフレームのストリームとして、クエリの残り部分に対して再帰的に
+\code{conjoin}を適用します。
 
 \begin{scheme}
 (define (conjoin conjuncts frame-stream)
@@ -26141,18 +26140,19 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 \end{scheme}
 
 \noindent
-以下の式は
+以下の式は、
 
 \begin{scheme}
 (put 'and 'qeval conjoin)
 \end{scheme}
 
 \noindent
-\code{qeval}に対し、\code{and}の型に遭遇した場合に\code{conjoin}を呼び出すように設定します。
+\code{qeval}が\code{and}形式を見つけたときに\code{conjoin}にディスパッチするよう設定します。
 
-\code{or}クエリも同様に、\link{Figure 4.6}に示されるように扱われます。
-\code{or}の多様な選言肢に対する出力ストリームは別々に求められ、\link{Section 4.4.4.6}の
-\code{interleave\-/delayed}手続きを用いて結合されます。(\link{Exercise 4.71}と\link{Exercise 4.72}を参照)
+\link{Figure 4.6}に図示したように、\code{or}クエリも同じように扱います。
+\code{or}のそれぞれの選言肢(disjunct)に対する出力ストリームは別々に計算され、
+\link{Section 4.4.4.6}の\code{interleave\-/delayed}手続きによって結合されます
+(\link{Exercise 4.71}、\link{Exercise 4.72}参照)。
 
 \begin{scheme}
 (define (disjoin disjuncts frame-stream)
@@ -26167,15 +26167,13 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 \end{scheme}
 
 \noindent
-論理積(conjuncts)と論理和(disjuncts)の構文のための述語とセレクタは\link{Section 4.4.4.7}で
-提供されます。
+連言肢構文と選言肢構文の述語とセレクタは\link{Section 4.4.4.7}で示します。
 
 \subsubsection*{フィルタ}
 
-
-\code{not}は\link{Section 4.4.2}にて概説された手法により扱われます。入力ストリーム内の各フレームを
-否定されたクエリを満たすように拡張することを試みます。そして拡張できない場合にのみ
-出力ストリームに与えられたフレームを含めます。
+\code{not}は、\link{Section 4.4.2}で概説した方法で扱います。否定対象となるクエリを
+満たすように入力ストリームの各フレームを拡張することを試み、拡張できない場合のみ
+与えられたフレームを出力ストリームに入れます。
 
 \begin{scheme}
 (define (negate operands frame-stream)
@@ -26191,10 +26189,9 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 \end{scheme}
 
 \noindent
-\code{lisp\-/value}は\code{not}に似たフィルタです。ストリーム内の各フレームはパターン内の
-変数を具体化するために用いられ、指定された述語が適用され、述語が偽を返した
-フレームは入力ストリームから取り除かれます。未束縛なパターン変数が存在する場合には
-結果はエラーとなります。
+\code{lisp\-/value}は\code{not}に似たフィルタです。ストリームの各フレームを使って
+パターン内の変数を具体化し、指定された述語を適用し、述語が偽を返したフレームを
+入力ストリームから取り除きます。未束縛のパターン変数がある場合は結果はエラーとなります。
 
 \begin{scheme}
 (define (lisp-value call frame-stream)
@@ -26214,10 +26211,11 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 \end{scheme}
 
 \noindent
-\code{execute}は述語を引数に適用しますが、述語式を評価し適用する手続きを得なければなりません。
-しかし引数は評価してはいけません。なぜならそれらは既に実際の引数であり、その(Lispにおける)
-評価が引数を生成する式ではないためです。\code{execute}が基礎を成すLispシステムの
-\code{eval}と\code{apply}を使用して実装されていることに注意して下さい。
+\code{execute}は述語を引数に適用するものですが、適用する手続きを得るためには
+述語式を\code{eval}する必要があります。しかし、引数を評価してはいけません。
+引数はすでに実際の引数であり、(Lispで)評価すると引数を生成する式ではないからです。
+\code{execute}の実装には基層となるLispシステムの\code{eval}と\code{apply}が
+使われていることに注意してください。
 
 \begin{scheme}
 (define (execute exp)
@@ -26227,11 +26225,11 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 \end{scheme}
 
 \noindent
-特殊形式\code{always\-/true}はクエリに対し常に満たされた状態を与えます。これはその
-中身(通常は空)を無視し、単純に入力ストリームの全てのフレームを通します。
-\code{always\-/true}は\code{rule\-/body}セレクタ(\link{Section 4.4.4.7})により利用され、ボディ成しで
-定義された規則に対しボディを提供します。(言い換えれば、その結果部分が常に
-満たされます。)
+特殊形式\code{always\-/true}は、常に満たされているクエリを提供します。\code{always\-/true}は
+中身(通常は空)を無視し、入力ストリームのすべてのフレームをそのまま渡します。
+\code{always\-/true}は、\code{rule\-/body}セレクタ(\link{Section 4.4.4.7})が
+本体なしで定義されている規則(つまり、結論部分が常に満たされる規則)に対して本体を提供するために
+使われます。
 
 \begin{scheme}
 (define (always-true ignore frame-stream) frame-stream)
@@ -26239,22 +26237,22 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 \end{scheme}
 
 \noindent
-\code{not}と\code{lisp\-/value}の構文を定義するセレクタは\link{Section 4.4.4.7}で提供されます。
+\code{not}と\code{lisp\-/value}の構文を定義するセレクタは\link{Section 4.4.4.7}で示します。
 
-\subsubsection{パターンマッチングにより表明を見つける}
+\subsubsection{パターンマッチングによる表明の検索}
 \label{Sec. 4.4.4.3}
 \label{Section 4.4.4.3}
 
-\code{find\-/assertions}は\code{simple\-/query} (\link{Section 4.4.4.2})により呼ばれ、
-入力としてパターンとフレームを取ります。フレームのストリームを返し、各フレームは
-与えられた物を与えらえたパターンへのデータベースの適合により拡張されています。
-\code{fetch\-/assertions} (\link{Section 4.4.4.5})を用いてデータベース内の全ての表明の
-ストリームを得ます。これはパターンとフレームに対して適合するか確認されなければなりません。
-ここで\code{fetch\-/assertions}する理由は、私達は良く簡単なテストをここで適用するためです。
-このテストは適合を成功する候補のプールからデータベース内のエントリを数多く削減することが
-できます。システムは例え\code{fetch\-/assertions}を削除して単純にデータベース内の全ての
-表明のストリームを確認するだけでも動くでしょう。しかし演算は効率的ではなくなります。
-より多くのマッチャに対する呼出を行わねばならなくなるためです。
+\code{find\-/assertions}は、\code{simple\-/query} (\link{Section 4.4.4.2})に呼ばれるもので、
+入力としてパターンとフレームを取ります。返すのはフレームのストリームで、各フレームは
+与えらえたパターンに対するデータベースのマッチによって与えられたフレームを拡張したものです。
+この手続きは、パターンとフレームに対するマッチを確認しなければならないデータベース内の
+すべての表明のストリームを得るために、\code{fetch\-/assertions} (\link{Section 4.4.4.5})を
+使います。ここで\code{fetch\-/assertions}を行うのは、マッチが成功する候補のプールの中から
+多くのエントリを削除してくれる簡単なテストが適用できることがよくあるからです。ここで
+\code{fetch\-/assertions}を省いてデータベース内のすべての表明のストリームをチェックしたとしても
+システムは依然として動作するでしょうが、マッチャの呼び出し回数がずっと多くなるので、
+計算は非効率になるでしょう。
 
 \begin{scheme}
 (define (find-assertions pattern frame)
@@ -26264,6 +26262,7 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
     (fetch-assertions pattern frame)))
 \end{scheme}
 
+%%%
 \noindent
 \code{check\-/an\-/assertion}は引数としてパターン、データオブジェクト(表明)、フレームを取り、
 拡張されたフレームを含む1要素のストリームか、適合を失敗した場合に\code{the\-/empty\-/stream}を返します。
