@@ -26337,36 +26337,37 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 定義されています。
 
 \subsubsection*{ドット末尾を持つパターン}
+
+パターンがドットとそれに続くパターン変数を含む場合、\link{Exercise 2.20}で述べた
+ドット末尾記法から予想できるように、そのパターン変数はデータリストの(次の要素ではなく)
+残りにマッチします。ここまでで実装したパターンマッチャはドットを探すことはしませんが、
+期待通りのふるまいをします。これは、\code{query\-/driver\-/loop}で使っているLispの基本
+手続き\code{read}が、クエリを読み込んでそれをリスト構造として表現する際に、ドットを
+特別扱いするためです。
+
+\code{read}がドットを見つけると、次の項目をリストの次の要素にする
+(\code{cons}の\code{car}にして、その\code{cdr}がリストの残りになる)のではなく、
+次の項目をリスト構造の\code{cdr}にします。例えば、パターン\code{(computer ?type)}に対する
+\code{read}によって生成されるリスト構造は式\code{(cons 'computer (cons '?type '()))}を
+評価することによって構築されるものになり、パターン\code{(computer . ?type)}の場合は式
+\code{(cons 'computer '?type)}を評価することによって構築されるものになります。
+
+そのため、\code{pattern\-/match}がデータリストとドットを持つパターンの\code{car}と\code{cdr}を
+再帰的に比較していくと、最終的にはドットの次の変数(パターンの\code{cdr})がデータリストの
+部分リストに対してマッチされることになり、変数はそのリストに対して束縛されることになります。
+例えば、パターン\code{(computer . ?type)}を\code{(programmer computer trainee)}にマッチ
+させると、\code{?type}をリスト\code{(programmer trainee)}にマッチさせることになります。
+
+\subsubsection{規則とユニフィケーション}
 \label{Sec. 4.4.4.4}
 \label{Section 4.4.4.4}
 
-パターンがドットとそれに続くパターン変数を含む場合、そのパターン変数はデータリストの
-(次の要素ではなく)残りに適合します。誰かが予想するように\link{Exercise 2.20}にて
-説明されたドット付き末尾記述と同様です。私達が実装したばかりのパターンマッチャは
-ドットを探しませんが、私達が望むとおりに振舞います。これは\code{query\-/driver\-/loop}で
-用いられるLispの\code{read}プリミティブがクエリを読み込みリスト構造として表現する時に
-ドットを特別な方法で扱うためです。
-
-\code{read}がドットを見た時、次の項目をリストの次の要素にするのではなく
-(\code{cons}の\code{car}のこと、\code{cdr}はリストの残り)、リスト構造の\code{cdr}を
-次の項目にします。例えば、パターン\code{(computer ?type)}に対する\code{read}により
-生成されるリスト構造は式\code{(cons 'computer (cons '?type '()))}を評価することにより
-構築されます。またパターン\code{(computer . ?type)}に対する場合は式
-\code{(cons 'computer '?type)}を評価することにより構築されます。
-
-従って\code{pattern\-/match}が再帰的にデータリストとドットを持つパターンの\code{car}と\code{cdr}を
-比較するにつれ、最終的にはドットの後ろの変数(パターンの\code{cdr})がデータリストの
-部分リストに対して適合され、そのリストに対してその変数が束縛されます。例えば、
-パターン\code{(computer . ?type)}を\code{(programmer trainee)}に適合することは
-\code{?type}をリスト\code{(programmer trainee)}に適合させます。
-
-\subsubsection{規則とユニフィケーション}
-
-\code{apply\-/rules}は\code{find\-/assertions}の類似の規則です(\link{Section 4.4.4.3})。
-入力としてパターンとフレームを取り、データベースから規則を適用することにより
-拡張フレームのストリームを形成します。\code{stream\-/flatmap}は\code{apply\-/a\-/rule}を
-(\code{fetch\-/rules}により選択された(\link{Section 4.4.4.5}))恐らく適用可能な
-規則のストリームに対しmapし、結果のフレームのストリーム群を結合します。
+\code{apply\-/rules}は、\code{find\-/assertions}(\link{Section 4.4.4.3})の規則版です。
+入力としてパターンとフレームを取り、データベースの規則を適用することによって
+拡張したフレームのストリームを作ります。\code{stream\-/flatmap}は、
+(\link{Section 4.4.4.5}の\code{fetch\-/rules}によって選択された)適用可能かもしれない
+規則のストリームに対して\code{apply\-/a\-/rule}をマップし、返されるフレームのストリームを
+結合します。
 
 \begin{scheme}
 (define (apply-rules pattern frame)
@@ -26376,20 +26377,20 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 \end{scheme}
 
 \noindent
-\code{apply\-/a\-/rule}は\link{Section 4.4.2}で概説された手法を用いて規則を適用します。
-最初に規則の結論を与えられたフレーム内のパターンとユニフィケーションを行うことで
-引数フレームを増大させます。これが成功したならこの新しいフレーム内で規則のボディを
+\code{apply\-/a\-/rule}は\link{Section 4.4.2}で概説した手法によって規則を適用します。
+まず、与えられたフレーム内で規則の結論とパターンのユニフィケーションを行うことによって
+引数のフレームを拡張します。それが成功すると、この新しいフレーム内で規則の本体を
 評価します。
 
-しかしこの全てが起こる前に、プログラムは規則内の全ての変数を個別の新しい名前に
-変更します。この理由は異なる規則の適用に対する変数が御互いに混同されることを
-防ぐためです。例えば、もし2つの規則の両方が\code{?x}と名付けられた変数を用いる場合、
-それぞれが適用された時に\code{?x}に対する束縛をフレームに追加するかもしれません。
-これら2つの\code{?x}は御互いに関係がありません。そして私達は2つの束縛が一致するはずだと
-考えるように惑わされてはいけません。変数名を変えるのでなく、より賢い環境構造を
-工夫することもできるでしょう。しかし、私達がここで選択した改名による取り組み方は
-最も効率的ではないとしても、最も簡単です(\link{Exercise 4.79}参照)。
-以下が\code{apply\-/a\-/rule}手続きです。
+しかし、これらのことを行う前に、プログラムは規則内のすべての変数にユニークな名前を
+つけ直します。この理由は、別々の規則適用の変数が互いに混同されないようにするためです。
+例えば、二つの規則が両方とも\code{?x}という名前の変数を使っている場合、規則適用時に
+どちらも\code{?x}に対する束縛をフレームに追加するかもしれません。これら二つの\code{?x}は
+互いに関係がないので、この二つの束縛に矛盾があってはならないなどと考えるようになっては
+いけません。変数名を変えるのではなく、より巧妙な環境構造を考えることもできるところかも
+しれません。しかし、変数名を変えるというここで選んだやり方は、最も効率のよいものではないに
+しても、もっとも素直なやり方です(\link{Exercise 4.79}参照)。
+\code{apply\-/a\-/rule}手続きは以下のようになります。
 
 \begin{scheme}
 (define (apply-a-rule rule query-pattern query-frame)
@@ -26405,13 +26406,14 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 \end{scheme}
 
 \noindent
-セレクタ\code{rule\-/body}と\code{conclusion}は規則の部分を抜き出します。
-これは\link{Section 4.4.4.7}で定義されます。
+セレクタ\code{rule\-/body}と\code{conclusion}は規則の部品を取り出すするもので、
+\link{Section 4.4.4.7}で定義されます。
 
-私達はユニークな(unique、独自の)識別子(例えば番号)を各規則の適用に関連付けし、この識別子を元の
-変数名に接続することで、ユニークな変数名を生成します。例えば、もし規則適用識別子が7なら、
-規則内の各\code{?x}を\code{?x\-/7}に、各\code{?y}を\code{?y\-/7}に変更するでしょう。
-(\code{make\-/new\-/variable}と\code{new\-/rule\-/application\-/id}は\link{Section 4.4.4.7}の構文手続きに含まれます。)
+ユニークな変数名を作る際には、規則適用ごとにユニークな識別子(例えば数字)を関連づけ、
+その識別子と元の変数名を組み合わせることにします。例えば、規則適用の識別子が7なら、
+規則内の\code{?x}をすべて\code{?x\-/7}に、\code{?y}をすべて\code{?y\-/7}に変更することに
+なります(\code{make\-/new\-/variable}と\code{new\-/rule\-/application\-/id}は
+\link{Section 4.4.4.7}の構文手続きに含まれています)。
 
 \begin{scheme}
 (define (rename-variables-in rule)
@@ -26428,11 +26430,13 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 \end{scheme}
 
 \noindent
-ユニフィケーションアルゴリズムは手続きとして実装され、入力として2つのパターンとフレームを取り、
-拡張されたフレームかシンボル\code{failed}を返します。ユニファイアはパターンマッチャに似ていますが、
-対照的であることが異なります---つまり、変数が適合の両サイドに存在することが許されます。
-\code{unify\-/match}は基本的には\code{pattern\-/match}と同じですが、(以下で``\code{***}''のマークを付けた)
-拡張コードの存在が異なります。これは適合の右側のオブジェクトが変数である場合を扱います。
+ユニフィケーションのアルゴリズムは、入力として二つのパターンとフレームを取り、
+拡張されたフレームまたは記号\code{failed}を返す手続きとして実装されます。
+ユニファイアはパターンマッチャに似ていますが、対照的だというところが違います---
+変数はマッチのどちら側に現れることも可能です。
+\code{unify\-/match}は基本的には\code{pattern\-/match}と同じですが、
+マッチの右側のオブジェクトが変数である場合を扱う(下で``\code{***}''をつけた)追加コードが
+あるという違いがあります。
 
 \begin{scheme}
 (define (unify-match p1 p2 frame)
@@ -26449,6 +26453,7 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
         (else 'failed)))
 \end{scheme}
 
+%%%
 \noindent
 ユニフィケーションにおいては一方向マッチングのように、既存の束縛に一致する場合のみ
 提案されたフレームの拡張を受け入れたいです。手続き\code{extend\-/if\-/possible}はユニフィケーションに
