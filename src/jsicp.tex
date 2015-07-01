@@ -9233,7 +9233,7 @@ d(uv)     / dv \     / du \
 
 これらの規則を手続きという形にするために、有理数の実装を設計したときと同じように、
 ちょっとした希望的思考をすることにします。もし代数式の表現手段があるとするなら、
-ある式が和なのか、積なのか、定数なのか、変数なのか判別できるはずです。また、
+ある式が和なのか、積なのか、定数なのか、変数なのか識別できるはずです。また、
 式から構成要素を抽出することもできるでしょう。和については、例えば加数(第一項)と
 被加数(第二項)を抽出できるようになっていてほしいところです。それに、構成要素から
 式を構築することもできるはずです。ここでは、次のようなセレクタ、コンストラクタ、
@@ -9290,7 +9290,7 @@ Lisp が複合式に使うのと同じ、括弧でくくった前置記法を使
 \begin{itemize}
 
 \item
-変数は記号である。基本述語\code{symbol?}で判別する。
+変数は記号である。基本述語\code{symbol?}で識別する。
 
 \begin{scheme}
 (define (variable? x) (symbol? x))
@@ -11648,7 +11648,7 @@ Louis Reasonerは、式\code{(magnitude z)}を評価しようとした。ここ�
 型がくっついていないといけないようになっていたので、直接この言語の基本手続きを使う
 ことはできなかった。しかし、実際のところ、Lisp の実装はすべて型システムを持っていて、
 内部で使用している。\code{symbol?}や\code{number?}のような基本述語は、データオブジェクトが
-特定の型を持つか判別している。\link{Section 2.4.2}の\code{type\-/tag}, \code{contents},
+特定の型を持つか識別している。\link{Section 2.4.2}の\code{type\-/tag}, \code{contents},
 \code{attach\-/tag}の定義を変更し、ここでのジェネリックシステムがSchemeの内部型システムを
 利用できるようにせよ。つまり、システムの挙動はそのままで、普通の数値を\code{car}が
 \code{scheme\-/number}という記号であるペアとして表すのではなく、単にSchemeの数値として
@@ -12450,7 +12450,7 @@ B : x^100 + 2x^2 + 1
 そのためのひとつの方法は、システム内でどちらの項リスト表現も使えるようにするということで
 ある。この状況は\link{Section 2.4}の複素数の例と似ている。そのときは直行形式と極形式の
 どちらの表現も使えるようにした。
-これを行うためには、異なる型の項リストを判別し、項リストに対する演算をジェネリックに
+これを行うためには、異なる型の項リストを識別し、項リストに対する演算をジェネリックに
 しなければならない。この一般化を実装するために、多項式システムを再設計せよ。
 これは局所的な変更ではなく、かなりの作業が必要になる。
 
@@ -19795,7 +19795,7 @@ Alyssaは、二つの値を引数として取り、値の符号を比較し、0,
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 3.75}Exercise 3.75:} 
-残念なことに、\link{Exercise 3.74}のAlyssaのゼロ交差判別器は十分でないということがわかった。
+残念なことに、\link{Exercise 3.74}のAlyssaのゼロ交差識別器は十分でないということがわかった。
 センサからノイズの交じった信号が来ると、余計なゼロ交差を検出してしまうのだ。
 ハードウェアのスペシャリストLem E. Tweakitは、ゼロ交差を検出する前に信号を平滑化してノイズを
 フィルタリングすることをAlyssaに提案した。Alyssaは彼のアドバイスに従い、センサデータの値と
@@ -21173,7 +21173,7 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 Louis Reasonerは、\code{eval}の\code{cond}を並べ替えて、手続き適用の節が代入の節より前に来るように
 しようとしている。彼は、こうするとインタプリタの効率がよくなると言う。プログラムは通常、
 代入や定義などより適用を多く含んでいるのだから、修正版の\code{eval}は、元の\code{eval}よりも
-式の型を判別するまでにチェックする節の数が少なくなると言うのだ。
+式の型を識別するまでにチェックする節の数が少なくなると言うのだ。
 
 \begin{enumerate}[a]
 
@@ -23057,7 +23057,7 @@ Ben Bitdiddleは、次の式を評価することで、上記の遅延リスト�
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.34}Exercise 4.34:}
 評価器のドライバループを修正し、遅延ペアと遅延リストが何らかの方式で適切に表示されるようにせよ
-(無限リストについてはどうするのがよいだろうか？)。評価器が表示する際に遅延ペアを判別できるように、
+(無限リストについてはどうするのがよいだろうか？)。評価器が表示する際に遅延ペアを識別できるように、
 遅延ペアの表現も修正する必要があるかもしれない。
 \end{quote}
 
@@ -26076,9 +26076,9 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 \code{query\-/driver\-/loop}により呼ばれる\code{qeval}手続きは、クエリシステムの基本的な
 評価器です。入力としてクエリとフレームのストリームを取り、拡張したフレームのストリームを
 返します。特殊形式は、\code{get}と\code{put}を使ったデータ主導のディスパッチによって
-判別します。これは、\link{Chapter 2}でジェネリック演算を実装したときと同じです。
+識別します。これは、\link{Chapter 2}でジェネリック演算を実装したときと同じです。
 
-特殊形式と判別されない任意のクエリは単純クエリと見なされ、\code{simple\-/query}によって
+特殊形式と識別されない任意のクエリは単純クエリと見なされ、\code{simple\-/query}によって
 処理されます。
 
 \begin{scheme}
@@ -26693,11 +26693,9 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
                               current-rule-stream)))))))
 \end{scheme}
 
-%%%
 \noindent
-以下の手続きはデータベースのインデックス(索引)がどのように使用されかについて定義します。
-パターン(表明、または規則の結論)が変数、または静的なシンボルで始まる場合に
-テーブルに格納されます。
+以下の三つの手続きは、データベースの索引の使い方を定義するものです。
+パターン(表明または規則の結論)は、先頭が変数または定数記号であればテーブルに格納されます。
 
 \begin{scheme}
 (define (indexable? pat)
@@ -26706,8 +26704,8 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 \end{scheme}
 
 \noindent
-パターンがその下に格納されるテーブル内のキーは(変数で始まる場合には)\code{?}、または
-パターンの始めの静的なシンボルです。
+パターンが格納されるテーブルのキーは、\code{?}(パターンの先頭が変数である場合)または
+パターン先頭の定数記号です。
 
 \begin{scheme}
 (define (index-key-of pat)
@@ -26716,8 +26714,8 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 \end{scheme}
 
 \noindent
-インデックスはパターンが静的なシンボルで始まる場合、パターンにマッチするかもしれない
-アイテムを取得するために利用されます。
+パターンが定数記号で始まるのであれば、パターンにマッチするかもしれない項目を取得するために
+索引が使われます。
 
 \begin{scheme}
 (define (use-index? pat) (constant-symbol? (car pat)))
@@ -26725,9 +26723,10 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.70}Exercise 4.70:}
-手続き\code{add\-/assertion!}と\code{add\-/rule!}内の\code{let}の束縛の目的は何か?
-以下の\code{add\-/assertion!}の実装の誤りは何か? ヒント：\link{Section 3.5.2}における1の
-無限ストリームの定義を思い出せ：\code{(define ones (cons\-/stream 1 ones))}
+手続き\code{add\-/assertion!}と\code{add\-/rule!}内の\code{let}による束縛の目的は何か。
+以下に示す\code{add\-/assertion!}の実装はどこが間違っているだろうか。ヒント：
+\link{Section 3.5.2}での1の無限ストリームの定義を思い出そう：
+\code{(define ones (cons\-/stream 1 ones))}
 
 \begin{scheme}
 (define (add-assertion! assertion)
@@ -26738,16 +26737,15 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 \end{scheme}
 \end{quote}
 
-\subsubsection{ストリーム命令}
+\subsubsection{ストリーム演算}
 \label{Section 4.4.4.6}
 
-クエリシステムは\link{Chapter 3}には存在しなかったいくつかのストリーム命令を用います。
+クエリシステムでは、\link{Chapter 3}で紹介していないいくつかのストリーム演算を使っています。
 
-
-\code{stream\-/append\-/delayed}と\code{interleave\-/delayed}は\code{stream\-/append}と\\
+\code{stream\-/append\-/delayed}、\code{interleave\-/delayed}は\code{stream\-/append}、
 \code{interleave}(\link{Section 3.5.3})と
-同じですが、それらが(\link{Section 3.5.4}の\code{integral}の様に)遅延化された引数を取ることが異なります。
-これはいくつかの場合においてループを先送りします。(\link{Exercise 4.71}参照)
+似ていますが、(\link{Section 3.5.4}の\code{integral}のように)遅延化された引数を取るという
+ところが違います。これはループを先送りすることがあります(\link{Exercise 4.71}参照)。
 
 \begin{scheme}
 (define (stream-append-delayed s1 delayed-s2)
@@ -26769,11 +26767,14 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 \end{scheme}
 
 \noindent
-\code{stream\-/flatmap}はクエリ評価器を通して使用され手続きをフレームのストリーム上に対してmapし、
-結果としての複数のフレームのストリームを接続します。
-\code{stream\-/flatmap}は\link{Section 2.2.3}にて通常のリストのために導入された\code{flatmap}手続きの
-ストリーム向け類似品です。しかし通常の\code{flatmap}と異なり、単純にストリームをappendしていく
-のではなく、相互配置処理により蓄積します。(\link{Exercise 4.72}と\link{Exercise 4.73}参照)
+\code{stream\-/flatmap}は、フレームのストリームに手続きをマップして結果となる
+複数のフレームのストリームを結合するためにクエリ評価器全体を通して使われるものですが、
+これは\link{Section 2.2.3}で通常のリストに対して導入した\code{flatmap}手続きの
+ストリーム版です。しかし、\code{stream\-/flatmap}は通常の\code{flatmap}と違って、
+単純にストリームを足していくのではなく、結果を互い違いに挟み込むというプロセスによって
+集積します。
+
+(\link{Exercise 4.72}と\link{Exercise 4.73}参照)
 \begin{scheme}
 (define (stream-flatmap proc s)
   (flatten-stream (stream-map proc s)))
@@ -26787,7 +26788,7 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 \end{scheme}
 
 \noindent
-評価器はまた以下の単純な手続きを用いて単一要素から成るストリームを生成します。
+評価器は、次の単純な手続きによって要素ひとつからなるストリームを作ることもあります。
 
 \begin{scheme}
 (define (singleton-stream x)
@@ -26797,11 +26798,10 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 \subsubsection{クエリ構文手続き}
 \label{Section 4.4.4.7}
 
-
-\code{qeval}(\link{Section 4.4.4.2})により用いられる\code{type}と\code{contents}は、
-特殊形式がその\code{car}に存在するシンボルにより判別されることを指示します。
-これらは\link{Section 2.4.2}の\code{type\-/tag}と\code{contents}手続きと同じですが、エラーメッセージが
-異なります。
+\code{type}と\code{contents}は\code{qeval}(\link{Section 4.4.4.2})によって使われるもので、
+ある特殊形式がその\code{car}の記号によって識別されるということを規定します。
+これらはエラーメッセージ以外は\link{Section 2.4.2}の\code{type\-/tag}と\code{contents}手続きと
+同じものです。
 
 \begin{scheme}
 (define (type exp)
@@ -26815,9 +26815,9 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 \end{scheme}
 
 \noindent
-以下の手続きは\link{Section 4.4.4.1}の\code{query\-/driver\-/loop}にて使用されます。これは規則と
-表明がデータベースに\code{(assert! <\var{rule\-/or\-/assertion}>)}の形式の式により
-追加されることを指示します。
+以下の二つの手続きは\link{Section 4.4.4.1}の\code{query\-/driver\-/loop}によって使われるもので、
+規則と表明が\code{(assert! <\var{rule\-/or\-/assertion}>)}の形式の式によって
+データベースに追加されるということを規定します。
 
 \begin{scheme}
 (define (assertion-to-be-added? exp)
@@ -26826,7 +26826,8 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 \end{scheme}
 
 \noindent
-以下は特殊形式\code{and}, \code{or}, \code{not}, \code{lisp\-/value}のための構文定義です。(\link{Section 4.4.4.2})
+以下は特殊形式\code{and}, \code{or}, \code{not}, \code{lisp\-/value}のための構文定義です
+(\link{Section 4.4.4.2})。
 
 \begin{scheme}
 (define (empty-conjunction? exps) (null? exps))
@@ -26841,7 +26842,7 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 \end{scheme}
 
 \noindent
-以下の3つの手続きは規則の構文を定義します。
+以下の三つの手続きは規則の構文を定義します。
 
 \begin{scheme}
 (define (rule? statement)
@@ -26853,13 +26854,14 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 
 \noindent
 \code{query\-/driver\-/loop}(\link{Section 4.4.4.1})は\code{query\-/syntax\-/process}を呼び、
-\code{?symbol}の形態を持つ式のパターン変数を内部形式\code{(? symbol)}に変形します。
-これは言ってみれば、\code{(job ?x ?y)}のようなパターンが実際には内部的にシステムにより
-\code{(job (? x) (? y))}と表現されているということです。これによりクエリ処理の効率が
-良くなります。システムが式がパターン変数であるかを確認するのにシンボルから文字を
-抽出する必要が無しに、式の\code{car}がシンボル\code{?}であるかどうかを確認することにより
-確認できることを意味するためです。構文変形は以下の手続きにより達成されます。\footnote{
-多くの
+\code{?symbol}という形を持つ式のパターン変数を\code{(? symbol)}という内部形式に変形します。
+つまり、\code{(job ?x ?y)}のようなパターンは、実際には内部ではシステムによって
+\code{(job (? x) (? y))}と表現されているということです。これによってクエリ処理の効率が
+向上します。こうすると、式がパターン変数かどうかシステムがチェックする際に、式の\code{car}が
+記号\code{?}かどうかチェックすればよく、記号から文字を抽出しないですむことになるからです。
+構文変形は以下の手続きによって実行されます。
+%%%
+\footnote{多くの
 Lispシステムは通常の\code{read}手続きを\newterm{reader macro characters}(\jnewterm{リーダ
 マクロキャラクタ})を定義することにより変更し、そのような変形を実行させる能力を
 ユーザにに与えています。クォートされた式は既にこのような取り扱われています。
@@ -27299,7 +27301,7 @@ Lispシステム中の制御の仕組みは明らかにしないためです。�
 押される必要があります。私達はこの順序を\link{Figure 5.2}で図示されるコントローラ図を
 用いて説明します。コントローラ図の要素はデータパスのコンポーネントがどのように
 操作されるべきかであるかを示します。コントローラ図の長方形の箱は押されるべきデータパスの
-ボタンを判別します。そして矢印はあるステップから次への順を示します。図の中のひし形は
+ボタンを識別します。そして矢印はあるステップから次への順を示します。図の中のひし形は
 選択を表現します。ひし形内で確認されたデータパスのテストの値に依存し、2つの順路矢印の1つに
 従います。私達はコントローラを物質的なアナロジーを用いて解釈することができます。この図を
 ビー玉が転がっている迷路だと考えるのです。ビー玉が箱に転がり込んだ時に、箱により名付けら
@@ -30211,7 +30213,7 @@ apply-dispatch
 \noindent
 各プリミティブは引数を\code{argl}から取得し、その結果を\code{val}内に置くように実装されていると
 想定されます。機械がどのようにプリミティブを扱うかを指定するためには、それぞれのプリミティブを
-実装するための一連のコントローラ命令を提供しなければならず、\code{proc}の中身により判別された
+実装するための一連のコントローラ命令を提供しなければならず、\code{proc}の中身により識別された
 プリミティブのための命令への割り振りを行うように\code{primitive\-/apply}を準備しなければなりません。
 私達はプリミティブの詳細ではなく、評価処理の構造に興味があるため、それらの代わりに
 単に\code{apply\-/primitive\-/procedure}を使用します。これは\code{proc}内の手続きを\code{argl}内の引数に対して
