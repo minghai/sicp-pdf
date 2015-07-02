@@ -25830,7 +25830,7 @@ Minnie Mickey)}
 これでシステムは無限ループになります。システムがループに陥る前に単純な答である
 \code{(married Minnie Mickey)}を見つけられるかどうかは、システムがデータベース内の
 項目をチェックする順番についての実装上の詳細に依存します。これは、起こりうるループの
-非常に単純な例です。相互に関連するルールの集まりの場合、これよりもずっと予測が難しいループを
+非常に単純な例です。相互に関連する規則の集まりの場合、これよりもずっと予測が難しいループを
 招くことがあり、またループが現れるかどうかは\code{and}内の節の順序(\link{Exercise 4.64}参照)や、
 システムがクエリを処理する順序に関する低レベルの詳細に依存することもあります。
 \footnote{これは論理の問題ではなく、インタプリタによって提供される、論理の手続き的解釈の
@@ -26860,18 +26860,15 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 向上します。こうすると、式がパターン変数かどうかシステムがチェックする際に、式の\code{car}が
 記号\code{?}かどうかチェックすればよく、記号から文字を抽出しないですむことになるからです。
 構文変形は以下の手続きによって実行されます。
-%%%
-\footnote{多くの
-Lispシステムは通常の\code{read}手続きを\newterm{reader macro characters}(\jnewterm{リーダ
-マクロキャラクタ})を定義することにより変更し、そのような変形を実行させる能力を
-ユーザにに与えています。クォートされた式は既にこのような取り扱われています。
-リーダーは評価器が式を見る前に自動的に\code{'expression}を\code{(quote expression)}に
-変形します。私達は同様に\code{?expression}が\code{(? expression)}に変形されるように
-準備することも可能でした。しかし、明快さのために、私達はここに明示的に変形手続きを
-含めました。
+\footnote{ほとんどのLispシステムでは、ユーザが\newterm{reader macro characters}
+(\jnewterm{読み込みマクロ文字})を定義することによって、通常の\code{read}手続きにそのような
+変形を行わせることができるようになっています。クォート式はすでにこのような扱いになっています。
+読み込み手続きは、評価器が式を見る前に、\code{'expression}を自動的に\code{(quote expression)}に
+変形します。同じようにして、\code{?expression}が\code{(? expression)}と変形されるように
+することもできるところです。しかし、ここではわかりやすさのために変形手続きを明示的に入れました。
 
-\code{expand\-/question\-/mark}と\code{contract\-/question\-/mark}は名前に\code{string}を持つ
-いくつかの手続きを使用します。これらはSchemeのプリミティブです。}
+\code{expand\-/question\-/mark}と\code{contract\-/question\-/mark}は、名前に\code{string}を含む
+いくつかの手続きを使っています。これらはSchemeの基本手続きです。}
 
 \begin{scheme}
 (define (query-syntax-process exp)
@@ -26892,8 +26889,9 @@ Lispシステムは通常の\code{read}手続きを\newterm{reader macro charact
 \end{scheme}
 
 \noindent
-一旦、変数がこのように変形されれば、パターン内の変数は\code{?}で始まるリストであり、
-静的なシンボル(データベースの索引付けのために必要、\link{Section 4.4.4.5})はただのシンボルです。
+変数をこのように変形すると、パターン内の変数は\code{?}で始まるリストになります。
+定数記号(データベースの索引づけのために識別する必要がある。\link{Section 4.4.4.5})は
+ただの記号です。
 
 \begin{scheme}
 (define (var? exp) (tagged-list? exp '?))
@@ -26901,8 +26899,8 @@ Lispシステムは通常の\code{read}手続きを\newterm{reader macro charact
 \end{scheme}
 
 \noindent
-他とは異なる変数が規則の適用の間に以下の手続きを用いて構築されます(\link{Section 4.4.4.4})。
-規則適用のための独自識別子は数値であり、規則が適用される度にインクリメントされます。
+規則適用時には、ユニークな変数が構築されます(\link{Section 4.4.4.4})。
+規則適用のユニーク識別子は数値で、規則適用のたびにインクリメントされます。
 
 \begin{scheme}
 (define rule-counter 0)
@@ -26914,8 +26912,8 @@ Lispシステムは通常の\code{read}手続きを\newterm{reader macro charact
 \end{scheme}
 
 \noindent
-\code{query\-/driver\-/loop}が回答を表示するためにクエリを具体化する時、
-全ての未束縛のパターン変数を表示に適した形式に以下を用いて戻します。
+\code{query\-/driver\-/loop}が答えを表示するためにクエリを具体化する際には、
+以下の手続きを使って未束縛のパターン変数をすべて表示用の形式に戻します。
 
 \begin{scheme}
 (define (contract-question-mark variable)
@@ -26931,8 +26929,7 @@ Lispシステムは通常の\code{read}手続きを\newterm{reader macro charact
 \subsubsection{フレームと束縛}
 \label{Section 4.4.4.8}
 
-
-フレームは変数と値のペアである束縛のリストとして表現されます。
+フレームは束縛のリストとして表現されます。束縛は変数と値のペアです。
 
 \begin{scheme}
 (define (make-binding variable value)
@@ -26948,8 +26945,9 @@ Lispシステムは通常の\code{read}手続きを\newterm{reader macro charact
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.71}Exercise 4.71:}
 
-Louis Reasonerはなぜ\code{simple\-/query}と\code{disjoin}の手続き(\link{Section 4.4.4.2})は
-以下のような定義ではなく、明示的な\code{delay}命令を用いて実装されたのか不思議だった。
+Louis Reasonerは、\code{simple\-/query}と\code{disjoin}の手続き(\link{Section 4.4.4.2})が
+なぜ以下のような定義ではなく、明示的な\code{delay}演算を用いて実装されているのだろうかと
+不思議に思っている。
 
 \begin{scheme}
 (define (simple-query query-pattern frame-stream)
@@ -26969,20 +26967,20 @@ Louis Reasonerはなぜ\code{simple\-/query}と\code{disjoin}の手続き(\link{
                 frame-stream))))
 \end{scheme}
 
-あなたはこれらのより簡単な定義を望まない振舞いへと導くクエリの例を与えることができるか?
+これらの簡単な定義を使った場合に望ましくないふるまいを引き起こすクエリの例を挙げよ。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.72}Exercise 4.72:}
-なぜ\code{disjoin}と\code{stream\-/flatmap}は単純にそれらをappendせずに相互配置するのか?
-なぜ相互配置のほうがより良く働くのかを説明する例を与えよ。(ヒント：なぜ私達は
-\link{Section 3.5.3}において\code{interleave}を使用したのか?)
+\code{disjoin}と\code{stream\-/flatmap}は、なぜそれらを単純につなげていくのではなく、
+ストリームを互い違いに挟み込むようにしているのか。なぜ相互配置のほうがよりうまくいくのかを
+示す例を挙げよ。(ヒント：\link{Section 3.5.3}ではなぜ\code{interleave}を使ったのだろうか)
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.73}Exercise 4.73:}
-なぜ\code{flatten\-/stream}は明示的に\code{delay}を用いるのか?
-以下のように定義した場合に何が間違っているのか?
+なぜ\code{flatten\-/stream}は明示的に\code{delay}を使っているのだろうか。
+以下のように定義するとどのような問題があるのだろうか。
 
 \begin{scheme}
 (define (flatten-stream stream)
@@ -26996,11 +26994,11 @@ Louis Reasonerはなぜ\code{simple\-/query}と\code{disjoin}の手続き(\link{
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.74}Exercise 4.74:}
-Alyssa P. Hackerはより簡単な版の\code{stream\-/flatmap}を\code{negate}, \code{lisp\-/value},
-\code{find\-/assertions}の中で使用することを提案した。彼女はフレームのストリーム上に
-mapされる手続きはこれらの場合において常に空ストリームか、単一要素のストリームを
-生成する。そのためこれらのストリームを接続する場合、相互配置する必要が無いと
-気付いた。
+Alyssa P. Hackerは、\code{negate}, \code{lisp\-/value},\code{find\-/assertions}の中で
+簡単なほうの\code{stream\-/flatmap}を使うことを提案した。彼女は、これらの場合に
+フレームのストリームにマップされる手続きが作るのは常に空ストリームか単一要素のストリームで
+あるため、これらのストリームを組み合わせるのに互い違いに挟み込んでいく必要はないと
+気がついていた。
 
 \begin{enumerate}[a]
 
@@ -27016,15 +27014,15 @@ Alyssaのプログラムに欠けている式を埋めよ。
 \end{scheme}
 
 \item
-クエリシステムの振舞はこのように変更した場合に変化するだろうか?
+このような変更を加えると、クエリシステムのふるまいは変わるだろうか。
 
 \end{enumerate}
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.75}Exercise 4.75:}
-クエリ言語に対して新しい特殊形式\code{unique}を実装せよ。\code{unique}は正確に
-データベース内の1つの項目が指定されたクエリを満たす場合に成功しなければならない。
+クエリ言語に\code{unique}と呼ばれる新しい特殊形式を実装せよ。\code{unique}は、指定された
+クエリを満たす項目がデータベース中にちょうどひとつだけある場合に成功する。
 例えば、
 
 \begin{scheme}
@@ -27032,55 +27030,52 @@ Alyssaのプログラムに欠けている式を埋めよ。
 \end{scheme}
 
 \noindent
-上の式は1つの項目のストリームを表示しなければならない。
+この式は、一項目からなる次のストリームを表示する。
 
 \begin{scheme}
 (unique (job (Bitdiddle Ben) (computer wizard)))
 \end{scheme}
 
 \noindent
-Benはただ1人のコンピュータウィザードであるためである。
-次に、
+これは、Benが唯一のコンピュータウィザードであるからだ。また、
 
 \begin{scheme}
 (unique (job ?x (computer programmer)))
 \end{scheme}
 
 \noindent
-上は空ストリームを表示しなければならない。複数のコンピュータプログラマが存在するためである。
-さらに、
+この式は空ストリームを表示する。コンピュータプログラマは二人以上いるからだ。さらに、
 
 \begin{scheme}
 (and (job ?x ?j) (unique (job ?anyone ?j)))
 \end{scheme}
 
 \noindent
-上はただ1人により埋められた役職とその人達を全て表示しなければならない。
+この式は、それをしている人が一人しかいない職位と、それをしている人たちをすべて表示する。
 
-
-\code{unique}を実装するには2つの部分が存在する。1つ目はこの特殊形式を扱う手続きを
-書くことであり、2つ目は\code{qeval}にその手続きを呼出させることである。2つ目の部分は
-自明だ。\code{qeval}はその呼出をデータ主導の方法に従うためである。もしあなたの
-手続きが\code{uniquely\-/asserted}という名前であるなら、やらなければいけないことは以下である。
+\code{unique}の実装は二つの部分に分かれる。一つ目の部分はこの特殊形式を扱う手続きを書くための
+もので、二つ目の部分は\code{qeval}がこの手続きにディスパッチするようにするためのものだ。
+\code{qeval}はディスパッチをデータ主導によって行うため、二つ目の部分は簡単だ。
+手続きの名前が\code{uniquely\-/asserted}であれば、次のように書けば言い。
 
 \begin{scheme}
 (put 'unique 'qeval uniquely-asserted)
 \end{scheme}
 
 \noindent
-これで\code{qeval}は型(\code{car})がシンボル\code{unique}である全てのクエリに対して
-この手続きを呼び出す。
+これで、\code{qeval}は型(\code{car})が記号\code{unique}であるすべてのクエリを
+この手続きにディスパッチする。
+本当の問題は手続き\code{uniquely\-/asserted}を書くことである。これは入力として
+\code{unique}クエリの\code{contents}(\code{cdr})とフレームのストリームを受け取る。
+次に、ストリームのそれぞれのフレームに対し、\code{qeval}を使って与えられたクエリを満たす
+フレームの拡張すべてのストリームを得る。ちょうどひとつの項目を持っているストリーム以外は
+取り除く。残ったストリームが返され、それらがひとつの巨大なストリームに集積されて、
+\code{unique}クエリの結果になる。これは特殊形式\code{not}の実装に似ている。
 
-真の問題は手続き\code{uniquely\-/asserted}を書くことである。これは入力として\code{unique}クエリの
-\code{contents}(\code{cdr})をフレームのストリームと共に受け取る。ストリームの各フレームに対し、
-\code{qeval}を用いて与えられたクエリを満たすフレームの全ての拡張のストリームを見つけなければ
-ならない。正確に1つのアイテムのみを持たないストリームは全て取り除かれなければならない。
-残ったストリームは\code{unique}クエリの結果である1つの巨大なストリームに蓄積するために
-戻されなければならない。これは特殊形式\code{not}の実装に似ている。
-
-あなたの実装を正確に1人だけを監督する全ての人々を並べるクエリを形成することによりテストせよ。
+ちょうど一人の部下を持つ人をすべて列挙するクエリを作り、実装をテストせよ。
 \end{quote}
 
+%%%
 \begin{quote}
 \heading{\phantomsection\label{Exercise 4.76}Exercise 4.76:}
 一連のクエリの結合としての\code{and}の実装(\link{Figure 4.5})は洗練されているが非効率だ。
