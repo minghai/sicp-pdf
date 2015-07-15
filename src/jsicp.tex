@@ -28107,23 +28107,22 @@ after-gcd-2
 \code{val}レジスタは再帰呼び出しの前に保存されません。サブルーチンから帰った後には、
 \code{val}の古い中身は役に立たないためです。必要なのは、部分問題によって生成された
 新しい値だけです。
-%%%
 
-例え原理上は階乗演算が無限の機械を必要とするとしても、\link{Figure 5.11}の機械は
-実際には限りが無いかもしれないスタックを除けば有限です。しかし、スタックのどんな特定の
-物理実装も有限のサイズを持ち、このことが機械により扱うことが可能な再帰呼出の深さを
-制限します。この階乗の実装は再帰アルゴリズムをスタックで容量が増加された通常のレジスタマシン
-として実現するための一般的な戦略を説明します。再帰部分問題に遭遇した時には
-その現在の値が部分問題が解決された後に必要とされるレジスタをスタック上に保存します。
-次に再帰部分問題を解決し、保存されたレジスタを戻してメイン問題の実行を続行します。
-\code{continue}レジスタは常に保存されなければなりません。保存する必要の有るレジスタが
-他に存在するかどうかは機械に依存します。全ての再帰演算が部分問題の解決の間に変更される
-レジスタの元の値を必要とはしないためです。(\link{Exercise 5.4}参照)。
+階乗計算には原理上は無限の機械が必要ですが、実際には\link{Figure 5.11}の機械は、
+無限に大きくなりうるスタック以外は有限です。しかし、スタックを物理的に実装したものは
+どうやっても有限サイズのものになるため、このマシンで扱える再帰呼び出しの深さはそれによって
+縛られることになります。この階乗の実装は、スタックという拡張を加えた通常のレジスタマシンに
+よって再帰アルゴリズムを実現する一般的な戦略を示しています。再帰部分問題にぶつかると、
+部分問題を解いた後に現在の値が必要となるレジスタをスタックに保存し、再帰部分問題を解き、
+保存したレジスタを復元して主問題の実行を続けます。\code{continue}レジスタは常に保存する
+必要があります。保存するべきレジスタがほかにあるかどうかはマシンによります。再帰計算の
+すべてが、部分問題を解く間に変更されるレジスタの元の値を必要とするわけではないからです
+(\link{Exercise 5.4}参照)。
 
 \subsubsection*{二重再帰}
 
-
-より複雑な再帰プロセス、\link{Section 1.2.2}で紹介したフィボナッチ数の木再帰演算について調査してみましょう。
+より複雑な再帰プロセスである、\link{Section 1.2.2}で紹介したフィボナッチ数の木の再帰の
+計算について考えてみましょう。
 
 \begin{scheme}
 (define (fib n)
@@ -28133,19 +28132,18 @@ after-gcd-2
 \end{scheme}
 
 \noindent
-階乗と同じ様に、再帰フィボナッチ演算をレジスタマシンとしてレジスタ\code{n}, \code{val}, \code{continue}と用いて
-実装することができます。この機械は階乗のものよりも、より複雑です。コントローラシーケンスの中に
-二箇所の再帰呼出の実行が必要な箇所が存在するためです。一度目は\( {\rm Fib}(n - 1) \)を求めるために、
-二度目は\( {\rm Fib}(n - 2) \)を求めるためです。
-これらの各呼出に準備するために、後にその値が必要となるレジスタを保存し、レジスタ\code{n}に
-再帰的に求める(\( n - 1 \)または\( n - 2 \))必要のあるフィボナッチ数を設定します。
-そして\code{continue}に戻り先のメインシーケンスのエントリポイント(それぞれ\code{afterfib\-/n\-/1}または\code{afterfib\-/n\-/2})を
-割り当てます。そうしたら\code{fib\-/loop}へと飛びます。再帰呼出から帰る時には、回答は\code{val}の
-中にあります。\link{Figure 5.12}はこの機械のためのコントローラシーケンスを示しています。
+階乗と同じように、再帰フィボナッチ計算はレジスタ\code{n}, \code{val}, \code{continue}を持つ
+レジスタマシンとして実装できます。このマシンは階乗マシンよりも複雑です。コントローラ命令列の
+中で再帰呼び出しの実行が必要となる場所が二箇所あるからです。ひとつは\( {\rm Fib}(n - 1) \)を
+求めるところで、もうひとつは\( {\rm Fib}(n - 2) \)を求めるところです。それぞれの呼び出しの
+準備として、後で値が必要のなるレジスタを保存し、再帰的にフィボナッチ数を求める数
+(\( n - 1 \)または\( n - 2 \))を\code{n}レジスタに設定し、\code{continue}に戻り先の
+主命令列のエントリポイント(それぞれ\code{afterfib\-/n\-/1}または\code{afterfib\-/n\-/2})を
+代入します。それから\code{fib\-/loop}に行きます。再帰呼び出しから帰るときには、答えは
+\code{val}に入っています。\link{Figure 5.12}にこのマシンのコントローラ命令列を示します。
 
 \begin{quote}
-\heading{\phantomsection\label{Figure 5.12}Figure 5.12:} \( \downarrow \) Controller for a machine to compute
-Fibonacci numbers.
+\heading{\phantomsection\label{Figure 5.12}Figure 5.12:} \( \downarrow \) フィボナッチ数を計算するマシンのコントローラ
 
 \begin{scheme}
 (controller
@@ -28158,8 +28156,8 @@ Fibonacci numbers.
    (assign continue (label afterfib-n-1))
    (save n)                 ~\textrm{; \code{n}の古い値を保存}~
    (assign n (op -) (reg n) (const 1)) ~\textrm{; \code{n}を\code{n\-/1}で上書き}~
-   (goto (label fib-loop))  ~\textrm{; 再帰呼出の実行}~
- afterfib-n-1     ~\textrm{; リターン時に, \code{val}がFib\( (n-1) \)を持つ}~
+   (goto (label fib-loop))  ~\textrm{; 再帰呼び出しの実行}~
+ afterfib-n-1     ~\textrm{; リターン時にFib\( (n-1) \)は\code{val}に入っている}~
    (restore n)
    (restore continue)
    ~\textrm{;; Fib\( (n - 2) \)を求める準備}~
@@ -28168,14 +28166,14 @@ Fibonacci numbers.
    (assign continue (label afterfib-n-2))
    (save val)               ~\textrm{; Fib\( (n-1) \)を保存}~
    (goto (label fib-loop))
- afterfib-n-2     ~\textrm{; リターン時に, \code{val}がFib\( (n-2) \)を持つ}~
-   (assign n (reg val))     ~\textrm{; \code{n}がここでFib\( (n-2) \)を持つ}~
-   (restore val)            ~\textrm{; \code{val}がここでFib\( (n-1) \)を持つ}~
+ afterfib-n-2     ~\textrm{; リターン時にFib\( (n-2) \)は\code{val}に入っている}~
+   (assign n (reg val))     ~\textrm{; \code{n}にはFib\( (n-2) \)が入る}~
+   (restore val)            ~\textrm{; \code{val}にはFib\( (n-1) \)が入る}~
    (restore continue)
 
    (assign val              ~\textrm{; Fib\( (n-1) \) + Fib\( (n-2) \)}~
            (op +) (reg val) (reg n))
-   (goto (reg continue))    ~\textrm{; 呼び出しから戻る, 答は\code{val}の中にある}~
+   (goto (reg continue))    ~\textrm{; 呼び出し元に戻る、答えは\code{val}の中}~
  immediate-answer
    (assign val (reg n))     ~\textrm{; 基底の場合: Fib\( (n) = n \)}~
    (goto (reg continue))
@@ -28186,13 +28184,13 @@ Fibonacci numbers.
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.4}Exercise 5.4:}
-次の手続きのそれぞれを実装するレジスタマシンを指定せよ。各マシンに対して、
+次のそれぞれの手続きを実装するレジスタマシンを規定せよ。それぞれのマシンについて、
 コントローラ命令列を書き、データパスを示す図を描け。
 
 \begin{enumerate}[a]
 
 \item
-再帰指数計算
+再帰的指数計算
 
 \begin{scheme}
 (define (expt b n)
@@ -28202,7 +28200,7 @@ Fibonacci numbers.
 \end{scheme}
 
 \item
-反復指数計算
+反復的指数計算
 
 \begin{scheme}
 (define (expt b n)
@@ -28219,15 +28217,18 @@ Fibonacci numbers.
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.5}Exercise 5.5:}
-階乗とフィボナッチの機械をいくつかの非自明な入力を用いて手動でシミュレートせよ。
-(少なくとも1回の再帰呼出を必要とする)。実行中の各重要な地点におけるスタックの中身を示せ。
+何らかの自明でない(少なくとも一回は再帰呼び出しの実行が必要となるような)入力を使って、
+階乗マシンとフィボナッチマシンを手動シミュレートせよ。実行中の重要な場所でのスタックの
+中身を示せ。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.6}Exercise 5.6:}
-Ben Bitdiddleはフィボナッチマシンのコントローラシーケンスが余分な\code{save}と\code{restore}を持ち、
-より速いマシンを作るために取り除くことができることに気付いた。これらの命令はどこにあるか?
+Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に余分な\code{save}と\code{restore}が
+あり、取り除くことによってマシンを高速化できることに気がついた。
+それらの命令はどれか。
 \end{quote}
+%%%
 
 \subsection{命令の要約}
 \label{Section 5.1.5}
