@@ -28218,7 +28218,7 @@ after-gcd-2
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.5}Exercise 5.5:}
 何らかの自明でない(少なくとも一回は再帰呼び出しの実行が必要となるような)入力を使って、
-階乗マシンとフィボナッチマシンを手動シミュレートせよ。実行中の重要な場所でのスタックの
+階乗マシンとフィボナッチマシンを手作業でシミュレートせよ。実行中の重要な場所でのスタックの
 中身を示せ。
 \end{quote}
 
@@ -28228,14 +28228,14 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 あり、取り除くことによってマシンを高速化できることに気がついた。
 それらの命令はどれか。
 \end{quote}
-%%%
 
-\subsection{命令の要約}
+\subsection{命令まとめ}
 \label{Section 5.1.5}
 
-私達のレジスタマシン言語のコントローラ命令は以下の形式の内1つを持ち、各\( \langle \)\( input_i \)\( \rangle \)は
-\code{(reg<\var{register\-/name}>)}か\code{(const <\var{constant\-/value}>)}の何れかです。
-これらの命令は\link{Section 5.1.1}で導入されました。
+レジスタマシン言語のコントローラ命令は、以下のいずれかの形式をとります。
+\( \langle \)\( input_i \)\( \rangle \)はそれぞれ
+\code{(reg<\var{register\-/name}>)}か\code{(const <\var{constant\-/value}>)}のいずれかです。
+これらの命令は\link{Section 5.1.1}で導入したものです。
 
 \begin{scheme}
 (assign ~\( \dark \langle \)~~\var{\dark register-name}~~\( \dark \rangle \)~ (reg ~\( \dark \langle \)~~\var{\dark register-name}~~\( \dark \rangle \)~))
@@ -28250,7 +28250,7 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 \end{scheme}
 
 \noindent
-レジスタを用いてラベルを保存することは\link{Section 5.1.3}で導入されました。
+ラベルを保存するのにレジスタを使うことについては\link{Section 5.1.3}で導入しました。
 
 \begin{scheme}
 (assign ~\( \dark \langle \)~~\var{\dark register-name}~~\( \dark \rangle \)~ (label ~\( \dark \langle \)~~\var{\dark label-name}~~\( \dark \rangle \)~))
@@ -28258,7 +28258,7 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 \end{scheme}
 
 \noindent
-スタックを使用する命令は\link{Section 5.1.4}で導入されました。
+スタックを使う命令は\link{Section 5.1.4}で導入しました。
 
 \begin{scheme}
 (save ~\( \dark \langle \)~~\var{\dark register-name}~~\( \dark \rangle \)~)
@@ -28266,26 +28266,27 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 \end{scheme}
 
 \noindent
-ここまでで見た\( \langle \)\var{constant-value}\( \rangle \)の種類は数値のみです。しかし
-後程、文字列、シンボル、それにリストを使用します。
+ここまでで見た\( \langle \)\var{constant-value}\( \rangle \)の種類は数値だけですが、
+これから先では、文字列、記号、リストも使うことになります。
 \begin{scheme}
-(const "abc") ~\textrm{は文字列}~ "abc",
-(const abc) ~\textrm{はシンボル}~ abc,
-(const (a b c)) ~\textrm{はリスト}~ (a b c),
-(const ()) ~\textrm{は空リスト}~
+(const "abc") ~\textrm{これは文字列}~ "abc",
+(const abc) ~\textrm{これは記号}~ abc,
+(const (a b c)) ~\textrm{これはリスト}~ (a b c),
+(const ()) ~\textrm{これは空リスト}~
 \end{scheme}
 
 \section{レジスタマシンシミュレータ}
 \label{Section 5.2}
 
-レジスタマシンの設計を良く理解するために、私達は設計した機械を期待通りに実行されるか
-確認するためにテストをする必要があります。設計のテストを行う1つの方法として
-\link{Exercise 5.5}と同様にコントローラの命令を手動でシミュレートする方法があります。
-しかしこれは簡単な機械を除いてとんでもなく退屈な方法です。この節ではレジスタマシン言語で
-記述された機械のためのシミュレータを構築します。このシミュレータは4つのインターフェイス
-手続きを持つSchemeのプログラムです。1つ目はレジスタマシンの記述をマシンのモデルを構築する
-ために利用します(データ構造の部品がシミュレートされるマシンの部品に対応します)。
-残りの3つがモデルを操作することにより機械のシミュレーションを可能にします。
+レジスタマシンの設計をよく理解するには、設計したマシンが期待通りに動くかどうかを見るために
+テストを行う必要があります。設計をテストする方法のひとつとして、\link{Exercise 5.5}で
+やったように、コントローラの演算を手作業でシミュレートするというものがあります。
+しかしこれは、よほど簡単なマシンでもなければ、非常に退屈な作業になります。この章では、
+レジスタマシン言語で記述されたマシンのシミュレータを構築します。シミュレータは
+四つのインターフェイス手続きを持つSchemeのプログラムです。一つ目のインターフェイス手続きは、
+レジスタマシンの記述を使ってマシンのモデル(それぞれの部品がシミュレート対象のマシンの部品に
+対応するデータ構造)を構築します。残り三つは、モデルを操作してマシンをシミュレートできるように
+するためのものです。
 
 \begin{quote}
 
@@ -28294,7 +28295,8 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 \end{scheme}
 
 \noindent
-与えられたレジスタ、命令、コントローラを持つ機械のモデルを構築し、返します。
+この手続きは、与えられたレジスタ、演算、コントローラを持つマシンのモデルを構築し、
+それを返します。
 
 \begin{scheme}
 (set-register-contents! ~\( \dark \langle\kern0.08em \)~~\var{\dark machine-model}~~\( \dark \rangle \)~ 
@@ -28303,27 +28305,27 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 \end{scheme}
 
 \noindent
-与えられた機械でシミュレートされるレジスタに値を格納します。
+この手続きは、与えられたマシンの(シミュレートした)レジスタに値を格納します。
 
 \begin{scheme}
 (get-register-contents ~\( \dark \langle\kern0.08em \)~~\var{\dark machine-model}~~\( \dark \rangle \)~ ~\( \dark \langle \)~~\var{\dark register-name}~~\( \dark \rangle \)~)
 \end{scheme}
 
 \noindent
-与えられた機械のシミュレートされるレジスタの中身を返す。
+この手続きは、与えられたマシンの(シミュレートした)レジスタの中身を返します。
 
 \begin{scheme}
 (start ~\( \dark \langle\kern0.08em \)~~\var{\dark machine-model}~~\( \dark \rangle \)~)
 \end{scheme}
 
 \noindent
-与えられた機械の実行をシミュレートする。コントローラシーケンスの最初から開始し、
-シーケンスの最後に辿り着いた時に停止する。
+この手続きは、与えられたマシンの実行をシミュレートします。実行はコントローラ命令列の最初から
+スタートし、命令列の末尾に着くと止まります。
 \end{quote}
 
 \noindent
-これらの手続きがどのように利用されるかの例として、\link{Section 5.1.1}の\acronym{GCD}マシンの
-モデルとなる\code{gcd\-/machine}を以下のように定義します。
+これらの手続きの使い方の例として、\link{Section 5.1.1}の\acronym{GCD}マシンのモデルとして
+\code{gcd\-/machine}を以下のように定義します。
 
 \begin{scheme}
 (define gcd-machine
@@ -28340,14 +28342,13 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 \end{scheme}
 
 \noindent
-\code{make\-/machine}に対する最初の引数はレジスタ名のリストです。次の引数は各命令名と
-その命令を実装するScheme手続き(つまり、同じ入力値を与えられて同じ出力値を生成します)を
-ペアにするテーブル(2要素リストのリスト)です。最後の引数は\link{Section 5.1}にあるように
-ラベルと機械の命令(機械語)のリストとしてのコントローラを指定します。
+\code{make\-/machine}の一つ目の引数はレジスタ名のリストです。次の引数は、演算名と
+その演算を実装した(つまり、同じ入力値を与えられると同じ出力値を生成する)Scheme手続きを
+ペアにしたテーブル(2要素リストのリスト)です。最後の引数は、ラベルとマシン命令のリストとして
+コントローラを規定します。これは\link{Section 5.1}で示したものと同じです。
 
-
-この機械を用いて\acronym{GCD}を求めるために、入力レジスタを設定し、機械を開始し、
-シミュレーションが停止した時に結果を検査します。
+このマシンを使って\acronym{GCD}を計算するには、入力レジスタを設定し、マシンをスタートさせ、
+シミュレーションが終了したら結果を調べます。
 
 \begin{scheme}
 (set-register-contents! gcd-machine 'a 206)
@@ -28361,34 +28362,33 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 \end{scheme}
 
 \noindent
-この演算はSchemeで書かれた\code{gcd}手続きよりもとても遅く実行します。なぜなら
-\code{assign}のような低レベルの機械語をより複雑な命令によりシミュレートするためです。
+この計算は、Schemeで書いた\code{gcd}手続きよりもずっと遅く動作します。これは、
+\code{assign}のような低レベルのマシン命令をずっと複雑な演算によってシミュレートすることに
+なるからです。
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.7}Exercise 5.7:}
-シミュレータを用いて\link{Exercise 5.4}で自分で設計した機械をテストせよ。
+シミュレータを使って\link{Exercise 5.4}で設計したマシンをテストせよ。
 \end{quote}
-
-
 
 \subsection{マシンモデル}
 \label{Section 5.2.1}
 
-\code{make\-/machine}にて生成された機械のモデルは\link{Chapter 3}で開発された
-メッセージパッシングの技術を用いた局所状態を持つ手続きとして表現されています。
-このモデルを構築するために、\code{make\-/machine}は手続き\code{make\-/new\-/machine}を呼び
-全てのレジスタマシンに対して共通なマシンモデルの部品を構築することから始めます。
-\code{make\-/new\-/machine}により構築されるこの基本的な機械のモデルは本質的には
-いくつかのレジスタとスタックと、コントローラ命令を1つずつ処理する実行の
-仕組みを一緒にしたコンテナです。
+\code{make\-/machine}で生成するマシンのモデルは、\link{Chapter 3}で開発した
+メッセージパッシング技術を使って、局所状態を持つ手続きとして表現されます。
+このモデルを構築するために、\code{make\-/machine}はまず\code{make\-/new\-/machine}
+手続きを呼んで、すべてのレジスタマシンに共通なマシンモデルの部品を構築します。
+\code{make\-/new\-/machine}によって構築されるこの基本的なマシンモデルは、本質的には
+複数のレジスタとスタックひとつに、コントローラ命令をひとつずつ処理する実行メカニズムを
+セットにしたものの入れ物です。
 
-\code{make\-/machine}は次にこの基本的なモデルを(それに対してメッセージを送ることで)
-拡張し、レジスタ、命令、定義される特定の機械のコントローラを含めます。
-最初に新しい機械の中に与えられた各レジスタ名に対するレジスタを獲得し、指定された
-命令をその機械にインストール(導入)します。次に\newterm{assembler}(\jnewterm{アセンブラ})(下記の
-\link{Section 5.2.2}で説明されます)を用いてコントローラリストを新しい機械に対する命令に変換し、
-これらを機械の命令列としてインストールします。\code{make\-/machine}はその値として変更された
-機械のモデルを返します。
+次に、\code{make\-/machine}は(メッセージを送って)この基本的なモデルを拡張して、
+レジスタ、演算、定義中の特定のマシンのコントローラを持たせます。最初に、与えられた
+レジスタ名それぞれについて新しいマシンの中にレジスタを割り当て、指定された演算を
+マシンに組み込みます。次に、\newterm{assembler}(\jnewterm{アセンブラ})(後ほど
+\link{Section 5.2.2}で説明します)を使ってコントローラ命令列を新しいマシンの命令に変換し、
+その命令列をマシンの命令列として組み込みます。\code{make\-/machine}は、修正した
+マシンのモデルを値として返します。
 
 \begin{scheme}
 (define (make-machine register-names ops controller-text)
@@ -28403,6 +28403,7 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
     machine))
 \end{scheme}
 
+%%%
 \subsubsection*{レジスタ}
 
 レジスタは\link{Chapter 3}の様に局所状態を持つ手続きとして表現されます。手続き\code{make\-/register}は
