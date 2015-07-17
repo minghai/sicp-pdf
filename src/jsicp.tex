@@ -24126,7 +24126,7 @@ Alyssaのやり方ではそれらの再帰のひとつに``はまって''抜け�
          (get-args
           (cdr aprocs)
           env
-          ;;~\textrm{\code{get\-/args}の再帰的呼出のための}~
+          ;;~\textrm{\code{get\-/args}の再帰的呼び出しのための}~
           ;;~\textrm{成功継続}~
           (lambda (args fail3)
             (succeed (cons arg args) fail3))
@@ -28378,11 +28378,11 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 メッセージパッシング技術を使って、局所状態を持つ手続きとして表現されます。
 このモデルを構築するために、\code{make\-/machine}はまず\code{make\-/new\-/machine}
 手続きを呼んで、すべてのレジスタマシンに共通なマシンモデルの部品を構築します。
-\code{make\-/new\-/machine}によって構築されるこの基本的なマシンモデルは、本質的には
+\code{make\-/new\-/machine}によって構築されるこの基本マシンモデルは、本質的には
 複数のレジスタとスタックひとつに、コントローラ命令をひとつずつ処理する実行メカニズムを
 セットにしたものの入れ物です。
 
-次に、\code{make\-/machine}は(メッセージを送って)この基本的なモデルを拡張して、
+次に、\code{make\-/machine}は(メッセージを送って)この基本モデルを拡張して、
 レジスタ、演算、定義中の特定のマシンのコントローラを持たせます。最初に、与えられた
 レジスタ名それぞれについて新しいマシンの中にレジスタを割り当て、指定された演算を
 マシンに組み込みます。次に、\newterm{assembler}(\jnewterm{アセンブラ})(後ほど
@@ -28403,11 +28403,10 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
     machine))
 \end{scheme}
 
-%%%
 \subsubsection*{レジスタ}
 
-レジスタは\link{Chapter 3}の様に局所状態を持つ手続きとして表現されます。手続き\code{make\-/register}は
-アクセスと変更が可能な値を持つレジスタを作成します。
+レジスタは、\link{Chapter 3}でやったように、局所状態を持つ手続きとして表現します。
+手続き\code{make\-/register}はアクセスと変更が可能な値を持つレジスタを作成します。
 
 \begin{scheme}
 (define (make-register name)
@@ -28422,7 +28421,7 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 \end{scheme}
 
 \noindent
-以下の手続きはレジスタにアクセスするために使用されます。
+以下の二つの手続きがレジスタにアクセスするために使われます。
 
 \begin{scheme}
 (define (get-contents register) (register 'get))
@@ -28432,11 +28431,10 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 
 \subsubsection*{スタック}
 
-
-スタックもまた局所状態を持つ手続きとして表現されます。手続き\code{make\-/stack}は
-局所状態がスタック上のアイテム(項目)のリストから成るスタックを作成します。
-スタックはスタック上にアイテムを\code{push}とスタックから最上位の
-アイテムを取り去りそれを返す\code{pop}、スタックを空に初期化する\code{initialize}の
+スタックも局所状態を持つ手続きとして表現できます。手続き\code{make\-/stack}は
+スタックを作ります。スタックの局所状態はスタック上の項目のリストです。
+スタックは、スタックにアイテムを追加する\code{push}、スタックのトップから項目を
+取り去りそれを返す\code{pop}、スタックを空に初期化する\code{initialize}という
 リクエストを受け付けます。
 
 \begin{scheme}
@@ -28462,38 +28460,40 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 \end{scheme}
 
 \noindent
-以下の手続きはスタックへのアクセスに使用されます。
+以下の二つの手続きがスタックへのアクセスに使われます。
 
 \begin{scheme}
 (define (pop stack) (stack 'pop))
 (define (push stack value) ((stack 'push) value))
 \end{scheme}
 
-\subsubsection*{基本的な機械}
+\subsubsection*{基本マシン}
 
-\link{Figure 5.13}に示す\code{make\-/new\-/machine}手続きは局所状態がスタック、初期値が空の
-命令列、初期値がスタックを初期化する命令を持つ命令のリスト、初期値として2つのレジスタ
-\code{flag}(フラグ)と\code{pc}(``program counter''、プログラムカウンタ)を持つ
-\newterm{register table}(\jnewterm{レジスタテーブル})から成り立ちます。内部手続き\code{lookup\-/register}は
-テーブル内のレジスタを探します。
+\link{Figure 5.13}に示す\code{make\-/new\-/machine}手続きは、ひとつのスタック、
+初期値が空の命令列、初期値としてスタックを空にする演算を持つ演算のリスト、
+初期値として\code{flag}と\code{pc}(「プログラムカウンタ」)という名前の二つのレジスタを持つ
+\newterm{register table}(\jnewterm{レジスタテーブル})を局所状態として持つオブジェクトを
+構築します。内部手続き\code{allocate\-/register}はレジスタテーブルに新しい項目を追加し、
+内部手続き\code{lookup\-/register}はテーブルからレジスタを検索します。
 
-\code{flag}レジスタはシミュレートされる機械にて分岐をコントロールするために使用されます。
-\code{test}命令は\code{flag}の中身にテストの結果(真、または、偽)を設定します。\code{branch}命令は
-分岐するかしないかを\code{flag}の中身を調査して決定します。
+\code{flag}レジスタは、シミュレート対象のマシンの分岐を制御するために使います。
+\code{test}命令はテストの結果(真または偽)を\code{flag}の中身として設定します。
+\code{branch}命令は\code{flag}の中身を調べて分岐するかどうかを決めます。
 
-\code{pc}レジスタは機械が実行する命令の順序付けを決定します。この順序付けは内部手続き\code{execute}により
-実装されています。シミュレーションモデルでは各機械命令は
-\newterm{instruction execution procedure}(\jnewterm{命令実行手続き})と呼ばれる引数無しの
-手続きを含むデータ構造であり、この手続きを呼ぶことにより命令の実行をシミュレートします。
-シミュレーションが実行されるにつれ、\code{pc}は次に実行される命令から始まる命令列の地点を
-指します。\code{execute}はその命令を得て、それを命令実行手続きを呼ぶことにより実行し、
-このサイクルを実行する命令が無くなるまで(すなわち、\code{pc}が命令列の最後を
-指すまで)繰り返します。
+\code{pc}レジスタはマシン動作中の命令の順序を決定します。命令の逐次実行は内部手続き
+\code{execute}として実装されています。このシミュレーションモデルでは、それぞれの
+マシン命令は引数なしの手続きを持つデータ構造で、
+\newterm{instruction execution procedure}(\jnewterm{命令実行手続き})と呼ばれます。
+命令実行手続きを呼ぶと命令の実行をシミュレートします。
+シミュレーションの実行中、\code{pc}は次に実行される命令から始まる命令列の場所を
+指します。\code{execute}はその命令を取得し、命令実行手続きを呼んでそれを実行し、
+実行する命令がなくなるまで(つまり、\code{pc}が命令列の末尾を指すまで)このサイクルを
+繰り返します。
 
 \newpage
 \noindent
 \heading{\phantomsection\label{Figure 5.13}Figure 5.13:}
-\( \downarrow \) 基本の機械モデルを実装する\code{make\-/new\-/machine}手続き
+\( \downarrow \) 基本マシンモデルを実装する\code{make\-/new\-/machine}手続き
 
 \begin{scheme}
 (define (make-new-machine)
@@ -28547,20 +28547,20 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 \end{scheme}
 
 \noindent
-工程の一部として、各命令の実行手続きは\code{pc}を変更し次に実行される命令を指すようにします。
-\code{branch}と\code{goto}命令は\code{pc}を変更し新しい行き先を指すようにします。
-全ての他の命令は単純に\code{pc}を進めて列の次の命令を指すようにします。
-各\code{execute}の呼出が\code{execute}を再び呼び出すことに中止して下さい。
-これはしかし無限ループにはなりません。命令実行手続きの実行は\code{pc}の中身を
-変更するためです。
+それぞれの命令実行手続きは、演算の一環として、\code{pc}を修正して次に実行するべき命令を
+指すようにします。\code{branch}と\code{goto}命令は新しい行き先を指すように\code{pc}を
+変更します。これら以外の命令はすべて、単純に\code{pc}を進めて命令列中の次の命令を指すように
+します。それぞれの\code{execute}の呼び出しが再び\code{execute}を呼び出すことに注意して
+ください。これは無限ループにはなりません。命令実行手続きの実行は\code{pc}の中身を
+変更するからです。
 
-\code{make\-/new\-/machine}は\code{dispatch}手続きを返します。これは内部の状態にアクセスする
-メッセージパッシングを実装します。機械の開始は\code{pc}に命令列の最初を設定し、
-\code{execute}を呼ぶことにより達成されることに注意して下さい。
+\code{make\-/new\-/machine}はメッセージパッシングによるマシンの内部状態へのアクセスを
+実装した\code{dispatch}手続きを返します。マシンのスタートは、
+命令列の先頭を\code{pc}に設定し、\code{execute}を呼ぶことによって行えます。
 
-利便性のために、機械の\code{start}命令の代替となる手続きのインターフェイスを提供します。
-同様に、レジスタの中身の設定、試験の手続きも\link{Section 5.2}の最初にて指示されたように
-提供します。
+マシンを扱いやすくするために、マシンの\code{start}演算の代替として
+手続きによるインターフェイスを提供します。ほかに、レジスタの中身の設定と検査の
+手続きも、\link{Section 5.2}の最初で規定したような形で提供します。
 
 \begin{scheme}
 (define (start machine) (machine 'start))
@@ -28573,6 +28573,7 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 \end{scheme}
 
 \noindent
+%%%
 これらの手続き(と\link{Section 5.2.2}と\link{Section 5.2.3}の多くの手続き)は以下を用いて与えられた機械と
 レジスタ名のレジスタを探します。
 
