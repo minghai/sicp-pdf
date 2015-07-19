@@ -28679,16 +28679,15 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 \end{smallscheme}
 
 \noindent
-%%%
-\code{receive}の使用は複数の値を返す洗練された手法の実演、または単純にプログラミング上のトリックを
-見せ付けるための言い訳として考えることができます。\code{receive}のような次に実行されるべき手続き引数は
-``継続''と呼ばれます。\link{Section 4.3.3}で私達が継続を\code{amb}評価器のバックトラック制御構造の実装に
-用いたのを思い出して下さい。
+ここでの\code{receive}の使い方は、複数の値を返すエレガントな方法の例と考えていただいても
+いいですし、プログラミングトリックをひけらかしたいだけだと考えていただいてもけっこうです。
+\code{receive}のような、次に呼び出すべき手続きを渡す引数は、``継続''と呼ばれます。
+継続は\link{Section 4.3.3}で\code{amb}評価器のバックトラック制御構造の実装にも使ったことを
+思い出しましょう。
 }
 
-
-\code{update\-/insts!}は命令リストを変更します。これは初期値としては命令のテキストのみを
-含みますが、対応する実行手続きを含むようになります。
+\code{update\-/insts!}は命令リストを修正します。命令リストは初期状態では命令のテキストしか
+持っていませんが、それに対応する実行手続きを追加します。
 
 \begin{scheme}
 (define (update-insts! insts labels machine)
@@ -28707,9 +28706,9 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 \end{scheme}
 
 \noindent
-マシン語データ構造は単純に命令テキストと対応する実行手続きのペアを作ります。
-実行手続きは\code{extract\-/labels}が命令を構築した時にはまだ存在せず、
-後に\code{update\-/insts!}により挿入されます。
+マシン命令データ構造は、命令テキストと、それに対応する実行手続きを単純にペアにします。
+実行手続きは\code{extract\-/labels}が命令を構築するときにはまだ使用できず、後で
+\code{update\-/insts!}によって挿入されます。
 
 \begin{scheme}
 (define (make-instruction text) (cons text '()))
@@ -28720,9 +28719,8 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 \end{scheme}
 
 \noindent
-命令テキストはシミュレータでは使用されません。しかし、デバッグのために
-手元に置いておくと便利です。(\link{Exercise 5.16}参照)
-
+命令テキストはシミュレータには使われませんが、デバッグ用に持っておくと便利です
+(\link{Exercise 5.16}参照)。
 
 ラベルテーブルの要素はペアです。
 
@@ -28732,7 +28730,7 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 \end{scheme}
 
 \noindent
-テーブル内の要素は以下により検索されます。
+テーブル内の要素は以下にように検索します。
 
 \begin{scheme}
 (define (lookup-label labels label-name)
@@ -28745,7 +28743,7 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.8}Exercise 5.8:}
-以下のレジスタマシンのコードは曖昧である。ラベル\code{here}が複数回、定義されているためである。
+以下のレジスタマシンのコードは、ラベル\code{here}が複数回定義されているため曖昧になっている。
 
 \begin{scheme}
 start
@@ -28759,18 +28757,17 @@ here
 there
 \end{scheme}
 
-
-シミュレータが書かれているままの状態で、レジスタ\code{a}の中身はコントローラが
-\code{there}に辿り着いた時に何になるか? 手続き\code{extract\-/labels}を変更し、同じラベル名が
-2つの異なる地点を指し示すのに使用された場合にエラーを発するようにせよ。
+本文に書いたようなシミュレータでは、制御が\code{there}に達したとき、レジスタ\code{a}の中身は
+どうなっているか。手続き\code{extract\-/labels}を修正し、同じラベル名が二つの異なる場所を
+指すために使われている場合にはエラーを発するようにせよ。
 \end{quote}
 
-\subsection{各命令に対する実行手続きの生成}
+\subsection{命令の実行手続きの生成}
 \label{Section 5.2.3}
 
-アセンブラは命令の実行手続きを生成するために\code{make\-/execution\-/procedure}を呼びます。
-\link{Section 4.1.7}の評価器の\code{analyze}手続きと同様に、これは適切な実行手続きを生成するために
-命令の型に従い呼出を行います。
+アセンブラは\code{make\-/execution\-/procedure}を呼んで命令の実行手続きを生成します。
+\link{Section 4.1.7}の評価器の\code{analyze}手続きと同じように、この手続きは
+適切な実行手続きを生成するために命令の型によってディスパッチを行います。
 
 \begin{scheme}
 (define (make-execution-procedure 
@@ -28795,16 +28792,15 @@ there
 \end{scheme}
 
 \noindent
-レジスタマシンの言語の命令の各型に対し、適切な実行手続きを構築する生成器が存在します。
-これらの手続きの詳細がレジスタマシン言語の構文と個別の命令の意味の両方を決定します。
-データ抽象化を用いることで全体的な実行の仕組みからレジスタマシンの式の詳細な構文を
-分離しています。これは\link{Section 4.1.2}で評価器に対して行ったのと同様で、構文手続きを用いて
-命令の部分を抽出し、分類することによります。
+レジスタマシン言語の命令のそれぞれの型に対して、適切な実行手続きを構築する生成器があります。
+これらの手続きの詳細が、レジスタマシン言語のそれぞれの命令の構文と意味の両方を決定します。
+ここでは、データ抽象化を使ってレジスタマシンの式の詳細な構文を全体的な実行メカニズムから
+分離しています。これは、\link{Section 4.1.2}の評価器で、構文手続きを使って命令のそれぞれの
+部分を抽出・分類したのと同じです。
 
 \subsubsection*{\code{assign}命令}
 
-
-\code{make\-/assign}手続きは\code{assign}命令を扱います。
+\code{make\-/assign}手続きは\code{assign}命令を処理します。
 
 \begin{scheme}
 (define (make-assign inst machine labels operations pc)
@@ -28823,8 +28819,8 @@ there
 \end{scheme}
 
 \noindent
-\code{make\-/assign}はターゲットとなるレジスタ名(命令の2つ目の要素)と値の式(命令を
-構成するリストの残りの部分)を\code{assign}命令からセレクタを用いて抽出します。
+\code{make\-/assign}は、\code{assign}命令から目標レジスタ名(命令の二つ目の要素)と
+値の式(命令を構成するリストの残りの部分)を次の二つのセレクタを使って抽出します。
 
 \begin{scheme}
 (define (assign-reg-name assign-instruction)
@@ -28834,20 +28830,20 @@ there
 \end{scheme}
 
 \noindent
-レジスタ名が\code{get\-/register}を用いて検索され目的のレジスタオブジェクトを生成します。
-値の式はもし値が命令の結果であるのなら\code{make\-/operation\-/exp}に渡され、そうでなければ
-\code{make\-/primitive\-/exp}に渡されます。これらの手続き(以下に示されます)は値の式を構文解析し
-その値に対する実行手続きを生成します。これは引数無しの手続きで\code{value\-/proc}と呼ばれ、
-シミュレーションの間にレジスタに代入される実際の値を生成するために評価されます。
-レジスタ名の検索と値の式の構文解析の仕事はただ一度、アセンブリ時(アセンブラ実行時)に実行されることに注意して下さい。
-その命令がシミュレートされる度に毎回ではありません。この仕事量の削減こそが私達が
-実行手続きを使用する理由です。そしてこれが直接\link{Section 4.1.7}の評価器において、実行から
-プログラム分析を分離することにより仕事量の削減を得たことに対応します。
+レジスタ名は\code{get\-/register}によって検索され、目標レジスタオブジェクトを生成します。
+値の式、値が命令の結果であれば\code{make\-/operation\-/exp}に渡され、そうでなければ
+\code{make\-/primitive\-/exp}に渡されます。これらの手続き(以下に示します)は、値の式を
+構文解析し、その値に対する実行手続きを生成します。これは\code{value\-/proc}と呼ばれる
+引数なしの手続きで、シミュレーションの間に評価されてレジスタに代入すべき実際の
+値を生成します。レジスタ名の検索と値の式の構文解析はアセンブリ時に一回行われるだけで、
+命令をシミュレーションするたびに毎回行われるわけではないというところに注意してください。
+この省力化こそが実行手続きを使う理由です。これは、\link{Section 4.1.7}の評価器で、
+プログラム分析を実行から分離することによって達成した省力化に直接対応します。
 
-\code{make\-/assign}により返される結果は\code{assign}命令のための実行手続きです。
-この手続きが(マシンモデルの\code{execute}手続きにより)呼ばれた時に、\code{value\-/proc}手続きを
-実行することにより得られた結果を目的のレジスタの中身に設定します。その次に\code{pc}を
-以下の手続きを実行することにより次の命令へと進めます。
+\code{make\-/assign}によって返される結果は\code{assign}命令の実行手続きです。
+この手続きが(マシンモデルの\code{execute}手続きによって)呼ばれると、
+\code{value\-/proc}手続きを実行することで得られる結果を目標レジスタの中身に設定します。
+それから、以下の手続きを実行して\code{pc}を次の命令に進めます。
 
 \begin{scheme}
 (define (advance-pc pc)
@@ -28855,13 +28851,13 @@ there
 \end{scheme}
 
 \noindent
-\code{advance\-/pc}は\code{branch}と\code{goto}を除く全ての命令に対する通常の終わりです。
+\code{advance\-/pc}は、\code{branch}と\code{goto}以外のすべての命令の正常終了処理です。
 
-\subsubsection*{\code{Test}, \code{branch}, \code{goto}命令}
+\subsubsection*{\code{test}, \code{branch}, \code{goto}命令}
 
-\code{make\-/test}は\code{test}命令を同様な方法で扱います。これはテストされる条件を指定する
-式を抽出し、それに対する実行手続きを生成します。シミュレーション時に、条件のための
-手続きが呼ばれ、その結果が\code{flag}レジスタに割り当てられ、\code{pc}が進められます。
+\code{make\-/test}は、\code{make\-/assign}と同じように\code{test}命令を処理します。
+\code{make\-/test}はテスト対象の条件を規定する式を抽出し、それに対する実行手続きを生成します。シミュレーション時には、条件の手続きが呼ばれ、結果が\code{flag}レジスタに割り当てられ、
+\code{pc}が進められます。
 
 \begin{scheme}
 
@@ -28880,12 +28876,12 @@ there
 \end{scheme}
 
 \noindent
-\code{branch}命令のための実行手続きは\code{flag}レジスタの中身をチェックし、\code{pc}の中身に
-分岐の目的地を設定するか(分岐が選択された場合)、または単に\code{pc}を進めます
-(分岐が選択されなかった場合)。\code{branch}命令内で指定された目的値はラベルでなければ
-ならず、\code{make\-/branch}手続きがこのことを強制することに注意して下さい。またラベルは
-アセンブリ時に検索され、\code{branch}命令がシミュレートされる時に毎回検索される
-訳ではないことにも注意して下さい。
+\code{branch}命令の実行手続きは、\code{flag}レジスタの中身をチェックし、
+分岐の目的地を\code{pc}の中身に設定する(分岐する場合)か、単に\code{pc}を進める
+(分岐しない場合)かのどちらかを行います。\code{branch}命令内で指定される目的値はラベルで
+なければならず、\code{make\-/branch}手続きがそれを強制することに注意してください。
+また、ラベルはアセンブリ時に検索され、\code{branch}命令がシミュレートされるたびに毎回
+検索されるわけではないというところにも注意してください。
 
 \begin{scheme}
 (define (make-branch inst machine labels flag pc)
@@ -28905,8 +28901,9 @@ there
 \end{scheme}
 
 \noindent
-\code{goto}命令は\code{branch}に似ていますが、目的地がラベルか、またはレジスタにより指定される
-ことが異なります。また条件分岐ではありません。\code{pc}は常に新しい目的地に設定されます。
+\code{goto}命令は\code{branch}に似ていますが、目的地がラベルまたはレジスタによって
+規定されるという点と、チェックするべき条件がないというところが違います。\code{pc}は常に
+新しい目的地に設定されます。
 
 \begin{scheme}
 (define (make-goto inst machine labels pc)
@@ -28927,6 +28924,7 @@ there
 (define (goto-dest goto-instruction)
   (cadr goto-instruction))
 \end{scheme}
+%%%
 
 \subsubsection*{他の命令}
 
