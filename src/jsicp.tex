@@ -28924,12 +28924,11 @@ there
 (define (goto-dest goto-instruction)
   (cadr goto-instruction))
 \end{scheme}
-%%%
 
-\subsubsection*{他の命令}
+\subsubsection*{その他の命令}
 
-スタック命令の\code{save}と\code{restore}は単純にスタックを指定したレジスタと共に
-用いて、\code{pc}を進めます。
+スタック命令の\code{save}と\code{restore}は、指定されたレジスタについて単純にスタックを使い、
+\code{pc}を進めます。
 
 \begin{scheme}
 (define (make-save inst machine stack pc)
@@ -28949,8 +28948,8 @@ there
 \end{scheme}
 
 \noindent
-\code{make\-/perform}で扱われる最後の命令型は実行されるべきアクションのための実行手続きを
-生成します。シミュレーション時にこのアクション手続きが実行され\code{pc}は進められます。
+\code{make\-/perform}が扱う最後の命令型は、実行するべきアクションに対する実行手続きを
+生成します。シミュレーション時には、このアクション手続きが実行され、\code{pc}が進められます。
 
 \begin{scheme}
 (define (make-perform inst machine labels operations pc)
@@ -28966,10 +28965,9 @@ there
 
 \subsubsection*{部分式の実行手続き}
 
-\code{reg}, \code{label}, または\code{const}式の値はレジスタへの代入(\code{make\-/assign})のため、
-または演算命令の入力(下記の\code{make\-/operation\-/exp})のために必要になるかもしれません。
-以下の手続きはこれらの式のための値をシミュレーションの間に生成するための実行手続きを
-生成します。
+\code{reg}, \code{label}, \code{const}式の値は、レジスタへの代入(\code{make\-/assign})または
+演算に対する入力(下記の\code{make\-/operation\-/exp})のために必要になることがあります。
+以下の手続きは、これらの式の値をシミュレーション時に生成する実行手続きを生成します。
 
 \begin{scheme}
 (define (make-primitive-exp exp machine labels)
@@ -28990,7 +28988,7 @@ there
 \end{scheme}
 
 \noindent
-\code{reg}, \code{label}, \code{const}式の構文は以下により決定されます。
+\code{reg}, \code{label}, \code{const}式の構文は以下の手続きによって決められています。
 
 \begin{scheme}
 (define (register-exp? exp) (tagged-list? exp 'reg))
@@ -29002,10 +29000,10 @@ there
 \end{scheme}
 
 \noindent
-\code{assign}, \code{perform}, \code{test}命令は(\code{op}式により指定される)機械の演算命令の
-(\code{reg}と\code{const}式により指定される)いくつかのオペランドへの適用を含むかも
-しれません。以下の手続きは``演算命令式''---命令からの演算命令とオペランドの式を
-含むリスト---に対する実行手続きを生成します。
+\code{assign}, \code{perform}, \code{test}命令では、(\code{reg}と\code{const}式によって
+規定される)オペランドに対する(\code{op}式によって規定される)マシンの演算命令の適用を
+含む可能性があります。以下の手続きは、``演算式''---命令内の演算とオペランド式からなる
+リスト---に対する実行手続きを生成します。
 
 \begin{scheme}
 (define (make-operation-exp exp machine labels operations)
@@ -29020,7 +29018,7 @@ there
 \end{scheme}
 
 \noindent
-演算命令式の構文は以下により決定されます。
+演算式の構文は以下の手続きによって決められています。
 
 \begin{scheme}
 (define (operation-exp? exp)
@@ -29032,11 +29030,11 @@ there
 \end{scheme}
 
 \noindent
-演算命令式の処理が\link{Section 4.1.7}の評価器において各オペランドに対して実行手続きを生成したことにおいて
-\code{analyze\-/application}手続きによる手続きの適用の処理にとても似ていることに注意して下さい。
-シミュレーション時に、オペランド手続きを呼び、結果となる値に対して演算をシミュレートする
-Scheme手続きを適用します。シミュレーション手続きは演算命令の名前を機械の演算命令テーブルから
-検索することで見つかります。
+演算式の処理は、\link{Section 4.1.7}の評価器の\code{analyze\-/application}手続による
+手続き適用の処理でそれぞれのオペランドに対して実行手続きを生成したのとそっくりです。
+シミュレーション時には、オペランドの手続きを呼び、演算をシミュレートするScheme手続きを
+その結果の値に対して適用します。シミュレーション手続きは、演算名でマシンの演算テーブルを
+検索することによって得られます。
 
 \begin{scheme}
 (define (lookup-prim symbol operations)
@@ -29049,81 +29047,82 @@ Scheme手続きを適用します。シミュレーション手続きは演算�
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.9}Exercise 5.9:}
-上記の機械の演算命令の取扱はそれらにラベル、定数、レジスタの中身上での演算を可能にする。
-式を処理する手続きを変更し、演算命令がレジスタと定数のみに対して使用できるような条件を
-強制するようにせよ。
+マシンの演算を上のように扱うと、定数とレジスタの中身以外に、ラベルに対しても演算が可能になる。
+式処理手続きを修正し、演算はレジスタと定数だけにしか使えないという条件を強制するようにせよ。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.10}Exercise 5.10:}
-レジスタマシンの命令に新しい構文を設計し、シミュレータを変更してその新しい構文を使用せよ。
-シミュレータの内、この節の構文手続き以外を変更せずにあなたの新しい構文を実装することができるだろうか?
+レジスタマシンの命令に新しい構文を設計し、その新しい構文を使えるようにシミュレータを修正せよ。
+この節の構文手続き以外のシミュレータの部分を変更せずに新しい構文を実装できるだろうか。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.11}Exercise 5.11:}
-\link{Section 5.1.4}で\code{save}と\code{restore}を導入した時、以下の順の様に最後に保存した物ではない
-レジスタに戻した場合に何が起こるのかは指定しなかった。
+\link{Section 5.1.4}で\code{save}と\code{restore}を導入したときには、最後に保存したレジスタで
+ないレジスタを復元しようとしたときに何が起こるかを規定していなかった。例えば、次のような
+命令列の場合である。
 
 \begin{scheme}
 (save y)  (save x)  (restore y)
 \end{scheme}
 
-
-\code{restore}の意味に対してはいくつかの妥当な可能性が存在する。
+\code{restore}の意味として妥当なものはいくつか考えられる。
 
 \begin{enumerate}[a]
 
 \item
-\code{(restore y)}はスタック上に最後に保存された値を、どのレジスタからその値が来たのか
-関係無しに\code{y}に入れる。これが私達のシミュレータの振舞である。この振舞の利点の
-活用法を示すため、\link{Section 5.1.4}のフィボナッチマシンから1つ命令を削減して見せよ。(\link{Figure 5.12})
+\code{(restore y)}は、どのレジスタから来た値か関係なしに、スタックに最後に保存された値を
+\code{y}に入れる。現在のシミュレータのふるまいはこのようになっている。
+このふるまいを利用して、\link{Section 5.1.4}のフィボナッチマシン(\link{Figure 5.12})から
+命令をひとつ削減する方法を示せ。
 
 \item
-\code{(restore y)}はスタック上に最後に保存された値を\code{y}に入れる。しかしその
-値が\code{y}から保存された場合のみである。そうでなければエラーを発する。
-シミュレータを変更してこのように振る舞うようにせよ。\code{save}を変更して
-スタック上に値と共にレジスタ名を保存しなければならない。
+\code{(restore y)}は、スタックに最後に保存された値が\code{y}を保存したものである場合に限り、
+それを\code{y}に入れる。それ以外の場合にはエラーを発する。シミュレータを修正し、ふるまいを
+このように変更せよ。スタックに値のほかにレジスタ名も保存するように\code{save}を変更する
+必要がある。
 
 \item
-\code{(restore y)}は\code{y}の後に他のどのレジスタが保存され、取り出されていなくても
-最後に\code{y}から保存した値を\code{y}に入れる。シミュレータをこのように振る舞うように変更せよ。
-分離されたスタックを各レジスタに関連付けする必要がある。また\code{initialize\-/stack}命令に
-全てのレジスタのスタックを初期化させなければならない。
+\code{(restore y)}は、最後に\code{y}から保存した値を\code{y}に入れる。\code{y}の後に
+ほかのレジスタの値が保存され、それらが取り出されていない場合にも、この挙動は変わらない。
+シミュレータを修正し、ふるまいをこのように変更せよ。それぞれのレジスタに対して、
+別々のスタックを関連づける必要があるだろう。また、\code{initialize\-/stack}演算では
+すべてのレジスタスタックを初期化しなければならない。
 
 \end{enumerate}
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.12}Exercise 5.12:}
-シミュレータは与えられたコントローラと共に機械を実装するために必要とされるデータパスを
-決定することを手助けするために利用することが可能である。アセンブラを拡張し以下の情報を
-マシンモデルに格納せよ。
+シミュレータは、あるコントローラを持つマシンを実装するために必要となるデータパスを
+決めるときの補助として使うことができる。アセンブラを拡張し、以下の情報をマシンモデルに
+格納するようにせよ。
 
 \begin{itemize}
 
 \item
-全ての命令のリストを重複を削除し、命令の型でソートする(\code{assign}, \code{goto}等)
+全命令のリスト。重複を削除し、命令の型(\code{assign}, \code{goto}等)によってソートしたもの。
 
 \item
-エントリポイントを持つのに使用されたレジスタの(重複の無い)リスト。(これらは
-\code{goto}命令で参照されたレジスタである)
+エントリポイントを入れるために使われるレジスタの(重複なし)リスト(これらは\code{goto}命令に
+よって参照されるレジスタである)。
 
 \item
-\code{save}または\code{restore}されたレジスタの(重複の無い)リスト
+\code{save}または\code{restore}されるレジスタの(重複なし)リスト。
 
 \item
-各レジスタに対し、代入元の(重複の無い)リスト。(例えば\link{Figure 5.11}の階乗マシンの
-レジスタ\code{val}の入力元は\code{(const 1)}と\code{((op *) (reg n) (reg val))}).
+それぞれのレジスタに対する代入元の(重複なし)リスト(例えば、\link{Figure 5.11}の階乗マシンでは、
+レジスタ\code{val}の代入元は\code{(const 1)}と\code{((op *) (reg n) (reg val))}である)。
 
 \end{itemize}
 
-
-メッセージパッシングの機械へのインターフェイスを拡張し、この新しい情報へのアクセスを提供せよ。
-あなたの分析器をテストするために\link{Figure 5.12}のフィボナッチマシンを定義し、
-構築されたリストを試験せよ。
+マシンのメッセージパッシングインターフェイスを拡張し、この新しい情報にアクセスできるように
+せよ。この解析器をテストするため、\link{Figure 5.12}のフィボナッチマシンを定義し、
+構築されたリストを確認せよ。
 \end{quote}
 
+%%%
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.13}Exercise 5.13:}
 シミュレータを変更することで、\code{make\-/machine}に対する引数としてレジスタのリストを
