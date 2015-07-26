@@ -29465,7 +29465,7 @@ the-cdrs |    | p2 | p4 |    | e0 | p7 |    | e0 |    | ...
 二つのレジスタ\code{the\-/cars}と\code{the\-/cdrs}を使い、\code{vector\-/ref}と
 \code{vector\-/set!}は基本演算として使えると仮定します。また、ポインタ演算(ポインタの
 インクリメント、ペアポインタによるベクタの位置指定、二つの数値の加算など)は、型つきポインタの
-インデックス部分だけを使うものと仮定します。
+インデックス部だけを使うものと仮定します。
 
 \noindent
 例えば、以下の命令をサポートするレジスタマシンは、
@@ -29504,24 +29504,24 @@ the-cdrs |    | p2 | p4 |    | e0 | p7 |    | e0 |    | ...
 \noindent
 \code{cons}は、未使用のインデックスを割り当て、\code{the\-/cars}と\code{the\-/cdrs}の中の
 そのインデックスが指すベクタ位置に\code{cons}の二つの引数を格納することによって実行できます。
-
-%%%
-私達は特別なレジスタ、\code{free}が存在し、
-常に次に使用可能な索引を持つペアポインタを保つと仮定します。そしてそのポインタの
-索引部分をインクリメントすることで次の空き位置を探すことができます。\footnote{空きの
-記憶域を探す他の方法も存在します。例えば、全ての未使用のペアをリンクして
-\newterm{free list}(\jnewterm{空きリスト})にすることもできたでしょう。私達の空き位置は連続的
-(従ってポインタをインクリメントすることでアクセス可能であるため)です。なぜなら
-私達が圧縮GCを用いているためです。また\link{Section 5.3.2}も参照して下さい。}例えば、以下の命令は
+ここでは、次に使用可能なインデックスの入ったペアポインタを持つ\code{free}という特別なレジスタが
+存在し、そのポインタのインデックス部をインクリメントすることで次の空き位置を見つけられる
+と仮定します。
+\footnote{空き領域を探す方法はほかにもあります。例えば、未使用のペアをすべて
+\newterm{free list}(\jnewterm{空きリスト})として連結するということも可能です。
+\link{Section 5.3.2}で見ていくように、ここでは圧縮GCを使うため、空き位置は連続的
+(そのため、ポインタのインクリメントによってアクセス可能)です。}
+例えば、次の命令は、
 
 \begin{scheme}
 (assign ~\( \dark \langle \)~~\( \dark reg_1 \)~~\( \dark \rangle \)~ (op cons) (reg ~\( \dark \langle \)~~\( \dark reg_2 \)~~\( \dark \rangle \)~) (reg ~\( \dark \langle \)~~\( \dark reg_3 \)~~\( \dark \rangle \)~))
 \end{scheme}
 
 \noindent
-次の一連のベクタ命令として実装されます。\footnote{これは本質的に\link{Section 3.3.1}で説明した\code{set\-/car!}と
-\code{set\-/cdr!}を用いた\code{cons}の実装です。その実装内で使用された命令\code{get\-/new\-/pair}は
-ここでは\code{free}ポインタにより実現されています。}
+以下のようなベクタ命令の列として実装できます。
+\footnote{これは、本質的には\link{Section 3.3.1}で述べた\code{set\-/car!}と\code{set\-/cdr!}による
+\code{cons}の実装と同じです。そのときの実装で使った\code{get\-/new\-/pair}演算は、
+ここでは\code{free}ポインタによって実現されています。}
 
 \begin{scheme}
 (perform
@@ -29533,30 +29533,29 @@ the-cdrs |    | p2 | p4 |    | e0 | p7 |    | e0 |    | ...
 \end{scheme}
 
 \noindent
-以下の\code{eq?}命令は
+以下の\code{eq?}演算は、
 
 \begin{scheme}
 (op eq?) (reg ~\( \dark \langle \)~~\( \dark reg_1 \)~~\( \dark \rangle \)~) (reg ~\( \dark \langle \)~~\( \dark reg_2 \)~~\( \dark \rangle \)~)
 \end{scheme}
 
 \noindent
-単純にレジスタ内の全ての項目の等価性をテストします。そして
-\code{pair?}, \code{null?}, \code{symbol?}, \code{number?}等のような述語は型フィールドのみを
-確認する必要があります。
+単純にレジスタのすべてのフィールドの等価性をテストします。\code{pair?}, \code{null?},
+\code{symbol?}, \code{number?}のような述語は、型フィールドだけをチェックするだけで十分です。
 
 \subsubsection*{スタックの実装}
 
-私達のレジスタマシンはスタックを用いますが、ここでは特に特別なことを行う必要がありません。
-スタックはリストを用いてモデル化することができるためです。スタックは保存した値のリストと
-することができ、特別なレジスタ\code{the\-/stack}により指し示されます。従って\code{
-(save <\var{reg}>)}は以下のように実装することができます。
+私たちのレジスタマシンはスタックを使いますが、スタックはリストによってモデル化できるため、
+ここでは特別なことをする必要はありません。スタックは保存した値のリストとして実装することが
+できます。\code{the\-/stack}という特別なレジスタがスタックを指すものとします。
+そのため、\code{(save <\var{reg}>)}は次のように実装できます。
 
 \begin{scheme}
 (assign the-stack (op cons) (reg ~\( \dark \langle \)~~\var{\dark reg}~~\( \dark \rangle \)~) (reg the-stack))
 \end{scheme}
 
 \noindent
-同様に、\code{(restore <\var{reg}>)}は次のように実装することができます。
+同じように、\code{(restore <\var{reg}>)}は次のように実装できます。
 
 \begin{scheme}
 (assign ~\( \dark \langle \)~~\var{\dark reg}~~\( \dark \rangle \)~ (op car) (reg the-stack))
@@ -29564,22 +29563,22 @@ the-cdrs |    | p2 | p4 |    | e0 | p7 |    | e0 |    | ...
 \end{scheme}
 
 \noindent
-そして\code{(perform (op initialize\-/stack))}は以下のように実装することができます。
+また、\code{(perform (op initialize\-/stack))}は次のように実装できます。
 
 \begin{scheme}
 (assign the-stack (const ()))
 \end{scheme}
 
 \noindent
-これらの命令は上で与えられたベクタ命令を用いてさらに伸展されます。しかし、伝統的な計算機
-アーキテクチャにおいてはスタックを別のベクタとして割り当てることは通常は好都合です。
-そうすれば、スタックにpushやpopを行うことはベクタに対する索引をインクリメント、
-デクリメントすることにより達成することができます。
+これらの演算は、上で示したベクタ演算によってさらに展開することができます。しかし、従来型
+コンピュータアーキテクチャでは、スタックを別のベクタとして割り当てるほうが通常は有利です。
+その場合、プッシュとポップはそのベクタのインデックスのインクリメントとデクリメントとして
+実現できます。
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.20}Exercise 5.20:}
-以下の式から生成されるリスト構造の表現と(\link{Figure 5.14}にあるような)メモリ-ベクタ表現の
-箱とポインタ図を描け。
+\code{free}ポインタの初期値を\code{p1}として、次の式によって生成されるリスト構造について、
+(\link{Figure 5.14}のように)箱とポインタ表現とメモリベクタ表現を描け。
 
 \begin{scheme}
 (define x (cons 1 2))
@@ -29587,19 +29586,18 @@ the-cdrs |    | p2 | p4 |    | e0 | p7 |    | e0 |    | ...
 \end{scheme}
 
 \noindent
-ただし、\code{free}ポインタの初期値は\code{p1}とする。\code{free}の最終的な値は何か?
-どんなポインタが\code{x}と\code{y}の値を表現するか?
+\code{free}の最終的な値は何になるか。どのポインタが\code{x}と\code{y}の値を表現しているだろうか。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.21}Exercise 5.21:}
-以下の手続きのためのレジスタマシンを実装せよ。リスト構造のメモリ命令は機械のプリミティブと
-して使用可能だと仮定せよ。
+以下の手続きに対応するレジスタマシンを実装せよ。リスト構造メモリ演算はマシンの基本演算として
+使えると仮定する。
 
 \begin{enumerate}[a]
 
 \item
-再帰\code{count\-/leaves}:
+再帰的\code{count\-/leaves}:
 
 \begin{scheme}
 (define (count-leaves tree)
@@ -29610,7 +29608,7 @@ the-cdrs |    | p2 | p4 |    | e0 | p7 |    | e0 |    | ...
 \end{scheme}
 
 \item
-明示的なカウンタを用いた再帰\code{count\-/leaves}
+明示的にカウンタを持つ再帰的 \code{count\-/leaves}
 
 \begin{scheme}
 (define (count-leaves tree)
@@ -29628,9 +29626,10 @@ the-cdrs |    | p2 | p4 |    | e0 | p7 |    | e0 |    | ...
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.22}Exercise 5.22:}
-\link{Section 3.3.1}の\link{Exercise 3.12}は2つのリストを接続し1つの新しいリストを形成する\code{append}手続きと、
-2つのリストを一緒に繋ぎ合わせる\code{append!}手続きを紹介した。これらの手続きそれぞれを実装するレジスタ
-マシンを設計せよ。リスト構造のメモリ命令はプリミティブな命令として使用可能と前提せよ。
+\link{Section 3.3.1}の\link{Exercise 3.12}では、二つのリストを足してひとつの新しいリストにする
+\code{append}手続きと、二つのリストを継ぎ合わせる\code{append!}手続きを紹介した。
+これらの手続きそれぞれを実装するレジスタマシンを設計せよ。リスト構造メモリ演算は基本演算として
+使えると仮定する。
 \end{quote}
 
 \subsection{無限のメモリの幻想を維持する}
