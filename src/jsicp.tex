@@ -30137,14 +30137,13 @@ ev-appl-did-operator
   (save proc)
 \end{scheme}
 
-%%%
 \noindent
-引数評価ループの各サイクルは\code{unev}の中のリストからオペランドを評価し、その結果を\code{argl}の
-中に蓄積します。オペランドを評価するために、それを\code{exp}レジスタの中に入れ、
-実行が引数蓄積段階から再開できるよう\code{continueを}設定した後に\code{eval\-/dispatch}に飛びます。
-しかし、最初に私達はそれまでに(\code{argl}に保持されている)蓄積された引数、環境(\code{env}に維持)、
-評価されていない残りのオペランド(\code{unev}が保持)を保存します。最後のオペランドの評価は
-特別な場合として扱われ\code{ev\-/appl\-/last\-/arg}により取り扱われます。
+引数評価ループのそれぞれのサイクルでは、\code{unev}内のリストからオペランドをひとつ取得して
+それを評価し、その結果を\code{argl}に集積していきます。オペランドを評価するときは、
+オペランドを\code{exp}レジスタに入れ、引数集積フェーズから実行を再開できるように
+\code{continueを}設定してから\code{eval\-/dispatch}に進みます。しかし、まずはそれまでに
+集積した引数(\code{argl})、環境(\code{env})、未評価の残りのオペランド(\code{unev})を保存します。
+最後のオペランドの評価は特別扱いとなり、\code{ev\-/appl\-/last\-/arg}で処理します。
 
 \begin{scheme}
 ev-appl-operand-loop
@@ -30159,9 +30158,8 @@ ev-appl-operand-loop
 \end{scheme}
 
 \noindent
-オペランドが評価された時に、その値は\code{argl}にて保持されるリストの中に蓄積されます。
-そのオペランドはその後\code{unev}中の未評価オペランドのリストから消され、引数評価が
-続行されます。
+オペランドが評価されると、値が\code{argl}内のリストに集積されます。次に、そのオペランドは
+\code{unev}内の未評価オペランドのリストから削除され、引数評価が続行されます。
 
 \begin{scheme}
 ev-appl-accumulate-arg
@@ -30174,16 +30172,17 @@ ev-appl-accumulate-arg
 \end{scheme}
 
 \noindent
-最後の引数の評価は異なる扱いを受けます。環境や未評価のオペランドのリストを
-\code{eval\-/dispatch}に飛ぶ前に保存する必要がありません。最後のオペランドが評価された後に
-それらは必要が無いためです。従って評価から特別なエントリポイント\code{ev\-/appl\-/accum\-/last\-/arg}に
-帰ります。これは引数リストを戻し、新しい引数を蓄積し、保存された手続きを戻し、適用
-を実行するために飛びます。\footnote{最後のオペランドの処理の特別な最適化は
-\newterm{evlis tail recursion}(\jnewterm{エブリス末尾再帰})として知られています(\link{Wand 1980}参照)。
-最初のオペランドも特別な場合とすれば、私達は引数評価ループをいくらかより効率的良くできたでしょう。
-これは\code{argl}の初期化を最初のオペランドの評価の後まで延期することができ、この場合に\code{argl}を
-保存することを防げたでしょう。\link{Section 5.5}のコンパイラはこの最適化を実行します。
-(\link{Section 5.5.3}の\code{construct\-/arglist}手続きと比較して下さい。)}
+最後の引数の評価は異なる処理になります。最後の引数を評価した後は必要がなくなるため、
+\code{eval\-/dispatch}に進む前に環境や未評価オペランドリストを保存する必要はありません。
+そのため、評価が終わると、\code{ev\-/appl\-/accum\-/last\-/arg}という特別なエントリポイントに
+帰ります。この手続きは引数リストを復元し、新しい引数を集積し、保存した手続きを復元し、適用実行
+処理に移動します。
+\footnote{最後のオペランドの処理を特別扱いするこの最適化は、\newterm{evlis tail recursion}
+(\jnewterm{エブリス末尾再帰})として知られています(\link{Wand 1980}参照)。最初のオペランドも
+特別扱いすると、引数評価ループをもう少し効率よくすることもできます。その場合、\code{argl}の初期化を
+最初のオペランドの評価の後まで延期することができ、\code{argl}を保存することを避けられます。
+\link{Section 5.5}のコンパイラはこの最適化を実行します(\link{Section 5.5.3}の
+\code{construct\-/arglist}手続きと比較してください)。}
 
 \begin{scheme}
 ev-appl-last-arg
@@ -30197,25 +30196,30 @@ ev-appl-accum-last-arg
 \end{scheme}
 
 \noindent
-引数評価ループの詳細はインタプリタが組み合わせのオペランドを評価する順を決定します。(例えば、
-左から右や右から左---\link{Exercise 3.8}参照)。この順はメタ循環評価器では決定されません。
-メタ循環評価器はその制御構造をその基礎を成し実装を行うSchemeから継承します。\footnote{メタ循環評価器の
-オペランドの評価順は\link{Section 4.1.1}の手続き\code{list\-/of\-/values}内の\code{cons}への引数の評価順により決定されます
-(\link{Exercise 4.1}参照)。}(\code{ev\-/appl\-/operand\-/loop}内で一連のオペランドを\code{unev}から抽出するために使用された)
-\code{first\-/operand}セレクタは\code{car}として実装され、\code{rest\-/operands}は\code{cdr}として実装され、
-明示制御評価器は組み合わせのオペランドを左から右への順で評価します。
+組み合わせの中のオペランドをインタプリタが評価する順番(左から右、あるいは右から左など。
+\link{Exercise 3.8}参照)は、引数評価ループの実装によって決定されます。メタ循環評価器では、
+実装に使った基層のSchemeから制御構造を継承しているため、評価順はメタ循環評価器によって
+決定されるわけではありません。
+\footnote{メタ循環評価器では、オペランドの評価順は、\link{Section 4.1.1}の手続き
+\code{list\-/of\-/values}内の\code{cons}に対する引数の評価順によって決定されます
+(\link{Exercise 4.1}参照)。}
+(\code{ev\-/appl\-/operand\-/loop}で一続きのオペランドを\code{unev}から抽出するために使う)
+\code{first\-/operand}セレクタは\code{car}として実装されていて、\code{rest\-/operands}は
+\code{cdr}として実装されているので、明示制御評価器は組み合わせのオペランドを左から右という順番で
+評価します。
 
 \subsubsection*{手続き適用}
 
-エントリポイント\code{apply\-/dispatch}はメタ循環評価器の\code{apply}手続きに対応します。
-\code{apply\-/dispatch}に到達する時に、\code{proc}レジスタは適用するための手続きを持ち、
-\code{argl}は適用するべき評価された引数のリストを持ちます。
-(元々は\code{eval\-/dispatch}に渡され、\code{ev\-/application}で保存された)\code{continue}の保存された値は
-手続き適用の結果と共に帰る場所を伝えますが、スタック上に存在します。適用が完了した時に、
-コントローラは保存された\code{continue}により指示されたエントリポイントへ、\code{val}内の
-適用の結果と共に移動します。メタ循環の\code{apply}と同様に、考慮すべき2つの場合が存在します。
-適用すべき手続きはプリミティブであるか、または複合手続きであるかです。
+エントリポイント\code{apply\-/dispatch}は、メタ循環評価器の\code{apply}手続きに対応するものです。
+\code{apply\-/dispatch}に着くときには、\code{proc}レジスタには適用する手続きが入っていて、
+\code{argl}にはその手続きの適用対象となる評価済み引数のリストが入っています。保存された
+\code{continue}の値(元は\code{eval\-/dispatch}に渡され、それが\code{ev\-/application}で保存された
+もの)がスタック上にあり、これが手続き適用の結果を持って帰る先の場所を示しています。
+適用が終わると、コントローラは保存された\code{continue}の指すエントリポイントに移動します。
+このとき、\code{val}には適用の結果が入っています。メタ循環評価器の\code{apply}と同じように、
+二つの場合を考える必要があります。適用する手続きが基本手続きである場合と、複合手続きである場合です。
 
+%%%
 \begin{scheme}
 apply-dispatch
   (test (op primitive-procedure?) (reg proc))
