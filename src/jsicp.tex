@@ -30219,7 +30219,6 @@ ev-appl-accum-last-arg
 このとき、\code{val}には適用の結果が入っています。メタ循環評価器の\code{apply}と同じように、
 二つの場合を考える必要があります。適用する手続きが基本手続きである場合と、複合手続きである場合です。
 
-%%%
 \begin{scheme}
 apply-dispatch
   (test (op primitive-procedure?) (reg proc))
@@ -30230,16 +30229,17 @@ apply-dispatch
 \end{scheme}
 
 \noindent
-各プリミティブは引数を\code{argl}から取得し、その結果を\code{val}内に置くように実装されていると
-想定されます。機械がどのようにプリミティブを扱うかを指定するためには、それぞれのプリミティブを
-実装するための一連のコントローラ命令を提供しなければならず、\code{proc}の中身により識別された
-プリミティブのための命令への割り振りを行うように\code{primitive\-/apply}を準備しなければなりません。
-私達はプリミティブの詳細ではなく、評価処理の構造に興味があるため、それらの代わりに
-単に\code{apply\-/primitive\-/procedure}を使用します。これは\code{proc}内の手続きを\code{argl}内の引数に対して
-適用します。\link{Section 5.2}のシミュレータを用いて評価器のシミュレーションを行う目的のために、
-私達は手続き\code{apply\-/primitive\-/procedure}を使用します。これは根底にあるSchemeシステムを
-適用を実行するために呼び出します。私達が\link{Section 4.1.4}のメタ循環評価器で行ったのと全く同じです。
-プリミティブの適用の値を計算した後に、\code{continue}を戻して指定されたエントリポイントに飛びます。
+基本手続きはそれぞれ、引数を\code{argl}から取得し、結果を\code{val}に入れるよう実装されていると
+想定します。マシンの基本手続きの扱いを規定するには、それぞれの基本手続きを実装するコントローラ
+命令列を提供し、\code{primitive\-/apply}が\code{proc}の中身によって基本手続きを特定し、その手続きの
+命令列にディスパッチするようにする必要があるところです。ここで見たいのは評価処理の構造であって、
+基本手続きの細かい実装ではないため、その代わりに、単純に\code{proc}内の手続きを\code{argl}内の引数に
+適用する\code{apply\-/primitive\-/procedure}演算を使うことにします。\link{Section 5.2}の
+シミュレータを使って評価器のシミュレーションを行うという目的のために、基層のSchemeシステムを呼び出し
+適用を実行する\code{apply\-/primitive\-/procedure}を使うのですが、これは\link{Section 4.1.4}の
+メタ循環評価器で行ったことと同じです。
+
+基本手続きの適用の値を計算してから、\code{continue}を復元して、指定されたエントリポイントに移ります。
 
 \begin{scheme}
 primitive-apply
@@ -30251,10 +30251,10 @@ primitive-apply
 \end{scheme}
 
 \noindent
-複合手続きを適用するためには、メタ循環評価器と全く同様に進行します。
-手続きのパラメタを引数に束縛するフレームを構築し、このフレームを用いて手続きにより
-運ばれた環境を拡張し、この拡張環境の中で手続きのボディを形成する式の列を評価します。
-\link{Section 5.4.2}で説明される\code{ev\-/sequence}は列の評価を取り扱います。
+複合手続きの適用はメタ循環評価器と同じような進め方になります。手続きの仮引数を引数に束縛する
+フレームを構築し、手続きの持つ環境をそのフレームによって拡張し、その拡張した環境の中で
+手続きの本体となる式の列を評価します。列の評価は、この先\link{Section 5.4.2}で説明する
+\code{ev\-/sequence}で処理します。
 
 \begin{scheme}
 compound-apply
@@ -30267,18 +30267,19 @@ compound-apply
 \end{scheme}
 
 \noindent
-\code{compound\-/apply}は\code{env}レジスタが新しい値を割り当てられるインタプリタ内で唯一の場所です。
-メタ循環評価器と同様に、新しい環境は手続きにより運ばれた環境から引数リストと対応する束縛される
-変数のリストと共に構築されます。
+\code{compound\-/apply}は、\code{env}レジスタに新しい値が割り当てられるインタプリタ内で唯一の
+場所です。メタ循環評価器の場合と同じように、新しい環境は、手続きの持っている環境と、
+引数リストと、それに対応する束縛する変数のリストから構築します。
 
 \subsection{列の評価と末尾再帰}
 \label{Section 5.4.2}
 
-明示制御評価器の\code{ev\-/sequence}の部分はメタ循環評価器の\code{eval\-/sequence}手続きと同等です。
-手続きのボディ内の式、または明示的な\code{begin}式内の列を取り扱います。
+明示制御評価器の\code{ev\-/sequence}の部分は、メタ循環評価器の\code{eval\-/sequence}手続きと
+構造が似ています。この手続きが扱うのは、手続き本体の式の列と、明示的に\code{begin}式によって
+表される式の列です。
 
-明示的な\code{begin}式は\code{unev}内に評価されるべき式の列を配置し、\code{continue}をスタック上に保存し、
-\code{ev\-/sequence}に飛ぶことで評価されます。
+明示的な\code{begin}式は、\code{unev}に評価する式の列を入れ、\code{continue}をスタックに保存し、
+\code{ev\-/sequence}にジャンプすることによって評価します。
 
 \begin{scheme}
 ev-begin
@@ -30288,25 +30289,26 @@ ev-begin
 \end{scheme}
 
 \noindent
-手続きのボディ内の暗黙的な列は\code{compound\-/apply}から\code{ev\-/sequence}へと飛ぶことで
-扱われます。この時点で\code{continue}は既に\code{ev\-/application}で保存され、スタック上に存在します。
+手続き本体の暗黙的な列は、\code{compound\-/apply}から\code{ev\-/sequence}にジャンプすることによって
+処理します。このとき、\code{continue}はすでに\code{ev\-/application}で保存されたものが
+スタック上にあります。
 
-\code{ev\-/sequence}と\code{ev\-/sequence\-/continue}のエントリポイントはループを形成し、
-連続して列内の各式を評価します。未評価の式のリストは\code{unev}に保持されています。
-各式の評価の前に、列内にさらなる評価すべき式が存在しないかどうか確認します。
-もしそうであれば、(\code{unev}に保持された)未評価の式の残りと、(\code{env}に保持された)
-式の残りが評価される環境を保存し、その式を評価するために\code{eval\-/dispatch}を呼びます。
-2つの保存されたレジスタはこの評価からの帰還時に\code{ev\-/sequence\-/continue}にて戻されます。
+\code{ev\-/sequence}と\code{ev\-/sequence\-/continue}のエントリポイントは、
+順番に列のそれぞれの式を評価するループになっています。未評価の式のリストは\code{unev}に
+保持されています。それぞれの式を評価する前に、評価するべき式がまだ列にあるかどうか確認します。
+まだあるなら、未評価の式の残り(\code{unev}に保持されている)と、それらを評価するる環境
+(\code{env}に保持されている)を保存してから、\code{eval\-/dispatch}を呼んで式を評価します。
+この評価から戻ると、\code{ev\-/sequence\-/continue}で保存した二つのレジスタが復元されます。
 
-列内の最後の式は\code{ev\-/sequence\-/last\-/exp}にて異なる取扱を行います。
-この後には評価すべき式は無いため、\code{unev}と\code{env}を\code{eval\-/dispatch}に行く前に
-保存する必要はありません。列全体の値は最後の式の値であるため、最後の式の評価の後に
-スタック上に現時点で保存されている(\code{ev\-/application}または\code{ev\-/begin}にて保存された)
-エントリポイントから続行すること以外に必要なことはありません。
-\code{continue}を設定して\code{eval\-/dispatch}からここに帰るように準備し、次にスタックから
-\code{continue}の値を戻してそのエントリポイントから続行するのではなく、\code{eval\-/dispatch}へ
-行く前にスタックから\code{continue}を戻します。そうすることで\code{eval\-/dispatch}は
-式を評価した後にそのエントリポイントから続行します。
+列の最後の式は特別扱いとなり、\code{ev\-/sequence\-/last\-/exp}で処理します。
+その式の後にはもう評価するべき式はないため、\code{eval\-/dispatch}に行く前に\code{unev}と
+\code{env}を保存する必要はありません。最後の式の値が列全体の値となるため、最後の式の評価が
+終わった後にするべきことは、現時点でスタックにあるエントリポイント(これは\code{ev\-/application}
+または\code{ev\-/begin}で保存されたものです)から継続することだけです。
+\code{eval\-/dispatch}がこの場所に帰ってくるように\code{continue}を設定して、その後スタックから
+\code{continue}の値を復元して、そのエントリポイントから継続するということをする代わりに、
+\code{eval\-/dispatch}に行く前にスタックから\code{continue}を復元します。こうすると、
+\code{eval\-/dispatch}が式を評価した後にそのエントリポイントから継続します。
 
 \begin{scheme}
 ev-sequence
@@ -30328,7 +30330,7 @@ ev-sequence-last-exp
 \end{scheme}
 
 \subsubsection*{末尾再帰}
-
+%%%
 
 \link{Chapter 1}にて以下のような手続きにより記述されるプロセスは、
 
