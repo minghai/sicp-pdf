@@ -30412,33 +30412,32 @@ ev-sequence-end
 末尾再帰がなければ、このような手続きは最終的にはスタック領域を使い尽くしてしまうことになります。
 真の反復を表現しようと思うと、手続き呼び出し以外の何らかの制御メカニズムが必要になるでしょう。
 
-%%%
 \subsection{条件文、代入、定義}
 \label{Section 5.4.3}
 
-メタ循環評価器と同様に、特殊形式は選択的に式の部分部分を評価することで取り扱われます。
-\code{if}式に対しては、述語を評価して、その値を元に、結果部(consequent)と代替部(alternative)の
-どちらを評価するか決定します。
+メタ循環評価器と同じように、特殊形式は式の一部を選択的に評価することによって処理します。
+\code{if}式の場合は、まず述語を評価して、その値をもとに結果部と代替部のどちらを評価するか
+決定します。
 
-述語を評価する前に、\code{if}式自身を保存します。そうすることで後に結果部か代替部を抽出することが
-できます。また後に結果部か代替部を評価するため必要となるので環境を保存します。
-そして後に\code{if}の値を待っている式の評価に戻るために必要なため\code{continue}も保存します。
+述語を評価する前に、後で結果部または代替部を抽出するできるように\code{if}式自身を保存しておきます。
+さらに、環境も保存します。これは、結果部または代替部を評価する際に必要となります。それに加えて、
+\code{continue}も保存します。これは、\code{if}の値を受け取る式の評価に戻るために後で必要となります。
 
 \begin{scheme}
 ev-if
-  (save exp)                    ~\textrm{; 後のため式を保存する}~
+  (save exp)                    ~\textrm{; 後で使うために式を保存 }~
   (save env)
   (save continue)
   (assign continue (label ev-if-decide))
   (assign exp (op if-predicate) (reg exp))
-  (goto (label eval-dispatch))  ~\textrm{; 述語を評価する}~
+  (goto (label eval-dispatch))  ~\textrm{; 述語を評価 }~
 \end{scheme}
 
 \noindent
-述語の評価から戻る時、真か偽であるかをテストし、結果に依り\code{eval\-/dispatch}に飛ぶ前に
-\code{exp}に結果部か代替部を配置します。\code{env}と\code{continue}をここで戻すことが
-\code{eval\-/dispatch}に正しい環境を持たせ、正しい場所から継続し\code{if}式の値を受けとるように
-設定していることに注意して下さい。
+述語の評価から戻るとき、述語が真であったか偽であったかをテストし、\code{eval\-/dispatch}に飛ぶ前に
+その結果によって結果部か代替部を\code{exp}に入れます。ここで\code{env}と\code{continue}を
+復元することによって、\code{eval\-/dispatch}が正しい環境を持つようにし、また\code{if}式の値を
+受け取る正しい場所から継続するようにしていることに注意してください。
 
 \begin{scheme}
 ev-if-decide
@@ -30457,20 +30456,20 @@ ev-if-consequent
 
 \subsubsection*{代入と定義}
 
-代入と定義は\code{ev\-/assignment}により扱われます。ここには\code{eval\-/dispatch}から代入式が\code{exp}の
-中にある状態で到達します。\code{ev\-/assignment}の最初のコードは式の部分の値を評価し、次に
-新しい値を環境に導入します。\code{Set\-/variable\-/value!}が機械語命令として必要可能であると
-前提します。
+代入と定義は\code{ev\-/assignment}で処理します。ここに到達するのは、\code{eval\-/dispatch}で
+\code{exp}に代入式が入っているときです。\code{ev\-/assignment}のコードは、まず式の値部分を評価し、
+それから新しい値を環境に組み込みます。\code{set\-/variable\-/value!}はマシン演算として利用可能で
+あると仮定します。
 
 \begin{scheme}
 ev-assignment
   (assign unev (op assignment-variable) (reg exp))
-  (save unev)                   ~\textrm{; 後のため変数を保存}~
+  (save unev)                   ~\textrm{; 後で使うために変数を保存}~
   (assign exp (op assignment-value) (reg exp))
   (save env)
   (save continue)
   (assign continue (label ev-assignment-1))
-  (goto (label eval-dispatch))  ~\textrm{; 代入値を評価する}~
+  (goto (label eval-dispatch))  ~\textrm{; 代入値を評価}~
 ev-assignment-1
   (restore continue)
   (restore env)
@@ -30482,17 +30481,17 @@ ev-assignment-1
 \end{scheme}
 
 \noindent
-定義も同様に扱われます。
+定義も似たような方法で処理します。
 
 \begin{scheme}
 ev-definition
   (assign unev (op definition-variable) (reg exp))
-  (save unev)                   ~\textrm{; 変数を後のため保存}~
+  (save unev)                   ~\textrm{; 後で使うために変数を保存}~
   (assign exp (op definition-value) (reg exp))
   (save env)
   (save continue)
   (assign continue (label ev-definition-1))
-  (goto (label eval-dispatch))  ~\textrm{; 定義値を評価する}~
+  (goto (label eval-dispatch))  ~\textrm{; 定義値を評価}~
 ev-definition-1
   (restore continue)
   (restore env)
@@ -30505,47 +30504,48 @@ ev-definition-1
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.23}Exercise 5.23:}
-評価器を拡張し、\code{cond}, \code{let}, 等の派生式を取り扱うようにせよ(\link{Section 4.1.2})。
-\code{cond\-/>if}の様な構文変換器が機械語命令として使用可能と前提して``インチキ''しても良い。\footnote{これは
-本当はインチキではありません。実際のゼロからの実装においても、Schemeを解釈する明示制御評価器を用いて
-\code{cond\-/>if}のようなソースレベル変換を実行前の構文フェーズにて実行するでしょう。}
+評価器を拡張して、\code{cond}や\code{let}などの派生式を扱えるようにせよ(\link{Section 4.1.2})。
+``ずる''をして、\code{cond\-/>if}のような構文変換器がマシン演算として利用可能であると仮定してもよい。
+\footnote{これは、実際にはずるではありません。実際に評価器を一から実装するとしても、
+実行の前の構文フェーズで、明示制御評価器を使って\code{cond\-/>if}のようなソースレベルの変換を行う
+Schemeプログラムを解釈させることになるでしょう。}
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.24}Exercise 5.24:}
-\code{cond}を新しい基本的な特殊形式として\code{if}に簡約すること無しに実装せよ。
-連続する\code{cond}節の述語を真になるものを見つけるまでテストするループを構築する必要がある。
-次に\code{ev\-/sequence}を使用してその節のアクションを評価する。
+\code{cond}を\code{if}に簡約せずに新しい基本特殊形式として実装せよ。真である述語を見つけるまで
+連続した\code{cond}節の述語をテストしていくループを構築し、それから\code{ev\-/sequence}を使って
+その節のアクションを評価する必要があるだろう。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.25}Exercise 5.25:}
-評価器を変更し、\link{Section 4.2}の遅延評価器を基にした正規順評価を使用するようにせよ。
+\link{Section 4.2}の遅延評価器をもとに評価器を修正して、正規順序評価を使うようにせよ。
 \end{quote}
 
-\subsection{評価器を実行する}
+\subsection{評価器の実行}
 \label{Section 5.4.4}
 
-明示制御評価器の実装と共に、私達は\link{Chapter 1}から始まった開発の終わりにやってきました。
-ここまで私達は引き続きより的確な評価過程のモデルを探求してきました。比較的、略式な
-置換モデルから開始し、次にこれを\link{Chapter 3}で環境モデルに拡張しました。これは
-状態と変更を扱うことを可能にしました。\link{Chapter 4}のメタ循環評価器ではScheme自身を
-式の評価の間に構築される、より明確な環境構造のための言語として使用しました。
-ここでは、レジスタマシンを用いてメモリ管理、引数渡し、制御のための評価器の仕組みについて
-つぶさに見てきました。それぞれの新しいレベルの説明にて、直前の、明確さで劣る評価処理の
-見ることはできない曖昧さに関して問題を提起し、解決する必要がありました。
-明示制御評価器の振舞を理解するために、そのシミュレーションを行い、パフォーマンスを
-監視することができます。
+明示制御評価器の実装で、\link{Chapter 1}から続いてきた開発は終わりを迎えることになります。
+この開発を通して、私たちは評価プロセスのモデルを精緻化していくことを目指してきました。
+最初はそれほど厳密でない置換モデルからスタートし、それから\link{Chapter 3}でこれを環境モデルに
+拡張しました。環境モデルでは状態と変更が扱えるようになりました。\link{Chapter 4}のメタ循環評価器
+では、式の評価の間に構築される環境構造をより明確にするための言語としてSchemeそのものを使いました。
+この章では、レジスタマシンを導入することで、評価器のメモリ管理、引数渡し、制御のメカニズムを
+詳しく見てきました。新しいレベルの記述に取り組むたびに、それ以前の、そこまで正確ではない
+評価処理では明らかになっていなかった問題を提起したり、曖昧性を解決したりする必要がありました。
+明示制御評価器のふるまいを理解するにあたっては、それをシミュレートしてその挙動を観察するという
+ことが可能です。
 
-私達の評価器にドライバループを導入します。これは\link{Section 4.1.4}の\code{driver\-/loop}手続きの
-役割を果たします。この評価器は繰り返しプロンプトを表示し、式を読み込み、\code{eval\-/dispatch}へ
-飛ぶことで式を評価し、結果を表示します。以下の命令は明示制御評価器のコントローラシーケンスの
-開始を形づくります。\footnote{
-ここでは\code{read}と多様な表示命令がプリミティブな機械語命令として
-使用可能であると前提します。このことは私達のシミュレーションには便利ですが、実際には完全に
-非現実的です。これらは本当はかなり複雑な命令です。実際には、それらは単一の文字を端末との間で
-双方向に転送するような低レベルの入出力命令を用いて実装されるでしょう。
-
+ここでは、この評価器にドライバループを組み込みます。これは、\link{Section 4.1.4}の
+\code{driver\-/loop}手続きにあたる役割を果たします。評価器はプロンプトを表示し、式を読み込み、
+\code{eval\-/dispatch}に行って式を評価し、結果を表示するということを繰り返します。以下に示す
+命令列が、明示制御評価器のコントローラ命令列の先頭部分になります。
+\footnote{ここでは、\code{read}やさまざまな表示命令が基本マシン演算として利用可能であると仮定して
+います。これはシミュレーションには便利ですが、実際にはまったく非現実的です。これらは本当は
+非常に複雑な演算です。実際には、これらの演算は、デバイスとの間で個別の文字をやりとりするような
+低レベルの入出力演算を使って実装することになるでしょう。
+%%%
 
 \code{get\-/global\-/environment}命令をサポートするためには以下を定義します。
 
