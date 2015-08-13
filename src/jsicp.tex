@@ -30980,9 +30980,8 @@ Macintosh(tm)は、爆発する爆弾の絵を表示して、コンピュータ�
 で使った実際のScheme手続きです。それに対して、明示制御評価器のときには、それらと等価な構文演算が
 レジスタマシンの演算として利用可能であると仮定していました(もちろん、レジスタマシンをSchemeで
 シミュレートしたときには、レジスタマシンのシミュレーションに実際のScheme手続きを使いました)。}
-\code{compile}は、コンパイル対象の式の構文型について場合分けを行います。
-それぞれの式の型を、それらに専門化した\newterm{code generator}(\jnewterm{コード生成器})にディスパッチ
-します。
+\code{compile}は、コンパイル対象の式の構文型について場合分けを行い、それぞれの式の型を、
+それらに専門化した\newterm{code generator}(\jnewterm{コード生成器})にディスパッチします。
 
 \begin{scheme}
 (define (compile exp target linkage)
