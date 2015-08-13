@@ -31079,7 +31079,7 @@ Macintosh(tm)は、爆発する爆弾の絵を表示して、コンピュータ�
 必要であれば、ひとつ目の命令列を実行する際に集合内のレジスタの中身が保存されるようなやり方で、
 列を連結します。これはつまり、もし一つ目の命令列がレジスタを書き換え、二つ目の命令列が実際に
 そのレジスタの元の中身を必要とするのであれば、\code{preserving}は列を連結する前に最初の列を
-そのレジスタの\code{save}と\code{restore}によって包むということです。そうでなければ、
+そのレジスタの\code{save}と\code{restore}によって囲うということです。そうでなければ、
 \code{preserving}は単純に連結した命令列を返します。
 よって、例えば
 \code{(preserving (list}\( \;\;\langle{reg_1}\rangle\;\;\langle{reg_2}\rangle \)\code{)}\( \;\;\langle{seg_1}\rangle\;\;\langle{seg_2}\rangle \)\code{)}
