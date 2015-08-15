@@ -31235,50 +31235,43 @@ Alyssa P. Hackerは、評価器が認識する特別ケースをどんどん増�
 \end{enumerate}
 \end{quote}
 
-%%%
 \subsection{式のコンパイル}
 \label{Section 5.5.2}
 
-
-この節と次の節では、\code{compile}手続きが割り振るコード生成器を実装します。
+この節と次の節では、\code{compile}手続きのディスパッチ先となるコード生成器を実装していきます。
 
 \subsubsection*{リンクコードのコンパイル}
 
-一般的に、各コード生成器の出力は手続き\code{compile\-/linkage}により生成された、
-要求されたリンク記述子を実装した命令で終わります。もしリンク記述子が\code{return}なら、
-命令\code{(goto (reg continue))}を生成せねばなりません。これは\code{continue}レジスタを
-必要とし、他のレジスタを変更はしません。もしリンク記述子が\code{next}なら、何の追加の
-命令も必要ありません。さもなければ、リンク記述子はラベルであり、そのラベルへの
-\code{goto}を生成します。この命令はレジスタを必要とせず、変更もしません。\footnote{
-この手続きは
-\newterm{backquote}(\jnewterm{バッククォート}、または\newterm{quasiquote}(\jnewterm{擬似クォート}))と呼ばれるLispの機能を使用します。
-これはリストを構築するのに便利です。リストの前にバッククォート記号を置くことは
-クォートすることにとても似ていますが、リスト内のカンマで合図された物全てを評価することが
-異なります。
+一般的に、それぞれのコード生成器の出力は、要求されたリンクを実装する命令で終わります。これは
+手続き\code{compile\-/linkage}によって生成されます。リンクが\code{return}であれば、
+命令\code{(goto (reg continue))}を生成しなければなりません。これは\code{continue}レジスタを
+必要とし、どのレジスタも変更しません。リンク記述子が\code{next}であれば、命令を追加する必要は
+ありません。これら以外の場合、リンク記述子はラベル、そのラベルへの\code{goto}を生成します。
+この命令はどのレジスタも必要とせず、変更もしません。
+\footnote{この手続きは、\newterm{backquote}(\jnewterm{バッククォート})(または\newterm{quasiquote}
+(\jnewterm{擬似クォート}))というリスト構築に便利なLispの機能を使っています。
+リストの前にバッククォート記号を置くというのはクォートにとても似ていますが、リストの中で
+カンマによって印をつけられたものは評価されるというところが違います。
 
-
-例えば、もし\code{linkage}の値がシンボル\code{branch25}の場合、以下の式は
+例えば、\code{linkage}の値が記号\code{branch25}である場合、以下の式を評価すると
 
 \begin{smallscheme}
 `((goto (label ,linkage)))
 \end{smallscheme}
 
-
-次のリストとして評価されます。
+次のリストになります。
 
 \begin{smallscheme}
 ((goto (label branch25)))
 \end{smallscheme}
 
-
-同様に、もし\code{x}の値がリスト\code{(a b c)}ならば、以下の式は
+同じように、\code{x}の値がリスト\code{(a b c)}である場合、以下の式を評価すると
 
 \begin{smallscheme}
 `(1 2 ,(car x))
 \end{smallscheme}
 
-
-次のリストとして評価されます。
+次のリストになります。
 
 \begin{smallscheme}
 (1 2 a)
@@ -31304,9 +31297,9 @@ Alyssa P. Hackerは、評価器が認識する特別ケースをどんどん増�
 \end{scheme}
 
 \noindent
-リンクのコードが命令列に対し\code{preserving}により\code{continue}レジスタを維持しながら
-追加されます。リンク記述子\code{return}が\code{continue}レジスタを必要とするためです。
-もし与えられた命令列が\code{continue}を変更し、リンクのコードがそれを必要とする場合、
+リンクのコードは、\code{preserving}によって\code{continue}レジスタを保存したうえで追加されます。
+これは、\code{return}リンクが\code{continue}レジスタを必要とするからです。与えられた命令列が
+\code{continue}を変更するものであり、またリンクのコードが\code{continue}を必要とする場合、
 \code{continue}は保存と復元が行われます。
 
 \begin{scheme}
@@ -31318,9 +31311,8 @@ Alyssa P. Hackerは、評価器が認識する特別ケースをどんどん増�
 
 \subsubsection*{単純な式のコンパイル}
 
-自己評価型式、クォート、変数に対するコード生成器は
-必要な値をターゲットのレジスタに割り当てリンク記述子により指示されたように進める
-命令列を構築します。
+自己評価式、クォート、変数に対するコード生成器は、必要な値をターゲットレジスタに割り当て、
+リンク記述子によって規定された通りに進む命令列を構築します。
 
 \begin{scheme}
 (define (compile-self-evaluating exp target linkage)
@@ -31341,16 +31333,16 @@ Alyssa P. Hackerは、評価器が認識する特別ケースをどんどん増�
 \end{scheme}
 
 \noindent
-これら全ての代入命令はターゲットレジスタを変更します。また変数の検索を行う物は
-\code{env}レジスタを必要とします。
+これらの代入命令はすべてターゲットレジスタを変更します。また、変数の検索を行う命令は\code{env}
+レジスタを必要とします。
 
-代入と定義はインタプリタの物と同様に扱われます。再帰的に変数に割り当てられる値を求める
-コードを生成し、それに対して実際に変数の設定、または定義を行う物と式全体の値(シンボル\code{ok})を割り当てる
-物の2つの命令列を接続します。再帰的なコンパイルはターゲット\code{val}とリンク記述子\code{next}を持つので
-コードはその結果を\code{val}に入れ、その後に接続されたコードを用いて続けられます。接続は
-\code{env}を維持(preserving)している間に行われます。環境が変数の設定、または定義のため
-必要なためです。また変数の値のためのコードは複雑な式のコンパイルと成り得るため任意の方法で
-レジスタを変更する可能性があります。
+代入と定義は、インタプリタとだいたい同じように扱われます。変数に割り当てる値を求めるコードを再帰的に
+生成し、それに二命令からなる列を追加します。この命令列は、実際に変数の設定や定義を行い、式全体の値
+(記号\code{ok})をターゲットレジスタに代入します。再帰的コンパイルはターゲット\code{val}と
+リンク記述子\code{next}を持つので、コードは結果を\code{val}に入れ、その後に追加されるコードから
+続行します。追加は\code{env}を保存して行われます。これは、変数の設定や定義には
+環境が必要であり、また変数の値のコードはレジスタを任意に変更するような複雑な式のコンパイルとなる
+かもしれないからです。
 
 \begin{scheme}
 (define (compile-assignment exp target linkage)
@@ -31383,28 +31375,27 @@ Alyssa P. Hackerは、評価器が認識する特別ケースをどんどん増�
 \end{scheme}
 
 \noindent
-接続された2つの命令列は\code{env}と\code{val}を必要とし、ターゲットを変更します。
-例え\code{env}をこの列のために維持したとしても、\code{val}は維持しません。
-\code{get\-/value\-/code}が明示的にその結果をこの命令列のために\code{val}に配置するように
-設計されているためです。(実際には、もし\code{val}を維持した場合、バグを持つことになります。
-これにより直前の\code{val}の中身が\code{get\-/value\-/code}の実行直後に復元されるためです。)
+追加される二命令の列は、\code{env}と\code{val}を必要とし、ターゲットを変更します。
+この命令列のために\code{env}は保存するのに、\code{val}は保存しないということに気をつけてください。
+これは、この命令列が使うために、\code{get\-/value\-/code}が結果を明示的に\code{val}に入れるよう
+設計されていることによります。(実際、もし\code{val}を保存するとバグになります。こうしてしまうと、
+\code{get\-/value\-/code}の実行直後に\code{val}の以前の中身が復元されるようになってしまうからです。)
 
 \subsubsection*{条件式のコンパイル}
 
-与えられたターゲットとリンク記述子と共にコンパイルされる\code{if}式のためのコードは
-以下の形式を持ちます。
+与えられたターゲットとリンク記述子でコンパイルされた\code{if}式のコードは以下の形式になります。
 
 \begin{scheme}
-~\( \dark \langle \)~~\emph{述語のコンパイル, ターゲット \code{val}, リンク記述子 \code{next}}~~\( \dark \rangle \)~
+~\( \dark \langle \)~~\emph{ターゲット \code{val}, リンク記述子 \code{next} での述語のコンパイル}~~\( \dark \rangle \)~
  (test (op false?) (reg val))
  (branch (label false-branch))
 true-branch
- ~\( \dark \langle \)~~\emph{結果部 与えられたターゲット
-  与えられたリンク記述子 又は \code{after\-/if}}~~\( \dark \rangle \)~
+ ~\( \dark \langle \)~~\emph{与えられたターゲットと、与えられたリンク記述子または\code{after\-/if}での結果部のコンパイル}~~\( \dark \rangle \)~
 false-branch
- ~\( \dark \langle \)~~\emph{代替部 与えられたターゲット リンク記述子}~~\( \dark \rangle \)~
+ ~\( \dark \langle \)~~\emph{与えられたターゲットとリンク記述子での代替部のコンパイル}~~\( \dark \rangle \)~
 after-if
 \end{scheme}
+%%%
 
 \noindent
 このコードを生成するために、述語、結果部、代替部をコンパイルし、結果のコードを
