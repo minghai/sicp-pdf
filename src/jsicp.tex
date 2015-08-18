@@ -31682,38 +31682,35 @@ after-lambda
          (code-to-get-rest-args (cdr operand-codes))))))
 \end{scheme}
 
-%%%
 \subsubsection*{手続きの適用}
 
 組み合わせの要素を評価した後に、コンパイルされたコードは\code{proc}内の手続きを
-\code{argl}内の引数に適用しなければなりません。このコードは本質的に\link{Section 4.1.1}の
-メタ循環評価器の\code{apply}手続き、または\link{Section 5.4.1}の明示制御評価器の
-\code{apply\-/dispatch}エントリポイントと同じ割り振りを実行します。
-適用する手続きがプリミティブな手続きであるか複合手続きであるかを確認します。
-プリミティブな手続きに対しては、\code{apply\-/primitive\-/procedure}を使用します。
-簡潔にこれがどのようにコンパイルされた手続きを取り扱うのかについて見ていきます。
-手続き適用のコードは以下の形式を持ちます。
+\code{argl}内の引数に適用しなければなりません。このコードは、本質的に\link{Section 4.1.1}の
+メタ循環評価器の\code{apply}手続きや、\link{Section 5.4.1}の明示制御評価器の\code{apply\-/dispatch}
+エントリポイントと同じディスパッチを実行します。まず、適用する手続きが基本手続きか複合手続きか
+確認します。基本手続きには\code{apply\-/primitive\-/procedure}を使います。これがどのように
+コンパイルされた手続きを扱うかについては、すぐ後で見ていくことにします。手続き適用のコードは
+以下の形式を持ちます。
 
 \begin{scheme}
 (test (op primitive-procedure?) (reg proc))
  (branch (label primitive-branch))
 compiled-branch
- ~\( \dark \langle \)~~\emph{与えられたターゲットと適切なリンク記述子と共に 
-  手続きをコンパイルするコード}~~\( \dark \rangle \)~
+ ~\( \dark \langle \)~~\emph{与えられたターゲットと適切なリンクでコンパイル済み手続きを適用するコード}~~\( \dark \rangle \)~
 primitive-branch
  (assign ~\( \dark \langle \)~~\var{\dark target}~~\( \dark \rangle \)~
          (op apply-primitive-procedure)
          (reg proc)
          (reg argl))
- ~\( \dark \langle \)~~\var{\dark リンクコード}~~\( \dark \rangle \)~
+ ~\( \dark \langle \)~~\var{\dark リンク}~~\( \dark \rangle \)~
 after-call
 \end{scheme}
 
 \noindent
-コンパイルされた分岐はprimitive-branchをスキップしなければならないことに注意して下さい。
-従って、もし元の手続き呼出のリンク記述子が\code{next}ならば、複合分岐はprimitive-branchの後に
-挿入されたラベルへと飛ぶリンクコードを使用しなければなりません。(これは\code{compile\-/if}に
-おいて、真の分岐のために使用されたリンクコードと同様です。)
+コンパイル済み手続きの分岐(compiled-branch)は基本手続きの分岐(primitive-branch)をスキップする
+必要があります。そのため、元の手続き呼出のリンクが\code{next}であった場合、複合手続きの分岐は
+基本手続きの分岐の後に挿入されたラベルにジャンプするリンクを使う必要があります(これは、
+\code{compile\-/if}の中で真の分岐に使われるリンクと似ています。)
 
 \begin{scheme}
 (define (compile-procedure-call target linkage)
@@ -31744,30 +31741,31 @@ after-call
 \end{scheme}
 
 \noindent
-\code{compile\-/if}の真と偽の分岐のような、プリミティブかつ、複合な分岐は通常の
-\code{append\-/instruction\-/sequences}ではなく\code{parallel\-/instruction\-/sequences}を
-用いて接続されます。それらは順には実行されないためです。
+
+基本手続きと複合手続きの分岐は、\code{compile\-/if}での真と偽の分岐と同じように、
+通常の\code{append\-/instruction\-/sequences}ではなく\code{parallel\-/instruction\-/sequences}を
+使って追加されます。これらは順番に実行されるわけではないからです。
 
 \subsubsection*{コンパイル済み手続きの適用}
 
-手続きの適用を取り扱うコードはコンパイラの最も微妙な部分です。例えそれが生成する命令列が
-とても短くても変わりません。(\code{compile\-/lambda}により構築されたような)コンパイルされた手続きは
-手続きが開始する場所を指定するラベルであるエントリポイントを持ちます。
-このエントリポイントにてコードは\code{val}に結果を求め、命令\code{(goto (reg continue))}を実行すること
-により戻ります。従って与えられたターゲットとリンク記述子を伴なう(\code{compile\-/proc\-/appl}により生成される)
-コンパイルされた手続きの適用はリンク記述子がラベルであれば以下のようになります。
+手続きの適用を扱うコードは、生成する命令列はとても短いのですが、コンパイラの中で最も難しい部分です。
+(\code{compile\-/lambda}に構築された)コンパイル済み手続きは、手続きのコードが始まる場所を指定する
+ラベルであるエントリポイントを持っています。このエントリポイントのコードは結果を計算して\code{val}に
+入れ、\code{(goto (reg continue))}という命令を実行して戻ります。そのため、与えられたターゲットと
+リンクによるコンパイル済み手続きの適用コード(これは\code{compile\-/proc\-/appl}によって生成されます)
+は、リンクがラベルであれば以下のようになり、
 
 \begin{scheme}
 (assign continue (label proc-return))
  (assign val (op compiled-procedure-entry) (reg proc))
  (goto (reg val))
 proc-return
- (assign ~\( \dark \langle \)~~\var{\dark target}~~\( \dark \rangle \)~ (reg val))   ~\textrm{; ターゲットが\code{val}でなければ含まれる}~
- (goto (label ~\( \dark \langle \)~~\var{\dark リンク記述子}~~\( \dark \rangle \)~))   ~\textrm{; リンクコード}~
+ (assign ~\( \dark \langle \)~~\var{\dark target}~~\( \dark \rangle \)~ (reg val))   ~\textrm{; ターゲットが\code{val}でない場合に挿入される}~
+ (goto (label ~\( \dark \langle \)~~\var{\dark リンク}~~\( \dark \rangle \)~))   ~\textrm{; リンクコード}~
 \end{scheme}
 
 \noindent
-またはリンク記述子が\code{return}の場合は次のとおりです。
+リンクが\code{return}であれば以下のようになると期待できます。
 
 \begin{scheme}
 (save continue)
@@ -31775,51 +31773,49 @@ proc-return
  (assign val (op compiled-procedure-entry) (reg proc))
  (goto (reg val))
 proc-return
- (assign ~\( \dark \langle \)~~\var{\dark target}~~\( \dark \rangle \)~ (reg val))   ~\textrm{; ターゲットが\code{val}でなければ含まれる}~
+ (assign ~\( \dark \langle \)~~\var{\dark target}~~\( \dark \rangle \)~ (reg val))   ~\textrm{; ターゲットが\code{val}でない場合に挿入される}~
  (restore continue)
  (goto (reg continue))         ~\textrm{; リンクコード}~
 \end{scheme}
 
 \noindent
-このコードは手続きが\code{proc\-/return}に戻るように\code{continue}を設定し、手続きの
-エントリポイントへと飛びます。\code{proc\-/return}のコードは手続きの結果を\code{val}から
-ターゲットレジスタへと(もし必要なら)転送し、次にリンク記述子により指定された
-位置へと飛びます。(リンク記述子は常に\code{return}かラベルです。なぜなら
-\code{compile\-/procedure\-/call}が複合手続きの分岐のためのリンク記述子\code{next}を
-\code{after\-/call}ラベルに置き換えるためです。)
+このコードは、手続きが\code{proc\-/return}に戻るように\code{continue}を設定し、手続きの
+エントリポイントにジャンプします。\code{proc\-/return}のコードは、(必要であれば)手続きの結果を
+\code{val}からターゲットレジスタに転送し、それからリンクによって指定された位置にジャンプします
+(リンクは常に\code{return}かラベルです。\code{compile\-/procedure\-/call}は、複合手続きの分岐の
+\code{next}リンクを\code{after\-/call}ラベルに置き換えるからです)。
 
-実際には、もしターゲットが\code{val}でなければ、それはまさに私達のコンパイラが
-生成するコードです。\footnote{実際に、ターゲットが\code{val}でなく、リンク記述子が
-\code{return}である場合にはエラーを発します。私達がリンク記述子\code{return}を要求する
-箇所は手続きのコンパイル内のみです。そして私達の仕様は、手続きはその値を\code{val}にて返す、です。}
-しかし、通常はターゲットは\code{val}であり(コンパイラが異なるレジスタを指定する唯一の場合は
-演算子の評価のターゲットを\code{proc}にする時です)、そのため手続きの結果は直接
-ターゲットレジスタに入れられ、コピーを行う特別な位置へ戻る必要はありません。その代わりに、
-手続きが直接呼び出し元のリンク記述子により指定される場所へ直接``戻る''ように\code{continue}を
-設定します。
+実際、ターゲットが\code{val}でない場合、これがまさにコンパイラが生成するコードとなります。
+\footnote{実際のところ、ターゲットが\code{val}でなく、リンクが\code{return}である場合にはエラーを
+発生させます。\code{return}リンクを要求する場所は手続きのコンパイルの中だけで、手続きは値を
+\code{val}に入れる約束だからです。}
+しかし、通常はターゲットは\code{val}であるため(コンパイラが別のレジスタを指定するのは
+演算子の評価のターゲットを\code{proc}にするときだけです)、手続きの結果は直接ターゲットレジスタに
+入れられることになるので、それをコピーする特別な場所に戻る必要はありません。そのため、その
+場所に戻る代わりに、呼び出し元のリンクで指定された場所に手続きが直接``戻る''ように
+\code{continue}を設定して、コードを単純化します。
 
 \begin{scheme}
-~\( \dark \langle \)~~\emph{\code{continue}にリンク記述子を設定}~~\( \dark \rangle \)~
+~\( \dark \langle \)~~\emph{\code{continue}にリンクを設定}~~\( \dark \rangle \)~
 (assign val (op compiled-procedure-entry) (reg proc))
 (goto (reg val))
 \end{scheme}
 
 \noindent
-もしリンク記述子がラベルならば、手続きがそのラベルに戻るように\code{continue}を設定します。
-(つまり、上記の\code{proc\-/return}において手続きの終端\code{(goto (reg continue))}が
-\code{(goto (label <\var{linkage}>))}と等価になります。)
+リンクがラベルであれば、手続きがそのラベルに戻るように\code{continue}を設定します
+(つまり、手続きの終端の\code{(goto (reg continue))}が、上記の\code{proc\-/return}の
+\code{(goto (label <\var{linkage}>))}と等価になります)。
 
 \begin{scheme}
-(assign continue (label ~\( \dark \langle \)~~\var{\dark リンク記述子}~~\( \dark \rangle \)~))
+(assign continue (label ~\( \dark \langle \)~~\var{\dark リンク}~~\( \dark \rangle \)~))
 (assign val (op compiled-procedure-entry) (reg proc))
 (goto (reg val))
 \end{scheme}
 
 \noindent
-もしリンク記述子が\code{return}なら、\code{continue}を設定する必要は全くありません。
-それは既に望まれた位置を持っています。(言い換えれば、手続きの終端\code{(goto (reg
-continue))}は\code{proc\-/return}の\code{(goto (reg continue))}が飛ぶはずだった場所へ
-直接飛びます。)
+もしリンクが\code{return}なら、\code{continue}を設定する必要はありません。\code{continue}には
+すでに望ましい位置が入っています(これは、手続きの終端の\code{(goto (regcontinue))}が、
+\code{proc\-/return}の\code{(goto (reg continue))}が行くはずの場所に直接行くということです)。
 
 \begin{scheme}
 (assign val (op compiled-procedure-entry) (reg proc))
@@ -31827,10 +31823,11 @@ continue))}は\code{proc\-/return}の\code{(goto (reg continue))}が飛ぶはず
 \end{scheme}
 
 \noindent
-このリンク記述子\code{return}の実装を用いて、コンパイラは末尾再帰のコードを生成します。
-手続きの本体の最後ステップとしての手続きの呼出は直接移動を行いスタック上にどのような
-情報も保存しません。
+この\code{return}リンクの実装で、コンパイラは末尾再帰のコードを生成します。
+手続きの本体の最後のステップとして手続き呼び出しを行うと、スタックに何の情報も保存せず、
+直接移動を行うことになります。
 
+%%%
 その代わりに手続き呼出の場合をリンク記述子\code{return}とターゲット\code{val}を用いて、
 上記で示されたように\code{val}以外のターゲットに対しても取り扱ったと仮定します。
 これは末尾再帰を損うでしょう。それでも、私達のシステムは任意の式に対して同じ値を
