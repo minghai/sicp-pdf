@@ -32015,13 +32015,12 @@ proc-return
             (preserving (cdr regs) seq1 seq2)))))
 \end{scheme}
 
-%%%
 \noindent
-別の命令列結合器である\code{tack\-/on\-/instruction\-/sequence}は\code{compile\-/lambda}により
-手続きの本体を他の命令列に接続するために使用されます。手続きの本体は組み合わされた列の
-一部として実行されるための``インライン''形式ではないため、それによるレジスタの使用は
-それが組込まれる命令列のレジスタ使用に影響を与えません。従って手続き本体の必要な、また
-変更されるレジスタの集合は別の命令列に接続する時に無視されます。
+命令列結合器\code{tack\-/on\-/instruction\-/sequence}は、\code{compile\-/lambda}が
+手続きの本体をほかの命令列に連結するために使うものです。手続きの本体が``埋め込まれている''のは、
+組み合わせた命令列の一部として実行するためではないので、それのレジスタ使用は埋め込む命令列の
+レジスタ使用に影響しません。そのため、手続きの本体をほかの命令列にくっつけるときには、
+それが必要とするレジスタと変更するレジスタの集合を無視します。
 
 \begin{scheme}
 (define (tack-on-instruction-sequence seq body-seq)
@@ -32033,11 +32032,12 @@ proc-return
 \end{scheme}
 
 \noindent
-\code{compile\-/if}と\code{compile\-/procedure\-/call}は\code{parallel\-/instruction\-/sequences}と
-呼ばれる特別な結合器を使用してテストに続く二者択一の分岐を接続します。2つの分岐は
-絶対に順には実行されません。どんなテストの評価に対しても、一方か、別の一方に入ります。
-このため、2つ目の分岐により必要とされるレジスタは
-例えもしこれらが1つ目の分岐により変更されようとも依然として結合後の命令列でも必要とします。
+\code{compile\-/if}と\code{compile\-/procedure\-/call}は、テストに続く二つの選択肢の分岐を
+追加するために、\code{parallel\-/instruction\-/sequences}という特別な結合器を使います。
+二つの分岐が順に実行されることは決してありません。テストの評価がどのようなものであっても、
+どちらかひとつの分岐に入ることになります。このため、二つ目の分岐に必要とされるレジスタは、
+それが一つ目の分岐に修正されるものであっても、組み合わせ後の命令列で必要とされることに
+なります。
 
 \begin{scheme}
 (define (parallel-instruction-sequences seq1 seq2)
@@ -32050,12 +32050,13 @@ proc-return
            (statements seq2))))
 \end{scheme}
 
-\subsection{コンパイルされたコードの例}
+\subsection{コンパイル済みコードの例}
 \label{Section 5.5.5}
 
-これでコンパイラの全ての要素について学び終えました。
-ここまでのものがどのように御互いに組合せられるのかを見るためにコンパイル済みのコードの例を
-試してみましょう。再帰\code{factorial}手続きの定義を\code{compile}を呼ぶことでコンパイルしてみます。
+ここまでで、コンパイラのすべての要素について見てきたことになります。ここでは、コンパイル済み
+コードの例を詳しく調べて、要素がどのように組み合わされているのか見てみましょう。
+ここでは、\code{compile}を呼ぶことによって、再帰\code{factorial}手続きの定義をコンパイルすることに
+します。
 
 \begin{scheme}
 (compile
@@ -32068,22 +32069,20 @@ proc-return
 \end{scheme}
 
 \noindent
-\code{define}式の値はレジスタ\code{val}に配置されなければならないと指定しました。
-私達は\code{define}を実行した後にコンパイル済みコードが何を行うのか気にしません。
-そのためリンク記述子に対する\code{next}の選択は気まぐれです。
+\code{define}式の値はレジスタ\code{val}に入れるよう規定しています。\code{define}を実行した後に
+コンパイル済みコードが何をするかには興味がないので、リンクとして\code{next}を選んでいることに
+特に意味はありません。
 
-\code{compile}は式が定義であるかを判断します。そのため\code{compile\-/definition}を
-呼び出し(ターゲット\code{val}に対し)割り当てられるべき値を求めるコードをコンパイルします。
-続いて定義を導入するコード、さらに\code{define}の値(シンボル\code{ok})をターゲットレジスタに
-入れるコード、最後にリンクコードが続きます。\code{env}は値の演算の周りで維持されます。
-定義の導入のために必要とされるためです。今回のリンク記述子は\code{next}ですから、
-リンクコードは存在しません。従ってコンパイルされたコードの骨格は以下のようになります。
+\code{compile}は、式が定義であると判断し、\code{compile\-/definition}を呼び出して、前から順に
+(ターゲット\code{val}に)割り当てる値を求めるコード、定義を組み込むコード、\code{define}の値
+(記号\code{ok})をターゲットレジスタに入れるコード、リンクコードと並んだものをコンパイルします。
+\code{env}は定義を組み込むのに必要なので、値の計算の前後で保存されます。リンクは\code{next}なので、
+この場合リンクコードはありません。よって、コンパイル済みコードの骨組みは次のようになります。
 
 \begin{scheme}
-~\( \dark \langle \)~~\emph{値を求めるコードで変更されるなら\code{env}を保存}~~\( \dark \rangle \)~
-  ~\( \dark \langle \)~~\emph{定義値、ターゲット\code{val}、
-   リンク記述子\code{next}のコンパイル}~~\( \dark \rangle \)~
-  ~\( \dark \langle \)~~\emph{上で保存したなら\code{env}の復元}~~\( \dark \rangle \)~
+~\( \dark \langle \)~~\emph{値を計算するコードで変更されるなら\code{env}を保存}~~\( \dark \rangle \)~
+  ~\( \dark \langle \)~~\emph{ターゲット\code{val}、リンク\code{next}での定義の値のコンパイル}~~\( \dark \rangle \)~
+  ~\( \dark \langle \)~~\emph{上で保存していたら\code{env}を復元}~~\( \dark \rangle \)~
   (perform (op define-variable!)
            (const factorial)
            (reg val)
@@ -32092,17 +32091,17 @@ proc-return
 \end{scheme}
 
 \noindent
-変数\code{factorial}に対する値を生成するためにコンパイルされる式は、値が階乗を計算する
-手続きである\code{lambda}式です。\code{compile}は\code{compile\-/lambda}を呼ぶことによりこれを
-扱います。\code{compile\-/lambda}は手続きの本体をコンパイルし、それに新しいエントリポイントと
-してラベル付けを行い、新しいエントリポイントの手続き本体を実行時環境と組み合わせ、
-結果を\code{val}に割り当てるコードを生成します。次に命令列はこの時点で挿入された、
-このコンパイルされたコードをスキップします。手続きのコードそれ自体は手続き定義環境を
-形式パラメタ\code{n}を手続きの引数に束縛するフレームにより拡張することから始めます。
-その次に実際の手続きの本体が来ます。変数の値のためのこのコードは\code{env}レジスタを
-変更しませんので、上で示された任意の\code{save}と\code{restore}は生成されません。
-(\code{entry2}における手続きのコードはこの時点では実行されません。そのため、その\code{env}の
-使用は無関係です)。従って、コンパイルされたコードの骨組は以下のようになります。
+変数\code{factorial}の値を作るためにコンパイルする式は\code{lambda}式で、その値は
+階乗を計算する手続きです。\code{compile}は\code{compile\-/lambda}を呼んでこれを処理します。
+\code{compile\-/lambda}は手続きの本体をコンパイルし、それに新しいエントリポイントとして
+ラベルをつけ、新しいエントリポイントにある手続き本体を実行時環境と組み合わせて
+結果を\code{val}に割り当てる命令を生成します。次に、命令列はこの時点で挿入される
+コンパイル済みコードをスキップします。手続きのコード自身は、まず手続きの定義環境を、
+仮引数\code{n}を手続きの引数に束縛するフレームによって拡張します。それから実際の手続き本体が
+続きます。変数の値のためのこのコードは\code{env}レジスタを変更ないので、上で示したオプションの
+\code{save}と\code{restore}は生成されません(\code{entry2}にある手続きのコードはこの時点では
+実行されません。そのため、それが\code{env}を使うかどうかは影響しません)。よって、コンパイル済み
+コードの骨組みは次のようになります。
 
 \begin{scheme}
   (assign val
@@ -32126,6 +32125,7 @@ after-lambda1
   (assign val (const ok))
 \end{scheme}
 
+%%%
 \noindent
 手続きの本体は常に(\code{compile\-/lambda\-/body}により)、ターゲット\code{val}と
 リンク記述子\code{return}を用いる命令列としてコンパイルされます。今回の場合の
