@@ -32201,7 +32201,7 @@ after-call15
 \noindent
 偽の分岐のコードはまた別の手続き呼び出しです。手続きは記号\code{*}の値で、引数は\code{n}と、
 また別の手続き呼び出し(\code{factorial}の呼び出し)の結果です。これらの呼び出しは、それぞれ
-\code{proc}と\code{argl}と、その手続きの基本手続きと複合手続きの分岐を準備します。
+\code{proc}と\code{argl}と、その手続き自身の基本手続きと複合手続きの分岐を準備します。
 \link{Figure 5.17}は、手続き\code{factorial}の定義の完全なコンパイル結果を示したものです。
 述語の前後で、生成される可能性のある\code{continue}と\code{env}の\code{save}と\code{restore}が
 実際に生成されていることに注意してください。これらのレジスタは述語内の手続き呼び出しで変更され、
