@@ -32075,7 +32075,7 @@ proc-return
 
 \code{compile}は、式が定義であると判断し、\code{compile\-/definition}を呼び出して、前から順に
 (ターゲット\code{val}に)割り当てる値を求めるコード、定義を組み込むコード、\code{define}の値
-(記号\code{ok})をターゲットレジスタに入れるコード、リンクコードと並んだものをコンパイルします。
+(記号\code{ok})をターゲットレジスタに入れるコード、リンクコードという並びをコンパイルします。
 \code{env}は定義を組み込むのに必要なので、値の計算の前後で保存されます。リンクは\code{next}なので、
 この場合リンクコードはありません。よって、コンパイル済みコードの骨組みは次のようになります。
 
@@ -32125,11 +32125,10 @@ after-lambda1
   (assign val (const ok))
 \end{scheme}
 
-%%%
 \noindent
-手続きの本体は常に(\code{compile\-/lambda\-/body}により)、ターゲット\code{val}と
-リンク記述子\code{return}を用いる命令列としてコンパイルされます。今回の場合の
-命令列は単一の\code{if}式から成り立ちます。
+手続きの本体は、常にターゲット\code{val}とリンク\code{return}を持つ命令列として
+(\code{compile\-/lambda\-/body}によって)コンパイルされます。今回の場合、命令列はひとつの
+\code{if}式からなります。
 
 \begin{scheme}
 (if (= n 1)
@@ -32138,36 +32137,35 @@ after-lambda1
 \end{scheme}
 
 \noindent
-\code{compile\-/if}は最初に述語を演算し(ターゲットは\code{val})、次にその結果を確認して
-述語が偽であれば真の分岐を回避します。\code{env}と\code{continue}が述語のコードの周りで
-維持されます。それらが\code{if}式の残りの部分で必要となる可能性があるためです。
-\code{if}式が手続きの本体を構成する命令列内の最後の式であるため(そしてただ1つの式であるため)、
-そのターゲットは\code{val}で、リンク記述子は\code{return}になります。そのため真と偽の両方の
-分岐がターゲット\code{val}とリンク記述子\code{return}と共にコンパイルされます。
-(言い換えれば、どちらかの分岐により値が演算される条件文の値がその手続きの値です。)
+\code{compile\-/if}が生成するコードは、まず最初に述語を(ターゲットを\code{val}として)計算し、
+それからその結果を確認して、述語が偽であれば真の分岐をスキップします。\code{env}と\code{continue}は
+述語コードの前後で保存されます。これらは\code{if}式の残りの部分で必要となる可能性があるためです。
+この\code{if}式は手続きの本体を構成する命令列内の最後の(そして唯一の)式であり、ターゲットは
+\code{val}で、リンクは\code{return}であるため、真と偽の分岐はどちらもターゲット\code{val}と
+リンク\code{return}でコンパイルされます。(つまり、条件文の値が手続きの値となるということです。
+条件文の値はいずれかの分岐で計算される値です。)
 
 \begin{scheme}
-~\( \dark \langle \)~~\emph{述語により変更され、分岐により必要とされるなら 
+~\( \dark \langle \)~~\emph{述語により変更され、分岐により必要とされるのであれば
  \code{continue}, \code{env}を保存する}~~\( \dark \rangle \)~
-  ~\( \dark \langle \)~~\emph{述語, ターゲット\code{val}, リンク記述子\code{next}のコンパイル}~~\( \dark \rangle \)~
-  ~\( \dark \langle \)~~\emph{上で保存したなら\code{continue}, \code{env}を復元する}~~\( \dark \rangle \)~
+  ~\( \dark \langle \)~~\emph{ターゲット\code{val}, リンク\code{next}での述語のコンパイル}~~\( \dark \rangle \)~
+  ~\( \dark \langle \)~~\emph{上で保存していれば\code{continue}, \code{env}を復元する}~~\( \dark \rangle \)~
   (test (op false?) (reg val))
   (branch (label false-branch4))
 true-branch5
-  ~\( \dark \langle \)~~\emph{真の分岐, ターゲット\code{val}, リンク記述子\code{return}のコンパイル}~~\( \dark \rangle \)~
+  ~\( \dark \langle \)~~\emph{ターゲット\code{val}, リンク\code{return}での真の分岐のコンパイル}~~\( \dark \rangle \)~
 false-branch4
-  ~\( \dark \langle \)~~\emph{偽の分岐, ターゲット\code{val}, リンク記述子\code{return}のコンパイル}~~\( \dark \rangle \)~
+  ~\( \dark \langle \)~~\emph{ターゲット\code{val}, リンク\code{return}での偽の分岐のコンパイル}~~\( \dark \rangle \)~
 after-if3
 \end{scheme}
 
 \noindent
-述語\code{(= n 1)}は手続きの呼出です。これは演算子(シンボル\code{=})を探し、その値を
-\code{proc}内に配置します。次に引数\code{1}と変数\code{n}を\code{argl}に集めます。そして
-\code{proc}がプリミティブ、または複合手続きを含むかどうかをテストし、それに応じて
-プリミティブの分岐か複合の分岐へ飛びます。両方の分岐がラベル\code{after\-/call}にて
-再開します。演算子とオペランドの評価の周りでレジスタを維持する必要性は
-どのレジスタも保存することにはなりません。今回の場合はそれらの評価は問題となる
-レジスタを変更しないためです。
+述語\code{(= n 1)}は手続き呼び出しです。これは演算子(記号\code{=})を検索し、その値を
+\code{proc}に入れます。次に、引数である\code{1}と、変数\code{n}の値を\code{argl}に集めます。
+それから、\code{proc}に入っているものが基本手続きか複合手続きかをテストし、それに従って
+基本手続きの分岐か複合手続きの分岐にディスパッチします。どちらの分岐もラベル\code{after\-/call}から
+再開します。演算子とオペランドの評価の前後ではレジスタを保存する必要がありますが、
+今回の場合はこれらの評価は問題となるレジスタを変更しないため、結果的にレジスタの保存は行われません。
 
 \begin{scheme}
   (assign proc
@@ -32192,8 +32190,8 @@ after-call15
 \end{scheme}
 
 \noindent
-真の分岐は定数1ですが、(ターゲット\code{val}とリンク記述子\code{return}と共に)以下の
-ようにコンパイルされます。
+真の分岐は定数1であり、これを(ターゲット\code{val}とリンク\code{return}で)コンパイルすると、
+以下のようになります。
 
 \begin{scheme}
 (assign val (const 1))
@@ -32201,17 +32199,17 @@ after-call15
 \end{scheme}
 
 \noindent
-偽の分岐のコードは別の手続き呼出です。手続きはシンボル\code{*}で、その引数は\code{n}と
-別の手続き呼出の結果(\code{factorial}の呼出)です。これらの呼出の全てが\code{proc}と\code{argl}、
-それ自身のプリミティブと複合の分岐の準備を行います。\link{Figure 5.17}は手続き
-\code{factorial}の定義の完全なコンパイルを示します。述語の周りで可能性のある\code{continue}と\code{env}の
-\code{save}と\code{restore}が実際に生成されていることに注意して下さい。これらのレジスタが
-述語内の手続き呼出にて変更され、また分岐内の手続き呼び出しと\code{return}のリンクコードにより
-必要とされるためです。
+偽の分岐のコードはまた別の手続き呼び出しです。手続きは記号\code{*}の値で、引数は\code{n}と、
+また別の手続き呼び出し(\code{factorial}の呼び出し)の結果です。これらの呼び出しは、それぞれ
+\code{proc}と\code{argl}と、その手続きの基本手続きと複合手続きの分岐を準備します。
+\link{Figure 5.17}は、手続き\code{factorial}の定義の完全なコンパイル結果を示したものです。
+述語の前後で、生成される可能性のある\code{continue}と\code{env}の\code{save}と\code{restore}が
+実際に生成されていることに注意してください。これらのレジスタは述語内の手続き呼び出しで変更され、
+分岐内の手続き呼び出しと\code{return}のリンクに必要とされるためです。
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.33}Exercise 5.33:}
-上で与えられたものとは微妙に異なる以下の階乗手続きの定義について考えよ。
+次の階乗手続きの定義について考えよ。これは上に挙げたものとわずかに異なっている。
 
 \begin{scheme}
 (define (factorial-alt n)
@@ -32221,14 +32219,13 @@ after-call15
 \end{scheme}
 
 
-この手続きをコンパイルし結果のコードを\code{factorial}に対して生成されたコードと比べよ。
-見つけた全ての違いについて説明せよ。どちらのプログラムが他方よりもより効率的に
-実行するだろうか?
+この手続きをコンパイルし、その結果のコードを\code{factorial}に対して生成されるコードと比較せよ。
+見つけた違いについて説明せよ。二つのプログラムの実行効率に違いはあるだろうか。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.34}Exercise 5.34:}
-反復階乗手続きをコンパイルせよ
+反復階乗手続きをコンパイルせよ。
 
 \begin{scheme}
 (define (factorial n)
@@ -32241,32 +32238,32 @@ after-call15
 \end{scheme}
 
 
-結果のコードに注釈を付け、一方のプロセスがスタック領域を増進させ、他方が一定の
-スタック領域で実行される元となる、\code{factorial}の反復版と再帰版のコードの間の
-本質的な違いを示せ。
+結果のコードに注釈をつけ、\code{factorial}の反復版と再帰版のコードで、片方がスタック空間を
+積み上げていきもう片方が一定のスタック空間で動作するという違いを生む、本質的な違いを示せ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Figure 5.17}Figure 5.17:} \( \downarrow \) \code{factorial}手続き定義のコンパイル結果
+\heading{\phantomsection\label{Figure 5.17}Figure 5.17:} \( \downarrow \) \code{factorial}手続き
+定義のコンパイル結果
 
 \begin{smallscheme}
-~\textrm{;; 手続きを構築し、手続きの本体のコードを飛ばす}~
+~\textrm{;; 手続きを構築し、手続き本体のコードをスキップする}~
   (assign val
           (op make-compiled-procedure) 
           (label entry2) 
           (reg env))
   (goto (label after-lambda1))
-entry2     ~\textrm{; \code{factorial}の呼出はここから入る}~
+entry2     ~\textrm{; \code{factorial}への呼び出しはここから入ることになる}~
   (assign env (op compiled-procedure-env) (reg proc))
   (assign env
           (op extend-environment) 
           (const (n)) 
           (reg argl) 
           (reg env))
-~\textrm{;; 実際の手続きの本体を開始する}~
+~\textrm{;; 実際の手続き本体開始}~
   (save continue)
   (save env)
-~\textrm{;; \code{(= n 1)}を求める}~
+~\textrm{;; \code{(= n 1)}を計算}~
   (assign proc 
           (op lookup-variable-value) 
           (const =) 
@@ -32289,7 +32286,7 @@ primitive-branch17
           (op apply-primitive-procedure) 
           (reg proc) 
           (reg argl))
-after-call15   ~\textrm{; ここで\code{val}は\code{(= n 1)}の結果を持つ}~
+after-call15   ~\textrm{; \code{val}には\code{(= n 1)}の結果が入っている}~
   (restore env)
   (restore continue)
   (test (op false?) (reg val))
@@ -32298,7 +32295,7 @@ true-branch5  ~\textrm{; return 1}~
   (assign val (const 1))
   (goto (reg continue))
 false-branch4
-~\textrm{;; \code{(* (factorial (- n 1)) n)}を求めて返す}~
+~\textrm{;; \code{(* (factorial (- n 1)) n)}を計算して返す}~
   (assign proc 
           (op lookup-variable-value) 
           (const *) 
@@ -32310,14 +32307,14 @@ false-branch4
           (const n) 
           (reg env))
   (assign argl (op list) (reg val))
-  (save argl)   ~\textrm{; \code{*}の引数リストの一部を保存}~
-~\textrm{;; \code{(factorial (- n 1))}を求める。これは\code{*}のもう一方の引数}~
+  (save argl)   ~\textrm{; \code{*}の部分引数リストを保存}~
+~\textrm{;; \code{\code{*}のもうひとつの引数である(factorial (- n 1))}を計算}~
   (assign proc
           (op lookup-variable-value) 
           (const factorial) 
           (reg env))
   (save proc)  ~\textrm{; \code{factorial}手続きを保存}~
-~\textrm{;; \code{(- n 1)}を求める。これは\code{factorial}に対する引数}~
+~\textrm{;; \code{factorial}の引数である\code{(- n 1)}を計算}~
   (assign proc 
           (op lookup-variable-value)
           (const -) 
@@ -32340,10 +32337,10 @@ primitive-branch8
           (op apply-primitive-procedure) 
           (reg proc) 
           (reg argl))
-after-call6   ~\textrm{; ここで\code{val}は\code{(- n 1)}の結果を持つ}~
+after-call6   ~\textrm{; \code{val}には\code{(- n 1)}の結果が入っている}~
   (assign argl (op list) (reg val))
-  (restore proc) ~\textrm{; \code{factorial}に戻す}~
-~\textrm{;; \code{factorial}の適用}~
+  (restore proc) ~\textrm{; \code{factorial}を復元}~
+~\textrm{;; \code{factorial}を適用}~
   (test (op primitive-procedure?) (reg proc))
   (branch (label primitive-branch11))
 compiled-branch10
@@ -32355,12 +32352,12 @@ primitive-branch11
           (op apply-primitive-procedure) 
           (reg proc) 
           (reg argl))
-after-call9      ~\textrm{; ここで\code{val}は\code{(factorial (- n 1))}の結果を持つ}~
-  (restore argl) ~\textrm{; \code{*}の引数リストの一部を復元}~
+after-call9      ~\textrm{; \code{val}には\code{(factorial (- n 1))}の結果が入っている}~
+  (restore argl) ~\textrm{; \code{*}の部分引数リストを復元}~
   (assign argl (op cons) (reg val) (reg argl))
-  (restore proc) ~\textrm{; \code{*}に戻す}~
+  (restore proc) ~\textrm{; \code{*}を復元}~
   (restore continue)
-~\textrm{;; \code{*}を適用しその値を返す}~
+~\textrm{;; \code{*}を適用し、その値を返す}~
   (test (op primitive-procedure?) (reg proc))
   (branch (label primitive-branch14))
 compiled-branch13
@@ -32386,6 +32383,7 @@ after-lambda1
 
 \end{quote}
 
+%%%
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.35}Exercise 5.35:}
 どの式がコンパイルされると\link{Figure 5.18}に示されるコードを生成するか?
@@ -32512,7 +32510,7 @@ after-lambda15
 \heading{\phantomsection\label{Exercise 5.38}Exercise 5.38:}
 私達のコンパイラは不必要なスタック命令を防ぐことに関して賢いものだ。しかし、
 機械により提供されるプリミティブな命令を用いて言語のプリミティブな手続きの
-呼出をコンパイルすることに関しては全く賢くない。例えば、\code{(+ a 1)}を求める
+呼び出しをコンパイルすることに関しては全く賢くない。例えば、\code{(+ a 1)}を求める
 ためにどれだけのコードがコンパイルされるか考えてみる。このコードは引数リストを
 \code{argl}に準備し、(環境内でシンボル\code{+}を探すことにより見つけた)プリミティブな加算手続きを
 \code{proc}に入れる。そしてこの手続きがプリミティブであるか複合であるかをテストする。
@@ -32533,7 +32531,7 @@ after-lambda15
 \end{scheme}
 
 この課題では私達のコンパイラを拡張し、選択されたプリミティブのopen-codeをサポートする。
-特別な目的のコードがこれらのプリミティブな手続きの呼出に対し、一般的な手続き適用のコードの
+特別な目的のコードがこれらのプリミティブな手続きの呼び出しに対し、一般的な手続き適用のコードの
 代わりに生成される。これをサポートするためには、私達の機械に特別な引数レジスタ、
 \code{arg1}と\code{arg2}を追加する。機械のプリミティブな数値演算子は入力を\code{arg1}と\code{arg2}から
 得る。その結果は\code{val}, \code{arg1}, \code{arg2}のどれかに入れて良い。
@@ -32555,7 +32553,7 @@ open-codeなプリミティブ全ては特殊形式とは異なり、オペラ�
 必要とする。全てのopen-codeのコード生成器から使用されるコード生成器\code{spread\-/arguments}を書け。
 \code{spread\-/arguments}はオペランドのリストを取り、与えられたオペランドを次に続く引数
 レジスタをターゲットにコンパイルしなければならない。オペランドがopen-codeなプリミティブへの
-呼出を含んでも良いことに注意すること。そのため引数レジスタはオペランド評価の間は
+呼び出しを含んでも良いことに注意すること。そのため引数レジスタはオペランド評価の間は
 維持されなければならない。
 
 \item
@@ -32785,7 +32783,7 @@ Scheme式をコンパイルし、結果としてのオブジェクトコード�
 \end{scheme}
 
 \noindent
-評価器にコンパイルされた手続きの取り扱いを可能にするには(例えば上記の\code{factorial}の呼出を評価すること)、
+評価器にコンパイルされた手続きの取り扱いを可能にするには(例えば上記の\code{factorial}の呼び出しを評価すること)、
 \code{apply\-/dispatch}(\link{Section 5.4.1})のコードを変更して、それがコンパイルされた手続きを
 (複合、またはプリミティブな手続きから区別可能なものとして)認識し、制御を直接コンパイルされた
 コードのエントリポイントへと移動させる必要があります。\footnote{もちろん、
@@ -33050,7 +33048,7 @@ read-eval-print-loop ~\( \dots \)~
 
 あなたのコードをテストするために、手続き\code{g}を呼ぶ手続き\code{f}を定義することから始めよ。
 \code{compile\-/and\-/go}を用いて\code{f}の定義をコンパイルし、評価器を開始せよ。ここから
-評価器に対し入力を行い\code{g}を定義し\code{f}の呼出を試せ。
+評価器に対し入力を行い\code{g}を定義し\code{f}の呼び出しを試せ。
 \end{quote}
 
 \begin{quote}
