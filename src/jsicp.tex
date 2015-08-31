@@ -33033,13 +33033,12 @@ read-eval-print-loop ~\( \dots \)~
 そこで、評価器に対し入力を行って\code{g}を定義し、\code{f}の呼び出しを試みる。
 \end{quote}
 
-%%%
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.48}Exercise 5.48:}
-この節で実装された\code{compile\-/and\-/go}インターフェイスは扱いにくい。コンパイラを
-(評価器が開始された時に)一度しか呼ぶことができないためだ。
-以下のように明示制御評価器の中から呼び出すことができる\code{compile\-/and\-/run}を
-追加することでコンパイラ-インタプリタ間のインターフェイスを増補せよ。
+この節で実装した\code{compile\-/and\-/go}インターフェイスは、一回(評価器開始時)しか呼ぶことができない
+ため、扱いにくい。明示制御評価器から次のようにしてコンパイラを呼び出すことができる
+\code{compile\-/and\-/run}という基本手続きを追加して、コンパイラ-インタプリタ間のインターフェイスを
+拡張せよ。
 
 \begin{scheme}
 ~\textit{;;; EC-Eval input:}~
@@ -33057,35 +33056,32 @@ read-eval-print-loop ~\( \dots \)~
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.49}Exercise 5.49:}
-明示制御評価器のREPLを用いる代わりとして、read-compile-execute-print loopを
-実行するレジスタマシンを設計せよ。言い換えれば、このマシンは式を読み込み、それを
-コンパイルし、その結果のコードをアセンブルして実行し、その結果を表示するループを
-実行する。これは私達のシミュレートされた構成内で簡単に実行できる。なぜなら、
-手続き\code{compile}と\code{assemble}を``レジスタマシンの命令''として呼ぶことを
-手配できるからだ。
+明示制御評価器のREPLの代替手段として、REPLを行うレジスタマシンを設計せよ。つまり、マシンは
+式を読み込み、それをコンパイルし、その結果のコードをアセンブルして実行し、結果を出力するという
+ループを走らせるということになる。これは、シミュレーション構成の中では簡単に実行できる。
+手続き\code{compile}と\code{assemble}を``レジスタマシン演算''として呼ぶようにすればよいからだ。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.50}Exercise 5.50:}
-コンパイラを用いて\link{Section 4.1}のメタ循環評価器をコンパイルし、レジスタマシン
-シミュレータと用いてこのプログラムを実行せよ。(一度に複数の定義をコンパイルするために、
-\code{begin}の中に定義を詰めることができる)。結果としてのインタプリタの実行は
-複数レベルの逐次翻訳のため、とても遅い。しかし、実行の詳細全てを理解することは
-教育的な課題である。
+\link{Section 4.1}のメタ循環評価器をコンパイラを使ってコンパイルし、レジスタマシンシミュレータを
+使ってそのプログラムを実行せよ(一度に複数の定義をコンパイルするには、それらの定義を\code{begin}の
+中にまとめればよい)。その結果できるインタプリタは、複数レベルで解釈が行われるため、実行速度は
+とても遅くなるだろう。しかし、そのすべての詳細をうまく動かせるようにすることは学びの多い練習となる。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.51}Exercise 5.51:}
-C言語(またはあなたが選んだ何らかの他の低レベルな言語)によるSchemeの基本的な実装を、
-\link{Section 5.4}の明示制御評価器をC言語に翻訳することで開発せよ。このコードを実行するためには、
-適切なメモリ割当ルーチンと他の実行時サポートも提供する必要がある。
+\link{Section 5.4}の明示制御評価器を翻訳することによって、C言語(または好きな低レベル言語)による
+Schemeの基本的な実装を開発せよ。このコードを動かすためには、適切なメモリ割り当てルーチンや、
+その他の実行時サポートを用意する必要があるだろう。
 \end{quote}
 
 \begin{quote}
 \heading{\phantomsection\label{Exercise 5.52}Exercise 5.52:}
-\link{Exercise 5.51}に対する好対照として、コンパイラを変更してSchemeの手続きを
-C言語の命令列へとコンパイルするようにせよ。\link{Section 4.1}のメタ循環評価器をコンパイルして
-C言語で書かれたSchemeインタプリタを生成せよ。
+\link{Exercise 5.51}と対応するものとして、コンパイラを修正してSchemeの手続きをC言語の命令列に
+コンパイルするようにせよ。\link{Section 4.1}のメタ循環評価器をコンパイルして、C言語で書かれた
+Schemeインタプリタを生成せよ。
 \end{quote}
 
 %=======================================================================================================
@@ -33643,8 +33639,8 @@ Ph.D. dissertation, Department of Electrical Engineering and Computer Science,
 Zippel, Richard.  1993.  \textit{Effective Polynomial Computation}.  Boston, MA:
 Kluwer Academic Publishers.
 
-\chapter*{課題リスト}
-\addcontentsline{toc}{chapter}{課題リスト}
+\chapter*{練習問題リスト}
+\addcontentsline{toc}{chapter}{練習問題リスト}
 \label{List of Exercises}
 
 % 
@@ -33657,10 +33653,8 @@ Kluwer Academic Publishers.
 % 
 \input{figures}
 
-
 \setindexprenote{\normalsize \begin{quote}
-この索引内のどんな間違いも、コンピュータの手助けにより準備された
-という事実により説明できるだろう。
+この索引にの間違いがあるとしたら、コンピュータの助けを借りて索引を作ったことによるものだろう。
 
 ---Donald E. Knuth, \textit{Fundamental Algorithms}\\ 
 (Volume 1 of \textit{The Art of Computer Programming}) \end{quote}}
@@ -33671,18 +33665,15 @@ Kluwer Academic Publishers.
 \addcontentsline{toc}{chapter}{奥付}
 \label{Colophon}
 
-表紙は1588年、Agostino Ramelliのブックホイールのメカニズムです。これは初期のハイパーテキスト ナビゲーション支援と
-見ることができるのではないでしょうか。この版画のイメージは
-\href{http://newgottland.com/2012/02/09/before-the-ereader-there-was-the-wheelreader/ramelli_bookwheel_1032px/}{New Gottland}. 
-のJ. E. Johnsonにより提供されています。
+表紙に描かれているのは、Agostino Ramelliによって1588年に作られたブックホイール機構です。
+これは、初期のハイパーテキストナビゲーション支援といえるでしょう。この版画の画像は
+\href{http://newgottland.com/2012/02/09/before-the-ereader-there-was-the-wheelreader/ramelli_bookwheel_1032px/}{New Gottland}のJ. E. Johnsonによってホストされています。
 
-タイプフェイスは本文はLinux Libertineで、見出しはLinux Biolinumです。両方ともPhilipp H. Pollの手によります。
-タイプライターフェイスはRaph LevienによるInconsolataであり、Dimosthenis KaponisとTakashi Tanigawaにより補完された
-Inconsolata LGCの形式で利用しています。
+本文のフォントはLinux Libertineで、見出しはLinux Biolinumです。どちらもPhilipp H. Pollによるものです。
+等幅フォントは、Raph Levienによって作られたInconsolataをDimosthenis KaponisとTakashi Tanigawaが
+Inconsolata LGCという形で補完したものを使っています。\yakuchu{日本語版では漢字にIPAフォントを使っています。}
 
-(日本語版では漢字にIPAフォントを使用させて頂いてます。)
-
-グラフィックデザインとタイポグラフィはAndres Rabaにより行われました。TexinfoのソースはPerlスクリプトにより
-LaTeXに変換され、XeLaTeXにより\acronym{PDF}にコンパイルされています。図はInkscapeを用いて描かれました。
+グラフィックデザインとタイポグラフィはAndres Rabaの手によります。TexinfoのソースはPerlスクリプトで
+LaTeXに変換され、XeLaTeXにより\acronym{PDF}にコンパイルされています。図はInkscapeで描かれたものです。
 
 \end{document}
