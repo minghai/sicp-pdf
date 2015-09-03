@@ -1474,7 +1474,7 @@ circumference
 
 \noindent
 この式を評価するには、4つの異なる組み合わせに対して評価規則を適用する必要があります。
-この手続きは、\link{Figure 1.1}のように組み合わせを木の形で表すことによって
+この手続きは、\link{図1.1}のように組み合わせを木の形で表すことによって
 イメージできます。それぞれの組み合わせはノードとして表され、そこから組み合わせの
 演算子と被演算子に対応する枝が生えています。終端ノード(そこから生えている
 枝のないノード)は、演算子か数字を表しています。評価を木という形で見ることで、
@@ -1486,10 +1486,10 @@ circumference
 
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 1.1}
+\phantomsection\label{図1.1}
 \centering
 \begin{comment}
-\heading{Figure 1.1:} Tree representation, showing the value of each subcombination.
+\heading{図1.1:} Tree representation, showing the value of each subcombination.
 
 \begin{example}
    390
@@ -1507,7 +1507,7 @@ circumference
 \includegraphics[width=31mm]{fig/chap1/Fig1.1g.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 1.1:} 部分組み合わせの値を示した木表現
+\heading{図1.1:} 部分組み合わせの値を示した木表現
 \end{figure}
 
 次に、一つ目のステップを繰り返して適用することで、ある点で評価する対象が、
@@ -2410,14 +2410,14 @@ x/y^2 + 2y
 平方根を計算するという問題が、自然にいくつかの部分問題に分解されているということに
 注意してください。推定値が十分によいかどうやって判断するか、どうやって推定値を
 改善するか、などです。これらのタスクは別々の手続きによって成し遂げられます。
-\code{sqrt}プログラム全体は、\link{Figure 1.2}に示すような手続きの塊として
+\code{sqrt}プログラム全体は、\link{図1.2}に示すような手続きの塊として
 見ることができます。この構造は、問題を部分問題に分解する様子を反映しています。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 1.2}
+\phantomsection\label{図1.2}
 \centering
 \begin{comment}
-\heading{Figure 1.2:} Procedural decomposition of the \code{sqrt} program.
+\heading{図1.2:} Procedural decomposition of the \code{sqrt} program.
 \end{comment}
 \begin{example}
                        sqrt
@@ -2430,7 +2430,7 @@ x/y^2 + 2y
 \end{example}
 
 \begin{quote}
-\heading{Figure 1.2:} \code{sqrt}プログラムの手続き分解
+\heading{図1.2:} \code{sqrt}プログラムの手続き分解
 \end{quote}
 \end{figure}
 
@@ -2706,13 +2706,13 @@ n! = n \cdot [(n - 1) \cdot (n - 2) \cdots 3 \cdot 2 \cdot 1] = n \cdot (n - 1)!
 
 \noindent
 この手続きが6!の計算を実行する様子を観察するのに、\link{1.1.5節}の置換モデルを
-使うことができます。そうすると、\link{Figure 1.3}のようになります。
+使うことができます。そうすると、\link{図1.3}のようになります。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 1.3}
+\phantomsection\label{図1.3}
 \centering
 \begin{comment}
-\heading{Figure 1.3:} A linear recursive process for computing 6!.
+\heading{図1.3:} A linear recursive process for computing 6!.
 
 \begin{example}
 (factorial 6)        ----------------
@@ -2732,7 +2732,7 @@ n! = n \cdot [(n - 1) \cdot (n - 2) \cdots 3 \cdot 2 \cdot 1] = n \cdot (n - 1)!
 \includegraphics[width=82mm]{fig/chap1/Fig1.3c.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 1.3:} 6!を求めるための線形再帰プロセス
+\heading{図1.3:} 6!を求めるための線形再帰プロセス
 \end{figure}
 
 ここで、階乗計算を別の角度から見てみましょう。\( n! \)の計算規則として、最初に
@@ -2751,10 +2751,10 @@ counter ~\( \dark \gets \)~ counter + 1
 
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 1.4}
+\phantomsection\label{図1.4}
 \centering
 \begin{comment}
-\heading{Figure 1.4:} A linear iterative process for computing 6!.
+\heading{図1.4:} A linear iterative process for computing 6!.
 
 \begin{example}
 (factorial 6)   -----.
@@ -2771,7 +2771,7 @@ counter ~\( \dark \gets \)~ counter + 1
 \includegraphics[width=36mm]{fig/chap1/Fig1.4c.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 1.4:} 6!を求めるための線形反復プロセス
+\heading{図1.4:} 6!を求めるための線形反復プロセス
 \end{figure}
 
 
@@ -2804,7 +2804,7 @@ counter ~\( \dark \gets \)~ counter + 1
 \end{scheme}
 
 \noindent
-前回と同じく、6!の演算プロセスを視覚化するために置換モデルを使い、\link{Figure 1.4}として示します。
+前回と同じく、6!の演算プロセスを視覚化するために置換モデルを使い、\link{図1.4}として示します。
 
 
 2つのプロセスを比べてみましょう。ある観点からは、ほとんど違いがないように見えます。
@@ -2813,7 +2813,7 @@ counter ~\( \dark \gets \)~ counter + 1
 同じ順番のかけ算を行い、同じ順番で部分積を得ます。一方で、プロセスの``形''について考えると、
 これらがまったく違う展開の仕方をしていることがわかります。
 
-一つ目のプロセスについて考えてみましょう。置換モデルは、\link{Figure 1.3}の矢印で
+一つ目のプロセスについて考えてみましょう。置換モデルは、\link{図1.3}の矢印で
 示されるような、展開に続く収縮という形を表しています。展開は、プロセスが
 \jnewterm{遅延演算}(\newterm{deferred operations})の連鎖(ここではかけ算の連鎖)を構築する際に
 起こります。収縮は、演算が実際に行われる際に起こります。
@@ -2983,14 +2983,14 @@ Fib(n) = <  1                        if n = 1
 \noindent
 この計算のパターンについて考えてみます。\code{(fib 5)}を計算するには、\code{(fib 4)}と
 \code{(fib 3)}を計算します。\code{(fib 4)}を計算するには、\code{(fib 3)}と
-\code{(fib 2)}を計算します。一般に、展開されたプロセスは、\link{Figure 1.5}で示すように
+\code{(fib 2)}を計算します。一般に、展開されたプロセスは、\link{図1.5}で示すように
 木のような形をしています。枝は、(底以外の)それぞれのレベルで二つに分かれています。
 これは、\code{fib}手続きが呼ばれるたびに自身を二回呼び出すということを反映しています。
 
 
 この手続きは、木の再帰のプロトタイプになっていますので、学習のためには役に立ちます。
 しかし、フィボナッチ数を計算する方法としてはひどいものです。余計な計算が多すぎるからです。
-\link{Figure 1.5}で、\code{(fib 3)}の計算が---それは全体の半分ぐらいの仕事ですが---
+\link{図1.5}で、\code{(fib 3)}の計算が---それは全体の半分ぐらいの仕事ですが---
 完全に重複してしまっていることがわかるでしょうか。さらに言うと、この手続きが
 \code{(fib 1)}や\code{(fib 0)}を計算する回数(一般に、上記の木の中での葉の数)が
 正確にFib(\( n+1 \))になることは簡単に示せます。このやり方がどれだけひどいかということは、
@@ -3019,10 +3019,10 @@ Fib(\( n \))の値が\( n \)に対して指数的に増えるということを�
 \end{displaymath}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 1.5}
+\phantomsection\label{図1.5}
 \centering
 \begin{comment}
-\heading{Figure 1.5:} The tree-recursive process generated in computing \code{(fib 5)}.
+\heading{図1.5:} The tree-recursive process generated in computing \code{(fib 5)}.
 
 \begin{example}
 
@@ -3048,7 +3048,7 @@ V     /  . \   . 1  .  . 1  .  . 0  .  . 1  .  . 0  ..
 \end{comment}
 \includegraphics[width=90mm]{fig/chap1/Fig1.5c.pdf}
 \begin{quote}
-\heading{Figure 1.5:} \code{(fib 5)}の計算時に生成される木の再帰プロセス
+\heading{図1.5:} \code{(fib 5)}の計算時に生成される木の再帰プロセス
 \end{quote}
 \end{figure}
 
@@ -5842,7 +5842,7 @@ d_1   d_2
 それさえあればその型に対するどんな演算も行えるような基本演算セットを特定し、
 その後はデータを操作するのにそれらの演算しか使わないようにするというものです。
 
-有理数システムの構造は、\link{Figure 2.1}のようにイメージすることができます。
+有理数システムの構造は、\link{図2.1}のようにイメージすることができます。
 水平線は、システムの異なる``レベル''を分離する\jnewterm{抽象化の壁}
 (\newterm{abstraction barriers})を表しています。有理数を使うプログラムは、有理数パッケージに
 よって``公共用''として提供された手続きである\code{add\-/rat}, \code{sub\-/rat},
@@ -5865,11 +5865,11 @@ d_1   d_2
 かかるものになるでしょう。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.1}
+\phantomsection\label{図2.1}
 \centering
 \begin{comment}
 \begin{quote}
-\heading{Figure 2.1:} Data-abstraction barriers in the rational-number package.
+\heading{図2.1:} Data-abstraction barriers in the rational-number package.
 
 \begin{example}
         +------------------------------------+
@@ -5894,7 +5894,7 @@ d_1   d_2
 \includegraphics[width=91mm]{fig/chap2/Fig2.1c.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 2.1:} 有理数パッケージ内の抽象化の壁
+\heading{図2.1:} 有理数パッケージ内の抽象化の壁
 \end{figure}
 
 例えば、有理数を既約に簡約する問題の別の解き方として、簡約を実行するタイミングを、
@@ -6358,7 +6358,7 @@ Lemが正しいことを示せ。いろいろな数値演算の式について�
 \label{2.2節}
 
 ここまでで見てきたように、ペアは私たちが複合データオブジェクトを構築する
-基本的な``糊''となってくれます。\link{Figure 2.2}は、ペア---この場合は
+基本的な``糊''となってくれます。\link{図2.2}は、ペア---この場合は
 \code{(cons 1 2)}で作られるペア---を図示する標準的なやり方を示しています。
 この表現は\jnewterm{箱とポインタ記法}(\newterm{box-and-pointer notation})と
 呼ばれるもので、それぞれのオブジェクトは箱への\jnewterm{ポインタ}
@@ -6370,14 +6370,14 @@ Lemが正しいことを示せ。いろいろな数値演算の式について�
 \code{cons}は、数値だけでなくペアも結合できるということについてはすでに見ました
 (\link{練習問題 2.2}と\link{練習問題 2.3}を解く際には、この事実を使ったか、
 使わざるを得なかったでしょう)。結果として、ペアはどんな種類のデータ構造でも
-構築することができる汎用ブロックとなってくれます。\link{Figure 2.3}は
+構築することができる汎用ブロックとなってくれます。\link{図2.3}は
 ペアを使って数値1, 2, 3, 4を組み合わせる二つの方法を示しています。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.2}
+\phantomsection\label{図2.2}
 \centering
 \begin{comment}
-\heading{Figure 2.2:} Box-and-pointer representation of \code{(cons 1 2)}.
+\heading{図2.2:} Box-and-pointer representation of \code{(cons 1 2)}.
 
 \begin{example}
      +---+---+     +---+
@@ -6393,14 +6393,14 @@ Lemが正しいことを示せ。いろいろな数値演算の式について�
 \includegraphics[width=34mm]{fig/chap2/Fig2.2c.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 2.2:} \code{(cons 1 2)}の箱とポインタ表現
+\heading{図2.2:} \code{(cons 1 2)}の箱とポインタ表現
 \end{figure}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.3}
+\phantomsection\label{図2.3}
 \centering
 \begin{comment}
-\heading{Figure 2.3:} Two ways to combine 1, 2, 3, and 4 using pairs.
+\heading{図2.3:} Two ways to combine 1, 2, 3, and 4 using pairs.
 
 \begin{example}
      +---+---+     +---+---+         +---+---+     +---+
@@ -6424,7 +6424,7 @@ Lemが正しいことを示せ。いろいろな数値演算の式について�
 \end{comment}
 \includegraphics[width=96mm]{fig/chap2/Fig2.3c.pdf}
 \begin{quote}
-\heading{Figure 2.3:} ペアを使って1,2,3,4を組み合わせる二つの方法
+\heading{図2.3:} ペアを使って1,2,3,4を組み合わせる二つの方法
 \end{quote}
 \end{figure}
 
@@ -6470,7 +6470,7 @@ Lispがペアとして提供しているような、複合データを統一的�
 
 ペアを使って構築できる便利な構造のひとつは、\jnewterm{列}(\newterm{sequence})---
 データオブジェクトの順序つき集合---です。もちろん、ペアを使って列を表すやり方は
-いろいろあります。\link{Figure 2.4}には、特に素直な表現方法のひとつを示しています。
+いろいろあります。\link{図2.4}には、特に素直な表現方法のひとつを示しています。
 このやり方では、1, 2, 3, 4という列はペアのチェーンとして表されます。それぞれのペアの
 \code{car}はチェーン内の対応する項で、ペアの\code{cdr}はチェーン内の次のペアです。
 最後のペアの\code{cdr}は、ペアでない特別な値を指すことによって、列の終端である
@@ -6486,10 +6486,10 @@ Lispがペアとして提供しているような、複合データを統一的�
 \end{scheme}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.4}
+\phantomsection\label{図2.4}
 \centering
 \begin{comment}
-\heading{Figure 2.4:} The sequence 1, 2, 3, 4 represented as a chain of pairs.
+\heading{図2.4:} The sequence 1, 2, 3, 4 represented as a chain of pairs.
 
 \begin{example}
      +---+---+     +---+---+     +---+---+     +---+---+
@@ -6505,7 +6505,7 @@ Lispがペアとして提供しているような、複合データを統一的�
 \includegraphics[width=76mm]{fig/chap2/Fig2.4c.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 2.4:} ペアの鎖として表現された列1, 2, 3, 4
+\heading{図2.4:} ペアの鎖として表現された列1, 2, 3, 4
 \end{figure}
 
 入れ子の\code{cons}によって作られるこのようなペアの列は\jnewterm{リスト}
@@ -6535,7 +6535,7 @@ Lispがペアとして提供しているような、複合データを統一的�
 
 \noindent
 Lispシステムは、慣例的にリストを括弧でくくられた要素の列として表示します。
-そのため、\link{Figure 2.4}のデータオブジェクトは\code{(1 2 3 4)}と表示されます。
+そのため、\link{図2.4}のデータオブジェクトは\code{(1 2 3 4)}と表示されます。
 
 \begin{scheme}
 (define one-through-four (list 1 2 3 4))
@@ -6905,7 +6905,7 @@ Schemeは、ここで記述したものよりも汎用的な\code{map}手続き�
 異なるプロセスを実行しているというところではなく(プロセスは同じものです)、私たちがプロセスを
 異なるやり方で考えるというところにあります。実際に\code{map}は、リストを変形する手続きの
 実装を、リストの要素をどうやって取り出して結合していくかという細かいところから切り離す
-抽象化の壁を作ることを助けてくれます。\link{Figure 2.1}で示した壁のように、
+抽象化の壁を作ることを助けてくれます。\link{図2.1}で示した壁のように、
 この抽象化を使うことで、列を列に変形するという概念的な演算フレームワークを保ったままで、
 列がどのように実装されているかという低レベルな細かいところを変更できる柔軟性が得られます。
 \link{2.2.3節}では、列をプログラム組織化のフレームワークとするという
@@ -7003,13 +7003,13 @@ Louis Reasonerは\link{練習問題 2.21}の一つ目の\code{square\-/list}手�
 \noindent
 三つの項目のリストとして見ることができます。最初の項目はそれ自身が\code{(1 2)}という
 リストとなります。実際、このことはインタプリタによって表示される結果の形からも見て取る
-ことができます。\link{Figure 2.5}は、この構造のペアによる表現を示しています。
+ことができます。\link{図2.5}は、この構造のペアによる表現を示しています。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.5}
+\phantomsection\label{図2.5}
 \centering
 \begin{comment}
-\heading{Figure 2.5:} Structure formed by \code{(cons (list 1 2) (list 3 4))}.
+\heading{図2.5:} Structure formed by \code{(cons (list 1 2) (list 3 4))}.
 
 \begin{example}
                                           (3 4)
@@ -7032,19 +7032,19 @@ Louis Reasonerは\link{練習問題 2.21}の一つ目の\code{square\-/list}手�
 \end{comment}
 \includegraphics[width=91mm]{fig/chap2/Fig2.5c.pdf}
 \begin{quote}
-\heading{Figure 2.5:} \code{(cons (list 1 2) (list 3 4))}によって作られる構造
+\heading{図2.5:} \code{(cons (list 1 2) (list 3 4))}によって作られる構造
 \end{quote}
 \end{figure}
 
 要素が列であるような列は、\jnewterm{木}(\newterm{trees})として考えることもできます。
 列の要素は木の枝で、それ自身が列である要素は部分木となります。
-\link{Figure 2.6}に、\link{Figure 2.5}を木として見た構造を示します。
+\link{図2.6}に、\link{図2.5}を木として見た構造を示します。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.6}
+\phantomsection\label{図2.6}
 \centering
 \begin{comment}
-\heading{Figure 2.6:} The list structure in \link{Figure 2.5} viewed as a tree.
+\heading{図2.6:} The list structure in \link{図2.5} viewed as a tree.
 
 \begin{example}
  ((1 2) 3 4)
@@ -7058,7 +7058,7 @@ Louis Reasonerは\link{練習問題 2.21}の一つ目の\code{square\-/list}手�
 \includegraphics[width=22mm]{fig/chap2/Fig2.6a.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 2.6:} \link{Figure 2.5}のリスト構造を木として見たもの
+\heading{図2.6:} \link{図2.5}のリスト構造を木として見たもの
 \end{figure}
 
 再帰は木構造を扱う自然なツールです。再帰を使うことで、木への演算をその枝に対する
@@ -7148,7 +7148,7 @@ Louis Reasonerは\link{練習問題 2.21}の一つ目の\code{square\-/list}手�
 \begin{quote}
 \heading{\phantomsection\label{練習問題 2.24}練習問題 2.24:} 式
 \code{(list 1 (list 2 (list 3 4)))}を評価するとする。インタプリタの表示する
-結果、それに対応する箱-点構造、木としての解釈(\link{Figure 2.6}で示したようなもの)を示せ。
+結果、それに対応する箱-点構造、木としての解釈(\link{図2.6}で示したようなもの)を示せ。
 \end{quote}
 
 \begin{quote}
@@ -7431,7 +7431,7 @@ x
 \end{itemize}
 
 \noindent
-信号処理のエンジニアであれば、\link{Figure 2.7}に示したように、
+信号処理のエンジニアであれば、\link{図2.7}に示したように、
 直列につながれたいくつかの段階を通る信号の流れとしてこれらのプロセスを
 概念化するのが自然だと思うでしょう。\code{sum\-/odd\-/squares}は
 \jnewterm{列挙}(\newterm{enumerator})から始まります。この列挙は、
@@ -7456,11 +7456,11 @@ x
 結果となるコードの概念的な明確さを高めることができるでしょう。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.7}
+\phantomsection\label{図2.7}
 \centering
 \begin{comment}
 \begin{quote}
-\heading{Figure 2.7:} The signal-flow plans for the
+\heading{図2.7:} The signal-flow plans for the
 procedures \code{sum\-/odd\-/squares} (top) and \code{even\-/fibs} (bottom) reveal
 the commonality between the two programs.
 
@@ -7479,7 +7479,7 @@ the commonality between the two programs.
 \end{comment}
 \includegraphics[width=111mm]{fig/chap2/Fig2.7d.pdf} 
 \begin{quote}
-\heading{Figure 2.7:} 手続き\code{sum\-/odd\-/squares}(上)と\code{even\-/fibs}(下)を
+\heading{図2.7:} 手続き\code{sum\-/odd\-/squares}(上)と\code{even\-/fibs}(下)を
 信号の流れという図式によって表現すると、二つのプログラムの共通性が明らかになる。
 \end{quote}
 \end{figure}
@@ -8069,10 +8069,10 @@ $i + j$	& 3 & 5 & 5 & 7 & 7 & 7 & 11 \cr}
 \heading{\phantomsection\label{練習問題 2.42}練習問題 2.42:} 
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.8}
+\phantomsection\label{図2.8}
 \centering
 \begin{comment}
-\heading{Figure 2.8:} A solution to the eight-queens puzzle.
+\heading{図2.8:} A solution to the eight-queens puzzle.
 
 \begin{example}
 +---+---+---+---+---+---+---+---+
@@ -8097,12 +8097,12 @@ $i + j$	& 3 & 5 & 5 & 7 & 7 & 7 & 11 \cr}
 \includegraphics[width=48mm]{fig/chap2/Fig2.8c.pdf}      % 73mm
 \par\bigskip
 \noindent
-\heading{Figure 2.8:} 8クイーンパズルのひとつの解
+\heading{図2.8:} 8クイーンパズルのひとつの解
 \end{figure}
 
 ``8クイーンパズル''とは、どのクイーンもほかのクイーンの利き筋に入らない
 (つまり、同じ行・列・対角線の上に二つのクイーンがあるということがないようにする)
-ように8個のクイーンをチェス盤の上に置く方法を問うものである。\link{Figure 2.8}に
+ように8個のクイーンをチェス盤の上に置く方法を問うものである。\link{図2.8}に
 考えられる解のひとつを示す。このパズルを解くひとつのやり方として、各列にひとつの
 クイーンを置きながらチェス盤を横に移動していくというものがある。\( k - 1 \)個の
 クイーンを置いた状態では、\( k \)個目のクイーンは、すでに盤上にあるどのクイーンも
@@ -8175,7 +8175,7 @@ LouisがEva Lu Atorに見てくれるよう頼むと、彼女はLouisが\code{fl
 
 
 この節では、図形を描く簡単な言語を紹介し、それによって抽象と閉包の持つ力を示し、
-また高階手続きの本質的な部分を利用します。この言語は、\link{Figure 2.9}のような、
+また高階手続きの本質的な部分を利用します。この言語は、\link{図2.9}のような、
 要素をずらしたり拡大縮小したりしたものによって構成されるパターンについての実験が
 やりやすいように設計されています。
 \footnote{この図形言語は、M.C. Escherの``Square Limit''
@@ -8194,24 +8194,24 @@ LouisがEva Lu Atorに見てくれるよう頼むと、彼女はLouisが\code{fl
 重要だということを強調してきました。ここでもその枠組みに従います。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.9}
+\phantomsection\label{図2.9}
 \centering
 \begin{comment}
-\heading{Figure 2.9:} Designs generated with the picture language.
+\heading{図2.9:} Designs generated with the picture language.
 
 [two graphic images not included]
 \end{comment}
 \includegraphics[width=111mm]{fig/chap2/Fig2.9-bigger.png}
 \par\bigskip
 \noindent
-\heading{Figure 2.9:} 図形言語によって生成されたデザイン
+\heading{図2.9:} 図形言語によって生成されたデザイン
 \end{figure}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.10}
+\phantomsection\label{図2.10}
 \centering
 \begin{comment}
-\heading{Figure 2.10:} Images produced by the \code{wave}
+\heading{図2.10:} Images produced by the \code{wave}
 painter, with respect to four different frames.  The frames, shown with dotted
 lines, are not part of the images.
 
@@ -8220,17 +8220,17 @@ lines, are not part of the images.
 \includegraphics[width=50mm]{fig/chap2/Fig2.10.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 2.10:} \code{wave}によって生成された画像
+\heading{図2.10:} \code{wave}によって生成された画像
 \end{figure}
 
 この図形言語のエレガントさの一部は、\jnewterm{ペインタ}(\newterm{painter})という
 一種類の要素しかないというところにあります。ペインタは、指定された平行四辺形型の
 枠にフィットするように画像をずらしたり拡大縮小したりしたものを描画します。
-例えば、\code{wave}という基本ペインタがあり、\link{Figure 2.10}のような
-粗い線画を描きます。実際の線画の形は枠によって変わります---\link{Figure 2.10}の
+例えば、\code{wave}という基本ペインタがあり、\link{図2.10}のような
+粗い線画を描きます。実際の線画の形は枠によって変わります---\link{図2.10}の
 四つの画像は同じ\code{wave}ペインタによって生成されたものですが、それぞれ
 違った枠に対して描かれています。もっと手の込んだペインタもあります。\code{rogers}
-という基本ペインタは、\link{Figure 2.11}に示すように、\acronym{MIT}創設者の
+という基本ペインタは、\link{図2.11}に示すように、\acronym{MIT}創設者の
 William Barton Rogersの絵を描きます。
 \footnote{
 William Barton Rogers (1804-1882)は\acronym{MIT}の創設者で、また初代学長でもあります。
@@ -8279,16 +8279,16 @@ Francis A. Walker(\acronym{MIT}の三代目の学長)によると、
 亡くなったのだ。
 \end{quote}
 }
-\link{Figure 2.11}の4つの画像は、\link{Figure 2.10}の\code{wave}の画像と
+\link{図2.11}の4つの画像は、\link{図2.10}の\code{wave}の画像と
 同じ4つの枠に対して描いたものです。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.11}
+\phantomsection\label{図2.11}
 \centering
 \begin{comment}
-\heading{Figure 2.11:} Images of William Barton Rogers,
+\heading{図2.11:} Images of William Barton Rogers,
 founder and first president of \acronym{MIT}, painted with respect to the same
-four frames as in \link{Figure 2.10} (original image reprinted with the
+four frames as in \link{図2.10} (original image reprinted with the
 permission of the \acronym{MIT} Museum).
 
 [four graphic images not included]
@@ -8297,7 +8297,7 @@ permission of the \acronym{MIT} Museum).
 \par\bigskip
 \noindent
 \begin{quote}
-\heading{Figure 2.11:} \acronym{MIT}創設者・初代学長William Barton Rogersの画像。\link{Figure 2.10}と同じ4つの枠に対して描いたもの。(元の画像は\acronym{MIT}博物館の許諾を得て
+\heading{図2.11:} \acronym{MIT}創設者・初代学長William Barton Rogersの画像。\link{図2.10}と同じ4つの枠に対して描いたもの。(元の画像は\acronym{MIT}博物館の許諾を得て
 複製した)
 \end{quote}
 \end{figure}
@@ -8312,7 +8312,7 @@ permission of the \acronym{MIT} Museum).
 \code{flip\-/horiz}は元のペインタの画像を左右逆に描くプリンタを作ります。
 
 \code{wave}から始めて、二段階を経て構築した\code{wave4}というペインタの描く画像を
-\link{Figure 2.12}に示します。
+\link{図2.12}に示します。
 
 \begin{scheme}
 (define wave2 (beside wave (flip-vert wave)))
@@ -8320,11 +8320,11 @@ permission of the \acronym{MIT} Museum).
 \end{scheme}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.12}
+\phantomsection\label{図2.12}
 \centering
 \begin{comment}
-\heading{Figure 2.12:} Creating a complex figure, starting
-from the \code{wave} painter of \link{Figure 2.10}.
+\heading{図2.12:} Creating a complex figure, starting
+from the \code{wave} painter of \link{図2.10}.
 
 [two graphic images not included]
 
@@ -8335,7 +8335,7 @@ from the \code{wave} painter of \link{Figure 2.10}.
 \end{comment}
 \includegraphics[width=50mm]{fig/chap2/Fig2.12.pdf}
 \begin{quote}
-\heading{Figure 2.12:} \link{Figure 2.10}の\code{wave}ペインタから始めて複雑な図を作る
+\heading{図2.12:} \link{図2.10}の\code{wave}ペインタから始めて複雑な図を作る
 \end{quote}
 \end{figure}
 
@@ -8367,11 +8367,11 @@ from the \code{wave} painter of \link{Figure 2.10}.
 \end{scheme}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.13}
+\phantomsection\label{図2.13}
 \centering
 \begin{comment}
 \begin{quote}
-\heading{Figure 2.13:} Recursive plans for \code{right\-/split} and \code{corner\-/split}.
+\heading{図2.13:} Recursive plans for \code{right\-/split} and \code{corner\-/split}.
 
 \begin{example}
 +-------------+-------------+    +------+------+-------------+
@@ -8395,11 +8395,11 @@ from the \code{wave} painter of \link{Figure 2.10}.
 \includegraphics[width=111mm]{fig/chap2/Fig2.13a.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 2.13:} \code{right\-/split}と\code{corner\-/split}の再帰計画
+\heading{図2.13:} \code{right\-/split}と\code{corner\-/split}の再帰計画
 \end{figure}
 
-また、再帰演算を定義することもできます。以下に示すものは、\link{Figure 2.13}と
-\link{Figure 2.14}に示すような、右方向に枝分かれしていくペインタを作る
+また、再帰演算を定義することもできます。以下に示すものは、\link{図2.13}と
+\link{図2.14}に示すような、右方向に枝分かれしていくペインタを作る
 再帰演算です。
 
 \begin{scheme}
@@ -8412,8 +8412,8 @@ from the \code{wave} painter of \link{Figure 2.10}.
 
 \noindent
 右方向だけでなく上方向にも枝分かれさせることで、バランスの取れたパターンを
-作ることもできます(問題\link{練習問題 2.44}と、図\link{Figure 2.13}・
-\link{Figure 2.14}参照)。
+作ることもできます(問題\link{練習問題 2.44}と、図\link{図2.13}・
+\link{図2.14}参照)。
 
 \begin{scheme}
 (define (corner-split painter n)
@@ -8431,7 +8431,7 @@ from the \code{wave} painter of \link{Figure 2.10}.
 \noindent
 \code{corner\-/split}の四つのコピーを適切に配置することによって、\code{square\-/limit}
 というパターンを得ることができます。それを\code{wave}と\code{rogers}に適用したものを
-\link{Figure 2.9}に示してあります。
+\link{図2.9}に示してあります。
 
 \begin{scheme}
 (define (square-limit painter n)
@@ -8448,10 +8448,10 @@ from the \code{wave} painter of \link{Figure 2.10}.
 \end{quote}
 
 \begin{figure}[tbp]
-\phantomsection\label{Figure 2.14}
+\phantomsection\label{図2.14}
 \centering
 \begin{comment}
-\heading{Figure 2.14:} The recursive operations \code{right\-/split} and \code{corner\-/split} applied to the painters \code{wave} and \code{rogers}.  Combining four \code{corner\-/split} figures produces symmetric \code{square\-/limit} designs as shown in \link{Figure 2.9}.
+\heading{図2.14:} The recursive operations \code{right\-/split} and \code{corner\-/split} applied to the painters \code{wave} and \code{rogers}.  Combining four \code{corner\-/split} figures produces symmetric \code{square\-/limit} designs as shown in \link{図2.9}.
 
 [two graphic images not included]
 
@@ -8467,7 +8467,7 @@ from the \code{wave} painter of \link{Figure 2.10}.
 \end{comment}
 \includegraphics[width=91mm]{fig/chap2/Fig2.14b.pdf}
 \begin{quote}
-\heading{Figure 2.14:} 再帰演算\code{right\-/split}と\code{corner\-/split}をペインタ\code{wave}と\code{rogers}に適用したもの。\code{corner\-/split}した四つの図を組み合わせると、\link{Figure 2.9}に示すような対照的な\code{square\-/limit}のデザインになる。
+\heading{図2.14:} 再帰演算\code{right\-/split}と\code{corner\-/split}をペインタ\code{wave}と\code{rogers}に適用したもの。\code{corner\-/split}した四つの図を組み合わせると、\link{図2.9}に示すような対照的な\code{square\-/limit}のデザインになる。
 \end{quote}
 \end{figure}
 
@@ -8550,7 +8550,7 @@ from the \code{wave} painter of \link{Figure 2.10}.
 相対位置を指定します。もし二つの辺が垂直であれば、枠は長方形になります。そうでない
 場合、枠はより一般的な平行四辺形になります。
 
-\link{Figure 2.15}は、枠とそれに関連づけられたベクトルを示しています。
+\link{図2.15}は、枠とそれに関連づけられたベクトルを示しています。
 データ抽象化の原則通り、枠がどのように表現されているかについて
 ここではまだ特定する必要がありません。三つのベクトルを引数に取り枠を作る
 コンストラクタ\code{make\-/frame}と、それに対応する三つのセレクタ
@@ -8558,10 +8558,10 @@ from the \code{wave} painter of \link{Figure 2.10}.
 だけで十分です(\link{練習問題 2.47}参照)。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.15}
+\phantomsection\label{図2.15}
 \centering
 \begin{comment}
-\heading{Figure 2.15:} A frame is described by three vectors
+\heading{図2.15:} A frame is described by three vectors
 -- an origin and two edges.
 
 \begin{example}
@@ -8583,7 +8583,7 @@ vector    \    __--        edge1
 \end{comment}
 \includegraphics[width=51mm]{fig/chap2/Fig2.15a.pdf}
 \begin{quote}
-\heading{Figure 2.15:} 枠は、原点と二つの辺という三つのベクトルによって記述される。
+\heading{図2.15:} 枠は、原点と二つの辺という三つのベクトルによって記述される。
 \end{quote}
 \end{figure}
 
@@ -8694,7 +8694,7 @@ Origin(Frame) + x * Edge_1(Frame) + y * Edge_2(Frame)
 基本ペインタがどのように実装されるかという具体的なところは、グラフィックシステムの
 特性と描画する画像のタイプに依存します。例えば、二つの指定された点の間に
 スクリーン上の線を引く\code{draw\-/line}という手続きを持っているとします。
-すると、\link{Figure 2.10}の\code{wave}ペインタのような線画のペインタは、
+すると、\link{図2.10}の\code{wave}ペインタのような線画のペインタは、
 次のような線分のリストから作ることができます。
 \footnote{
 \code{segments\-/>painter}は、後で\link{練習問題 2.48}で記述する線分の表現を
@@ -8724,7 +8724,7 @@ Origin(Frame) + x * Edge_1(Frame) + y * Edge_2(Frame)
 どんな手続きでもペインタとして使うことができます。
 
 \footnote{
-例えば、\link{Figure 2.11}の\code{rogers}ペインタはグレースケール画像によって
+例えば、\link{図2.11}の\code{rogers}ペインタはグレースケール画像によって
 構築されています。枠内の各点に対し、\code{rogers}ペインタは枠座標マップによって
 そこにマップされる画像内の点を決定し、それに従って点の濃淡をつけます。
 \link{2.1.3節}では、有理数の実装はある適切な条件を満たすものであれば
@@ -8832,7 +8832,7 @@ Origin(Frame) + x * Edge_1(Frame) + y * Edge_2(Frame)
 
 \noindent
 また、画像を枠の中心方向につぶすという変形もあります。
-\footnote{\link{Figure 2.10}と\link{Figure 2.11}に出てきた菱形の画像は、
+\footnote{\link{図2.10}と\link{図2.11}に出てきた菱形の画像は、
 \code{squash\-/inwards}を\code{wave}と\code{rogers}に適用して作ったものです。}
 
 \begin{scheme}
@@ -8930,7 +8930,7 @@ Origin(Frame) + x * Edge_1(Frame) + y * Edge_2(Frame)
 
 階層化設計は、\jnewterm{頑健}(\newterm{robust})なプログラムを作りやすくします。
 頑健というのは、仕様の小さな変更が、プログラム上でも相応に小さな変更ですむという
-ことです。例えば、\link{Figure 2.9}に示した、\code{wave}をもとにした画像を変更
+ことです。例えば、\link{図2.9}に示した、\code{wave}をもとにした画像を変更
 したいとします。このとき、最も下のレベルに手を加え、\code{wave}の細かい見た目を
 変えることもできます。また、中間レベルで、\code{corner\-/split}が
 \code{wave}を複製するやり方を変えることもできます。最も上のレベルで、
@@ -8940,7 +8940,7 @@ Origin(Frame) + x * Edge_1(Frame) + y * Edge_2(Frame)
 
 \begin{quote}
 \heading{\phantomsection\label{練習問題 2.52}練習問題 2.52:} 
-上で述べた各レベルに手を加え、\link{Figure 2.9}に示した\code{wave}による
+上で述べた各レベルに手を加え、\link{図2.9}に示した\code{wave}による
 square-limitを変更せよ。具体的には、次のようなものである。
 
 \begin{enumerate}[a]
@@ -9713,17 +9713,17 @@ d(u^n)            du
 できます。木の各ノードは集合の要素をひとつ持ち、それはノードの``エントリ''と呼ばれます。
 また、ほかの二つのノード(ノードは空であることもあります)へのリンクも持っています。
 ``左''のリンクは、そのノードより小さな要素を指していて、``右''のリンクは
-そのノードより大きな要素を指しています。\link{Figure 2.16}に、
+そのノードより大きな要素を指しています。\link{図2.16}に、
 集合\( \{1, 3, 5, 7, 9, 11\} \)を表現するいくつかの木を示します。ある同じ集合を
 木という形で表現するのには、数多くの方法がありえます。ここで、有効な木の表現の
 条件として求めるものは、あるノードの左部分木のすべての要素がそのノードの要素よりも
 小さく、右部分木のすべての要素がそれよりも大きいということだけです。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.16}
+\phantomsection\label{図2.16}
 \centering
 \begin{comment}
-\heading{Figure 2.16:} Various binary trees that represent the set \( \{1, 3, 5, 7, 9, 11\} \).
+\heading{図2.16:} Various binary trees that represent the set \( \{1, 3, 5, 7, 9, 11\} \).
 
 \begin{example}
    7          3             5
@@ -9737,7 +9737,7 @@ d(u^n)            du
 \end{comment}
 \includegraphics[width=70mm]{fig/chap2/Fig2.16b.pdf}
 \begin{quote}
-\heading{Figure 2.16:} 集合\( \{1, 3, 5, 7, 9, 11\} \)を表現するさまざまな二分木
+\heading{図2.16:} 集合\( \{1, 3, 5, 7, 9, 11\} \)を表現するさまざまな二分木
 \end{quote}
 \end{figure}
 木による表現の利点は次の通りです。ある数値\( x \)がある集合に含まれているかどうかを
@@ -9823,7 +9823,7 @@ d(u^n)            du
 しまうかもしれません。新たに追加する要素の位置は、その要素と集合にすでに存在する項目の
 大小を比べた結果によるので、要素を``ランダムに''追加すれば、平均的には木はバランスの
 取れたものになりやすくなります。しかし、このことは保証されていません。例えば、もし
-空集合から始めて、1から7の数値を順番に追加していくと、\link{Figure 2.17}に示すような
+空集合から始めて、1から7の数値を順番に追加していくと、\link{図2.17}に示すような
 とてもバランスの悪い木ができあがってしまいます。この木では、すべての左部分木は空なので、
 単純な順序つきリストに対する優位点がありません。この問題を解決する方法のひとつとして、
 任意の木を同じ要素を持つバランスの取れた木に変換する演算を定義するというものがあります。
@@ -9836,10 +9836,10 @@ d(u^n)            du
 多くの文献があります。 \link{Cormen et al. 1990}参照。}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.17}
+\phantomsection\label{図2.17}
 \centering
 \begin{comment}
-\heading{Figure 2.17:} Unbalanced tree produced by adjoining 1 through 7 in sequence.
+\heading{図2.17:} Unbalanced tree produced by adjoining 1 through 7 in sequence.
 
 \begin{example}
 1
@@ -9857,7 +9857,7 @@ d(u^n)            du
 \end{comment}
 \includegraphics[width=40mm]{fig/chap2/Fig2.17a.pdf}
 \begin{quote}
-\heading{Figure 2.17:} 1から7まで順番に追加するとできるバランスの取れていない木
+\heading{図2.17:} 1から7まで順番に追加するとできるバランスの取れていない木
 \end{quote}
 \end{figure}
 
@@ -9890,7 +9890,7 @@ d(u^n)            du
 
 \item
 二つの手続きは、すべての木に対して同じ結果を生成するだろうか。そうでないとしたら、
-結果はどのように異なるだろうか。二つの手続きは、\link{Figure 2.16}の木に対して
+結果はどのように異なるだろうか。二つの手続きは、\link{図2.16}の木に対して
 どのようなリストを生成するだろうか。
 
 \item
@@ -10085,15 +10085,15 @@ B 100    D 1011    F 1101    H 1111
 符号化・復号化の際には使いません。以下では、木を構築する際に重みをどう利用するのか
 見ていきます。
 
-\link{Figure 2.18}に、上に書いたAからHまでの符号に対するハフマン木を示しています。
+\link{図2.18}に、上に書いたAからHまでの符号に対するハフマン木を示しています。
 葉の重みは、Aが相対頻度8、Bが相対頻度3、ほかの文字は相対頻度1で現れるような
 メッセージに対してこの木が設計されているということを示しています。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.18}
+\phantomsection\label{図2.18}
 \centering
 \begin{comment}
-\heading{Figure 2.18:} A Huffman encoding tree.
+\heading{図2.18:} A Huffman encoding tree.
 
 \begin{example}
            {A B C D E F G H} 17
@@ -10115,14 +10115,14 @@ B 100    D 1011    F 1101    H 1111
 \includegraphics[width=81mm]{fig/chap2/Fig2.18a.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 2.18:} ハフマン符号化木
+\heading{図2.18:} ハフマン符号化木
 \end{figure}
 
 ハフマン木があれば、どの記号に対する符号も、根から始めてその記号を持つ葉に
 たどり着くまで下りていくことで知ることができます。左の枝を下りるたびに
 符号に0を追加し、右の枝を下りるたびに1を追加します(どちらの枝を下りるかについては、
 どちらの枝にその記号の葉があるか、またはその記号を集合に含むかを見て決めます)。
-例えば、\link{Figure 2.18}の根から始めてDの葉に着くまでには、右枝、左枝、右枝、
+例えば、\link{図2.18}の根から始めてDの葉に着くまでには、右枝、左枝、右枝、
 右枝とたどっていきます。そのため、Dに対する符号は1011となります。
 
 ハフマン木を使ってビット列を復号するには、根から始めて、左と右のどちらの枝を
@@ -10155,7 +10155,7 @@ B 100    D 1011    F 1101    H 1111
 このプロセスを続けていきます。各段階で、重みが小さいほうから二つのノードを集合から
 取り除き、それらを左と右の枝として持つノードを代わりに入れることよって、その二つの
 ノードをくっつけていきます。ノードがひとつだけになったら、それが木全体の根となり、
-プロセスは停止します。以下に、\link{Figure 2.18}のハフマン木が生成される過程を
+プロセスは停止します。以下に、\link{図2.18}のハフマン木が生成される過程を
 示します。
 
 \begin{example}
@@ -10420,7 +10420,7 @@ Sha boom
 ポイントとなる考え方は、抽象化の壁---この場合は、有理数のセレクタとコンストラクタ
 (\code{make\-/rat}, \code{numer}, \code{denom})---を建てて、有理数をどう使うかという
 ところと、有理数のリスト構造による表現という内部の構造とを分離するということでした。
-結果として、プログラムは\link{Figure 2.1}に示したような構造になりました。
+結果として、プログラムは\link{図2.1}に示したような構造になりました。
 
 これらのデータ抽象化の壁は、複雑性をコントロールする強力な道具です。データオブジェクトの
 内部表現を分離することで、大きなプログラムの設計というタスクを、別々に行うことのできる
@@ -10462,18 +10462,18 @@ Sha boom
 複素数がどのように表現されているかということと独立に複素数の各部分にアクセスする
 ジェネリックセレクタによって複素数の算術演算(\code{add\-/complex}, \code{sub\-/complex},
 \code{mul\-/complex}, \code{div\-/complex})を定義することで達成できます。
-これによってできる複素数システムでは、\link{Figure 2.19}に示すように、
+これによってできる複素数システムでは、\link{図2.19}に示すように、
 二種類の異なる抽象化の壁を持つことになります。``水平な''抽象化の壁は、
-\link{Figure 2.1}に出てきたものと同じ役割を果たします。それらは、``高レベル''演算を
+\link{図2.1}に出てきたものと同じ役割を果たします。それらは、``高レベル''演算を
 ``低レベル''演算から分離するものです。それに加えて、複数の表現を別々に設計して
 組み込めるようにするための``垂直な''壁があります。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.19}
+\phantomsection\label{図2.19}
 \centering
 \begin{comment}
 \begin{quote}
-\heading{Figure 2.19:} Data-abstraction barriers in the complex-number system.
+\heading{図2.19:} Data-abstraction barriers in the complex-number system.
 
 \begin{example}
            Programs that use complex numbers
@@ -10492,7 +10492,7 @@ Sha boom
 \includegraphics[width=108mm]{fig/chap2/Fig2.19a.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 2.19:} 複素数システムのデータ抽象化の壁
+\heading{図2.19:} 複素数システムのデータ抽象化の壁
 \end{figure}
 
 \link{2.5節}では、タイプタグとデータ主導スタイルを使ってジェネリック算術演算
@@ -10518,7 +10518,7 @@ Sha boom
 
 有理数と同じように、複素数は順序つきペアとして自然に表現できます。複素数の集合は、
 ``実''軸と``虚''軸という二つの直交する軸を持つ二次元空間と考えることができます
-(\link{Figure 2.20}参照)。この見方をすると、\( z = x + iy \) (\( i^2 = -1 \))という
+(\link{図2.20}参照)。この見方をすると、\( z = x + iy \) (\( i^2 = -1 \))という
 複素数は、の実座標が\( x \)で虚座標が\( y \)の平面上の点として考えることができます。
 複素数の和は、この表現では、座標の和になります。
 \begin{comment}
@@ -10546,10 +10546,10 @@ Imaginary-part(z_1 + z_2) = Imaginary-part(z_1) + Imaginary-part(z_2)
 \end{displaymath}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.20}
+\phantomsection\label{図2.20}
 \centering
 \begin{comment}
-\heading{Figure 2.20:} Complex numbers as points in the plane.
+\heading{図2.20:} Complex numbers as points in the plane.
 
 \begin{example}
  Imaginary
@@ -10569,11 +10569,11 @@ Imaginary-part(z_1 + z_2) = Imaginary-part(z_1) + Imaginary-part(z_2)
 \includegraphics[width=79mm]{fig/chap2/Fig2.20.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 2.20:} 平面上の点としての複素数
+\heading{図2.20:} 平面上の点としての複素数
 \end{figure}
 
 複素数をかけ算するときには、複素数を極形式で、つまり大きさと角度(
-\link{Figure 2.20}内の\( r \)と\( A \))を使って考えるほうが自然です。
+\link{図2.20}内の\( r \)と\( A \))を使って考えるほうが自然です。
 二つの複素数の積は、ひとつの複素数をもう一方の長さをかけて伸縮させ、
 もう一方の角度だけ回転させて得られるベクトルになります。
 
@@ -10897,7 +10897,7 @@ Alyssaの極形式表現の修正版のは次のようになりました。
 \end{scheme}
 
 \noindent
-このようにして作った複素数システムは、\link{Figure 2.21}に示すような構造を持ちます。
+このようにして作った複素数システムは、\link{図2.21}に示すような構造を持ちます。
 システムは、比較的独立した三つの部分に分解されています。複素数算術演算、Alyssaの
 極形式による実装、Benの直交形式による実装です。極形式と直交形式の実装は、Benと
 Alyssaが別々に書いていたとしても問題ありません。第三者のプログラマが抽象コンストラクタ、
@@ -10905,11 +10905,11 @@ Alyssaが別々に書いていたとしても問題ありません。第三者�
 できます。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.21}
+\phantomsection\label{図2.21}
 \centering
 \begin{comment}
 \begin{quote}
-\heading{Figure 2.21:} Structure of the generic complex-arithmetic system.
+\heading{図2.21:} Structure of the generic complex-arithmetic system.
 
 \begin{example}
     +-------------------------------------------------+
@@ -10931,7 +10931,7 @@ Alyssaが別々に書いていたとしても問題ありません。第三者�
 \includegraphics[width=108mm]{fig/chap2/Fig2.21a.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 2.21:} ジェネリックな複素数算術演算システムの構造
+\heading{図2.21:} ジェネリックな複素数算術演算システムの構造
 \end{figure}
 
 それぞれのデータオブジェクトには型のタグがついているので、セレクタはジェネリックに
@@ -10985,7 +10985,7 @@ Alyssaのコードに渡します。逆に、Alyssaが一般使用のための�
 テーブルの項目は、それぞれの引数の型に対するそれぞれの演算を実装する手続きです。
 前の節で開発した複素数システムでは、演算の名前、データタイプ、実際の手続きの間の対応関係は、
 ジェネリックインターフェイス手続きのいろいろな条件節の中に広がっていました。しかし、それと
-同じ情報を\link{Figure 2.22}に示すようにテーブルの中に構造化することもできたところです。
+同じ情報を\link{図2.22}に示すようにテーブルの中に構造化することもできたところです。
 
 データ主導プログラミングは、そのようなテーブルを直接扱うようにプログラムを設計する
 テクニックです。前のほうで、複素数算術演算のコードと、それぞれ型によって明示的な
@@ -10997,11 +10997,11 @@ Alyssaのコードに渡します。逆に、Alyssaが一般使用のための�
 項目を追加するだけで十分です。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.22}
+\phantomsection\label{図2.22}
 \centering
 \begin{comment}
 \begin{quote}
-\heading{Figure 2.22:} Table of operations for the complex-number system.
+\heading{図2.22:} Table of operations for the complex-number system.
 
 \begin{example}
            |               Types
@@ -11017,7 +11017,7 @@ angle      | angle-polar     | angle-rectangular
 \includegraphics[width=102mm]{fig/chap2/Fig2.22.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 2.22:} 複素数システム演算のテーブル
+\heading{図2.22:} 複素数システム演算のテーブル
 \end{figure}
 
 この計画を実装するために、演算-型テーブルを操作する\code{put}と\code{get}という二つの
@@ -11294,7 +11294,7 @@ Insatiable Enterprises, Inc.(貪欲エンタープライズ社)は、世界中�
 \subsubsection*{メッセージパッシング}
 
 データ主導プログラミングでポイントとなる考え方は、プログラム中のジェネリック演算を
-\link{Figure 2.22}のような演算-型テーブルを明示的に扱うというところです。
+\link{図2.22}のような演算-型テーブルを明示的に扱うというところです。
 \link{2.4.2節}で使ったプログラミングスタイルでは、それぞれの演算に自分の
 ディスパッチの面倒を見させることによって、必要となる型ディスパッチを構築していました。
 実質的には、それぞれのジェネリック演算手続きがテーブルの行を表すというやり方で、
@@ -11383,11 +11383,11 @@ Insatiable Enterprises, Inc.(貪欲エンタープライズ社)は、世界中�
 構築します。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.23}
+\phantomsection\label{図2.23}
 \centering
 \begin{comment}
-\label{Figure 2.23}
-\heading{Figure 2.23:} Generic arithmetic system.
+\label{図2.23}
+\heading{図2.23:} Generic arithmetic system.
 
 \begin{example}
                         Programs that use numbers
@@ -11410,10 +11410,10 @@ Insatiable Enterprises, Inc.(貪欲エンタープライズ社)は、世界中�
 \includegraphics[width=111mm]{fig/chap2/Fig2.23a.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 2.23:} ジェネリック算術演算システム
+\heading{図2.23:} ジェネリック算術演算システム
 \end{figure}
 
-\link{Figure 2.23}は、これから構築するシステムの構造を示しています。抽象化の壁に
+\link{図2.23}は、これから構築するシステムの構造を示しています。抽象化の壁に
 注目してください。``数値''を使う人の視点からは、どんな種類の数が与えられても演算を
 行う\code{add}というたったひとつの手続きだけが見えています。\code{add}はジェネリック
 インターフェイスの一部で、別々になっている通常の算術演算、有理数の算術演算、複素数の
@@ -11581,7 +11581,7 @@ scheme-numberパッケージのユーザは、次の手続きによって(タグ
 
 \noindent
 ここでは、二つのレベルのタグシステムができています。\( 3 + 4i \)のような典型的な複素数は、
-\link{Figure 2.24}に示すように表現されることになります。外側のタグ(\code{complex})は、
+\link{図2.24}に示すように表現されることになります。外側のタグ(\code{complex})は、
 数値を複素数パッケージに送るために使われます。複素数パッケージに入ると、次のタグ
 数値を直行形式パッケージに送るのに(\code{rectangular})タグが使われます。
 巨大で複雑なシステムでは、多くのレベルが、それぞれ次のレベルとジェネリック演算という
@@ -11591,10 +11591,10 @@ scheme-numberパッケージのユーザは、次の手続きによって(タグ
 見えるようになり、さらなるディスパッチに使われます。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.24}
+\phantomsection\label{図2.24}
 \centering
 \begin{comment}
-\heading{Figure 2.24:} Representation of \( 3 + 4i \) in rectangular form.
+\heading{図2.24:} Representation of \( 3 + 4i \) in rectangular form.
 
 \begin{example}
      +---+---+     +---+---+     +---+---+
@@ -11610,7 +11610,7 @@ scheme-numberパッケージのユーザは、次の手続きによって(タグ
 \includegraphics[width=64mm]{fig/chap2/Fig2.24c.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 2.24:} 直行形式による\( 3 + 4i \)の表現
+\heading{図2.24:} 直行形式による\( 3 + 4i \)の表現
 \end{figure}
 
 上記のパッケージでは、\code{add\-/rat}, \code{add\-/complex}その他の算術演算手続きは、
@@ -11621,7 +11621,7 @@ scheme-numberパッケージのユーザは、次の手続きによって(タグ
 \begin{quote}
 \heading{\phantomsection\label{練習問題 2.77}練習問題 2.77:} 
 Louis Reasonerは、式\code{(magnitude z)}を評価しようとした。ここで、\code{z}は
-\link{Figure 2.24}に示したオブジェクトである。驚いたことに、5という答えが返ってくるのでは
+\link{図2.24}に示したオブジェクトである。驚いたことに、5という答えが返ってくるのでは
 なく、\code{apply\-/generic}からのエラーメッセージが返ってきて、型\code{(complex)}には
 \code{magnitude}という演算を行う手続きがないという。彼がこの対話をAlyssa P. Hackerに
 見せると、Alyssaは``複素数セレクタが\code{polar}と\code{rectangular}の数値にだけしか
@@ -11635,7 +11635,7 @@ Louis Reasonerは、式\code{(magnitude z)}を評価しようとした。ここ�
 (put 'angle '(complex) angle)
 \end{scheme}
 
-なぜこれが動くのか、詳しく説明せよ。例として、\code{z}が\link{Figure 2.24}に示した
+なぜこれが動くのか、詳しく説明せよ。例として、\code{z}が\link{図2.24}に示した
 オブジェクトであるとき、式\code{(magnitude z)}を評価した際に呼ばれるすべての手続きを
 トレースせよ。具体的には、\code{apply\-/generic}は何回起動されるだろうか。
 それぞれの場合について、ディスパッチ先の手続きは何になるだろうか。
@@ -11823,13 +11823,13 @@ Louis Reasonerは、式\code{(magnitude z)}を評価しようとした。ここ�
 演算は自動的に整数に適用できる)ということになります。逆に、有理数は整数の\jnewterm{スーパータイプ}
 (\newterm{supertype})と呼びます。ここで扱っている特定の階層はとても単純なもので、
 それぞれの型は高々ひとつのスーパータイプと高々ひとつのサブタイプを持ちます。このような
-構造は\jnewterm{タワー}(\newterm{tower})と呼ばれます。\link{Figure 2.25}にこの構造を示します。
+構造は\jnewterm{タワー}(\newterm{tower})と呼ばれます。\link{図2.25}にこの構造を示します。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.25}
+\phantomsection\label{図2.25}
 \centering
 \begin{comment}
-\heading{Figure 2.25:} A tower of types.
+\heading{図2.25:} A tower of types.
 
 \begin{example}
  complex
@@ -11847,7 +11847,7 @@ integer
 \includegraphics[width=11mm]{fig/chap2/Fig2.25.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 2.25:} 型のタワー
+\heading{図2.25:} 型のタワー
 \end{figure}
 
 もし扱っているのがタワー構造であれば、階層に新しい型を追加するという問題はとても
@@ -11888,7 +11888,7 @@ integer
 
 システムのデータ型が自然にタワーとして配置できる場合、ここまで見てきたように、
 異なる型同士のジェネリック演算の問題はとても単純になります。残念ながら、
-普通はそうはいきません。\link{Figure 2.26} はいろいろな型のより複雑な関係を
+普通はそうはいきません。\link{図2.26} はいろいろな型のより複雑な関係を
 図示したものです。この例では、さまざまな型の幾何学図形同士の関係を示しています。
 この図から、一般的にはひとつの型が二つ以上のサブタイプを持つということが見て取れます。
 例えば、三角形と四角形はどちらも多角形のサブタイプです。それに加えて、ひとつの型が
@@ -11917,10 +11917,10 @@ integer
 疑っています。}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 2.26}
+\phantomsection\label{図2.26}
 \centering
 \begin{comment}
-\heading{Figure 2.26:} Relations among types of geometric figures.
+\heading{図2.26:} Relations among types of geometric figures.
 
 \begin{example}
                      polygon
@@ -11945,7 +11945,7 @@ triangle      right          |       \    |
 \includegraphics[width=96mm]{fig/chap2/Fig2.26e.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 2.26:} 幾何学図形の型の間の関係
+\heading{図2.26:} 幾何学図形の型の間の関係
 \end{figure}
 
 \begin{quote}
@@ -12015,7 +12015,7 @@ Louisの考え方は正しいだろうか。それとも、\code{apply\-/generic
 
 \begin{quote}
 \heading{\phantomsection\label{練習問題 2.83}練習問題 2.83:} 
-\link{Figure 2.25}に示した型のタワー(整数、有理数、実数、複素数)を扱う
+\link{図2.25}に示した型のタワー(整数、有理数、実数、複素数)を扱う
 ジェネリック算術演算システムを設計しているとする。それぞれの型(複素数を除く)に対し、
 その型のオブジェクトをタワーの中で一階上げる手続きを設計せよ。それぞれの型
 (複素数を除く)に対して動作するジェネリックな\code{raise}演算を組み込む方法を
@@ -13774,7 +13774,7 @@ Kolmogorov, Solomonoff, Chaitinはこれらの問題の解明に大きく寄与�
 束縛を規定しているものがなければ、その変数はその環境の中で\jnewterm{未束縛}(\newterm{unbound})
 であるといいます。
 
-\link{Figure 3.1}は、三つのフレームからなる簡単な環境の構造を示したものです。フレームには
+\link{図3.1}は、三つのフレームからなる簡単な環境の構造を示したものです。フレームには
 それぞれ、I, II, IIIというラベルがついています。この図の中で、A, B, C, Dは環境へのポインタです。
 CとDは同じ環境を指しています。変数\code{z}と\code{x}がフレームIIに束縛されていて、
 \code{y}と\code{x}がフレームIに束縛されています。環境Dの中では、\code{x}の値は3です。
@@ -13785,10 +13785,10 @@ CとDは同じ環境を指しています。変数\code{z}と\code{x}がフレ�
 束縛が、フレーム Iの\code{x}と3の束縛を\jnewterm{隠蔽}(\newterm{shadow})しているといいます。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.1}
+\phantomsection\label{図3.1}
 \centering
 \begin{comment}
-\heading{Figure 3.1:} A simple environment structure.
+\heading{図3.1:} A simple environment structure.
 
 \begin{example}
            +--------+
@@ -13809,7 +13809,7 @@ CとDは同じ環境を指しています。変数\code{z}と\code{x}がフレ�
 \includegraphics[width=48mm]{fig/chap3/Fig3.1.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.1:} 単純な環境構造
+\heading{図3.1:} 単純な環境構造
 \end{figure}
 
 環境は評価プロセスにとって不可欠なものです。式を評価するコンテキストを決めるのは環境だからです。
@@ -13880,7 +13880,7 @@ CとDは同じ環境を指しています。変数\code{z}と\code{x}がフレ�
 これは、グローバル環境の中で\code{(lambda (x) (* x x))}を評価し、グローバル環境の中で\code{square}
 とその結果を束縛するものです。
 
-\link{Figure 3.2}は、この\code{define}式を評価した結果を示したものです。手続きオブジェクトは
+\link{図3.2}は、この\code{define}式を評価した結果を示したものです。手続きオブジェクトは
 ペアであり、そのコード部分は、手続きが\code{x}という仮引数をひとつ持つということと、手続きの
 本体が\code{(* x x)}であるということを規定しています。手続きの環境部分はグローバル環境への
 ポインタになります。\( \lambda \)式を評価して手続きを作ったのがグローバル環境の中だったからです。
@@ -13888,10 +13888,10 @@ CとDは同じ環境を指しています。変数\code{z}と\code{x}がフレ�
 一般的に、\code{define}はフレームに束縛を追加することによって定義を作成します。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.2}
+\phantomsection\label{図3.2}
 \centering
 \begin{comment}
-\heading{Figure 3.2:} Environment structure produced by
+\heading{図3.2:} Environment structure produced by
 evaluating \code{(define (square x) (* x x))} in the global environment.
 
 \begin{example}
@@ -13914,7 +13914,7 @@ env        | square: --+          |
 \end{comment}
 \includegraphics[width=49mm]{fig/chap3/Fig3.2b.pdf}
 \begin{quote}
-\heading{Figure 3.2:} グローバル環境の中で\code{(define (square x) (* x x))}を評価することによって作られる環境
+\heading{図3.2:} グローバル環境の中で\code{(define (square x) (* x x))}を評価することによって作られる環境
 \end{quote}
 \end{figure}
 
@@ -13923,9 +13923,9 @@ env        | square: --+          |
 束縛するフレームを含む新しい環境を作ります。このフレームの外側の環境は、手続きによって規定される
 環境です。そして、この新しい環境の中で、手続きの本体を評価します。
 
-この規則が実際にどのように適用されるか見てみましょう。\link{Figure 3.3}は、グローバル環境で
+この規則が実際にどのように適用されるか見てみましょう。\link{図3.3}は、グローバル環境で
 \code{(square 5)}という式を評価することによって作られる環境構造を示したものです。ここで、
-\code{square}は\link{Figure 3.2}で生成された手続きです。手続きを適用すると新しい環境が作られます。
+\code{square}は\link{図3.2}で生成された手続きです。手続きを適用すると新しい環境が作られます。
 図の中ではE1というラベルをつけています。この環境の最初のフレームでは、手続きの仮引数である
 \code{x}が、引数の5に束縛されています。このフレームから上に伸びている矢印のポインタは、
 このフレームの外側の環境がグローバル環境であるということを示しています。ここでグローバル環境が
@@ -13934,10 +13934,10 @@ E1の中で、手続きの本体である\code{(* x x)}を評価します。E1�
 結果は\code{(* 5 5)}、つまり25になります。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.3}
+\phantomsection\label{図3.3}
 \centering
 \begin{comment}
-\heading{Figure 3.3:} Environment created by evaluating
+\heading{図3.3:} Environment created by evaluating
 \code{(square 5)} in the global environment.
 
 \begin{example}
@@ -13960,7 +13960,7 @@ env       | square: --+                        |
 \end{comment}
 \includegraphics[width=78mm]{fig/chap3/Fig3.3b.pdf}
 \begin{quote}
-\heading{Figure 3.3:} グローバル環境で\code{(square 5)}を評価することによって作られる環境
+\heading{図3.3:} グローバル環境で\code{(square 5)}を評価することによって作られる環境
 \end{quote}
 \end{figure}
 
@@ -14020,16 +14020,16 @@ env       | square: --+                        |
 \end{scheme}
 
 \noindent
-同じ例を環境モデルを使って分析することもできます。\link{Figure 3.4}は、グローバル環境で
+同じ例を環境モデルを使って分析することもできます。\link{図3.4}は、グローバル環境で
 \code{f}, \code{square}, \code{sum\-/of\-/squares}の定義を評価することによって作られる
 三つの手続きオブジェクトを示したものです。それぞれの手続きオブジェクトは、何かしらのコードと
 グローバル環境へのポインタから構成されています。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.4}
+\phantomsection\label{図3.4}
 \centering
 \begin{comment}
-\heading{Figure 3.4:} Procedure objects in the global frame.
+\heading{図3.4:} Procedure objects in the global frame.
 
 \begin{example}
           +--------------------------------------------+
@@ -14054,10 +14054,10 @@ env       | f: --+                                     |
 \includegraphics[width=106mm]{fig/chap3/Fig3.4a.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.4:} グローバルフレーム内の手続きオブジェクト
+\heading{図3.4:} グローバルフレーム内の手続きオブジェクト
 \end{figure}
 
-\link{Figure 3.5}には、式\code{(f 5)}を評価することによって作られる環境構造を示してあります。
+\link{図3.5}には、式\code{(f 5)}を評価することによって作られる環境構造を示してあります。
 \code{f}を呼び出すことによってE1という新しい環境が作られ、その中のフレームで\code{f}の仮引数である
 \code{a}が引数の5に束縛されます。E1の中で、\code{f}の本体を評価します。
 
@@ -14069,7 +14069,7 @@ env       | f: --+                                     |
 この組み合わせを評価するには、まず部分式から評価します。最初の部分式\code{sum\-/of\-/squares}は、
 値として手続きオブジェクトを持っています(この値の見つけ方に注意してください。まずE1の最初の
 フレームを見ますが、そこには\code{sum\-/of\-/squares}に対する束縛がありません。次に、外側の
-環境、つまりグローバル環境に進み、\link{Figure 3.4}に示した束縛が見つかります)。
+環境、つまりグローバル環境に進み、\link{図3.4}に示した束縛が見つかります)。
 残り二つの部分式の評価は、基本演算\code{+}と\code{*}を適用して\code{(+ a 1)}と\code{(* a 2)}という
 二つの組み合わせを評価することによって行えます。結果はそれぞれ6, 10になります。
 
@@ -14084,11 +14084,11 @@ env       | f: --+                                     |
 そして、E4の中で\code{(* x x)}を評価しなければなりません。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.5}
+\phantomsection\label{図3.5}
 \centering
 \begin{comment}
-\heading{Figure 3.5:} Environments created by evaluating
-\code{(f 5)} using the procedures in \link{Figure 3.4}.
+\heading{図3.5:} Environments created by evaluating
+\code{(f 5)} using the procedures in \link{図3.4}.
 
 \begin{example}
           +-----------------------------------------------------+
@@ -14107,7 +14107,7 @@ env       +-----------------------------------------------------+
 \end{comment}
 \includegraphics[width=100mm]{fig/chap3/Fig3.5a.pdf}
 \begin{quote}
-\heading{Figure 3.5:} \link{Figure 3.4}内の手続きを用いて\code{(f 5)}を評価することで作られた環境
+\heading{図3.5:} \link{図3.4}内の手続きを用いて\code{(f 5)}を評価することで作られた環境
 \end{quote}
 \end{figure}
 
@@ -14186,16 +14186,16 @@ env       +-----------------------------------------------------+
 \end{scheme}
 
 \noindent
-\link{Figure 3.6}は、グローバル環境で\code{make\-/withdraw}手続きを定義した結果を示しています。
+\link{図3.6}は、グローバル環境で\code{make\-/withdraw}手続きを定義した結果を示しています。
 この定義は、グローバル環境へのポインタを持つ手続きオブジェクトを作成します。ここまでは
 これまで見た例と同じですが、手続きの本体がそれ自身\( \lambda \)式であるというところが違います。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.6}
+\phantomsection\label{図3.6}
 \centering
 \begin{comment}
 \begin{quote}
-\heading{Figure 3.6:} Result of defining \code{make\-/withdraw} in the global environment.
+\heading{図3.6:} Result of defining \code{make\-/withdraw} in the global environment.
 
 \begin{example}
           +---------------------------+
@@ -14220,7 +14220,7 @@ env       +------------------|--------+
 \end{comment}
 \includegraphics[width=91mm]{fig/chap3/Fig3.6b.pdf}
 \begin{quote}
-\heading{Figure 3.6:} グローバル環境で\code{make\-/withdraw}を定義した結果
+\heading{図3.6:} グローバル環境で\code{make\-/withdraw}を定義した結果
 \end{quote}
 \end{figure}
 
@@ -14237,7 +14237,7 @@ env       +------------------|--------+
 環境部分は、\code{lambda}が評価された環境であるE1になります。結果としてできる手続きオブジェクトは、
 \code{make\-/withdraw}の呼び出しに対して返される値になります。これがグローバル環境で\code{W1}に
 束縛されます。これは、\code{define}自身がグローバル環境で評価されているからです。
-\link{Figure 3.7}に最終的な環境構造を示します。
+\link{図3.7}に最終的な環境構造を示します。
 
 これで、\code{W1}が引数に適用されるとどうなるか解析できるようになります。
 
@@ -14247,10 +14247,10 @@ env       +------------------|--------+
 \end{scheme}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.7}
+\phantomsection\label{図3.7}
 \centering
 \begin{comment}
-\heading{Figure 3.7:} Result of evaluating \code{(define W1 (make\-/withdraw 100))}.
+\heading{図3.7:} Result of evaluating \code{(define W1 (make\-/withdraw 100))}.
 
 \begin{example}
           +-----------------------------------------------+
@@ -14278,7 +14278,7 @@ global -->|                                       |       |
 \includegraphics[width=100mm]{fig/chap3/Fig3.7a.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.7:} \code{(define W1 (make\-/withdraw 100))}を評価した結果
+\heading{図3.7:} \code{(define W1 (make\-/withdraw 100))}を評価した結果
 \end{figure}
 
 まずフレームを構築し、その中で\code{W1}の仮引数\code{amount}を引数50に束縛します。
@@ -14294,15 +14294,15 @@ global -->|                                       |       |
 \end{scheme}
 
 \noindent
-結果の環境構造を\link{Figure 3.8}に示します。評価されている式は、\code{amount}と\code{balance}の
+結果の環境構造を\link{図3.8}に示します。評価されている式は、\code{amount}と\code{balance}の
 両方を参照しています。\code{amount}は環境の最初のフレームで見つかり、\code{balance}は外側の環境の
 ポインタをたどることによってE1で見つかります。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.8}
+\phantomsection\label{図3.8}
 \centering
 \begin{comment}
-\heading{Figure 3.8:} Environments created by applying the procedure object \code{W1}.
+\heading{図3.8:} Environments created by applying the procedure object \code{W1}.
 
 \begin{example}
           +---------------------------------------------------+
@@ -14330,7 +14330,7 @@ env       | W1: --+                                           |
 \end{comment}
 \includegraphics[width=99mm]{fig/chap3/Fig3.8c.pdf}
 \begin{quote}
-\heading{Figure 3.8:} 手続きオブジェクト\code{W1}を適用することによって作成される環境
+\heading{図3.8:} 手続きオブジェクト\code{W1}を適用することによって作成される環境
 \end{quote}
 \end{figure}
 
@@ -14341,7 +14341,7 @@ env       | W1: --+                                           |
 なった手続きの呼び出しは終了していますし、環境のほかの部分からこのフレームを指しているところも
 ないからです。次に\code{W1}が呼ばれるときには、新しいフレームが構築されて\code{amount}を束縛し、
 その外側の環境はE1になります。手続きオブジェクト\code{W1}の局所状態を持っておく``場所''
-としての役割をE1が果たしているということがわかります。\link{Figure 3.9}に、\code{W1}を呼び出した
+としての役割をE1が果たしているということがわかります。\link{図3.9}に、\code{W1}を呼び出した
 後の様子を示します。
 
 もう一度\code{make\-/withdraw}を呼び出して、二つ目の``withdraw''オブジェクトを作るとどうなるか
@@ -14352,10 +14352,10 @@ env       | W1: --+                                           |
 \end{scheme}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.9}
+\phantomsection\label{図3.9}
 \centering
 \begin{comment}
-\heading{Figure 3.9:} Environments after the call to \code{W1}.
+\heading{図3.9:} Environments after the call to \code{W1}.
 
 \begin{example}
            +------------------------------------+
@@ -14381,14 +14381,14 @@ env        | W1: --+                            |
 \includegraphics[width=96mm]{fig/chap3/Fig3.9a.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.9:} \code{W1}呼び出し後の環境
+\heading{図3.9:} \code{W1}呼び出し後の環境
 \end{figure}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.10}
+\phantomsection\label{図3.10}
 \centering
 \begin{comment}
-\heading{Figure 3.10:} Using \code{(define W2 (make\-/withdraw 100))} to create a second object.
+\heading{図3.10:} Using \code{(define W2 (make\-/withdraw 100))} to create a second object.
 
 \begin{example}
          +-------------------------------------------------+
@@ -14413,11 +14413,11 @@ env      | W1: --+                        |                |
 \end{comment}
 \includegraphics[width=108mm]{fig/chap3/Fig3.10a.pdf}
 \begin{quote}
-\heading{Figure 3.10:} \code{(define W2 (make\-/withdraw 100))}を使って二つ目のオブジェクトを作成
+\heading{図3.10:} \code{(define W2 (make\-/withdraw 100))}を使って二つ目のオブジェクトを作成
 \end{quote}
 \end{figure}
 
-こうすると、\link{Figure 3.10}のような環境構造が生成されます。この図は、\code{W2}が
+こうすると、\link{図3.10}のような環境構造が生成されます。この図は、\code{W2}が
 手続きオブジェクトであるということ、つまり何らかのコードとひとつの環境のペアであるということを
 示しています。\code{W2}の環境E2は、\code{make\-/withdraw}を呼び出すことによって作られます。
 この環境は、\code{balance}に対する局所的な束縛を持つフレームを含んでいます。一方、\code{W1}と
@@ -14495,7 +14495,7 @@ E2に格納された\code{balance}を参照しています。このため、一�
 
 \noindent
 今回は、これらの内部定義がどうして望み通りにふるまうのかを見るのに環境モデルを使うことができます。
-\link{Figure 3.11}は、式\code{(sqrt 2)}を評価する途中の、\code{guess}を1として内部手続き
+\link{図3.11}は、式\code{(sqrt 2)}を評価する途中の、\code{guess}を1として内部手続き
 \code{good\-/enough?}に対する初回の呼び出しを行った時点の様子を示しています。
 
 環境構造をよく見てください。\code{sqrt}はグローバル環境の中にある記号で、手続きオブジェクトに
@@ -14513,14 +14513,14 @@ E2に格納された\code{balance}を参照しています。このため、一�
 この式を評価するときに、手続き\code{good\-/enough?}が環境E1の中に定義されます。より正確に
 言うと、記号\code{good\-/enough?}がE1の最初のフレームに追加され、環境E1に関連づけられた
 手続きオブジェクトに束縛されるということになります。同じように、\code{improve}と
-\code{sqrt\-/iter}がE1の中で手続きとして定義されます。簡単にするために、\link{Figure 3.11}では
+\code{sqrt\-/iter}がE1の中で手続きとして定義されます。簡単にするために、\link{図3.11}では
 \code{good\-/enough?}に対する手続きオブジェクトだけを示しています。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.11}
+\phantomsection\label{図3.11}
 \centering
 \begin{comment}
-\heading{Figure 3.11:} \code{Sqrt} procedure with internal definitions.
+\heading{図3.11:} \code{Sqrt} procedure with internal definitions.
 
 \begin{example}
           +--------------------------------------------------+
@@ -14551,7 +14551,7 @@ body: (define good-enough? ...)      | sqrt-iter: ... |      |
 \includegraphics[width=107mm]{fig/chap3/Fig3.11a.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.11:} 内部定義を持つ\code{sqrt}手続き
+\heading{図3.11:} 内部定義を持つ\code{sqrt}手続き
 \end{figure}
 
 
@@ -14680,10 +14680,10 @@ E1に出てくる\code{x}の束縛を参照することになります。これ�
 効果のために使うものです。}
 
 \begin{figure}[tp]
-\phantomsection\label{Figure 3.12}
+\phantomsection\label{図3.12}
 \centering
 \begin{comment}
-\heading{Figure 3.12:} Lists \code{x}: \code{((a b) c d)} and \code{y}: \code{(e f)}.
+\heading{図3.12:} Lists \code{x}: \code{((a b) c d)} and \code{y}: \code{(e f)}.
 
 \begin{example}
      +---+---+     +---+---+     +---+---+
@@ -14712,13 +14712,13 @@ x -->| * | *-+---->| * | *-+---->| * | / |
 \includegraphics[width=72mm]{fig/chap3/Fig3.12b.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.12:} リスト \code{x}: \code{((a b) c d)}と\code{y}: \code{(e f)}
+\heading{図3.12:} リスト \code{x}: \code{((a b) c d)}と\code{y}: \code{(e f)}
 \end{figure}
 
-例として、\link{Figure 3.12}に示すように、\code{x}がリスト\code{((a b) c d)}に束縛され、
+例として、\link{図3.12}に示すように、\code{x}がリスト\code{((a b) c d)}に束縛され、
 \code{y}がリスト\code{(e f)}に束縛されているという場合について考えます。
 式\code{ (set\-/car!  x y)}を評価すると、\code{x}が束縛されているペアが変更され、
-その\code{car}を\code{y}の値で置き換えます。演算の結果を\link{Figure 3.13}に示します。
+その\code{car}を\code{y}の値で置き換えます。演算の結果を\link{図3.13}に示します。
 構造\code{x}は変更され、今では\code{((e f) c d)}と表示されるような構造になっています。
 置き換えられたポインタが指していたリスト\code{(a b)}を表す二つのペアは、今では元の構造から
 切り離されています。
@@ -14728,16 +14728,16 @@ x -->| * | *-+---->| * | *-+---->| * | / |
 システムは\jnewterm{ガベージコレクタ}(\newterm{garbage collector})というものを含んでいて、
 それによって必要のないペアが使っていたメモリ空間をリサイクルということを学びます。}
 
-\link{Figure 3.13}と\link{Figure 3.14}を見比べてみてください。後者は、\code{x}と\code{y}が
-\link{Figure 3.12}の元のリストに束縛されている状態で\code{(define z (cons y (cdr x)))}を
+\link{図3.13}と\link{図3.14}を見比べてみてください。後者は、\code{x}と\code{y}が
+\link{図3.12}の元のリストに束縛されている状態で\code{(define z (cons y (cdr x)))}を
 実行した結果を示したものです。変数\code{z}は\code{cons}演算によって作られた新しいペアに
 束縛されるようになっていますが、\code{x}が束縛されているリストは変化していません。
 
 \begin{figure}[bp]
-\phantomsection\label{Figure 3.13}
+\phantomsection\label{図3.13}
 \centering
 \begin{comment}
-\heading{Figure 3.13:} Effect of \code{(set\-/car! x y)} on the lists in \link{Figure 3.12}.
+\heading{図3.13:} Effect of \code{(set\-/car! x y)} on the lists in \link{図3.12}.
 
 \begin{example}
      +---+---+     +---+---+     +---+---+
@@ -14766,15 +14766,15 @@ x -->| * | *-+---->| * | *-+---->| * | / |
 \includegraphics[width=72mm]{fig/chap3/Fig3.13b.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.13:} \link{Figure 3.12}のリストに対する\code{(set\-/car! x y)}の効果
+\heading{図3.13:} \link{図3.12}のリストに対する\code{(set\-/car! x y)}の効果
 \end{figure}
 
 
 \begin{figure}[tp]
-\phantomsection\label{Figure 3.14}
+\phantomsection\label{図3.14}
 \centering
 \begin{comment}
-\heading{Figure 3.14:} Effect of \code{(define z (cons y (cdr x)))} on the lists in \link{Figure 3.12}.
+\heading{図3.14:} Effect of \code{(define z (cons y (cdr x)))} on the lists in \link{図3.12}.
 
 \begin{example}
      +---+---+     +---+---+     +---+---+
@@ -14802,7 +14802,7 @@ z -->| * | *-+-+   +---+         +---+
 \end{comment}
 \includegraphics[width=72mm]{fig/chap3/Fig3.14b.pdf}
 \begin{quote}
-\heading{Figure 3.14:} \link{Figure 3.12}のリストに対する\code{(define z (cons y (cdr x)))}の効果
+\heading{図3.14:} \link{図3.12}のリストに対する\code{(define z (cons y (cdr x)))}の効果
 \end{quote}
 \end{figure}
 
@@ -14810,18 +14810,18 @@ z -->| * | *-+-+   +---+         +---+
 
 \noindent
 \code{set\-/cdr!}演算は\code{set\-/car!}と似ています。唯一の違いは、置き換えるのが
-ペアの\code{car}ポインタではなく\code{cdr}ポインタだということです。\link{Figure 3.12}のリストに
-対して\code{(set\-/cdr! x y)}を実行したときの効果を\link{Figure 3.15}に示します。ここでは、
+ペアの\code{car}ポインタではなく\code{cdr}ポインタだということです。\link{図3.12}のリストに
+対して\code{(set\-/cdr! x y)}を実行したときの効果を\link{図3.15}に示します。ここでは、
 \code{x}の\code{cdr}ポインタが\code{(e f)}に対するポインタに置き換えられています。また、
 \code{x}の\code{cdr}だったリスト\code{(c d)}は、今では構造から取り外されています。
 
 \enlargethispage{\baselineskip}
 
 \begin{figure}[bp]
-\phantomsection\label{Figure 3.15}
+\phantomsection\label{図3.15}
 \centering
 \begin{comment}
-\heading{Figure 3.15:} Effect of \code{(set\-/cdr! x y)} on the lists in \link{Figure 3.12}.
+\heading{図3.15:} Effect of \code{(set\-/cdr! x y)} on the lists in \link{図3.12}.
 
 \begin{example}
      +---+---+     +---+---+     +---+---+
@@ -14850,7 +14850,7 @@ x -->| * | * |     | * | *-+---->| * | / |
 \includegraphics[width=72mm]{fig/chap3/Fig3.15b.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.15:} \link{Figure 3.12}のリストに対する\code{(set\-/cdr! x y)}の効果
+\heading{図3.15:} \link{図3.12}のリストに対する\code{(set\-/cdr! x y)}の効果
 \end{figure}
 
 \code{cons}は新しいペアを作ることによって新しいリスト構造を組み立てるものですが、
@@ -14982,13 +14982,13 @@ w
 \end{scheme}
 
 \noindent
-\link{Figure 3.16}に示したように、\code{z1}は、\code{car}と\code{cdr}が両方とも\code{x}という
+\link{図3.16}に示したように、\code{z1}は、\code{car}と\code{cdr}が両方とも\code{x}という
 同じペアを指しています。このように、\code{z1}の\code{car}と\code{cdr}によって\code{x}が共有
 できるようになっているのは、\code{cons}が単純な方法で実装されているからです。一般的に、
 \code{cons}を使ってリストを構築すると、多くの個々のペアが多くの別々の構造によって共有される、
 ペアの絡まり合った構造ができます。
 
-\link{Figure 3.16}に対して、\link{Figure 3.17}は次の式によって作られる構造を示しています。
+\link{図3.16}に対して、\link{図3.17}は次の式によって作られる構造を示しています。
 
 \begin{scheme}
 (define z2 (cons (list 'a 'b) (list 'a 'b)))
@@ -15005,10 +15005,10 @@ w
 なっているということにも注意してください。}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.16}
+\phantomsection\label{図3.16}
 \centering
 \begin{comment}
-\heading{Figure 3.16:} The list \code{z1} formed by \code{(cons x x)}.
+\heading{図3.16:} The list \code{z1} formed by \code{(cons x x)}.
 
 \begin{example}
       +---+---+
@@ -15027,15 +15027,15 @@ z1 -->| * | * |
 \includegraphics[width=46mm]{fig/chap3/Fig3.16b.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.16:} \code{(cons x x)}によって作られるリスト\code{z1}
+\heading{図3.16:} \code{(cons x x)}によって作られるリスト\code{z1}
 \end{figure}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.17}
+\phantomsection\label{図3.17}
 \centering
 \begin{comment}
 \begin{quote}
-\heading{Figure 3.17:} The list \code{z2} formed by \code{(cons (list 'a 'b) (list 'a 'b))}.
+\heading{図3.17:} The list \code{z2} formed by \code{(cons (list 'a 'b) (list 'a 'b))}.
 
 \begin{example}
       +---+---+     +---+---+     +---+---+
@@ -15055,7 +15055,7 @@ z2 -->| * | *-+---->| * | *-+---->| * | / |
 \end{comment}
 \includegraphics[width=71mm]{fig/chap3/Fig3.17b.pdf}
 \begin{quote}
-\heading{Figure 3.17:} \code{(cons (list 'a 'b) (list 'a 'b))}によって作られるリスト\code{z2}
+\heading{図3.17:} \code{(cons (list 'a 'b) (list 'a 'b))}によって作られるリスト\code{z2}
 \end{quote}
 \end{figure}
 
@@ -15090,8 +15090,8 @@ z2
 リスト構造の中にある共有を検出する方法として、述語\code{eq?}を使うというものがあります。
 この述語は、二つの記号が同じかどうかテストする方法として\link{2.3.1節}で紹介したものです。
 より一般的に、\code{(eq?  x y)}は\code{x}と\code{y}が同じオブジェクトかどうか(つまり、
-\code{x}と\code{y}がポインタとして等しいかどうか)をテストします。そのため、\link{Figure 3.16}と
-\link{Figure 3.17}のように定義された\code{z1}と\code{z2}では、\code{(eq?  (car z1) (cdr z1))}
+\code{x}と\code{y}がポインタとして等しいかどうか)をテストします。そのため、\link{図3.16}と
+\link{図3.17}のように定義された\code{z1}と\code{z2}では、\code{(eq?  (car z1) (cdr z1))}
 は真になり、\code{(eq? (car z2) (cdr z2))}は偽になります。
 
 以降の節で見ていくように、共有を活用すると、ペアで表現可能なデータ構造の範囲を大きく広げる
@@ -15232,16 +15232,16 @@ Benの手続きが3, 4, 7を返すもの、また手続きが終了しないも�
 
 \jnewterm{キュー}(\newterm{queue})とは、項目を一方の端(キューの\jnewterm{終端}(\newterm{rear}))
 に挿入し、もう一方の端(\jnewterm{先端}(\newterm{front}))から削除する列です。
-\link{Figure 3.18}は、最初は空だったキューにアイテム\code{a}と\code{b}が挿入される様子を
+\link{図3.18}は、最初は空だったキューにアイテム\code{a}と\code{b}が挿入される様子を
 示しています。次に\code{a}が削除され、\code{c}と\code{d}が挿入され、\code{b}が削除されています。
 項目は常に挿入した順番に削除されるため、キューは\jnewterm{先入れ先出し}
 (\newterm{FIFO}(first in, first out))バッファと呼ばれることもあります。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.18}
+\phantomsection\label{図3.18}
 \centering
 \begin{comment}
-\heading{Figure 3.18:} Queue operations.
+\heading{図3.18:} Queue operations.
 
 \begin{example}
 Operation                Resulting Queue
@@ -15257,7 +15257,7 @@ Operation                Resulting Queue
 \includegraphics[width=70mm]{fig/chap3/Fig3.18a.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.18:} キュー演算
+\heading{図3.18:} キュー演算
 \end{figure}
 
 データ抽象化を使うと、キューは以下の演算の集合によって定義されるものと考えることができます。
@@ -15324,14 +15324,14 @@ Operation                Resulting Queue
 このやり方では、キューは\code{front\-/ptr}, \code{rear\-/ptr}というポインタのペアとして表現
 できます。ポインタはそれぞれ通常のリストの先頭と最後のペアを指しています。キューを識別可能な
 オブジェクトにするために、\code{cons}を使って二つのポインタを結合します。つまり、キュー自身は
-二つのポインタの\code{cons}になります。\link{Figure 3.19}はこの表現を図示したものです。
+二つのポインタの\code{cons}になります。\link{図3.19}はこの表現を図示したものです。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.19}
+\phantomsection\label{図3.19}
 \centering
 \begin{comment}
 \begin{quote}
-\heading{Figure 3.19:} Implementation of a queue as a list with front and rear pointers.
+\heading{図3.19:} Implementation of a queue as a list with front and rear pointers.
 
 \begin{example}
        +---+---+
@@ -15352,7 +15352,7 @@ Operation                Resulting Queue
 \end{comment}
 \includegraphics[width=69mm]{fig/chap3/Fig3.19b.pdf}
 \begin{quote}
-\heading{Figure 3.19:} 先端と終端のポインタを持つリストとしてのキューの実装
+\heading{図3.19:} 先端と終端のポインタを持つリストとしてのキューの実装
 \end{quote}
 \end{figure}
 
@@ -15393,7 +15393,7 @@ Operation                Resulting Queue
 \end{scheme}
 
 \noindent
-キューにアイテムを挿入するには、結果として\link{Figure 3.20}のようになるような手順を
+キューにアイテムを挿入するには、結果として\link{図3.20}のようになるような手順を
 実行します。まず、\code{car}が挿入する項目で\code{cdr}が空リストという新しいペアを作ります。
 もしキューが元々空だったら、先端と終端のポインタが両方ともこの新しいペアを指すようにします。
 そうでなければ、キューの最終ペアが新しいペアを指すように変更し、また終端ポインタも
@@ -15413,10 +15413,10 @@ Operation                Resulting Queue
 \end{scheme}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.20}
+\phantomsection\label{図3.20}
 \centering
 \begin{comment}
-\heading{Figure 3.20:} Result of using \code{(insert\-/queue! q 'd)} on the queue of \link{Figure 3.19}.
+\heading{図3.20:} Result of using \code{(insert\-/queue! q 'd)} on the queue of \link{図3.19}.
 
 \begin{example}
        +---+---+
@@ -15436,12 +15436,12 @@ Operation                Resulting Queue
 \end{comment}
 \includegraphics[width=88mm]{fig/chap3/Fig3.20b.pdf}
 \begin{quote}
-\heading{Figure 3.20:} \link{Figure 3.19}のキューに\code{(insert\-/queue! q 'd)}を使った結果 
+\heading{図3.20:} \link{図3.19}のキューに\code{(insert\-/queue! q 'd)}を使った結果 
 \end{quote}
 \end{figure}
 
 キューの先頭の項目を削除するのは、先頭ポインタがキューの二番目の項目を指すようにするだけで
-大丈夫です(\link{Figure 3.21}参照)。
+大丈夫です(\link{図3.21}参照)。
 \footnote{
 最初の項目がキューの最終項目でもある場合、削除後に先端ポインタは空リストになり、これが
 キューが空だという印になります。終端ポインタは依然として削除済みの項目を指し続けることに
@@ -15457,10 +15457,10 @@ Operation                Resulting Queue
 \end{scheme}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.21}
+\phantomsection\label{図3.21}
 \centering
 \begin{comment}
-\heading{Figure 3.21:} Result of using \code{(delete\-/queue!  q)} on the queue of \link{Figure 3.20}.
+\heading{図3.21:} Result of using \code{(delete\-/queue!  q)} on the queue of \link{図3.20}.
 
 \begin{example}
        +---+---+
@@ -15480,7 +15480,7 @@ Operation                Resulting Queue
 \end{comment}
 \includegraphics[width=88mm]{fig/chap3/Fig3.21b.pdf}
 \begin{quote}
-\heading{Figure 3.21:} \link{Figure 3.20}のキューに\code{(delete\-/queue!  q)}を使った結果
+\heading{図3.21:} \link{図3.20}のキューに\code{(delete\-/queue!  q)}を使った結果
 \end{quote}
 \end{figure}
 
@@ -15564,10 +15564,10 @@ Eva Luの話について解説せよ。具体的には、なぜBenの例がそ�
 テーブルを構築するやり方について見ていきます。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.22}
+\phantomsection\label{図3.22}
 \centering
 \begin{comment}
-\heading{Figure 3.22:} A table represented as a headed list.
+\heading{図3.22:} A table represented as a headed list.
 
 \begin{example}
  +---+---+    +---+---+    +---+---+    +---+---+
@@ -15588,7 +15588,7 @@ Eva Luの話について解説せよ。具体的には、なぜBenの例がそ�
 \includegraphics[width=81mm]{fig/chap3/Fig3.22c.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.22:} 頭つきリストとして表現されたテーブル
+\heading{図3.22:} 頭つきリストとして表現されたテーブル
 \end{figure}
 
 まず、一次元の表について考えます。一次元の表では、それぞれの値は単独のキーの下に格納されます。
@@ -15598,7 +15598,7 @@ Eva Luの話について解説せよ。具体的には、なぜBenの例がそ�
 (\newterm{backbone})といいます。テーブルに新しいレコードを追加するときに変更できる場所が必要なので、
 テーブルは\jnewterm{頭つきリスト}(\newterm{headed list})として構築します。頭つきリストは、
 先頭に特別な背骨のペアを持っています。これはダミーの``レコード''---今回の場合、適当に選んだ記号
-\code{*table*}---を持っています。\link{Figure 3.22}は、次のテーブルに対する箱とポインタの図を
+\code{*table*}---を持っています。\link{図3.22}は、次のテーブルに対する箱とポインタの図を
 示したものです。
 
 \begin{scheme}
@@ -15665,7 +15665,7 @@ c:  3
 \noindent
 二次元テーブルでは、それぞれの値は二つのキーによって索引づけがされています。そのような
 テーブルは、一次元テーブルのそれぞれのキーがサブテーブルを特定ようにすることで作れます。
-\link{Figure 3.23}は、次のテーブルに対する箱とポインタの図を示したものです。
+\link{図3.23}は、次のテーブルに対する箱とポインタの図を示したものです。
 
 \begin{example}
 math:    +:  43        letters:    a:  97
@@ -15694,10 +15694,10 @@ math:    +:  43        letters:    a:  97
 \end{scheme}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.23}
+\phantomsection\label{図3.23}
 \centering
 \begin{comment}
-\heading{Figure 3.23:} A two-dimensional table.
+\heading{図3.23:} A two-dimensional table.
 
 \begin{example}
 table
@@ -15735,7 +15735,7 @@ table
 \includegraphics[width=103mm]{fig/chap3/Fig3.23a.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.23:} 二次元テーブル
+\heading{図3.23:} 二次元テーブル
 \end{figure}
 
 キーのペアの下に新しい項目を挿入するには、\code{assoc}を使って一つ目のキーの下にサブテーブルが
@@ -15919,8 +15919,8 @@ table
 タイプによって時間的な遅れが生じます。例えば、\jnewterm{インバータ}(\newterm{inverter})は入力を
 反転する基本関数箱です。インバータに対する入力信号が0に変化すると、インバータ遅延時間1単位後に
 インバータは出力信号を1に変えます。インバータに対する入力信号が1に変化すると、インバータ遅延時間
-1単位後にインバータは出力信号を0に変えます。インバータは\link{Figure 3.24}のような記号として
-表します。同じ\link{Figure 3.24}に示している\jnewterm{ANDゲート}(\newterm{and\-/gate})は、
+1単位後にインバータは出力信号を0に変えます。インバータは\link{図3.24}のような記号として
+表します。同じ\link{図3.24}に示している\jnewterm{ANDゲート}(\newterm{and\-/gate})は、
 二つの入力とひとつの出力を持つ基本関数箱です。この関数箱は、入力の\jnewterm{論理積}
 (\newterm{logical and})となる値に出力信号を駆動します。つまり、入力信号が両方とも1になると、
 ANDゲート遅延時間1単位後に、ANDゲートは出力信号を1にするということです。そうでなければ、出力は
@@ -15929,10 +15929,10 @@ ANDゲート遅延時間1単位後に、ANDゲートは出力信号を1にする
 入力信号が1であれば出力は1になり、そうでなければ出力は0になるということです。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.24}
+\phantomsection\label{図3.24}
 \centering
 \begin{comment}
-\heading{Figure 3.24:} Primitive functions in the digital logic simulator.
+\heading{図3.24:} Primitive functions in the digital logic simulator.
 
 \begin{example}
                __          ___
@@ -15945,12 +15945,12 @@ Inverter    And-gate     Or-gate
 \end{comment}
 \includegraphics[width=74mm]{fig/chap3/Fig3.24b.pdf}
 \begin{quote}
-\heading{Figure 3.24:} デジタル論理回路シミュレータにおける基本関数
+\heading{図3.24:} デジタル論理回路シミュレータにおける基本関数
 \end{quote}
 \end{figure}
 
 基本関数を接続すると、より複雑な関数を構築することができます。そのためには、関数箱の出力を
-別の関数箱の入力に結線します。例えば、\link{Figure 3.25}に示す\jnewterm{半加算器}
+別の関数箱の入力に結線します。例えば、\link{図3.25}に示す\jnewterm{半加算器}
 (\newterm{half\-/adder})は、ひとつのORゲート、二つのANDゲート、ひとつのインバータからなります。
 入力信号としてはAとBの二つを取り、出力信号はSとCの二つです。Sは、AとBのどちらかひとつだけが
 1のときに1になり、CはAとBの両方が1のときに1になります。図を見ると、遅延があるために、
@@ -15958,10 +15958,10 @@ Inverter    And-gate     Or-gate
 難しさは、多くはこの事実によって起こるものです。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.25}
+\phantomsection\label{図3.25}
 \centering
 \begin{comment}
-\heading{Figure 3.25:} A half-adder circuit.
+\heading{図3.25:} A half-adder circuit.
 
 \begin{example}
     +--------------------------------------+
@@ -15982,7 +15982,7 @@ B -----*------|___/                        |
 \includegraphics[width=72mm]{fig/chap3/Fig3.25c.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.25:} 半加算器回路
+\heading{図3.25:} 半加算器回路
 \end{figure}
 
 ここからは、私たちの学習対象となる、デジタル論理回路をモデル化するプログラムを作っていきます。
@@ -16004,7 +16004,7 @@ B -----*------|___/                        |
 \noindent
 ある関数箱を線につなげるには、そのタイプの関数箱を構築する手続きを呼びます。コンストラクタ
 手続きの引数は、その箱につなげる線です。例えば、ANDゲート、ORゲート、インバータを構築できる
-ようになっているとすると、\link{Figure 3.25}に示す半加算器を結線できます。
+ようになっているとすると、\link{図3.25}に示す半加算器を結線できます。
 
 \begin{scheme}
 (or-gate a b d)
@@ -16034,7 +16034,7 @@ B -----*------|___/                        |
 
 \noindent
 この定義の利点は、より複雑な回路を作成するための構築用ブロックとして\code{half\-/adder}自身を
-使うことができるということです。例えば、\link{Figure 3.26}は、二つの半加算器とひとつのORゲートに
+使うことができるということです。例えば、\link{図3.26}は、二つの半加算器とひとつのORゲートに
 よって構成される\jnewterm{全加算器}(\newterm{full\-/adder})を示したものです。
 \footnote{全加算器は、二つの二進数の加算に使われる基本的な回路要素です。ここで、AとBは加算する
 二つの数の対応する位置のビットで、\( \rm C_{in} \)はひとつ右の位置での加算から来る
@@ -16052,10 +16052,10 @@ B -----*------|___/                        |
 \end{scheme}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.26}
+\phantomsection\label{図3.26}
 \centering
 \begin{comment}
-\heading{Figure 3.26:} A full-adder circuit.
+\heading{図3.26:} A full-adder circuit.
 
 \begin{example}
     +----------------------------------+
@@ -16072,7 +16072,7 @@ C -----+       +---------------/___/   |
 \includegraphics[width=74mm]{fig/chap3/Fig3.26a.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.26:} 全加算器回路
+\heading{図3.26:} 全加算器回路
 \end{figure}
 
 \code{full\-/adder}を手続きとして定義したので、今度はそれを構築用ブロックとして使って、
@@ -16165,7 +16165,7 @@ ORゲートを構築する別の方法として、ANDゲートとインバータ
 
 \begin{quote}
 \heading{\phantomsection\label{練習問題 3.30}練習問題 3.30:} 
-\link{Figure 3.27}は、\( n \)個の全加算器をつなげた\jnewterm{繰り上がり伝播加算器}
+\link{図3.27}は、\( n \)個の全加算器をつなげた\jnewterm{繰り上がり伝播加算器}
 (\newterm{ripple-carry adder})を示している。これは、二つの\( n \)ビット二進数を
 足すための最も単純な形の並列加算器である。\( A_1 \), \( A_2 \), \( A_3 \), \( \dots \),
 \( A_n \)と\( B_1 \), \( B_2 \), \( B_3 \), \( \dots \), \( B_n \)という入力は、
@@ -16180,10 +16180,10 @@ ORゲート・インバータの遅延時間によって表現すると、どの
 \end{quote}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.27}
+\phantomsection\label{図3.27}
 \centering
 \begin{comment}
-\heading{Figure 3.27:} A ripple-carry adder for \( n \)-bit numbers.
+\heading{図3.27:} A ripple-carry adder for \( n \)-bit numbers.
 
 \begin{example}
    :                                              :   :
@@ -16203,7 +16203,7 @@ C ------+   |     +-----+   |     +-----+   |     :  ------+   |
 \includegraphics[width=96mm]{fig/chap3/Fig3.27a.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.27:} \( n \)bitの数を扱う繰り上がり伝播加算器
+\heading{図3.27:} \( n \)bitの数を扱う繰り上がり伝播加算器
 \end{figure}
 
 \subsubsection*{回路の表現}
@@ -16381,7 +16381,7 @@ C ------+   |     +-----+   |     +-----+   |     :  ------+   |
 \end{scheme}
 
 \noindent
-それから、線を(\link{Figure 3.25}のように)半加算器回路に接続し、\code{input\-/1}の信号を
+それから、線を(\link{図3.25}のように)半加算器回路に接続し、\code{input\-/1}の信号を
 1に設定し、シミュレーションを実行します。
 
 \begin{scheme}
@@ -16617,7 +16617,7 @@ TK!Solver(\link{Konopasek and Jayaraman 1984})は、制約に基づく大規模�
  9C = 5(F - 32). 
 \end{displaymath}
 このような制約は、加算器・乗算器・不変制約という基本制約からなるネットワーク
-(\link{Figure 3.28})として考えることができます。図の中で、左には\( m \)1, \( m \)2, \( p \)
+(\link{図3.28})として考えることができます。図の中で、左には\( m \)1, \( m \)2, \( p \)
 というラベルのついた三つの端子を持つ乗算箱があります。これらの端子は、次のようにして乗算器を
 ネットワークのほかの部分と接続します。まず、\( m \)1端子は摂氏の気温を保持するコネクタ\( C \)に
 つなげられます。\( m \)2端子は\( w \)というコネクタにつなげられます。このコネクタは9を保持する
@@ -16626,11 +16626,11 @@ TK!Solver(\link{Konopasek and Jayaraman 1984})は、制約に基づく大規模�
 \( m \)1は加算の項のうちのひとつに接続されています。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.28}
+\phantomsection\label{図3.28}
 \centering
 \begin{comment}
 \begin{quote}
-\heading{Figure 3.28:} The relation \( 9C = 5(F - 32) \) expressed as a constraint network.
+\heading{図3.28:} The relation \( 9C = 5(F - 32) \) expressed as a constraint network.
 
 \begin{example}
        +---------+     +---------+   v   +---------+
@@ -16647,7 +16647,7 @@ C -----+ m1      |  u  |      m1 +-------+ a1      |
 \end{comment}
 \includegraphics[width=87mm]{fig/chap3/Fig3.28.pdf}
 \begin{quote}
-\heading{Figure 3.28:} 制約ネットワークとして表現された関係\\
+\heading{図3.28:} 制約ネットワークとして表現された関係\\
 \( 9C = 5(F - 32) \)
 \end{quote}
 \end{figure}
@@ -16699,7 +16699,7 @@ C -----+ m1      |  u  |      m1 +-------+ a1      |
 \noindent
 この手続きは内部コネクタ\code{u}, \code{v}, \code{w}, \code{x}, \code{y}を作成し、
 基本制約のコンストラクタ\code{adder}, \code{multiplier}, \code{constant}を使って
-\link{Figure 3.28}に示したように接続します。\link{3.3.4節}のデジタル回路シミュレータの場合と
+\link{図3.28}に示したように接続します。\link{3.3.4節}のデジタル回路シミュレータの場合と
 同じように、基本要素の組み合わせに手続きを使うことによって、この言語は自動的に複合オブジェクトを
 抽象化する手段を持つことになります。
 
@@ -17254,7 +17254,7 @@ Peterは10ドルを引き出し、Paulは25ドルを引き出して、口座に�
 手続きがこの文を並行に実行したとすると、二つの手続きが\code{balance}にアクセスして新しい値を
 設定する順番が入れ違いになってしまう可能性もあります。
 
-\link{Figure 3.29}のタイミング図は、\code{balance}が100の状態から始まって、Peterが10引き出し、
+\link{図3.29}のタイミング図は、\code{balance}が100の状態から始まって、Peterが10引き出し、
 Paulが25を引き出しているのに、\code{balance}の最終的な値が75となるという状況で、イベントの
 発生順を表したものです。図に示したように、こういうおかしなことになった原因は、Paulの
 \code{balance}への75の代入が、引き算する\code{balance}の値が100であるという前提のもとで
@@ -17274,10 +17274,10 @@ Paulが25を引き出しているのに、\code{balance}の最終的な値が75�
 プロトコルが必要となります。}
 
 \begin{figure}[tp]
-\phantomsection\label{Figure 3.29}
+\phantomsection\label{図3.29}
 \centering
 \begin{comment}
-\heading{Figure 3.29:} Timing diagram showing how interleaving the order of events 
+\heading{図3.29:} Timing diagram showing how interleaving the order of events 
 in two banking withdrawals can lead to an incorrect final balance.
 
 \begin{example}
@@ -17311,7 +17311,7 @@ time
 \end{comment}
 \includegraphics[width=109mm]{fig/chap3/Fig3.29b.pdf}
 \begin{quote}
-\heading{Figure 3.29:} 二回の引き出しで、イベントの順番が入れ違いになって最終的に間違った残高になってしまう様子を示したタイミング図
+\heading{図3.29:} 二回の引き出しで、イベントの順番が入れ違いになって最終的に間違った残高になってしまう様子を示したタイミング図
 \end{quote}
 \end{figure}
 
@@ -17340,7 +17340,7 @@ time
 考えられる制限のひとつとして、共有された状態を変更するようなどんな二つの演算も同時に起こっては
 ならないと決めてしまうことです。これは非常に厳しい要求です。分散銀行システムの場合であれば、
 同時にはひとつの取引しか行えないことを保証するようシステム設計者に要求することになります。
-これは非効率で、また保守的すぎます。\link{Figure 3.30}は、PeterとPaulが口座を共有していて
+これは非効率で、また保守的すぎます。\link{図3.30}は、PeterとPaulが口座を共有していて
 Paulはほかに個人口座も持っているという状況を示したものです。図は、共有口座からの二回の引き出し
 (Peterが一回、Paulが一回)と、Paulの個人口座への預金を示しています。
 \footnote{それぞれの列は、Peterの財布、(Bank1内の)共同口座、Paulの財布、(Bank2内の)Paulの
@@ -17352,10 +17352,10 @@ PeterはBank1から10ドルを引き出しています。Paulは5ドルをBank2�
 個人口座に預け入れを行うのと、Peterが共有口座から引き出しを行うのは、許可しても問題ないはずです。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.30}
+\phantomsection\label{図3.30}
 \centering
 \begin{comment}
-\heading{Figure 3.30:} Concurrent deposits and withdrawals from a joint account 
+\heading{図3.30:} Concurrent deposits and withdrawals from a joint account 
 in Bank1 and a private account in Bank2.
 
 \begin{example}
@@ -17382,14 +17382,14 @@ time
 \end{comment}
 \includegraphics[width=94mm]{fig/chap3/Fig3.30b.pdf}
 \begin{quote}
-\heading{Figure 3.30:} 銀行1の共同口座と銀行2の個人口座に対する並行な預け入れと引き出し
+\heading{図3.30:} 銀行1の共同口座と銀行2の個人口座に対する並行な預け入れと引き出し
 \end{quote}
 \end{figure}
 
 並行性に対するもう少し緩い制限として、各プロセスが何らかの順番で逐次的に実行された場合と
 同じ結果になることを保証するというものがあります。この要求には、二つの重要な側面があります。
 一つ目は、各プロセスが別々に実行される必要はなく、\emph{あたかも}それらのプロセスが
-逐次的に実行されたかのような結果さえ出せばいいということです。\link{Figure 3.30}の例でいうと、
+逐次的に実行されたかのような結果さえ出せばいいということです。\link{図3.30}の例でいうと、
 銀行口座システムを設計する人は、Paulの預け入れとPeterの引き出しが同時に起こるようにしても
 問題ないことになります。全体としての結果は、二つの操作が逐次的に行われたのと同じことに
 なるからです。二つ目は、並行プログラムの実行結果には二つ以上の可能な``正解''がありうるという
@@ -17430,7 +17430,7 @@ Mary:  (set! balance (- balance (/ balance 2)))
 
 \item
 もしシステムがプロセスの実行が入れ違いになることを許すとすると、ほかにどのような値に
-なる可能性があるだろうか。\link{Figure 3.29}のようなタイミング図を描き、それらの値が
+なる可能性があるだろうか。\link{図3.29}のようなタイミング図を描き、それらの値が
 どのようにして起こるか説明せよ。
 \end{enumerate}
 \end{quote}
@@ -17569,7 +17569,7 @@ Mary:  (set! balance (- balance (/ balance 2)))
 
 \noindent
 この実装では、二つのプロセスがひとつの口座に並行に預け入れをしたり引き出しをしたりすることは
-できなくなっています。こうすることで、\link{Figure 3.29}で図示したような、Paulが新しい値を
+できなくなっています。こうすることで、\link{図3.29}で図示したような、Paulが新しい値を
 計算するために残高にアクセスしてからPaulが実際に代入を行うまでの間にPeterが口座残高を
 変えてしまうといったエラーの原因は排除されます。一方、二つの口座はそれぞれ自分のシリアライザを
 持っているので、別々の口座に対する預け入れと引き出しは並行に行うことができます。
@@ -17778,7 +17778,7 @@ Peterが\( a \)1と\( a \)2を交換する間にPaulが並行に\( a \)1と\( a 
 口座の残高を交換するとする。プロセスが逐次的に実行されるとしたら、並行の残高交換を
 何回行ったとしても、口座残高は何らかの順番で10ドル、20ドル、30ドルであるということを論証せよ。
 この章の最初のバージョンのaccount-exchangeプログラムを使って残高交換を実装すると
-この条件が破られることもあるということを、\link{Figure 3.29}のようなタイミング図を描いて示せ。
+この条件が破られることもあるということを、\link{図3.29}のようなタイミング図を描いて示せ。
 一方、この\code{exchange}プログラムを使ったとしても、口座残高の合計は保存されることを論証せよ。
 個別口座の取引を直列化しなければこの前提まで破られるということをタイミング図を描いて示せ。
 \end{quote}
@@ -17918,7 +17918,7 @@ Louisの考えのどこがおかしいのか説明せよ。具体的には、\co
 それは\code{test\-/and\-/set!}演算は\jnewterm{アトミック}(\newterm{atomically})に
 実行されなければいけないということです。これは、あるプロセスがセルをテストし偽だと知ったら、
 ほかのプロセスがそのセルをテストするより前に、そのセルの内容は実際に真に設定されるよう
-保証しなければならないということを意味します。この保証をしなければ、\link{Figure 3.29}で銀行口座
+保証しなければならないということを意味します。この保証をしなければ、\link{図3.29}で銀行口座
 が失敗したのと同じように、ミューテックスが失敗することになります(\link{練習問題 3.46}参照)。
 
 \code{test\-/and\-/set!}の実際の実装は、システムが並行プロセスをどのように実行するかに
@@ -17961,7 +17961,7 @@ load-reserve, store-conditionalなど、さまざまなものがあります。�
 \begin{quote}
 \heading{\phantomsection\label{練習問題 3.46}練習問題 3.46:} 
 テキストで示したように、\code{test\-/and\-/set!}を通常の手続きを使って実装し、
-演算をアトミックにしようとはしないと仮定する。\link{Figure 3.29}のようなタイミング図を描き、
+演算をアトミックにしようとはしないと仮定する。\link{図3.29}のようなタイミング図を描き、
 このミューテックスの実装が、二つのプロセスが同時にミューテックスを獲得するのを許してしまう
 という失敗を犯すことになるのはどのような場合か示せ。
 \end{quote}
@@ -18652,7 +18652,7 @@ noindent
 \noindent
 
 \code{sieve}によって作られる信号処理システムに注目すると面白いことがわかります。このシステムを
-``ヘンダーソン図''として\link{Figure 3.31}に示します。
+``ヘンダーソン図''として\link{図3.31}に示します。
 \footnote{私たちはPeter Hendersonにちなんでこれらの図をヘンダーソン図と呼んでいます。ストリーム処理に
 ついて考える方法のひとつとして、この種の図を初めて見せてくれたのがHendersonだったからです。
 各実践は、転送される値のストリームを表しています。\code{car}から\code{cons}と\code{filter}に
@@ -18664,10 +18664,10 @@ noindent
 ストリームだけではなく、信号処理器も無限だということです。ふるいは中にふるいを持っているからです。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.31}
+\phantomsection\label{図3.31}
 \centering
 \begin{comment}
-\heading{Figure 3.31:} The prime sieve viewed as a signal-processing system.
+\heading{図3.31:} The prime sieve viewed as a signal-processing system.
 
 \begin{example}
   +---------------------------------------------------------------+
@@ -18689,7 +18689,7 @@ noindent
 \includegraphics[width=111mm]{fig/chap3/Fig3.31.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.31:} 信号処理システムとして見た素数のふるい
+\heading{図3.31:} 信号処理システムとして見た素数のふるい
 \end{figure}
 
 \subsubsection*{ストリームの暗黙定義}
@@ -19657,16 +19657,16 @@ S_i = C + >   x_j dt
 \end{scheme}
 
 \noindent
-\link{Figure 3.32}は、\code{integral}手続きに相当する信号処理システムの図です。
+\link{図3.32}は、\code{integral}手続きに相当する信号処理システムの図です。
 入力ストリームは\( dt \)倍され、加算器を通り、その出力がまた同じ加算器に戻されます。
 \code{int}の定義にあった自己参照は、この図では加算器の出力を入力のひとつに接続する
 フィードバックループとなっています。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.32}
+\phantomsection\label{図3.32}
 \centering
 \begin{comment}
-\heading{Figure 3.32:} The \code{integral} procedure viewed as a signal-processing system.
+\heading{図3.32:} The \code{integral} procedure viewed as a signal-processing system.
 
 \begin{example}
                              initial-value
@@ -19683,7 +19683,7 @@ input  |           |      |\__    +-->|   \_  integral
 \end{comment}
 \includegraphics[width=102mm]{fig/chap3/Fig3.32.pdf}
 \begin{quote}
-\heading{Figure 3.32:} 信号処理システムとして見た\code{integral}手続き
+\heading{図3.32:} 信号処理システムとして見た\code{integral}手続き
 \end{quote}
 \end{figure}
 
@@ -19692,14 +19692,14 @@ input  |           |      |\__    +-->|   \_  integral
 ストリームを使って時系列上の電流や電圧の値を表すことによって電子回路をモデル化することができる。
 例えば、抵抗値\( R \)の抵抗と静電容量\( C \)のコンデンサが直列になっている\jnewterm{RC回路}
 (\newterm{RC circuit})があるとする。注入電流\( i \)に対する回路の電圧応答\( v \)は
-\link{Figure 3.33}の式によって決まる。この構造は信号流れ図によって示してある。
+\link{図3.33}の式によって決まる。この構造は信号流れ図によって示してある。
 
 \clearpage
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.33}
+\phantomsection\label{図3.33}
 \centering
 \begin{comment}
-\heading{Figure 3.33:} An RC circuit and the associated signal-flow diagram.
+\heading{図3.33:} An RC circuit and the associated signal-flow diagram.
 
 \begin{example}
   +        v        -
@@ -19729,7 +19729,7 @@ input  |           |      |\__    +-->|   \_  integral
 \includegraphics[width=94mm]{fig/chap3/Fig3.33.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.33:} RC回路と対応する信号流れ図
+\heading{図3.33:} RC回路と対応する信号流れ図
 \end{figure}
 
 この回路をモデル化した手続き\code{RC}を書け。\code{RC}は値\( R \), \( C \), \( dt \)を
@@ -19834,7 +19834,7 @@ Eva Lu Atorは、\link{練習問題 3.75}でのLouisのアプローチに批判�
 
 前節の終わりのほうにあった\code{integral}手続きは、ストリームを使うことによって
 フィードバックループを持つ信号処理システムをモデル化する方法を示しています。
-\link{Figure 3.32}に示した加算器のフィードバックループは、\code{integral}の内部ストリーム
+\link{図3.32}に示した加算器のフィードバックループは、\code{integral}の内部ストリーム
 \code{int}が自分自身によって定義されることによってモデル化されています。
 
 \begin{scheme}
@@ -19856,10 +19856,10 @@ Eva Lu Atorは、\link{練習問題 3.75}でのLouisのアプローチに批判�
 禁止されることになります。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.34}
+\phantomsection\label{図3.34}
 \centering
 \begin{comment}
-\heading{Figure 3.34:} An ``analog computer circuit'' that solves the equation \( dy / dt = f(y) \).
+\heading{図3.34:} An ``analog computer circuit'' that solves the equation \( dy / dt = f(y) \).
 
 \begin{example}
                             y_0
@@ -19875,12 +19875,12 @@ Eva Lu Atorは、\link{練習問題 3.75}でのLouisのアプローチに批判�
 \includegraphics[width=67mm]{fig/chap3/Fig3.34.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.34:} 方程式\( dy / dt = f(y) \)を解く``アナログ計算回路''
+\heading{図3.34:} 方程式\( dy / dt = f(y) \)を解く``アナログ計算回路''
 \end{figure}
 
 残念ながら、ループを含むシステムに対するストリームモデルを構築するには、
 \code{cons\-/stream}の提供する``隠れた''\code{delay}だけでは足りず、それを超えて
-\code{delay}を使うことが求められることがあります。例えば、\link{Figure 3.34}は、
+\code{delay}を使うことが求められることがあります。例えば、\link{図3.34}は、
 \( f \)を与えられた関数として、微分方程式\( dy / dt = f(y) \)を解く信号処理システムを
 示しています。この図には、\( f \)を入力信号に適用するマップコンポーネントがあります。
 マップコンポーネントは、このような方程式を解くために実際に使われるアナログ計算機回路と
@@ -19994,16 +19994,16 @@ d t^2        d t
 \( y \)をモデル化した出力ストリームは、ループを含む回路によって生成される。
 これは、\( d^2y / dt^2 \)の値が\( y \)と\( dy / dt \)の値に依存し、また
 これらの値は両方とも\( d^2y / dt^2 \)を積分することによって決まるからである。
-コード化したいのは、図\link{Figure 3.35}に示すようなものだ。引数として、
+コード化したいのは、図\link{図3.35}に示すようなものだ。引数として、
 定数\( a \), \( b \), \( dt \)と、\( y \)の初期値\( y_0 \)と\( dy / dt \)の初期値\( dy_0 \)を
 取り、\( y \)の一連の値のストリームを生成する手続き\code{solve-2nd}を書け。
 \end{quote}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.35}
+\phantomsection\label{図3.35}
 \centering
 \begin{comment}
-\heading{Figure 3.35:} Signal-flow diagram for the solution to a second-order linear differential equation.
+\heading{図3.35:} Signal-flow diagram for the solution to a second-order linear differential equation.
 
 \begin{example}
                dy_0                y_0
@@ -20024,7 +20024,7 @@ d t^2        d t
 \end{comment}
 \includegraphics[width=91mm]{fig/chap3/Fig3.35a.pdf}
 \begin{quote}
-\heading{Figure 3.35:} 二次線形微分方程式を解くための信号フロー図
+\heading{図3.35:} 二次線形微分方程式を解くための信号フロー図
 \end{quote}
 \end{figure}
 
@@ -20038,7 +20038,7 @@ d t^2        d t
 \begin{quote}
 \heading{\phantomsection\label{練習問題 3.80}練習問題 3.80:} 
 \jnewterm{直列RLC回路}(\newterm{series RLC circuit})とは、抵抗・コンデンサ・コイルが
-\link{Figure 3.36}のように直列に接続されているものをいう。ここで、\( R \), \( L \), \( C \)が
+\link{図3.36}のように直列に接続されているものをいう。ここで、\( R \), \( L \), \( C \)が
 それぞれ抵抗・コイル・コンデンサであるとすると、これら三つのコンポーネントの
 電圧(\( v \))と電流(\( i \))の関係は、以下の方程式に示すようなものである。
 説明される。
@@ -20095,14 +20095,14 @@ d i_L      1           R
   {dv_C \over dt}  =  -{i_L \over C}\,, \qquad\quad
     {di_L \over dt}  =   {1   \over L} v_C - {R \over L} i_L\,. 
 \end{displaymath}
-この微分方程式のシステムを表す信号フロー図を\link{Figure 3.37}に示す。
+この微分方程式のシステムを表す信号フロー図を\link{図3.37}に示す。
 \end{quote}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.36}
+\phantomsection\label{図3.36}
 \centering
 \begin{comment}
-\heading{Figure 3.36:} A series RLC circuit.
+\heading{図3.36:} A series RLC circuit.
 
 \begin{example}
               + v_R -
@@ -20121,7 +20121,7 @@ v_C -+- C                     _)  v_L
 \includegraphics[width=60mm]{fig/chap3/Fig3.36.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.36:} 直列RLC回路
+\heading{図3.36:} 直列RLC回路
 \end{figure}
 
 \begin{quote}
@@ -20135,10 +20135,10 @@ v_C -+- C                     _)  v_L
 \end{quote}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.37}
+\phantomsection\label{図3.37}
 \centering
 \begin{comment}
-\heading{Figure 3.37:} A signal-flow diagram for the solution to a series RLC circuit.
+\heading{図3.37:} A signal-flow diagram for the solution to a series RLC circuit.
 
 \begin{example}
                  +-------------+
@@ -20169,7 +20169,7 @@ v_C -+- C                     _)  v_L
 \includegraphics[width=68mm]{fig/chap3/Fig3.37a.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 3.37:} 直列RLC回路を解くための信号フロー図
+\heading{図3.37:} 直列RLC回路を解くための信号フロー図
 \end{figure}
 
 \subsubsection*{正規順序評価}
@@ -20401,13 +20401,13 @@ v_C -+- C                     _)  v_L
 モデル化は、取引要求のストリームに対して演算を行い応答のストリームを生成する処理という形に
 なるということは、すでに述べました。ということは、PeterとPaulが共同口座を持っているという事実は、
 Peterの取引要求ストリームとPaulの取引要求ストリームをマージし、その結果を銀行口座ストリーム
-処理に送るという形でモデル化できるのではないでしょうか。この様子を\link{Figure 3.38}に示します。
+処理に送るという形でモデル化できるのではないでしょうか。この様子を\link{図3.38}に示します。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 3.38}
+\phantomsection\label{図3.38}
 \centering
 \begin{comment}
-\heading{Figure 3.38:} A joint bank account, modeled by merging two streams of transaction requests.
+\heading{図3.38:} A joint bank account, modeled by merging two streams of transaction requests.
 
 \begin{example}
 Peter's requests   +---------+     +---------+
@@ -20419,7 +20419,7 @@ Paul's requests    |  merge  |---->| bank    |---->
 \end{comment}
 \includegraphics[width=88mm]{fig/chap3/Fig3.38.pdf}
 \begin{quote}
-\heading{Figure 3.38:} 取引要求リクエストのストリーム二つをマージすることでモデル化した共同銀行口座
+\heading{図3.38:} 取引要求リクエストのストリーム二つをマージすることでモデル化した共同銀行口座
 \end{quote}
 \end{figure}
 
@@ -20618,7 +20618,7 @@ Schemeの適用順序評価という制約があったため、面倒なこと�
 これら二つの規則は、評価プロセスの本質を記述したものです。環境の中で評価する式は引数に
 適用する手続きに簡約され、それが今度は新しい環境の中で評価する新しい式に簡約され\( \dots \)を
 繰り返し、環境の中で値が見つかる記号や直接適用する基本手続きにたどり着くまで続けるというのが、
-評価プロセスの基本サイクルです(\link{Figure 4.1}参照)。
+評価プロセスの基本サイクルです(\link{図4.1}参照)。
 \footnote{
 基本手続きを適用してもいいということになると、評価器の中で実装すべきものは何が残るのでしょうか。
 この評価器の仕事は、言語の基本要素を実装することではなく、基本要素の集合を結合することによって
@@ -20654,10 +20654,10 @@ Schemeの適用順序評価という制約があったため、面倒なこと�
 適用します。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 4.1}
+\phantomsection\label{図4.1}
 \centering
 \begin{comment}
-\heading{Figure 4.1:} The \code{eval}-\code{apply} cycle exposes the essence of a computer language.
+\heading{図4.1:} The \code{eval}-\code{apply} cycle exposes the essence of a computer language.
 
 \begin{example}
                            .,ad88888888baa,
@@ -20685,7 +20685,7 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 \end{comment}
 \includegraphics[width=100mm]{fig/chap4/Fig4.1.pdf}
 \begin{quote}
-\heading{Figure 4.1:} \code{eval}-\code{apply}サイクルが明らかにするコンピュータ言語の本質
+\heading{図4.1:} \code{eval}-\code{apply}サイクルが明らかにするコンピュータ言語の本質
 \end{quote}
 \end{figure}
 
@@ -21738,18 +21738,18 @@ Louisの\code{map}は失敗する理由を説明せよ。
 このプログラムのことを機械と考えて、その機械には減算・乗算・等価テストという部品があり、
 また切り替えスイッチと別の階乗機械が入っているというように考えることもできます。
 (この階乗機械は、別の階乗機械を中に含んでいるため無限です。)
-\link{Figure 4.2}はこの階乗機械の流れ図で、部品の配線を示しています。
+\link{図4.2}はこの階乗機械の流れ図で、部品の配線を示しています。
 
 同じように、評価器についても、機械の記述を入力として取る非常に特殊な機械として考えることが
 できます。この入力をもとに、評価器は記述された機械の動作を模倣するよう自分自身を設定します。
-例えば、この評価器に\link{Figure 4.3}のような\code{factorial}の記述を与えると、評価器は階乗の
+例えば、この評価器に\link{図4.3}のような\code{factorial}の記述を与えると、評価器は階乗の
 計算ができるようになるということです。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 4.2}
+\phantomsection\label{図4.2}
 \centering
 \begin{comment}
-\heading{Figure 4.2:} The factorial program, viewed as an abstract machine.
+\heading{図4.2:} The factorial program, viewed as an abstract machine.
 
 \begin{example}
     +-----------------------------------+
@@ -21779,7 +21779,7 @@ Louisの\code{map}は失敗する理由を説明せよ。
 \includegraphics[width=84mm]{fig/chap4/Fig4.2.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 4.2:} 抽象機械として見た階乗プログラム
+\heading{図4.2:} 抽象機械として見た階乗プログラム
 \end{figure}
 
 この視点から見ると、この評価器は\jnewterm{万能機械}(\newterm{universal machine})であるといえます。
@@ -21819,10 +21819,10 @@ Douglas Hofstadter(ダグラス ホフスタッター)の美しい本\textit{G\"
 (\link{Hofstadter 1979})。}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 4.3}
+\phantomsection\label{図4.3}
 \centering
 \begin{comment}
-\heading{Figure 4.3:} The evaluator emulating a factorial machine.
+\heading{図4.3:} The evaluator emulating a factorial machine.
 
 \begin{example}
                    +--------+
@@ -21844,7 +21844,7 @@ Douglas Hofstadter(ダグラス ホフスタッター)の美しい本\textit{G\"
 \includegraphics[width=69mm]{fig/chap4/Fig4.3.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 4.3:} 階乗マシンの動作を模倣する評価器
+\heading{図4.3:} 階乗マシンの動作を模倣する評価器
 \end{figure}
 評価器のもうひとつの特筆すべき側面は、プログラミング言語によって操作されるデータオブジェクトと
 プログラミング言語そのものとをつなぐ橋の役割を果たすというところです。ここで、(Lispで実装された)
@@ -25320,7 +25320,7 @@ Alyssaは水曜の朝に職場に着き、その日にどんな会議がある�
 インデクシングの設計に関しては膨大な技術の積み上げがあります。\link{4.4.4節}で記述する
 ここでの実装は、そのような最適化を単純にしたものを含んでいます。}
 
-私たちのシステムでは、\link{Figure 4.4}に示すように、クエリはフレームの入力ストリームを取り、
+私たちのシステムでは、\link{図4.4}に示すように、クエリはフレームの入力ストリームを取り、
 ストリームの各フレームに対して上記のマッチング処理を行います。つまり、クエリは入力ストリームの
 各フレームに対して、データベース内の表明へのマッチによるそのフレームへの拡張すべてからなる
 新しいストリームを生成するということです。次に、これらのストリームがすべて組み合わされ、
@@ -25334,10 +25334,10 @@ Alyssaは水曜の朝に職場に着き、その日にどんな会議がある�
 これが最終的に表示されるストリームとなります。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 4.4}
+\phantomsection\label{図4.4}
 \centering
 \begin{comment}
-\heading{Figure 4.4:} A query processes a stream of frames.
+\heading{図4.4:} A query processes a stream of frames.
 
 \begin{example}
                                   output stream
@@ -25355,7 +25355,7 @@ Alyssaは水曜の朝に職場に着き、その日にどんな会議がある�
 \includegraphics[width=102mm]{fig/chap4/Fig4.4.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 4.4:} フレームのストリームを処理するクエリ
+\heading{図4.4:} フレームのストリームを処理するクエリ
 \end{figure}
 
 \subsubsection*{複合クエリ}
@@ -25388,15 +25388,15 @@ Alyssaは水曜の朝に職場に着き、その日にどんな会議がある�
 
 \noindent
 そのようなマッチは、\code{?x}と\code{?person}に対する束縛を含むフレームをそれぞれ生成します。
-二つのクエリの\code{and}は、\link{Figure 4.5}に示すように、部品となる二つのクエリを
+二つのクエリの\code{and}は、\link{図4.5}に示すように、部品となる二つのクエリを
 直列に組み合わせたものとして見ることができます。最初のクエリフィルタを通過したフレームが、
 二つ目のクエリによってフィルタされ、さらに拡張されるということになります。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 4.5}
+\phantomsection\label{図4.5}
 \centering
 \begin{comment}
-\heading{Figure 4.5:} The \code{and} combination of two queries is produced 
+\heading{図4.5:} The \code{and} combination of two queries is produced 
 by operating on the stream of frames in series.
 
 \begin{example}
@@ -25416,15 +25416,15 @@ by operating on the stream of frames in series.
 \end{comment}
 \includegraphics[width=93mm]{fig/chap4/Fig4.5.pdf}
 \begin{quote}
-\heading{Figure 4.5:} 二つのクエリの\code{and}による組み合わせは、フレームのストリームに対する直列の演算によって生成される
+\heading{図4.5:} 二つのクエリの\code{and}による組み合わせは、フレームのストリームに対する直列の演算によって生成される
 \end{quote}
 \end{figure}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 4.6}
+\phantomsection\label{図4.6}
 \centering
 \begin{comment}
-\heading{Figure 4.6:} The \code{or} combination of two queries is produced 
+\heading{図4.6:} The \code{or} combination of two queries is produced 
 by operating on the stream of frames in parallel and merging the results.
 
 \begin{example}
@@ -25450,11 +25450,11 @@ frames     | |    ^          +-------+ |  frames
 \end{comment}
 \includegraphics[width=107mm]{fig/chap4/Fig4.6.pdf}
 \begin{quote}
-\heading{Figure 4.6:} 二つのクエリの\code{or}による組み合わせは、フレームのストリームに対して並列に演算を行い、その結果をマージすることによって生成される
+\heading{図4.6:} 二つのクエリの\code{or}による組み合わせは、フレームのストリームに対して並列に演算を行い、その結果をマージすることによって生成される
 \end{quote}
 \end{figure}
 
-\link{Figure 4.6}は、似たような考え方で、二つのクエリの\code{or}を、部品となる二つのクエリを
+\link{図4.6}は、似たような考え方で、二つのクエリの\code{or}を、部品となる二つのクエリを
 並列に組み合わせたものとして計算するという手法を示したものです。入力となるフレームのストリームは、
 それぞれのクエリによって別々に拡張されます。それから、結果となる二つのストリームがマージされ、
 最終的な出力ストリームが生成されます。
@@ -25680,7 +25680,7 @@ frames     | |    ^          +-------+ |  frames
 構成されます。マッチング演算を司る手続きは\code{qeval}というもので、Lispの\code{eval}手続きと
 似たような役割を果たします。\code{qeval}は、入力としてクエリとフレームのストリームを取ります。
 出力はフレームのストリームで、それぞれのフレームは入力フレームのいずれかを拡張する成功した
-マッチに対応しています。これは\link{Figure 4.4}で図示した通りです。\code{eval}同様、
+マッチに対応しています。これは\link{図4.4}で図示した通りです。\code{eval}同様、
 \code{qeval}はいろいろなタイプの式(クエリ)を分類し、それぞれに対する適切な手続きに
 ディスパッチします。それぞれの特殊形式(\code{and}, \code{or}, \code{not}, \code{lisp\-/value})ごとに
 ひとつ手続きがあり、また単純クエリの手続きもあります。
@@ -26123,7 +26123,7 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 
 \subsubsection*{複合クエリ}
 
-\code{and}クエリは、\link{Figure 4.5}で図示したように、\code{conjoin}手続きによって
+\code{and}クエリは、\link{図4.5}で図示したように、\code{conjoin}手続きによって
 扱われます。\code{conjoin}は、入力として連言肢(conjunct)とフレームのストリームを取り、
 拡張されたフレームのストリームを返します。まず、\code{conjoin}はフレームのストリームを
 処理して、連言(conjunction)の最初のクエリを満たすフレームの可能な拡張をすべて探します。
@@ -26149,7 +26149,7 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 \noindent
 \code{qeval}が\code{and}形式を見つけたときに\code{conjoin}にディスパッチするよう設定します。
 
-\link{Figure 4.6}に図示したように、\code{or}クエリも同じように扱います。
+\link{図4.6}に図示したように、\code{or}クエリも同じように扱います。
 \code{or}のそれぞれの選言肢(disjunct)に対する出力ストリームは別々に計算され、
 \link{4.4.4.6節}の\code{interleave\-/delayed}手続きによって結合されます
 (\link{練習問題 4.71}、\link{練習問題 4.72}参照)。
@@ -27077,7 +27077,7 @@ Alyssaのプログラムに欠けている式を埋めよ。
 
 \begin{quote}
 \heading{\phantomsection\label{練習問題 4.76}練習問題 4.76:}
-ここでのシステムでは、\code{and}をクエリの直列の組み合わせ(\link{Figure 4.5})として実装している。
+ここでのシステムでは、\code{and}をクエリの直列の組み合わせ(\link{図4.5})として実装している。
 この実装はエレガントだが、\code{and}の二つ目のクエリを処理する際に一つ目のクエリが生成した
 フレームそれぞれについてデータベースを走査しなければならないため非効率だ。
 データベースが\( n \)個の要素を持っているとして、典型的なクエリが\( n \)に比例した数
@@ -27240,7 +27240,7 @@ Schemeプログラムを翻訳する単純なコンパイラについて学び�
 (まず、剰余を\code{t}に入れます。次に、\code{b}の中身を\code{a}に入れます。
 最後に、\code{t}に格納されている剰余を\code{b}に入れます。)
 
-このマシンで必要となるレジスタと演算は、\link{Figure 5.1}のようなデータパス図によって示す
+このマシンで必要となるレジスタと演算は、\link{図5.1}のようなデータパス図によって示す
 ことができます。この図では、レジスタ(\code{a}, \code{b}, \code{t})は長方形で表しています。
 レジスタに対する値の割り当ては、それぞれ頭の後ろに\code{X}のある矢印によって示しています。
 矢印はデータの代入元からレジスタという方向になっています。この\code{X}は、押すと
@@ -27253,10 +27253,10 @@ Schemeプログラムを翻訳する単純なコンパイラについて学び�
 データパス図では定数を持つ三角形で表します)であることもあります。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 5.1}
+\phantomsection\label{図5.1}
 \centering
 \begin{comment}
-\heading{Figure 5.1:} Data paths for a \acronym{GCD} machine.
+\heading{図5.1:} Data paths for a \acronym{GCD} machine.
 
 \begin{example}
                               ___
@@ -27281,11 +27281,11 @@ Schemeプログラムを翻訳する単純なコンパイラについて学び�
 \includegraphics[width=58mm]{fig/chap5/Fig5.1a.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 5.1:} \acronym{GCD}マシンのデータパス
+\heading{図5.1:} \acronym{GCD}マシンのデータパス
 \end{figure}
 
 定数やレジスタの中身から値を計算する演算は、データパス図では演算の名前を持つ
-台形で表します。例えば、\link{Figure 5.1}で\code{rem}というラベルをつけた箱は、その箱に
+台形で表します。例えば、\link{図5.1}で\code{rem}というラベルをつけた箱は、その箱に
 接続された\code{a}レジスタと\code{b}レジスタの中身の剰余を求める演算を表します。
 入力レジスタや入力定数から箱に向かって(ボタンのない)矢印があり、また演算の出力値
 からレジスタに対しても矢印が出ています。テストは、テストの名前を持つ円で表します。
@@ -27297,7 +27297,7 @@ Schemeプログラムを翻訳する単純なコンパイラについて学び�
 構築できる機械の配線図にそっくりです。
 
 データパスが実際に\acronym{GCD}を求めるには、ボタンが正しい順序で押されなければいけません。
-この順序については、\link{Figure 5.2}に示すようなコントローラ図によって記述します。
+この順序については、\link{図5.2}に示すようなコントローラ図によって記述します。
 コントローラ図の要素は、データパスの部品がどう操作されるべきかを示しています。コントローラ図の
 長方形の箱は押されるべきデータパスのボタンを特定し、矢印はあるステップから次のステップに移る
 順序を示しています。図の中の菱形は判定を表しています。菱形に対応するデータパスのテストの
@@ -27312,10 +27312,10 @@ Schemeプログラムを翻訳する単純なコンパイラについて学び�
 入っています。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 5.2}
+\phantomsection\label{図5.2}
 \centering
 \begin{comment}
-\heading{Figure 5.2:} Controller for a \acronym{GCD} machine.
+\heading{図5.2:} Controller for a \acronym{GCD} machine.
 
 \begin{example}
      start
@@ -27344,7 +27344,7 @@ Schemeプログラムを翻訳する単純なコンパイラについて学び�
 \includegraphics[width=41mm]{fig/chap5/Fig5.2.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 5.2:} \acronym{GCD}マシンのコントローラ
+\heading{図5.2:} \acronym{GCD}マシンのコントローラ
 \end{figure}
 
 
@@ -27408,7 +27408,7 @@ Schemeプログラムを翻訳する単純なコンパイラについて学び�
 分岐が制御の流れを変えるとき以外は、命令は並べられている順に実行されます。
 
 \begin{quote}
-\heading{\phantomsection\label{Figure 5.3}Figure 5.3:} \( \downarrow \) \acronym{GCD}マシンの仕様
+\heading{\phantomsection\label{図5.3}図5.3:} \( \downarrow \) \acronym{GCD}マシンの仕様
 
 \begin{scheme}
 (data-paths
@@ -27436,7 +27436,7 @@ Schemeプログラムを翻訳する単純なコンパイラについて学び�
 \end{quote}
 
 \noindent
-\link{Figure 5.3}は、この方法で記述した\acronym{GCD}マシンを示したものです。
+\link{図5.3}は、この方法で記述した\acronym{GCD}マシンを示したものです。
 この例では、この記述方法の一般性を垣間見ることしかできません。
 \acronym{GCD}マシンはとても単純なケースだからです。このマシンでは、それぞれのレジスタは
 ボタンをひとつしか持たず、それぞれのボタンとテストはコントローラに一回しか使われていません。
@@ -27471,7 +27471,7 @@ Schemeプログラムを翻訳する単純なコンパイラについて学び�
 \end{scheme}
 
 \noindent
-この形式による記述は、\link{Figure 5.3}で示したものよりも読みやすくなっていますが、
+この形式による記述は、\link{図5.3}で示したものよりも読みやすくなっていますが、
 欠点もあります。
 
 \begin{itemize}
@@ -27514,10 +27514,10 @@ Schemeプログラムを翻訳する単純なコンパイラについて学び�
 機能させるために実装のかなりの部分が費やされるのが普通です。}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 5.4}
+\phantomsection\label{図5.4}
 \centering
 \begin{comment}
-\heading{Figure 5.4:} A \acronym{GCD} machine that reads inputs and prints results.
+\heading{図5.4:} A \acronym{GCD} machine that reads inputs and prints results.
 
 \begin{example}
                    .--------.
@@ -27569,7 +27569,7 @@ Schemeプログラムを翻訳する単純なコンパイラについて学び�
 \includegraphics[width=107mm]{fig/chap5/Fig5.4b.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 5.4:} 入力を読み込み結果を表示する\acronym{GCD}マシン
+\heading{図5.4:} 入力を読み込み結果を表示する\acronym{GCD}マシン
 \end{figure}
 
 \code{read}は、レジスタに格納できる値を返すという意味で、これまで使ってきた演算に似ています。
@@ -27592,7 +27592,7 @@ Schemeプログラムを翻訳する単純なコンパイラについて学び�
 \end{scheme}
 
 \noindent
-新しい\acronym{GCD}マシンのデータパスとコントローラを\link{Figure 5.4}に示します。
+新しい\acronym{GCD}マシンのデータパスとコントローラを\link{図5.4}に示します。
 回答を表示した後は、マシンを停止させるのではなく再開させ、数値のペアを読み込み、
 それらの\acronym{GCD}を計算し、結果を表示することを繰り返すようにしています。
 この構造は、\link{第4章}のインタプリタで使ったドライバループに似ています。
@@ -27619,7 +27619,7 @@ Schemeプログラムを翻訳する単純なコンパイラについて学び�
 \end{scheme}
 
 ですので、\acronym{GCD}マシンのデータパス内の剰余演算は、引き算演算と比較テストで置き換える
-ことができます。\link{Figure 5.5}に、そのように詳細化したマシンのデータパスとコントローラを
+ことができます。\link{図5.5}に、そのように詳細化したマシンのデータパスとコントローラを
 示します。\acronym{GCD}コントローラ定義内の
 
 \begin{scheme}
@@ -27627,13 +27627,13 @@ Schemeプログラムを翻訳する単純なコンパイラについて学び�
 \end{scheme}
 
 \noindent
-という命令は、\link{Figure 5.6}に示すように、ループを含む命令列によって置き換えることができます。
+という命令は、\link{図5.6}に示すように、ループを含む命令列によって置き換えることができます。
 
 \begin{figure}[tp]
-\phantomsection\label{Figure 5.5}
+\phantomsection\label{図5.5}
 \centering
 \begin{comment}
-\heading{Figure 5.5:} Data paths and controller for the elaborated \acronym{GCD} machine.
+\heading{図5.5:} Data paths and controller for the elaborated \acronym{GCD} machine.
 
 \begin{example}
                                     ___
@@ -27681,13 +27681,13 @@ Schemeプログラムを翻訳する単純なコンパイラについて学び�
 \end{comment}
 \includegraphics[width=67mm]{fig/chap5/Fig5.5a.pdf}
 \begin{quote}
-\heading{Figure 5.5:} 詳細化した\acronym{GCD}マシンのデータパスとコントローラ
+\heading{図5.5:} 詳細化した\acronym{GCD}マシンのデータパスとコントローラ
 \end{quote}
 \end{figure}
 
 
 \noindent
-\heading{\phantomsection\label{Figure 5.6}\mbox{Figure 5.6:}} \( \downarrow \) \link{Figure 5.5}の\acronym{GCD}マシンのコントローラの命令列
+\heading{\phantomsection\label{図5.6}\mbox{図5.6:}} \( \downarrow \) \link{図5.5}の\acronym{GCD}マシンのコントローラの命令列
 
 \begin{quote}
 \begin{scheme}
@@ -27740,16 +27740,16 @@ Schemeプログラムを翻訳する単純なコンパイラについて学び�
 ひとつはレジスタ\code{a}とレジスタ\code{b}の中身の\acronym{GCD}を求めるもので、
 もうひとつはレジスタ\code{c}とレジスタ\code{d}の\acronym{GCD}を求めるものとします。
 この場合、まず基本演算としての\code{gcd}演算があると仮定し、それから二つの\code{gcd}の
-実体をより基本的な演算を使って展開するということが考えられます。\link{Figure 5.7}は、
+実体をより基本的な演算を使って展開するということが考えられます。\link{図5.7}は、
 その結果としてできるマシンのデータパスの\acronym{GCD}部分だけを示したものです。それらが
 マシンの残りの部分とどのように接続されているかは示していません。この図には、マシンの
 コントローラ命令列の中でそれらに対応する部分も示しています。
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 5.7}
+\phantomsection\label{図5.7}
 \centering
 \begin{comment}
-\heading{Figure 5.7:} Portions of the data paths and controller sequence for a machine with two \acronym{GCD} computations.
+\heading{図5.7:} Portions of the data paths and controller sequence for a machine with two \acronym{GCD} computations.
 
 \begin{example}
                             ___                                 ___  
@@ -27794,7 +27794,7 @@ after-gcd-2
 \end{comment}
 \includegraphics[width=105mm]{fig/chap5/Fig5.7b.pdf}
 \begin{quote}
-\heading{Figure 5.7:} 二つの\acronym{GCD}の計算を持つマシンのデータパスとコントローラ命令列の一部
+\heading{図5.7:} 二つの\acronym{GCD}の計算を持つマシンのデータパスとコントローラ命令列の一部
 \end{quote}
 \end{figure}
 
@@ -27805,12 +27805,12 @@ after-gcd-2
 レジスタ\code{a}とレジスタ\code{b}の値が必要ないのであれば(または、これらの値をほかのレジスタに
 退避できるのであれば)、一つ目の\acronym{GCD}を求めるときと同じく、二つ目の\acronym{GCD}を求める
 ときにも、レジスタ\code{c}とレジスタ\code{d}を使う代わりにレジスタ\code{a}と\code{b}を使う
-ようにマシンを変更することができます。これをすると、\link{Figure 5.8}に示すようなコントローラ
+ようにマシンを変更することができます。これをすると、\link{図5.8}に示すようなコントローラ
 命令列が得られます。
 \newpage
 
 \begin{quote}
-\heading{\phantomsection\label{Figure 5.8}Figure 5.8:} \( \downarrow \) 別々の二つの
+\heading{\phantomsection\label{図5.8}図5.8:} \( \downarrow \) 別々の二つの
 \acronym{GCD}計算に同じデータパスの部品を使うマシンのコントローラ命令列の一部
 \begin{scheme}
 gcd-1
@@ -27834,18 +27834,18 @@ after-gcd-2
 \end{quote}
 
 \noindent
-重複するデータパス部品は削除しました(これでデータパスはまた\link{Figure 5.1}のようになります)、
+重複するデータパス部品は削除しました(これでデータパスはまた\link{図5.1}のようになります)、
 コントローラのほうにはエントリポイントのラベルが違うだけの二つの\acronym{GCD}列があります。
 これら二つの列は、\code{gcd}\jnewterm{サブルーチン}(\newterm{subroutine})
 ---末尾でメイン命令列の正しい場所に分岐して戻るというもの---というひとつの列への分岐によって
 置き換えたほうがいいでしょう。これは、次のように実現できます。まず、\code{gcd}に分岐する前に、
 \code{continue}という特別レジスタに(0や1といった)識別するための値を置きます。\code{gcd}
 サブルーチンの末尾では、\code{continue}レジツタの値によって、\code{after\-/gcd\-/1}または
-\code{after\-/gcd\-/2}に帰ります。\link{Figure 5.9}は、結果としてできるコントローラ命令列の中で
+\code{after\-/gcd\-/2}に帰ります。\link{図5.9}は、結果としてできるコントローラ命令列の中で
 これに関係する部分を示しています。これには\code{gcd}命令列のはひとつしかありません。
 
 \begin{quote}
-\heading{\phantomsection\label{Figure 5.9}Figure 5.9:} \( \downarrow \) \link{Figure 5.8}で
+\heading{\phantomsection\label{図5.9}図5.9:} \( \downarrow \) \link{図5.8}で
 コントローラ命令列の重複を防ぐため\code{continue}レジスタを使う
 \begin{scheme}
 gcd
@@ -27890,12 +27890,12 @@ after-gcd-2
 \code{goto}命令も拡張して、定数ラベルで記述したエントリポイントだけでなく、レジスタの中身と
 して記述されたエントリポイントからも実行を続けられるようにします。これらの新しい機構を
 使って、\code{gcd}サブルーチンの末尾には\code{continue}レジスタに格納された場所への
-分岐を置くことができるようになります。こうすると、コントローラ列は\link{Figure 5.10}に
+分岐を置くことができるようになります。こうすると、コントローラ列は\link{図5.10}に
 示すようなものになります。
 
 \begin{quote}
-\heading{\phantomsection\label{Figure 5.10}Figure 5.10:} \( \downarrow \) 
-\code{continue}レジスタにラベルを代入すると\link{Figure 5.9}の戦略を単純化・一般化できる
+\heading{\phantomsection\label{図5.10}図5.10:} \( \downarrow \) 
+\code{continue}レジスタにラベルを代入すると\link{図5.9}の戦略を単純化・一般化できる
 \begin{scheme}
 gcd
  (test (op =) (reg b) (const 0))
@@ -27978,10 +27978,10 @@ after-gcd-2
 無限の入れ子を持つことになり、有限の決まった数の部品からは構築できないということになります。
 
 \begin{figure}[tp]
-\phantomsection\label{Figure 5.11}
+\phantomsection\label{図5.11}
 \centering
 \begin{comment}
-\heading{Figure 5.11:} A recursive factorial machine.
+\heading{図5.11:} A recursive factorial machine.
 
 \begin{example}
                              ___
@@ -28041,7 +28041,7 @@ after-gcd-2
 \includegraphics[width=106mm]{fig/chap5/Fig5.11a.pdf}
 \par\bigskip
 \noindent
-\heading{Figure 5.11:} 再帰階乗マシン
+\heading{図5.11:} 再帰階乗マシン
 \end{figure}
 
 それでも、入れ子になったそれぞれのマシンに対して同じ部品を使うようにできれば、階乗プロセスを
@@ -28093,7 +28093,7 @@ after-gcd-2
 \code{continue}に入れる必要がありますが、部分問題を解くために自分を呼び出した場所に戻る
 ために古い値が必要だということです。
 
-\link{Figure 5.11}に、再帰\code{factorial}手続きを実装するマシンのデータパスとコントローラを
+\link{図5.11}に、再帰\code{factorial}手続きを実装するマシンのデータパスとコントローラを
 示します。このマシンは、ひとつのスタックと、\code{n}, \code{val}, \code{continue}という
 三つのレジスタを持っています。データパス図を単純化するために、レジスタ代入ボタンには
 名前をつけずに、スタック演算ボタン(レジスタを保存する\code{sc}と\code{sn}、
@@ -28108,7 +28108,7 @@ after-gcd-2
 \code{val}の古い中身は役に立たないためです。必要なのは、部分問題によって生成された
 新しい値だけです。
 
-階乗計算には原理上は無限のマシンが必要ですが、実際には\link{Figure 5.11}のマシンは、
+階乗計算には原理上は無限のマシンが必要ですが、実際には\link{図5.11}のマシンは、
 無限に大きくなりうるスタック以外は有限です。しかし、スタックを物理的に実装したものは
 どうやっても有限サイズのものになるため、このマシンで扱える再帰呼び出しの深さはそれによって
 縛られることになります。この階乗の実装は、スタックという拡張を加えた通常のレジスタマシンに
@@ -28140,10 +28140,10 @@ after-gcd-2
 (\( n - 1 \)または\( n - 2 \))を\code{n}レジスタに設定し、\code{continue}に戻り先の
 主命令列のエントリポイント(それぞれ\code{afterfib\-/n\-/1}または\code{afterfib\-/n\-/2})を
 代入します。それから\code{fib\-/loop}に行きます。再帰呼び出しから帰るときには、答えは
-\code{val}に入っています。\link{Figure 5.12}にこのマシンのコントローラ命令列を示します。
+\code{val}に入っています。\link{図5.12}にこのマシンのコントローラ命令列を示します。
 
 \begin{quote}
-\heading{\phantomsection\label{Figure 5.12}Figure 5.12:} \( \downarrow \) フィボナッチ数を計算するマシンのコントローラ
+\heading{\phantomsection\label{図5.12}図5.12:} \( \downarrow \) フィボナッチ数を計算するマシンのコントローラ
 
 \begin{scheme}
 (controller
@@ -28469,7 +28469,7 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 
 \subsubsection*{基本マシン}
 
-\link{Figure 5.13}に示す\code{make\-/new\-/machine}手続きは、ひとつのスタック、
+\link{図5.13}に示す\code{make\-/new\-/machine}手続きは、ひとつのスタック、
 初期値が空の命令列、初期値としてスタックを空にする演算を持つ演算のリスト、
 初期値として\code{flag}と\code{pc}(「プログラムカウンタ」)という名前の二つのレジスタを持つ
 \jnewterm{レジスタテーブル}(\newterm{register table})を局所状態として持つオブジェクトを
@@ -28492,7 +28492,7 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 
 \newpage
 \noindent
-\heading{\phantomsection\label{Figure 5.13}Figure 5.13:}
+\heading{\phantomsection\label{図5.13}図5.13:}
 \( \downarrow \) 基本マシンモデルを実装する\code{make\-/new\-/machine}手続き
 
 \begin{scheme}
@@ -29074,7 +29074,7 @@ there
 \item
 \code{(restore y)}は、どのレジスタから来た値か関係なしに、スタックに最後に保存された値を
 \code{y}に入れる。現在のシミュレータのふるまいはこのようになっている。
-このふるまいを利用して、\link{5.1.4節}のフィボナッチマシン(\link{Figure 5.12})から
+このふるまいを利用して、\link{5.1.4節}のフィボナッチマシン(\link{図5.12})から
 命令をひとつ削減する方法を示せ。
 
 \item
@@ -29112,13 +29112,13 @@ there
 \code{save}または\code{restore}されるレジスタの(重複なし)リスト。
 
 \item
-それぞれのレジスタに対する代入元の(重複なし)リスト(例えば、\link{Figure 5.11}の階乗マシンでは、
+それぞれのレジスタに対する代入元の(重複なし)リスト(例えば、\link{図5.11}の階乗マシンでは、
 レジスタ\code{val}の代入元は\code{(const 1)}と\code{((op *) (reg n) (reg val))}である)。
 
 \end{itemize}
 
 マシンのメッセージパッシングインターフェイスを拡張し、この新しい情報にアクセスできるように
-せよ。この解析器をテストするため、\link{Figure 5.12}のフィボナッチマシンを定義し、
+せよ。この解析器をテストするため、\link{図5.12}のフィボナッチマシンを定義し、
 構築されたリストを確認せよ。
 \end{quote}
 
@@ -29197,13 +29197,13 @@ there
 
 \begin{quote}
 \heading{\phantomsection\label{練習問題 5.14}練習問題 5.14:}
-\link{Figure 5.11}に示した階乗マシンを使って、いくつかの小さな\( n \)の値について\( n! \)の
+\link{図5.11}に示した階乗マシンを使って、いくつかの小さな\( n \)の値について\( n! \)の
 計算に必要となるpushの回数とスタックの最大の深さを計測せよ。そのデータから、
 任意の\( n > 1 \)について、\( n! \)を計算するのに使われるpush演算の総数とスタックの最大の
 深さを表す\( n \)の方程式を決定せよ。いずれも\( n \)の線形関数であり、そのため
 二つの定数によって決定される。統計を表示するためには、スタックを初期化する命令と
 統計を表示する命令によって階乗マシンを拡張する必要がある。また、
-(\link{Figure 5.4}で\acronym{GCD}マシンに対して行ったのと同じように)\( n \)の値を繰り返し
+(\link{図5.4}で\acronym{GCD}マシンに対して行ったのと同じように)\( n \)の値を繰り返し
 読み込み、階乗を計算し、結果を表示するようにマシンを修正してもいいかもしれない。
 こうすると、\code{get\-/register\-/contents},\code{set\-/register\-/contents!},
 \code{start}を何度も起動しないですむようになる。
@@ -29389,7 +29389,7 @@ Lispペアの``箱とポインタ''という構造を、典型的なコンピュ
 どれだけ必要か、ポインタの型フィールドを操作するのにマシンの基本命令がどれだけ効率的に
 使えるか、といったものです。型フィールドを効率よく扱うための特別なハードウェアを持つマシンは
 \jnewterm{タグアーキテクチャ}(\newterm{tagged architectures})を持つというように言われます。}
-\link{Figure 5.14}は、この手法によってリスト\code{((1 2) 3 4)}を表現した図で、箱とポインタの図も
+\link{図5.14}は、この手法によってリスト\code{((1 2) 3 4)}を表現した図で、箱とポインタの図も
 同時に示しています。ここでは、前につけた文字によってデータ型情報を示しています。つまり、
 インデックス5を持つペアへのポインタは\code{p5}、空リストはポインタ\code{e0}、数値4へのポインタは
 \code{n4}によって示されます。箱とポインタの図では、それぞれのペアの左下に、そのペアの
@@ -29410,10 +29410,10 @@ Lispペアの``箱とポインタ''という構造を、典型的なコンピュ
 ひとつのポインタに格納できる最大値の間の数値となります。}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 5.14}
+\phantomsection\label{図5.14}
 \centering
 \begin{comment}
-\heading{Figure 5.14:} Box-and-pointer and memory-vector representations of the list \code{((1 2) 3 4)}.
+\heading{図5.14:} Box-and-pointer and memory-vector representations of the list \code{((1 2) 3 4)}.
 
 \begin{example}
                +---+---+               +---+---+    +---+---+
@@ -29440,7 +29440,7 @@ the-cdrs |    | p2 | p4 |    | e0 | p7 |    | e0 |    | ...
 \end{comment}
 \includegraphics[width=91mm]{fig/chap5/Fig5.14a.pdf}
 \begin{quote}
-\heading{Figure 5.14:} リスト\code{((1 2) 3 4)}の箱とポインタ表現とメモリベクタ表現
+\heading{図5.14:} リスト\code{((1 2) 3 4)}の箱とポインタ表現とメモリベクタ表現
 \end{quote}
 \end{figure}
 
@@ -29578,7 +29578,7 @@ the-cdrs |    | p2 | p4 |    | e0 | p7 |    | e0 |    | ...
 \begin{quote}
 \heading{\phantomsection\label{練習問題 5.20}練習問題 5.20:}
 \code{free}ポインタの初期値を\code{p1}として、次の式によって生成されるリスト構造について、
-(\link{Figure 5.14}のように)箱とポインタ表現とメモリベクタ表現を描け。
+(\link{図5.14}のように)箱とポインタ表現とメモリベクタ表現を描け。
 
 \begin{scheme}
 (define x (cons 1 2))
@@ -29731,14 +29731,14 @@ Minsky-Fenichel-Yochelsonアルゴリズムはメモリの有用な部分のみ�
 次の位置を示しています。それに加えて、ワーキングメモリと新しいメモリの役割が交換されています。
 新しいペアは\code{free}の指す位置から始まる新しいメモリの中に構築され、(以前の)ワーキングメモリは
 次のガベージコレクションのための新しいメモリとして利用可能になっています。
-\link{Figure 5.15}はガベージコレクション直前と直後のメモリの配置を示したものです。
+\link{図5.15}はガベージコレクション直前と直後のメモリの配置を示したものです。
 
 \begin{figure}[tp]
-\phantomsection\label{Figure 5.15}
+\phantomsection\label{図5.15}
 \centering
 \begin{comment}
 \begin{quote}
-\heading{Figure 5.15:} Reconfiguration of memory by the garbage-collection process.
+\heading{図5.15:} Reconfiguration of memory by the garbage-collection process.
 
 \begin{example}
              Just before garbage collection
@@ -29777,7 +29777,7 @@ the-cdrs |                  |                 | memory
 \end{comment}
 \includegraphics[width=91mm]{fig/chap5/Fig5.15a.pdf}
 \begin{quote}
-\heading{Figure 5.15:} ガベージコレクション処理によるメモリの再構成
+\heading{図5.15:} ガベージコレクション処理によるメモリの再構成
 \end{quote}
 \end{figure}
 
@@ -29948,17 +29948,17 @@ gc-flip
 実装でもあります。この評価器は\link{5.2節}のレジスタマシンシミュレータで実行できます。
 Scheme評価器の機械語による実装を作るための最初の一歩としてこの評価器を使うこともできますし、
 Schemeの式を評価する特殊用途マシンを作るうえでの足がかりとすることさえ可能です。
-\link{Figure 5.16}にそのようなハードウェアによる実装を示します。これは、Schemeの評価器として
+\link{図5.16}にそのようなハードウェアによる実装を示します。これは、Schemeの評価器として
 動作するシリコンチップです。チップの設計者は、この節で記述する評価器に似たレジスタマシンの
 データパスとコントローラの仕様からスタートし、集積回路のレイアウトの構築には設計自動化プログラムを
 使っています。
 \footnote{このチップとその設計手法についての詳細は\link{Batali et al. 1982}を参照。}
 
 \begin{figure}[tb]
-\phantomsection\label{Figure 5.16}
+\phantomsection\label{図5.16}
 \centering
 \begin{comment}
-\heading{Figure 5.16:} A silicon-chip implementation of an evaluator for Scheme.
+\heading{図5.16:} A silicon-chip implementation of an evaluator for Scheme.
 
 [A photograph of chip layout]
 
@@ -29966,7 +29966,7 @@ Schemeの式を評価する特殊用途マシンを作るうえでの足がか�
 \includegraphics[width=91mm]{fig/chap5/chip.jpg}
 \par\bigskip
 \noindent
-\heading{Figure 5.16:} Scheme評価器のシリコンチップ実装
+\heading{図5.16:} Scheme評価器のシリコンチップ実装
 \end{figure}
 
 \subsubsection*{レジスタと演算}
@@ -32202,7 +32202,7 @@ after-call15
 偽の分岐のコードはまた別の手続き呼び出しです。手続きは記号\code{*}の値で、引数は\code{n}と、
 また別の手続き呼び出し(\code{factorial}の呼び出し)の結果です。これらの呼び出しは、それぞれ
 \code{proc}と\code{argl}と、その手続き自身の基本手続きと複合手続きの分岐を準備します。
-\link{Figure 5.17}は、手続き\code{factorial}の定義の完全なコンパイル結果を示したものです。
+\link{図5.17}は、手続き\code{factorial}の定義の完全なコンパイル結果を示したものです。
 述語の前後で、生成される可能性のある\code{continue}と\code{env}の\code{save}と\code{restore}が
 実際に生成されていることに注意してください。これらのレジスタは述語内の手続き呼び出しで変更され、
 分岐内の手続き呼び出しと\code{return}のリンクに必要とされるためです。
@@ -32243,7 +32243,7 @@ after-call15
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Figure 5.17}Figure 5.17:} \( \downarrow \) \code{factorial}手続き
+\heading{\phantomsection\label{図5.17}図5.17:} \( \downarrow \) \code{factorial}手続き
 定義のコンパイル結果
 
 \begin{smallscheme}
@@ -32386,11 +32386,11 @@ after-lambda1
 %%%
 \begin{quote}
 \heading{\phantomsection\label{練習問題 5.35}練習問題 5.35:}
-\link{Figure 5.18}に示すコードは、どのような式をコンパイルして生成されたものか。
+\link{図5.18}に示すコードは、どのような式をコンパイルして生成されたものか。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Figure 5.18}Figure 5.18:} \( \downarrow \) コンパイラ出力の例。\link{練習問題 5.35}参照。
+\heading{\phantomsection\label{図5.18}図5.18:} \( \downarrow \) コンパイラ出力の例。\link{練習問題 5.35}参照。
 
 \begin{smallscheme}
 (assign val 
@@ -32971,7 +32971,7 @@ fingerデーモンで入力バッファがオーバーフローしたかどう�
 \item
 \link{練習問題 5.27}では、上記の再帰階乗手続きを使って\( n! \)を計算するのに評価器が必要とする
 プッシュの数と最大スタック深度を\( n \)の関数として表すよう求めた。\link{練習問題 5.14}では、
-\link{Figure 5.11}に示した特別目的階乗マシンついて、同じ測定を行うよう求めた。ここでは、コンパイルした
+\link{図5.11}に示した特別目的階乗マシンついて、同じ測定を行うよう求めた。ここでは、コンパイルした
 \code{factorial}手続きについて同じ分析を行う。
 
 コンパイル版のプッシュの数と解釈版のプッシュの数の比を求めよ。また、スタック深度についても同じことを
@@ -33003,7 +33003,7 @@ fingerデーモンで入力バッファがオーバーフローしたかどう�
 \end{scheme}
 
 \noindent
-これをコンパイルしたときの性能と、\link{Figure 5.12}の特別目的フィボナッチマシンを使う場合の性能とを
+これをコンパイルしたときの性能と、\link{図5.12}の特別目的フィボナッチマシンを使う場合の性能とを
 比較し、\link{練習問題 5.45}のような分析を実行せよ(解釈版のパフォーマンス測定については
 \link{練習問題 5.29}参照)。フィボナッチ数の計算では、使われる時間的リソースは\( n \)に対して線形では
 ないため、スタック演算の比は\( n \)と独立な極限値には近づかない。
