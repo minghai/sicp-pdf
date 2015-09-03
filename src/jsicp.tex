@@ -276,7 +276,7 @@
 %   Cosmetic change to heading in Info format, and comment changes.
 % 
 % * Version 2.neilvandyke1 (February 10, 2003) by Neil W. Van Dyke
-%   Correction to Exercise 1.39 formula, spotted by Steve VanDevender.
+%   Correction to 練習問題 1.39 formula, spotted by Steve VanDevender.
 %   Added URL of Abelson and Sussman video lectures.
 %
 % * Version 2.neilvandyke2 (unreleased)
@@ -1838,7 +1838,7 @@ Alan Perilの言葉を借りると、``シンタックスシュガーはセミ�
 置換によってモデル化でき(この本の最初の二章の手続きはすべてそうです)、
 かつ正当な値を返す手続き適用については、正規順序評価と適用順序評価は
 同じ値になるということが証明できます。(正規順序評価と適用順序評価が
-同じ値にならない``不当な''値の例については、\link{Exercise 1.5}を参照してください。)
+同じ値にならない``不当な''値の例については、\link{練習問題 1.5}を参照してください。)
 
 
 Lispは適用順序評価を使っています。理由のひとつは、上で見た\code{(+ 5 1)} と \code{(* 5 2)}
@@ -2047,7 +2047,7 @@ Schemeでは、二つの特殊な値が存在し、\code{\#t}、\code{\#f}とい
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.1}Exercise 1.1:}
+\heading{\phantomsection\label{練習問題 1.1}練習問題 1.1:}
 以下の一連の式について、それぞれの式に対するインタプリタの応答として
 表示される結果はどうなるか。式の列は、下記に示した順に評価されるとする。
 
@@ -2085,7 +2085,7 @@ Schemeでは、二つの特殊な値が存在し、\code{\#t}、\code{\#f}とい
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.2}Exercise 1.2:} 以下の式を前置記法に書き換えよ。
+\heading{\phantomsection\label{練習問題 1.2}練習問題 1.2:} 以下の式を前置記法に書き換えよ。
 \begin{comment}
 
 \begin{example}
@@ -2101,12 +2101,12 @@ Schemeでは、二つの特殊な値が存在し、\code{\#t}、\code{\#f}とい
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.3}Exercise 1.3:} 三つの数値を引数として取り、
+\heading{\phantomsection\label{練習問題 1.3}練習問題 1.3:} 三つの数値を引数として取り、
 そのうち大きいほうから二つの数値の二乗の和を返す手続きを定義せよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.4}Exercise 1.4:} 我々の評価モデルでは、
+\heading{\phantomsection\label{練習問題 1.4}練習問題 1.4:} 我々の評価モデルでは、
 演算子が複合式であるような組み合わせが作れるということを観察せよ。
 この観察結果を使って、次の手続きのふるまいを説明せよ。
 
@@ -2118,7 +2118,7 @@ Schemeでは、二つの特殊な値が存在し、\code{\#t}、\code{\#f}とい
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.5}Exercise 1.5:} Ben Bitdiddleは、
+\heading{\phantomsection\label{練習問題 1.5}練習問題 1.5:} Ben Bitdiddleは、
 自分が対面しているインタプリタが適用順序評価と正規順序評価のどちらを使っているかを
 調べるテストを発明した。彼は、以下の2つの手続きを定義する。
 
@@ -2266,7 +2266,7 @@ averageは以下のように定義します。
 \noindent
 ここで、``十分によい''ということの定義も決める必要があります。
 次の方法は説明のためには十分ですが、本当はあまりよいテストではありません。
-(\link{Exercise 1.7}を参照してください)その発想は、答えの二乗と被開平数の差が
+(\link{練習問題 1.7}を参照してください)その発想は、答えの二乗と被開平数の差が
 事前に決めておいた許容誤差(ここでは0.001とします)よりも小さくなるぐらいに
 答えが近くなるまで、答えの改善を続けるというものです。
 \footnote{普通述語には、述語であるということがわかりやすいように、
@@ -2325,7 +2325,7 @@ averageは以下のように定義します。
 心配されている読者の方は、\link{1.2.1節}の``末尾再帰''についての説明を見てください。}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.6}Exercise 1.6:} Alyssa P. Hackerは、なぜ
+\heading{\phantomsection\label{練習問題 1.6}練習問題 1.6:} Alyssa P. Hackerは、なぜ
 \code{if}が特殊形式として提供される必要があるのか理解できなかった。
 ``\code{cond}を使って普通の手続きとして定義したらいいんじゃないの''と彼女は質問した。
 Alyssaの友達であるEva Lu Atorは、これは実際にできると主張し、\code{if}の新しいバージョンを
@@ -2360,7 +2360,7 @@ Alyssaが平方根の計算するのにこれを使おうとすると、何が�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.7}Exercise 1.7:}
+\heading{\phantomsection\label{練習問題 1.7}練習問題 1.7:}
 平方根の計算に使った\code{good\-/enough?}テストは、とても小さい数値の平方根を
 求めるのにはあまり効率的ではないだろう。また、実際のコンピュータでは、数値演算
 はほとんど必ず有限の有効数字で行われることになる。この問題があるので、
@@ -2373,7 +2373,7 @@ Alyssaが平方根の計算するのにこれを使おうとすると、何が�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.8}Exercise 1.8:} 立方根に対する
+\heading{\phantomsection\label{練習問題 1.8}練習問題 1.8:} 立方根に対する
 ニュートン法は、\( y \)が\( x \)の立方根の近似値である場合、次の値によって
 よりよい近似を求めることができるという事実に基づいている。
 \begin{comment}
@@ -2881,7 +2881,7 @@ Steeleは後に、末尾再帰が手続き呼び出しを自然にコンパイ�
 要求しています。}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.9}Exercise 1.9:} 次の二つの手続きは、
+\heading{\phantomsection\label{練習問題 1.9}練習問題 1.9:} 次の二つの手続きは、
 どちらも\code{inc}, \code{dec}という手続きによって二つの正の整数を加算する方法を定義している。
 手続き\code{inc}は引数を1増やし、\code{dec}は引数を1減らす。
 
@@ -2899,7 +2899,7 @@ Steeleは後に、末尾再帰が手続き呼び出しを自然にコンパイ�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.10}Exercise 1.10:} 次の手続きは、
+\heading{\phantomsection\label{練習問題 1.10}練習問題 1.10:} 次の手続きは、
 アッカーマン関数と呼ばれる数学の関数を計算する。
 
 \begin{scheme}
@@ -2995,7 +2995,7 @@ Fib(n) = <  1                        if n = 1
 \code{(fib 1)}や\code{(fib 0)}を計算する回数(一般に、上記の木の中での葉の数)が
 正確にFib(\( n+1 \))になることは簡単に示せます。このやり方がどれだけひどいかということは、
 Fib(\( n \))の値が\( n \)に対して指数的に増えるということを考えればわかるでしょう。
-より正確には、Fib(\( n \))は\( \varphi^n / \sqrt{5} \)に最も近い整数になります(\link{Exercise 1.13}参照)。\( \varphi \)は次の値です。
+より正確には、Fib(\( n \))は\( \varphi^n / \sqrt{5} \)に最も近い整数になります(\link{練習問題 1.13}参照)。\( \varphi \)は次の値です。
 \begin{comment}
 
 \begin{example}
@@ -3207,10 +3207,10 @@ b <- a
 \jnewterm{メモ化}(\newterm{memoization})として知られるもので、素直に実装することができます。
 テーブル化は、(\code{count\-/change}のような)指数的なステップ数の必要なプロセスを、
 必要な時間と空間が入力に対して線形に増加するプロセスに変換するのにも時々使われます。
-\link{Exercise 3.27}参照。}
+\link{練習問題 3.27}参照。}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.11}Exercise 1.11:} 関数\( f \)は次のように定義される。
+\heading{\phantomsection\label{練習問題 1.11}練習問題 1.11:} 関数\( f \)は次のように定義される。
 
 \begin{displaymath}
 f(n) = 
@@ -3227,7 +3227,7 @@ f(n) =
 \newpage
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.12}Exercise 1.12:} 以下の数値のパターンは
+\heading{\phantomsection\label{練習問題 1.12}練習問題 1.12:} 以下の数値のパターンは
 \jnewterm{パスカルの三角形}(\newterm{Pascal's triangle})と呼ばれる。
 
 \begin{example}
@@ -3252,7 +3252,7 @@ Omar Khayyamの著作や、12世紀インドの数学者Bh\'ascara \'Ach\'arya�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.13}Exercise 1.13:} Fib(\( n \))が
+\heading{\phantomsection\label{練習問題 1.13}練習問題 1.13:} Fib(\( n \))が
 \( \varphi^n / \sqrt{5} \)に最も近い整数であることを証明せよ。
 \( \varphi = (1 + \sqrt{5}) / 2 \)とする。ヒント：\( \psi = (1 - \sqrt{5}) / 2 \)と置く。
 帰納法とフィボナッチ数の定義(\link{1.2.2節}参照)を使って、
@@ -3315,14 +3315,14 @@ Fib(\( n \)) = \( (\varphi^n - \psi^n) / \sqrt{5} \)であることを証明せ�
 問題の大きさが2倍になると必要リソースが定数量だけ増える2つのアルゴリズムを見ていきます。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.14}Exercise 1.14:} \link{1.2.2節}の
+\heading{\phantomsection\label{練習問題 1.14}練習問題 1.14:} \link{1.2.2節}の
 \code{count\-/change}手続きによって11セントに対する両替のやり方を求める際に生成される
 プロセスを図示する木を描け。両替する金額の増加に対して、このプロセスが使う空間とステップ数は
 どのような増加オーダーになるか。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.15}Exercise 1.15:} (ラジアンで指定される)
+\heading{\phantomsection\label{練習問題 1.15}練習問題 1.15:} (ラジアンで指定される)
 角度の正弦は、\( x \)が十分に小さいとき\( \sin x  \approx x \)
 の近似式によって計算できる。また、次の三角法の恒等式によって、sinの引数の大きさを小さくすることができる。
 \begin{comment}
@@ -3505,7 +3505,7 @@ b^n = b * b^(n - 1)  if n is odd
 \footnote{1000乗の計算なんか誰もしないだろうとお考えかもしれません。\link{1.2.6節}を
 参照してください。}
 二乗の連続という考え方を使って、対数的ステップ数で指数を計算する反復アルゴリズムを
-作ることもできます(\link{Exercise 1.16}参照)。しかし、反復アルゴリズムにはよくあることですが、
+作ることもできます(\link{練習問題 1.16}参照)。しかし、反復アルゴリズムにはよくあることですが、
 再帰アルゴリズムほど素直に書き下すことはできません。
 \footnote{この反復アルゴリズムは古代から存在します。紀元前200年より前に\'Ach\'arya Pingala
 によって書かれた\textit{Chandah-sutra}に記載されています。\link{Knuth 1981}の4.6.3節には、
@@ -3513,7 +3513,7 @@ b^n = b * b^(n - 1)  if n is odd
 
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.16}Exercise 1.16:}
+\heading{\phantomsection\label{練習問題 1.16}練習問題 1.16:}
 \code{fast\-/expt}と同じように二乗の連続を使って、指数計算を対数的ステップ数で
 実行する反復的プロセスを生成する手続きを設計せよ。
 (ヒント:\( (b^{n / 2})^2 = (b^2)^{n / 2} \)を使い、指数\( n \)、基数\( b \)のほかに
@@ -3526,7 +3526,7 @@ b^n = b * b^(n - 1)  if n is odd
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.17}Exercise 1.17:} この節の
+\heading{\phantomsection\label{練習問題 1.17}練習問題 1.17:} この節の
 指数計算アルゴリズムは、指数をかけ算の繰り返しによって計算することを
 基本としている。同じような方法で、整数のかけ算を足し算の繰り返しによって
 実行することもできる。次のかけ算手続き(私たちの言語では足し算しかできず、
@@ -3546,8 +3546,8 @@ b^n = b * b^(n - 1)  if n is odd
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.18}Exercise 1.18:} \link{Exercise 1.16}と
-\link{Exercise 1.17}の結果を使って、足し算、double、halveによって、かけ算を
+\heading{\phantomsection\label{練習問題 1.18}練習問題 1.18:} \link{練習問題 1.16}と
+\link{練習問題 1.17}の結果を使って、足し算、double、halveによって、かけ算を
 対数的ステップ数で実行する反復的プロセスを生成する手続きを考えよ。
 \footnote{このアルゴリズムは、``ロシア農民法''と呼ばれることもあるかけ算の方法で、
 古くから存在します。その使用例は、最も古い二つの数学文献のひとつ、リンド数学パピルスにも
@@ -3557,7 +3557,7 @@ b^n = b * b^(n - 1)  if n is odd
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.19}Exercise 1.19:} フィボナッチ数を
+\heading{\phantomsection\label{練習問題 1.19}練習問題 1.19:} フィボナッチ数を
 対数的ステップ数で計算する巧妙なアルゴリズムがある。\link{1.2.2節}の
 \code{fib\-/iter}プロセスでの状態変数 \( a \)と\( b \)の変換、
 \( a \gets a + b \)、\( b \gets a \)を思い出そう。
@@ -3635,7 +3635,7 @@ GCD(206,40) = GCD(40,6)
 して知られています。
 \footnote{ユークリッドの互除法は、ユークリッドの\textit{Elements}(紀元前300年ごろ、第7巻)に
 出てきたためにそう呼ばれます。\link{Knuth (1973)}によると、自明でないアルゴリズムとしては
-知られている限り最古のものと考えられるそうです。(\link{Exercise 1.18})で出てきた古代エジプトの
+知られている限り最古のものと考えられるそうです。(\link{練習問題 1.18})で出てきた古代エジプトの
 かけ算方法は確かにこれよりも古いのですが、Knuthが説明するように、ユークリッドのアルゴリズムは、
 具体例の集まりとしてではなく一般的なアルゴリズムとして示されたものとしては最古のものです。}
 
@@ -3691,10 +3691,10 @@ Fib(1) = 1以上であればよいので、真です。次に、\( k \)以下の
 
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.20}Exercise 1.20:}ある手続きが生成するプロセスは、
+\heading{\phantomsection\label{練習問題 1.20}練習問題 1.20:}ある手続きが生成するプロセスは、
 もちろん、インタプリタの規則によって異なる。例として、上で説明した反復\code{gcd}手続きに
 ついて考える。この手続きを、\link{1.1.5節}で考察した正規順序評価によって解釈するとする
-(\code{if}に対する正規順序評価規則は\link{Exercise 1.5}に記述されている)。
+(\code{if}に対する正規順序評価規則は\link{練習問題 1.5}に記述されている)。
 置換法を(正規順序に対して)使って、\code{(gcd 206 40)}を評価する際に生成されるプロセスを
 図示し、実際に実行される\code{remainder}演算を示せ。\code{(gcd 206 40)}の正規順序評価では、
 \code{remainder}演算は何回実行されるだろうか。適用順序評価ではどうだろうか。
@@ -3817,7 +3817,7 @@ Fib(1) = 1以上であればよいので、真です。次に、\( k \)以下の
 基づいています。例えば、\( e \)が偶数であれば\( b^{e / 2} \) modulo \( m \)を求め、
 それを二乗し、法\( m \)に関する剰余を取ります。このテクニックを使うと、計算する際に
 \( m \)よりずっと大きな数値を扱わないですませられるので便利です。
-(\link{Exercise 1.25}と比較すること)}
+(\link{練習問題 1.25}と比較すること)}
 
 
 フェルマーテストは、1以上\( n-1 \)以下のランダムな数値\( a \)を選び、\( a \)の\( n \)乗の
@@ -3874,7 +3874,7 @@ modulo \( n \)が\( a \)に等しいかをチェックすることで行いま�
 
 騙されないフェルマーテストの変種もあります。そのテストでは、フェルマーテストと同様に、
 整数\( n \)の素数判定を行うのに\( a < n \)である整数\( a \)を選び、\( n \)と\( a \)に
-依存するある条件についてチェックします(\link{Exercise 1.28}で、そのようなテストの
+依存するある条件についてチェックします(\link{練習問題 1.28}で、そのようなテストの
 例が出てきます)。一方、フェルマーテストと違って、任意の\( n \)に対し、\( n \)が素数でない
 限り\( a < n \)であるほとんどの整数\( a \)についてその条件が成立しないことが証明できます。
 そのため、もし\( n \)がランダムに選んだ数\( a \)についてテストを通過するなら、\( n \)が
@@ -3900,12 +3900,12 @@ modulo \( n \)が\( a \)に等しいかをチェックすることで行いま�
 電子送金、情報検索において重要な実用的応用があることがわかりました。}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.21}Exercise 1.21:}\code{smallest\-/divisor}手続きを
+\heading{\phantomsection\label{練習問題 1.21}練習問題 1.21:}\code{smallest\-/divisor}手続きを
 使って次の数値の最小の約数を求めよ。199, 1999, 19999.
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.22}Exercise 1.22:} ほとんどのLisp実装は
+\heading{\phantomsection\label{練習問題 1.22}練習問題 1.22:} ほとんどのLisp実装は
 \code{runtime}という基本手続きを持っていて、システムが動いた時間を整数
 (例えば、マイクロ秒で計測したもの)として返す。次の\code{timed\-/prime\-/test}
 手続きは、整数\( n \)を引数として呼ばれると、\( n \)を表示し、\( n \)が素数であるか
@@ -3934,7 +3934,7 @@ modulo \( n \)が\( a \)に等しいかをチェックすることで行いま�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.23}Exercise 1.23:} この節の最初で示した
+\heading{\phantomsection\label{練習問題 1.23}練習問題 1.23:} この節の最初で示した
 \code{smallest\-/divisor}手続きは、必要のないテストを数多く行っている。
 数値が2で割り切れるかチェックした後に、それより大きな偶数で割り切れるかをチェックする
 ことに意味はない。このことは、\code{test\-/divisor}に使われる値は2, 3, 4, 5, 6, \( \dots \)
@@ -3943,23 +3943,23 @@ modulo \( n \)が\( a \)に等しいかをチェックすることで行いま�
 \code{next}を定義せよ。\code{smallest\-/divisor}手続きを、\code{(+ test\-/divisor 1)}
 の代わりに\code{(next test\-/divisor)}を使うように修正せよ。この変更したバージョンの
 \code{smallest\-/divisor}手続きを組み込んだ\code{timed\-/prime\-/test}を使い、
-\link{Exercise 1.22}で見つけた12個の素数についてテストを実行せよ。
+\link{練習問題 1.22}で見つけた12個の素数についてテストを実行せよ。
 この変更はテストのステップ数を半分にするため、2倍の速度で実行できると予想できる。
 この予想は確認できただろうか。そうでなければ、二つのアルゴリズムの観測された速度の比率は
 どうなっていて、それが2でないという事実をどのように説明できるだろうか。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.24}Exercise 1.24:} \link{Exercise 1.22}の
+\heading{\phantomsection\label{練習問題 1.24}練習問題 1.24:} \link{練習問題 1.22}の
 \code{timed\-/prime\-/test}手続きを\code{fast\-/prime?}(フェルマー法)を使うように修正し、
-\link{Exercise 1.22}で見つけた12個の素数をそれぞれテストせよ。フェルマーテストは
+\link{練習問題 1.22}で見つけた12個の素数をそれぞれテストせよ。フェルマーテストは
 \( \Theta(\log n) \)で増加するが、1,000,000に近い素数をテストするのにかかる時間は
 1000に近い素数をテストするのに必要な時間と比べてどの程度になると予想できるか。
 実際とのずれがあれば、それを説明できるだろうか。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.25}Exercise 1.25:} Alyssa P. Hackerは、
+\heading{\phantomsection\label{練習問題 1.25}練習問題 1.25:} Alyssa P. Hackerは、
 \code{expmod}を書くのにだいぶ余計な手間がかかったと愚痴をこぼした。
 どうせ指数の計算のやり方はわかっているんだから、単純にこんなふうに書いたら
 よかったんじゃないの、と。
@@ -3973,8 +3973,8 @@ modulo \( n \)が\( a \)に等しいかをチェックすることで行いま�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.26}Exercise 1.26:} Louis Reasonerは
-\link{Exercise 1.24}を解くのにだいぶ苦労している。彼の\code{fast\-/prime?}
+\heading{\phantomsection\label{練習問題 1.26}練習問題 1.26:} Louis Reasonerは
+\link{練習問題 1.24}を解くのにだいぶ苦労している。彼の\code{fast\-/prime?}
 テストは、彼の\code{prime?}テストよりだいぶ遅いようだ。Louisは友達のEva Lu Atorに
 見てもらうことにした。二人でLouisのコードをよく見てみると、\code{expmod}手続きで
 \code{square}手続きを呼ぶのでなく、明示的にかけ算を使うように書き換えていることが
@@ -4002,7 +4002,7 @@ Louisは、「何も違わないように見えるけど」と言っている。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.27}Exercise 1.27:} \link{Footnote 1.47}で
+\heading{\phantomsection\label{練習問題 1.27}練習問題 1.27:} \link{Footnote 1.47}で
 挙げたカーマイケル数が実際にフェルマーテストを騙すということを実験せよ。
 それはつまり、整数\( n \)を取り、すべての\( a < n \)について\( a^n \)が法\( n \)に
 関して\( a \)と合同になるかテストする手続きを書き、与えられたカーマイケル数に対して
@@ -4010,7 +4010,7 @@ Louisは、「何も違わないように見えるけど」と言っている。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.28}Exercise 1.28:} 騙すことができない
+\heading{\phantomsection\label{練習問題 1.28}練習問題 1.28:} 騙すことができない
 フェルマーテストの変種のひとつに\newterm{Miller-Rabin test} (\link{Miller 1976};
 \link{Rabin 1980})がある。これは、次のようなフェルマーの小定理の別の形から始める。
 \( n \)が素数で、かつ\( a \)が\( n \)以下の任意の正の整数であれば、\( a \)の
@@ -4274,7 +4274,7 @@ Miller-Rabinテストで数値\( n \)の素数性をテストするには、\( a
 (\code{cube}を0から1の範囲で定積分したとき、その正確な値は1/4です。)
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.29}Exercise 1.29:} シンプソンの公式は、
+\heading{\phantomsection\label{練習問題 1.29}練習問題 1.29:} シンプソンの公式は、
 上で示したものより正確な数値積分の方法である。シンプソンの公式では、
 関数\( f \)の範囲\( a \)から\( b \)の定積分は次のように近似される。
 \begin{comment}
@@ -4297,7 +4297,7 @@ h
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.30}Exercise 1.30:}上で挙げた\code{sum}手続きは
+\heading{\phantomsection\label{練習問題 1.30}練習問題 1.30:}上で挙げた\code{sum}手続きは
 線形再帰を生成する。この手続きは、総和計算が反復的に行われるように書き直すことができる。
 次の定義の中で欠けている式を埋め、そのやり方を示せ。
 
@@ -4312,11 +4312,11 @@ h
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.31}Exercise 1.31:} \begin{enumerate}[a]
+\heading{\phantomsection\label{練習問題 1.31}練習問題 1.31:} \begin{enumerate}[a]
 
 \item
 \code{sum}手続きは、高階手続きとして表せる数多くの似たような抽象化の中で、最も単純なものに
-すぎない。\footnote{\link{Exercise 1.31}から\link{Exercise 1.33}は、
+すぎない。\footnote{\link{練習問題 1.31}から\link{練習問題 1.33}は、
 たくさんの一見ばらばらの演算をまとめるために適切な抽象化を使うことで、どれだけの表現力が
 得られるかということを示すためのものです。しかしながら、集積やフィルタというのは
 洗練された考え方ではあるのですが、この時点でそれらを使うのは、両手を縛られているようなものです。
@@ -4348,10 +4348,10 @@ pi   2 * 4 * 4 * 6 * 6 * 8 ...
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.32}Exercise 1.32:} \begin{enumerate}[a.]
+\heading{\phantomsection\label{練習問題 1.32}練習問題 1.32:} \begin{enumerate}[a.]
 
 \item
-\code{sum}と\code{product} (\link{Exercise 1.31})は、どちらも\code{accumulate}(集積)
+\code{sum}と\code{product} (\link{練習問題 1.31})は、どちらも\code{accumulate}(集積)
 というより一般的な概念の特殊なケースであることを示せ。集積とは、次のような一般的な
 集積関数を使って複数の項を組み合わせるものである。
 
@@ -4376,9 +4376,9 @@ pi   2 * 4 * 4 * 6 * 6 * 8 ...
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.33}Exercise 1.33:}
+\heading{\phantomsection\label{練習問題 1.33}練習問題 1.33:}
 結合する項に対する\jnewterm{フィルタ}(\newterm{filter})という概念を導入することで、
-さらに一般的なバージョンの\code{accumulate} (\link{Exercise 1.32})を手に入れることができる。
+さらに一般的なバージョンの\code{accumulate} (\link{練習問題 1.32})を手に入れることができる。
 指定された条件を満たす範囲内の値から導出される項だけを結合するというものだ。
 結果となる\code{filtered\-/accumulate}抽象は、\code{accumulate}と同じ引数に加えて、
 フィルタを指定する1引数の述語を取る。\code{filtered\-/accumulate}を手続きとして書け。
@@ -4678,7 +4678,7 @@ in  ~\( \dark \langle \)~~\var{\dark body}~~\( \dark \rangle \)~
 より深く学んだのちに、この問題に戻ってきます。}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.34}Exercise 1.34:} 次の手続きを定義するとする。
+\heading{\phantomsection\label{練習問題 1.34}練習問題 1.34:} 次の手続きを定義するとする。
 
 \begin{scheme}
 (define (f g) (g 2))
@@ -4903,15 +4903,15 @@ f(x), f(f(x)), f(f(f(x))), ...
 不動点探索の収束に役に立つことがよくあります。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.35}Exercise 1.35:} 黄金比
+\heading{\phantomsection\label{練習問題 1.35}練習問題 1.35:} 黄金比
 \( \varphi \)(\link{1.2.2節})が\( x \mapsto 1 + 1 / x \)という変形の
 不動点であることを示し、そのことを利用して\( \varphi \)を\code{fixed\-/point}
 手続きによって求めよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.36}Exercise 1.36:} \code{fixed\-/point}を
-修正し、\link{Exercise 1.22}で示した\code{newline}と\code{display}という
+\heading{\phantomsection\label{練習問題 1.36}練習問題 1.36:} \code{fixed\-/point}を
+修正し、\link{練習問題 1.22}で示した\code{newline}と\code{display}という
 基本手続きを使って、生成する近似値列を表示するようにせよ。次に、
 \( x \mapsto \log(1000) / \log(x) \)の不動点を求めることによって
 \( x^x = 1000 \)の解を求めよ(自然対数を計算するSchemeの基本手続き
@@ -4922,7 +4922,7 @@ f(x), f(f(x)), f(f(f(x))), ...
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.37}Exercise 1.37:} \begin{enumerate}[a]
+\heading{\phantomsection\label{練習問題 1.37}練習問題 1.37:} \begin{enumerate}[a]
 
 \item
 無限\jnewterm{連分数}(\newterm{continued fraction})とは、以下のような形の式である。
@@ -4987,17 +4987,17 @@ D_1 + -----------
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.38}Exercise 1.38:} スイスの数学者
+\heading{\phantomsection\label{練習問題 1.38}練習問題 1.38:} スイスの数学者
 レオンハルト・オイラーは、1737年に\textit{De Fractionibus Continuis}という
 学術報告を発表した。それには、\( e - 2 \)(\( e \)は自然対数の底)の連分数展開が
 含まれていた。この分数では、\( N_i \)はすべて1で、\( D_i \)は
 1, 2, 1, 1, 4, 1, 1, 6, 1, 1,\( \dots \)という数列である。オイラーの連分数展開を
-もとに、\link{Exercise 1.37}の\code{cont\-/frac}手続きを使って\( e \)を近似する
+もとに、\link{練習問題 1.37}の\code{cont\-/frac}手続きを使って\( e \)を近似する
 プログラムを書け。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.39}Exercise 1.39:} 正接(タンジェント)
+\heading{\phantomsection\label{練習問題 1.39}練習問題 1.39:} 正接(タンジェント)
 関数の連分数表現は、1770年にドイツの数学者ヨハン・ハインリッヒ・ランベルトによって
 発表された。
 \begin{comment}
@@ -5018,7 +5018,7 @@ tan x = ---------------
 \end{displaymath}
 ここで、\( x \)はラジアンで表したものである。ランベルトの式をもとに、正接関数の
 近似値を求める手続き\code{(tan\-/cf x k)}を定義せよ。\code{k}は、
-\link{Exercise 1.37}同様、計算する項の数を指定する。
+\link{練習問題 1.37}同様、計算する項の数を指定する。
 \end{quote}
 
 \label{1.3.4節}
@@ -5051,7 +5051,7 @@ tan x = ---------------
 \code{square}手続きに適用すると、\( x \)での値が\( x \)と\( x^2 \)の平均であるような
 手続きを返します。この返された手続きに10を適用すると、10と100の平均、つまり55を
 返します。\footnote{これは、演算子自身が複合式であるような複合式です。
-そのような複合式が作れるということは、\link{Exercise 1.4}ですでに見ていますが、
+そのような複合式が作れるということは、\link{練習問題 1.4}ですでに見ていますが、
 そこでの例はおもちゃのようなものでした。ここからは、そういった複合式が実際に必要に
 なるような場合---高階手続きの返り値となる手続きを適用するとき---について
 見ていくことになります。
@@ -5082,7 +5082,7 @@ tan x = ---------------
 ようなものを選ぶことができます。再利用の単純な例として、\( x \)の三乗根が
 \( y \mapsto x / y^2 \)の不動点であり、そのため私たちのsquare-root手続きは
 すぐに立方根を求めるものに拡張可能だということがあります。
-\footnote{さらなる一般化については、\link{Exercise 1.45}を参照してください。}
+\footnote{さらなる一般化については、\link{練習問題 1.45}を参照してください。}
 
 
 \begin{scheme}
@@ -5286,7 +5286,7 @@ Lispは、ほかの一般的なプログラミング言語と違い、手続き�
 \link{4.1節}で学ぶSchemeの実装では、これらの変数は手続きの環境に保存されます。}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.40}Exercise 1.40:}
+\heading{\phantomsection\label{練習問題 1.40}練習問題 1.40:}
 次のような形の式で\code{newtons\-/method}手続きと組み合わせて使えるような手続き
 \code{cubic}(三次方程式)を定義せよ。
 
@@ -5300,7 +5300,7 @@ Lispは、ほかの一般的なプログラミング言語と違い、手続き�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.41}Exercise 1.41:}
+\heading{\phantomsection\label{練習問題 1.41}練習問題 1.41:}
 引数がひとつの手続きを引数として取り、その手続きを二回適用する手続きを返す
 手続き\code{double}を定義せよ。
 例えば、\code{inc}が引数に1を足す手続きであれば、\code{(double inc)}は2を足す
@@ -5312,7 +5312,7 @@ Lispは、ほかの一般的なプログラミング言語と違い、手続き�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.42}Exercise 1.42:}
+\heading{\phantomsection\label{練習問題 1.42}練習問題 1.42:}
 \( f \)と\( g \)を二つの1引数関数とする。
 \( g \)に\( f \)を\jnewterm{合成}(\newterm{composition})するということを、
 関数\( x \mapsto f(g(x)) \)として定義する。合成を実装する手続き\code{compose}を
@@ -5325,7 +5325,7 @@ Lispは、ほかの一般的なプログラミング言語と違い、手続き�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.43}Exercise 1.43:}
+\heading{\phantomsection\label{練習問題 1.43}練習問題 1.43:}
 \( f \)が数値関数で\( n \)が正の整数であれば、\( f \)の\( n \)回適用という
 ものを作ることができ、それは\( x \)での値が\( f(f(\dots (f(x))\dots )) \)で
 ある関数として定義できる。
@@ -5341,11 +5341,11 @@ Lispは、ほかの一般的なプログラミング言語と違い、手続き�
 ~\textit{625}~
 \end{scheme}
 
-ヒント：\link{Exercise 1.42}の\code{compose}を使うと便利かもしれない。
+ヒント：\link{練習問題 1.42}の\code{compose}を使うと便利かもしれない。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.44}Exercise 1.44:} 
+\heading{\phantomsection\label{練習問題 1.44}練習問題 1.44:} 
  関数の\jnewterm{平滑化}(\newterm{smoothing})は、信号処理において重要な概念である。
 \( f \)が関数で\( dx \)がある小さな値であるとき、\( f \)を平滑化したものは
 \( x \)での値が\( f(x - dx) \), \( f(x) \), \( f(x + dx) \)の平均となる関数である。
@@ -5353,12 +5353,12 @@ Lispは、ほかの一般的なプログラミング言語と違い、手続き�
 返す手続き\code{smooth}を書け。時には、関数を繰り返し平滑化する(つまり、平滑化した
 関数をさらに平滑化することを続ける)ことによって
 \jnewterm{\textit{n}重平滑化関数}(\newterm{\textit{n}-fold smoothed function})
-を得ることが役に立つこともある。\code{smooth}と\link{Exercise 1.43}の\code{repeated}
+を得ることが役に立つこともある。\code{smooth}と\link{練習問題 1.43}の\code{repeated}
 を使って任意の関数の\textit{n}重平滑化関数を生成するやり方を示せ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.45}Exercise 1.45:}
+\heading{\phantomsection\label{練習問題 1.45}練習問題 1.45:}
 \link{1.3.3節}では、単純に\( y \mapsto x / y \)の不動点を探すことによって
 平方根を計算しようとすると収束しないということと、それを平均緩和法によって
 解決できるということを見た。三乗根の計算にも同じ方法を使うことができ、
@@ -5368,14 +5368,14 @@ Lispは、ほかの一般的なプログラミング言語と違い、手続き�
 二回行う(つまり、\( y \mapsto x / y^3 \)の平均緩和の平均緩和を使う)と、
 不動点探索は収束するようになる。\( y \mapsto x / y^{n-1} \)を繰り返し平均緩和した
 ものに対する不動点探索によって\( n^{\mathrm{th}} \)を計算する場合、何回の平均緩和が
-必要となるか実験せよ。その結果を利用し、\link{Exercise 1.43}の\code{fixed\-/point},
+必要となるか実験せよ。その結果を利用し、\link{練習問題 1.43}の\code{fixed\-/point},
 \code{average\-/damp}, \code{repeated}手続きを使って\( n \)乗根を計算する単独の
 手続きを実装せよ。必要な数値演算は基本手続きとして利用できるとする。
 
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 1.46}Exercise 1.46:}
+\heading{\phantomsection\label{練習問題 1.46}練習問題 1.46:}
 この章で記述した数値計算法のいくつかは、\jnewterm{反復改良法}
 (\newterm{iterative improvement})と呼ばれる非常に汎用的な計算戦略の実例である。
 反復改良法というのは、何かを計算するにあたって、答えに対する初期推測値から始めて、
@@ -5826,7 +5826,7 @@ d_1   d_2
 どれも変更する必要がありませんでした。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.1}Exercise 2.1:}
+\heading{\phantomsection\label{練習問題 2.1}練習問題 2.1:}
 正と負の両方の引数を扱うことができる改良版\code{make\-/rat}を定義せよ。
 \code{make\-/rat}は符号を正規化し、正の有理数であれば分子と分母の両方が正となり、
 負の有理数であれば分子のみが負になるようにする。
@@ -5928,7 +5928,7 @@ d_1   d_2
 しつつ、システムのほかの部分の開発を進めるということができるようになります。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.2}Exercise 2.2:} 平面上の線分を
+\heading{\phantomsection\label{練習問題 2.2}練習問題 2.2:} 平面上の線分を
 表現するという問題について考える。それぞれの線分は、始点と終点という点のペア
 として表す。コンストラクタ\code{make\-/segment}とセレクタ\code{start\-/segment},
 \code{end\-/segment}を定義せよ。
@@ -5950,8 +5950,8 @@ d_1   d_2
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.3}Exercise 2.3:} 平面上の長方形の
-表現を実装せよ(ヒント:\link{Exercise 2.2}を利用するといいかもしれない)。
+\heading{\phantomsection\label{練習問題 2.3}練習問題 2.3:} 平面上の長方形の
+表現を実装せよ(ヒント:\link{練習問題 2.2}を利用するといいかもしれない)。
 そのコンストラクタとセレクタを使って、ある長方形の外周の長さと面積を計算する
 手続きを書け。次に、長方形の異なる表現を実装せよ。適切な抽象化の壁を使って
 システムを設計し、外周と面積を求める同じ手続きがどちらの表現によっても動く
@@ -6071,7 +6071,7 @@ d_1   d_2
 シミュレーションの問題を扱う際には、これを基本的な道具として使うことになります。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.4}Exercise 2.4:}
+\heading{\phantomsection\label{練習問題 2.4}練習問題 2.4:}
 次に示すものは、手続きによるペアの表現の別のやり方である。この表現で、
 任意のオブジェクト\code{x}と\code{y}に対して、\code{(car (cons x y))}が
 \code{x}を返すことを確認せよ。
@@ -6088,7 +6088,7 @@ d_1   d_2
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.5}Exercise 2.5:}
+\heading{\phantomsection\label{練習問題 2.5}練習問題 2.5:}
 \( a \)と\( b \)のペアを積\( 2^a 3^b \)の整数で表現することによって、
 非負整数のペアを数値と数値演算だけを使って表現できるということを示せ。
 
@@ -6096,7 +6096,7 @@ d_1   d_2
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.6}Exercise 2.6:}
+\heading{\phantomsection\label{練習問題 2.6}練習問題 2.6:}
 ペアを手続きとして表現するという考え方で頭がごちゃごちゃになっていないとしたら、
 次のようなことを考えてみよう。手続きを扱うことができる言語では、
 (少なくとも、非負整数に関する限りは)数値なしでもやっていける。
@@ -6195,7 +6195,7 @@ Alyssaは、下限と上限という二つの端点を持つ``区間''という�
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.7}Exercise 2.7:}
+\heading{\phantomsection\label{練習問題 2.7}練習問題 2.7:}
 区間の抽象化の実装を規定していないため、Alyssaのプログラムは未完成である。
 区間のコンストラクタの定義は以下のようになる。
 
@@ -6207,13 +6207,13 @@ Alyssaは、下限と上限という二つの端点を持つ``区間''という�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.8}Exercise 2.8:} Alyssaと
+\heading{\phantomsection\label{練習問題 2.8}練習問題 2.8:} Alyssaと
 同じような推論を使って、二つの区間の差をどのように計算するかを記述せよ。
 それに対応する引き算の手続き\code{sub\-/interval}を定義せよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.9}Exercise 2.9:}
+\heading{\phantomsection\label{練習問題 2.9}練習問題 2.9:}
 区間の\jnewterm{幅}(\newterm{width})は、上限と下限の差の半分である。
 幅は、区間によって規定される数値の不確かさの程度である。いくつかの
 数値演算では、二つの区間を組み合わせた結果の幅は、引数の区間の幅のみによる
@@ -6224,7 +6224,7 @@ Alyssaは、下限と上限という二つの端点を持つ``区間''という�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.10}Exercise 2.10:} エキスパートシステム
+\heading{\phantomsection\label{練習問題 2.10}練習問題 2.10:} エキスパートシステム
 プログラマのBen Bitdiddleは、Alyssaの肩越しにのぞいてきて、長さがゼロの
 区間で割るということの意味がはっきりしていないとコメントした。
 Alyssaのコードを修正し、この条件についてチェックして、もしこれが起こればエラーの
@@ -6232,7 +6232,7 @@ Alyssaのコードを修正し、この条件についてチェックして、�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.11}Exercise 2.11:}
+\heading{\phantomsection\label{練習問題 2.11}練習問題 2.11:}
 ついでにBenはまた謎めいたコメントを残した。``区間の両端点の符号をテストすると
 \code{mul\-/interval}は9パターンに場合分けできて、2回以上のかけ算が必要になるのは
 その中のひとつだけだよ。'' Benの提案に従って、この手続きを書き直せ。
@@ -6261,7 +6261,7 @@ Alyssaは自分のデスクに戻って、別のコンストラクタと別の�
 パーセント許容誤差を規定するものです。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.12}Exercise 2.12:}
+\heading{\phantomsection\label{練習問題 2.12}練習問題 2.12:}
 中央値とパーセント許容誤差を取り、求める範囲を返すコンストラクタ
 \code{make\-/center\-/percent}を定義せよ。また、与えられた区間に対して
 パーセント許容誤差を返すセレクタ\code{percent}も定義しなければならない。
@@ -6269,7 +6269,7 @@ Alyssaは自分のデスクに戻って、別のコンストラクタと別の�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.13}Exercise 2.13:}
+\heading{\phantomsection\label{練習問題 2.13}練習問題 2.13:}
 パーセント許容誤差が小さいという前提のもとでは、二つの区間の積のパーセント許容誤差を
 因数の許容誤差の積によって近似する簡単な式が存在することを示せ。
 すべての数値は正であると仮定して問題を単純化してもよい。
@@ -6328,16 +6328,16 @@ Lemは、Alyssaのプログラムが二つの計算方法で違う値を返す�
 これは深刻な苦情です。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.14}Exercise 2.14:}
+\heading{\phantomsection\label{練習問題 2.14}練習問題 2.14:}
 Lemが正しいことを示せ。いろいろな数値演算の式についてこのシステムの挙動を
 調査せよ。何らかの区間\( A \)と\( B \)を作成し、それらを使って
 式\( A /\! A \)と\( A / B \)を計算せよ。中央値に対して小さなパーセンテージの幅を
 持つ区間について調べると得られるところが大きいだろう。中央値-パーセント形式
-(\link{Exercise 2.12}参照)の計算結果を調べよ。
+(\link{練習問題 2.12}参照)の計算結果を調べよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.15}Exercise 2.15:}
+\heading{\phantomsection\label{練習問題 2.15}練習問題 2.15:}
 別のユーザEva Lu Atorも、代数的に等価な異なる式によって計算すると
 異なる区間になることに気がついた。彼女は、不確定な数値を表す変数が
 繰り返し出てこないように書けば、より厳密な誤差限界を返すようにできると言う。
@@ -6346,7 +6346,7 @@ Lemが正しいことを示せ。いろいろな数値演算の式について�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.16}Exercise 2.16:}
+\heading{\phantomsection\label{練習問題 2.16}練習問題 2.16:}
 一般的に、なぜ代数的に等価な式が異なる答えになることがあるのかを説明せよ。
 この欠点のない区間演算パッケージを開発することはできるだろうか。
 または、このタスクは不可能なのだろうか。(警告：この問題はとても難しい)
@@ -6368,7 +6368,7 @@ Lemが正しいことを示せ。いろいろな数値演算の式について�
 が入り、右の箱には\code{cdr}が入ります。
 
 \code{cons}は、数値だけでなくペアも結合できるということについてはすでに見ました
-(\link{Exercise 2.2}と\link{Exercise 2.3}を解く際には、この事実を使ったか、
+(\link{練習問題 2.2}と\link{練習問題 2.3}を解く際には、この事実を使ったか、
 使わざるを得なかったでしょう)。結果として、ペアはどんな種類のデータ構造でも
 構築することができる汎用ブロックとなってくれます。\link{Figure 2.3}は
 ペアを使って数値1, 2, 3, 4を組み合わせる二つの方法を示しています。
@@ -6708,7 +6708,7 @@ Schemeは基本述語\code{null?}を持っています。これは、引数が�
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.17}Exercise 2.17:} 与えられた(空でない)
+\heading{\phantomsection\label{練習問題 2.17}練習問題 2.17:} 与えられた(空でない)
 リストの最後の要素のみを持つリストを返す手続き\code{last\-/pair}を定義せよ。
 
 \begin{scheme}
@@ -6718,7 +6718,7 @@ Schemeは基本述語\code{null?}を持っています。これは、引数が�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.18}Exercise 2.18:}リストを引数として取り、
+\heading{\phantomsection\label{練習問題 2.18}練習問題 2.18:}リストを引数として取り、
 同じ要素を逆順に持つリストを返す手続き\code{reverse}を定義せよ。
 
 \begin{scheme}
@@ -6728,7 +6728,7 @@ Schemeは基本述語\code{null?}を持っています。これは、引数が�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.19}Exercise 2.19:}
+\heading{\phantomsection\label{練習問題 2.19}練習問題 2.19:}
 \link{1.2.2節}の両替パターン数計算プログラムについて考える。
 プログラムで使う通貨を変えられるようにして、例えばイギリスポンドの両替パターン数を
 計算できるようになると便利だろう。現状のプログラムでは、通貨についての知識は
@@ -6777,7 +6777,7 @@ Schemeは基本述語\code{null?}を持っています。これは、引数が�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.20}Exercise 2.20:}
+\heading{\phantomsection\label{練習問題 2.20}練習問題 2.20:}
 手続き\code{+}, \code{*}, \code{list}は任意の数の引数を取る。このような手続きを定義する
 方法のひとつとして、\code{define}で\jnewterm{ドット末尾記法}
 (\newterm{dotted-tail notation})を使うというものがある。手続きの定義の中で、
@@ -6912,7 +6912,7 @@ Schemeは、ここで記述したものよりも汎用的な\code{map}手続き�
 この使い方についてさらに詳しく説明します。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.21}Exercise 2.21:}
+\heading{\phantomsection\label{練習問題 2.21}練習問題 2.21:}
 手続き\code{square\-/list}は、引数として数値のリストを取り、それらの数値の二乗の列を
 持つリストを返す。
 
@@ -6934,8 +6934,8 @@ Schemeは、ここで記述したものよりも汎用的な\code{map}手続き�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.22}Exercise 2.22:}
-Louis Reasonerは\link{Exercise 2.21}の一つ目の\code{square\-/list}手続きを書き直し、
+\heading{\phantomsection\label{練習問題 2.22}練習問題 2.22:}
+Louis Reasonerは\link{練習問題 2.21}の一つ目の\code{square\-/list}手続きを書き直し、
 反復プロセスを展開するようにしようとしている。
 
 \begin{scheme}
@@ -6969,7 +6969,7 @@ Louis Reasonerは\link{Exercise 2.21}の一つ目の\code{square\-/list}手続�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.23}Exercise 2.23:} 手続き
+\heading{\phantomsection\label{練習問題 2.23}練習問題 2.23:} 手続き
 \code{for\-/each}は\code{map}に似ている。引数として手続きと要素のリストを取る。
 しかし、結果のリストを生成するのではなく、\code{for\-/each}は手続きを
 それぞれの要素に左から右に順番に手続きを適用していくだけである。手続きを
@@ -7146,13 +7146,13 @@ Louis Reasonerは\link{Exercise 2.21}の一つ目の\code{square\-/list}手続�
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.24}Exercise 2.24:} 式
+\heading{\phantomsection\label{練習問題 2.24}練習問題 2.24:} 式
 \code{(list 1 (list 2 (list 3 4)))}を評価するとする。インタプリタの表示する
 結果、それに対応する箱-点構造、木としての解釈(\link{Figure 2.6}で示したようなもの)を示せ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.25}Exercise 2.25:}
+\heading{\phantomsection\label{練習問題 2.25}練習問題 2.25:}
 以下のそれぞれのリストから7を取り出す\code{car}と\code{cdr}の組み合わせを書け。
 
 \begin{scheme}
@@ -7163,7 +7163,7 @@ Louis Reasonerは\link{Exercise 2.21}の一つ目の\code{square\-/list}手続�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.26}Exercise 2.26:}
+\heading{\phantomsection\label{練習問題 2.26}練習問題 2.26:}
 二つのリスト\code{x}と\code{y}を定義するとする。
 
 \begin{scheme}
@@ -7181,8 +7181,8 @@ Louis Reasonerは\link{Exercise 2.21}の一つ目の\code{square\-/list}手続�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.27}Exercise 2.27:}
-\link{Exercise 2.18}の\code{reverse}手続きを修正し、\code{deep\-/reverse}という
+\heading{\phantomsection\label{練習問題 2.27}練習問題 2.27:}
+\link{練習問題 2.18}の\code{reverse}手続きを修正し、\code{deep\-/reverse}という
 手続きを書け。\code{deep\-/reverse}は、ひとつのリストを引数として取り、要素が逆順で、
 サブリストもすべて要素が逆順になっているリストを返す手続きである。
 例えば、次のようになる。
@@ -7199,7 +7199,7 @@ x
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.28}Exercise 2.28:}
+\heading{\phantomsection\label{練習問題 2.28}練習問題 2.28:}
 リストとして表現された木を引数として取り、その木のすべての葉を左から右の順で
 要素として持つリストを返す手続き\code{fringe}を書け。例えば、次のようになる。
 
@@ -7213,7 +7213,7 @@ x
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.29}Exercise 2.29:}
+\heading{\phantomsection\label{練習問題 2.29}練習問題 2.29:}
 二枝モビールは、左の枝と右の枝のという二つの枝から構成されている。
 それぞれの枝はある長さを持つ棒で、おもりか別の二進モビールがぶら下がっている。
 二枝モビールは、二つの枝によって構成することで、(例えば\code{list}を使って)
@@ -7303,8 +7303,8 @@ x
 木の操作の多くは、列の操作と再帰を組み合わせて同じように実装することができます。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.30}Exercise 2.30:}
-\link{Exercise 2.21}の\code{square\-/list}と似たような手続き\code{square\-/tree}を
+\heading{\phantomsection\label{練習問題 2.30}練習問題 2.30:}
+\link{練習問題 2.21}の\code{square\-/list}と似たような手続き\code{square\-/tree}を
 定義せよ。
 \code{square\-/tree}は以下のように動作する。
 
@@ -7320,8 +7320,8 @@ x
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.31}Exercise 2.31:} 
-\link{Exercise 2.30}の解答を抽象化し、手続き\code{tree\-/map}を作れ。
+\heading{\phantomsection\label{練習問題 2.31}練習問題 2.31:} 
+\link{練習問題 2.30}の解答を抽象化し、手続き\code{tree\-/map}を作れ。
 \code{square\-/tree}が\code{tree\-/map}によって以下のように定義できるようにせよ。
 
 \begin{scheme}
@@ -7330,7 +7330,7 @@ x
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.32}Exercise 2.32:}
+\heading{\phantomsection\label{練習問題 2.32}練習問題 2.32:}
 集合は、それぞれ異なる要素を持つリストとして表現できる。また、集合の
 すべての部分集合の集合は、リストのリストとして表現できる。例えば、
 集合が\code{(1 2 3)}の場合、すべての部分集合の集合は
@@ -7550,7 +7550,7 @@ the commonality between the two programs.
 \end{scheme}
 
 \noindent
-木の葉の列挙は、次のようにします。\footnote{これは、実際は\link{Exercise 2.28}の
+木の葉の列挙は、次のようにします。\footnote{これは、実際は\link{練習問題 2.28}の
 \code{fringe}手続きそのものです。ここでは、この手続きが汎用的な列操作手続きに
 属するものであることを強調するために名前をつけ替えています。}
 
@@ -7662,7 +7662,7 @@ APLでは、すべてのデータは配列として表され、配列のさま�
 パラダイムを一般化する際に、この能力を利用することになります。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.33}Exercise 2.33:}
+\heading{\phantomsection\label{練習問題 2.33}練習問題 2.33:}
 基本的なリスト操作のいくつかを集積として定義したものを以下に示す。
 欠けている式を埋めて、完成させよ。
 
@@ -7677,7 +7677,7 @@ APLでは、すべてのデータは配列として表され、配列のさま�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.34}Exercise 2.34:} 
+\heading{\phantomsection\label{練習問題 2.34}練習問題 2.34:} 
 ある\( x \)の値によって\( x \)の多項式を評価することは集積として定式化できる。
 次の多項式について考える。
 \begin{comment}
@@ -7731,7 +7731,7 @@ a_n x^n + a_(n-1) x^(n-1) + ... + a_1 x + a_0
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.35}Exercise 2.35:} 
+\heading{\phantomsection\label{練習問題 2.35}練習問題 2.35:} 
 \link{2.2.2節}の\code{count\-/leaves}を集積として再定義せよ。
 
 \begin{scheme}
@@ -7741,7 +7741,7 @@ a_n x^n + a_(n-1) x^(n-1) + ... + a_1 x + a_0
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.36}Exercise 2.36:} 
+\heading{\phantomsection\label{練習問題 2.36}練習問題 2.36:} 
 手続き\code{accumulate\-/n}は\code{accumulate}に似ているが、三番目の引数として
 列の列を取る(要素となる列の長さは一定であるとする)という違いがある。
 この手続きは、指定された集積手続きを適用してそれぞれの列の最初の要素を結合したもの、
@@ -7760,7 +7760,7 @@ a_n x^n + a_(n-1) x^(n-1) + ... + a_1 x + a_0
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.37}Exercise 2.37:}
+\heading{\phantomsection\label{練習問題 2.37}練習問題 2.37:}
 ベクトル\( {\bf v} = (v_i) \)を数値の列として表現し、行列\( {\bf m} = (m_{ij}) \)を
 ベクトル(行列の行)の列として表現するとする。例えば、以下の行列は
 \begin{comment}
@@ -7843,7 +7843,7 @@ a_n x^n + a_(n-1) x^(n-1) + ... + a_1 x + a_0
 
 
 ほかの行列演算を計算する以下の手続きについて、欠けた式を補え
-(手続き\code{accumulate\-/n}は\link{Exercise 2.36}で定義されている)。
+(手続き\code{accumulate\-/n}は\link{練習問題 2.36}で定義されている)。
 
 \begin{scheme}
 (define (matrix-*-vector m v)
@@ -7857,7 +7857,7 @@ a_n x^n + a_(n-1) x^(n-1) + ... + a_1 x + a_0
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.38}Exercise 2.38:} 
+\heading{\phantomsection\label{練習問題 2.38}練習問題 2.38:} 
 \code{accumulate}手続きは、列の最初の要素と、右のすべての要素を組み合わせた結果とを
 組み合わせるため、\code{fold\-/right}としても知られている。\code{fold\-/left}という
 ものもあり、これは\code{fold\-/right}に似ているが、要素の組み合わせを逆方向に
@@ -7888,9 +7888,9 @@ a_n x^n + a_(n-1) x^(n-1) + ... + a_1 x + a_0
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.39}Exercise 2.39:} 
-以下の\code{reverse}(\link{Exercise 2.18})手続きの定義を、
-\link{Exercise 2.38}の\code{fold\-/right}と\code{fold\-/left}によって
+\heading{\phantomsection\label{練習問題 2.39}練習問題 2.39:} 
+以下の\code{reverse}(\link{練習問題 2.18})手続きの定義を、
+\link{練習問題 2.38}の\code{fold\-/right}と\code{fold\-/left}によって
 完成させよ。
 
 \begin{scheme}
@@ -7907,7 +7907,7 @@ a_n x^n + a_(n-1) x^(n-1) + ... + a_1 x + a_0
 多くの計算に適用することができます。
 \footnote{このマップのネストというやり方は、David Turnerによって示されたものです。
 彼が開発した言語のKRCとMirandaでは、これらの概念を扱うエレガントな形式が
-用意されています。この節の例(と\link{Exercise 2.42})は、\link{Turner 1981}を
+用意されています。この節の例(と\link{練習問題 2.42})は、\link{Turner 1981}を
 アレンジしたものです。\link{3.5.3節}では、このやり方が無限の長さの列に対して
 一般化できることを学びます。}次の問題について考えてみましょう。正の整数\( n \)が与えられたとき、\( 1 \le j < i \le n \)で、かつ\( i + j \)が素数となるような異なる正の整数
 \( i \)と\( j \)のすべての順序つきペアを見つけよ。例えば、\( n \)が6のとき、ペアは
@@ -8052,21 +8052,21 @@ $i + j$	& 3 & 5 & 5 & 7 & 7 & 7 & 11 \cr}
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.40}Exercise 2.40:}
+\heading{\phantomsection\label{練習問題 2.40}練習問題 2.40:}
 整数\( n \)に対し、\( 1 \le j < i \le n \)となるペア\( (i, j) \)の列を
 生成する手続き\code{unique\-/pairs}を定義せよ。\code{unique\-/pairs}を使って
 上の\code{prime\-/sum\-/pairs}の定義を簡単にせよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.41}Exercise 2.41:} 
+\heading{\phantomsection\label{練習問題 2.41}練習問題 2.41:} 
 ある整数\( n \)以下の異なる正の整数が大小順に並んだ三つ組
 \( i \), \( j \), \( k \)の中で、合計がある整数\( s \)となるものすべてを
 見つける手続きを書け。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.42}Exercise 2.42:} 
+\heading{\phantomsection\label{練習問題 2.42}練習問題 2.42:} 
 
 \begin{figure}[tb]
 \phantomsection\label{Figure 2.8}
@@ -8149,8 +8149,8 @@ $i + j$	& 3 & 5 & 5 & 7 & 7 & 7 & 11 \cr}
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.43}Exercise 2.43:} 
-Louis Reasonerは\link{Exercise 2.42}を解くのにだいぶ苦労している。
+\heading{\phantomsection\label{練習問題 2.43}練習問題 2.43:} 
+Louis Reasonerは\link{練習問題 2.42}を解くのにだいぶ苦労している。
 彼が書いた\code{queens}手続きは動いてはいるようだが、非常に遅いのだ
 (\( 6\times6 \)の場合でも、Louisは待ちきれなくなってしまう)。
 LouisがEva Lu Atorに見てくれるよう頼むと、彼女はLouisが\code{flatmap}内の
@@ -8165,7 +8165,7 @@ LouisがEva Lu Atorに見てくれるよう頼むと、彼女はLouisが\code{fl
  (enumerate-interval 1 board-size))
 \end{scheme}
 
-逆にするとなぜプログラムの実行が遅くなるのか説明せよ。\link{Exercise 2.42}の
+逆にするとなぜプログラムの実行が遅くなるのか説明せよ。\link{練習問題 2.42}の
 プログラムが8クイーンパズルを解く時間を\( T \)として、Louisのプログラムが
 パズルを解くのにかかる時間を見積もれ。
 \end{quote}
@@ -8412,7 +8412,7 @@ from the \code{wave} painter of \link{Figure 2.10}.
 
 \noindent
 右方向だけでなく上方向にも枝分かれさせることで、バランスの取れたパターンを
-作ることもできます(問題\link{Exercise 2.44}と、図\link{Figure 2.13}・
+作ることもできます(問題\link{練習問題 2.44}と、図\link{Figure 2.13}・
 \link{Figure 2.14}参照)。
 
 \begin{scheme}
@@ -8441,7 +8441,7 @@ from the \code{wave} painter of \link{Figure 2.10}.
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.44}Exercise 2.44:} 
+\heading{\phantomsection\label{練習問題 2.44}練習問題 2.44:} 
 \code{corner\-/split}で使われている\code{up\-/split}手続きを定義せよ。
 \code{right\-/split}に似ているが、\code{below}と\code{beside}の役割を
 入れ替えている。
@@ -8515,8 +8515,8 @@ from the \code{wave} painter of \link{Figure 2.10}.
 
 \noindent
 また、\code{square\-/limit}は次のように表現できます。
-\footnote{\code{Rotate180}はペインタを180度回転するものです(\link{Exercise 2.50}参照)。
-\code{rotate180}の代わりに、\link{Exercise 1.42}の\code{compose}手続きを使って
+\footnote{\code{Rotate180}はペインタを180度回転するものです(\link{練習問題 2.50}参照)。
+\code{rotate180}の代わりに、\link{練習問題 1.42}の\code{compose}手続きを使って
 \code{(compose flip\-/vert flip\-/horiz)}と書くこともできます。
 }
 
@@ -8528,7 +8528,7 @@ from the \code{wave} painter of \link{Figure 2.10}.
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.45}Exercise 2.45:} 
+\heading{\phantomsection\label{練習問題 2.45}練習問題 2.45:} 
 \code{right\-/split}と\code{up\-/split}は、汎用の分割演算の具体例として表現できる。
 以下の式を評価したとき、
 
@@ -8555,7 +8555,7 @@ from the \code{wave} painter of \link{Figure 2.10}.
 ここではまだ特定する必要がありません。三つのベクトルを引数に取り枠を作る
 コンストラクタ\code{make\-/frame}と、それに対応する三つのセレクタ
 \code{origin\-/frame}, \code{edge1\-/frame}, \code{edge2\-/frame}があるという
-だけで十分です(\link{Exercise 2.47}参照)。
+だけで十分です(\link{練習問題 2.47}参照)。
 
 \begin{figure}[tb]
 \phantomsection\label{Figure 2.15}
@@ -8605,7 +8605,7 @@ Origin(Frame) + x * Edge_1(Frame) + y * Edge_2(Frame)
 例えば、(0, 0)は枠の原点に、(1, 1)は原点と対角線上にある頂点に、
 (0.5, 0.5)は枠の中心にマップされます。枠座標マップは次の手続きによって
 作ることができます。
-\footnote{\code{frame\-/coord\-/map}は、後で\link{Exercise 2.46}で記述する
+\footnote{\code{frame\-/coord\-/map}は、後で\link{練習問題 2.46}で記述する
 ベクトル演算を使っています。これらは何らかのベクトルの表現を使って
 実装されているとします。データ抽象化のおかげで、このベクトル表現がどのようなもので
 あるかは、ふるまいさえ正しければ問題になりません。}
@@ -8638,7 +8638,7 @@ Origin(Frame) + x * Edge_1(Frame) + y * Edge_2(Frame)
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.46}Exercise 2.46:} 
+\heading{\phantomsection\label{練習問題 2.46}練習問題 2.46:} 
 原点からある一点に張られる二次元ベクトルは、\( x \)座標と\( y \)座標からなる
 ペアとして表現できる。コンストラクタ\code{make\-/vect}と、それに対応する
 セレクタ\code{xcor\-/vect}, \code{ycor\-/vect}を与え、ベクトルに対する
@@ -8670,7 +8670,7 @@ Origin(Frame) + x * Edge_1(Frame) + y * Edge_2(Frame)
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.47}Exercise 2.47:} 
+\heading{\phantomsection\label{練習問題 2.47}練習問題 2.47:} 
 次に、枠のコンストラクタとして使えるものを二つ挙げる。
 
 \begin{scheme}
@@ -8697,8 +8697,8 @@ Origin(Frame) + x * Edge_1(Frame) + y * Edge_2(Frame)
 すると、\link{Figure 2.10}の\code{wave}ペインタのような線画のペインタは、
 次のような線分のリストから作ることができます。
 \footnote{
-\code{segments\-/>painter}は、後で\link{Exercise 2.48}で記述する線分の表現を
-使っています。また、\link{Exercise 2.23}で記述した\code{for\-/each}手続きも
+\code{segments\-/>painter}は、後で\link{練習問題 2.48}で記述する線分の表現を
+使っています。また、\link{練習問題 2.23}で記述した\code{for\-/each}手続きも
 利用しています。}
 
 \begin{scheme}
@@ -8736,16 +8736,16 @@ Origin(Frame) + x * Edge_1(Frame) + y * Edge_2(Frame)
 表現する二つ目の例となっています。}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.48}Exercise 2.48:} 
+\heading{\phantomsection\label{練習問題 2.48}練習問題 2.48:} 
 平面上の方向つきの線分は、ベクトルのペア---原点から線分の始点へと張られるベクトルと、
-原点から線分の終点へと張られるベクトル---として表現できる。\link{Exercise 2.46}で
+原点から線分の終点へと張られるベクトル---として表現できる。\link{練習問題 2.46}で
 書いたベクトル表現を使って、\code{make\-/segment}というコンストラクタと
 \code{start\-/segment}と\code{end\-/segment}というセレクタによって線分の
 表現を定義せよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.49}Exercise 2.49:} 
+\heading{\phantomsection\label{練習問題 2.49}練習問題 2.49:} 
 \code{segments\-/>painter}を使って、以下の基本ペインタを定義せよ。
 
 \begin{enumerate}[a]
@@ -8878,18 +8878,18 @@ Origin(Frame) + x * Edge_1(Frame) + y * Edge_2(Frame)
 知る必要がありません。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.50}Exercise 2.50:} 
+\heading{\phantomsection\label{練習問題 2.50}練習問題 2.50:} 
 ペインタを左右逆にする変換\code{flip\-/horiz}、ペインタを反時計回りに
 180度、270度回転させる変換を定義せよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.51}Exercise 2.51:} 
+\heading{\phantomsection\label{練習問題 2.51}練習問題 2.51:} 
 ペインタに対する\code{below}演算を定義せよ。\code{below}は二つのペインタを引数に取る。
 返り値となるペインタは、枠が与えられたとき、一つ目のペインタで枠の下部を描画し、
 二つ目のペインタで上部を描画する。二つのやり方で\code{below}を定義せよ。
 一つ目は、上に示した\code{beside}手続きと似たような手続きを書くというもので、
-二つ目は、\code{beside}と適切な回転演算(\link{Exercise 2.50}のもの)によって
+二つ目は、\code{beside}と適切な回転演算(\link{練習問題 2.50}のもの)によって
 定義するというものである。
 \end{quote}
 
@@ -8939,14 +8939,14 @@ Origin(Frame) + x * Edge_1(Frame) + y * Edge_2(Frame)
 異なる語彙を提供し、システムを変更するための異なる能力を提供します。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.52}Exercise 2.52:} 
+\heading{\phantomsection\label{練習問題 2.52}練習問題 2.52:} 
 上で述べた各レベルに手を加え、\link{Figure 2.9}に示した\code{wave}による
 square-limitを変更せよ。具体的には、次のようなものである。
 
 \begin{enumerate}[a]
 
 \item
-\link{Exercise 2.49}の\code{wave}基本ペインタに線分をいくつか加えよ
+\link{練習問題 2.49}の\code{wave}基本ペインタに線分をいくつか加えよ
 (例えば、笑顔を追加するなど)。
 
 \item
@@ -9109,7 +9109,7 @@ square-limitを変更せよ。具体的には、次のようなものである�
 \noindent
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.53}Exercise 2.53:} 
+\heading{\phantomsection\label{練習問題 2.53}練習問題 2.53:} 
 以下の式をそれぞれ評価したとき、それらに対してインタプリタは何を表示するか。
 
 \begin{scheme}
@@ -9124,7 +9124,7 @@ square-limitを変更せよ。具体的には、次のようなものである�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.54}Exercise 2.54:} 
+\heading{\phantomsection\label{練習問題 2.54}練習問題 2.54:} 
 二つのリストは、同じ要素を同じ順番で持つときに\code{equal?}であると言える。
 例えば、
 
@@ -9155,7 +9155,7 @@ square-limitを変更せよ。具体的には、次のようなものである�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.55}Exercise 2.55:} 
+\heading{\phantomsection\label{練習問題 2.55}練習問題 2.55:} 
 Eva Lu Atorはインタプリタに次の式を入力した。
 
 \begin{scheme}
@@ -9448,7 +9448,7 @@ d(xy)
 そうではないということがありうるため、複雑なものになっています。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.56}Exercise 2.56:} 
+\heading{\phantomsection\label{練習問題 2.56}練習問題 2.56:} 
 より多くの種類の式を扱えるようにこの基本的な微分プログラムを拡張するには
 どうすればよいかを示せ。例えば、次の微分規則を実装せよ。
 \begin{comment}
@@ -9470,7 +9470,7 @@ d(u^n)            du
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.57}Exercise 2.57:} 
+\heading{\phantomsection\label{練習問題 2.57}練習問題 2.57:} 
 微分プログラムを拡張し、(2以上の)任意の数の項の和と積を扱えるようにせよ。
 すると上の最後の例は以下のように表現できる。
 
@@ -9484,7 +9484,7 @@ d(u^n)            du
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.58}Exercise 2.58:} 
+\heading{\phantomsection\label{練習問題 2.58}練習問題 2.58:} 
 微分プログラムを修正して、\code{+}と\code{*}が前置演算子ではなく中置演算子となるような、
 通常の数学の記法に対して動作させたいとする。微分プログラムは抽象データによって定義されて
 いるので、微分プログラムの動作基盤となる代数式の表現を定義する述語、セレクタ、コンストラクタを
@@ -9607,12 +9607,12 @@ d(u^n)            du
 同じことが言えます。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.59}Exercise 2.59:} 
+\heading{\phantomsection\label{練習問題 2.59}練習問題 2.59:} 
 順序なしリストとして表現した集合に対する\code{union\-/set}演算を実装せよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.60}Exercise 2.60:}
+\heading{\phantomsection\label{練習問題 2.60}練習問題 2.60:}
 上の例では、集合は重複のないリストとして表現するよう規定した。ここで、重複を許す
 場合について考えてみよう。その場合、例えば\( \{1, 2, 3\} \)という集合は
 \code{(2 3 2 1 3 2 2)}というリストとして表現することもできる。この表現に対して
@@ -9696,14 +9696,14 @@ d(u^n)            du
 ことで、そこそこの大きさの集合に対してもかなりの高速化になります。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.61}Exercise 2.61:} 
+\heading{\phantomsection\label{練習問題 2.61}練習問題 2.61:} 
 順序つき表現を使った\code{adjoin\-/set}を実装せよ。\code{element\-/of\-/set?}から
 類推して、順序つきであることの利点を生かして、順序なしの表現に比べて平均的に半分の
 ステップを必要とする手続きを作るやり方を示せ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.62}Exercise 2.62:} 
+\heading{\phantomsection\label{練習問題 2.62}練習問題 2.62:} 
 順序つきリストとして表現された集合に対して、\code{union\-/set}を\( \Theta(n) \)で
 実装せよ。
 \end{quote}
@@ -9862,7 +9862,7 @@ d(u^n)            du
 \end{figure}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.63}Exercise 2.63:} 
+\heading{\phantomsection\label{練習問題 2.63}練習問題 2.63:} 
 次の二つの手続きは、どちらも二分木をリストに変換する。
 以下の2つの手続きはそれぞれ二分木をリストに変換する。
 
@@ -9901,7 +9901,7 @@ d(u^n)            du
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.64}Exercise 2.64:} 
+\heading{\phantomsection\label{練習問題 2.64}練習問題 2.64:} 
 次の手続き\code{list\-/>tree}は、順序つきリストをバランスの取れた木に変換する。
 補助手続き\code{partial\-/tree}は、整数\( n \)と、少なくとも\( n \)個の要素を
 持つリストを引数に取り、リストの最初の\( n \)個の要素を含むバランスの取れた木を
@@ -9948,11 +9948,11 @@ d(u^n)            du
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.65}Exercise 2.65:} 
-\link{Exercise 2.63}と\link{Exercise 2.64}の結果を使って、集合を
+\heading{\phantomsection\label{練習問題 2.65}練習問題 2.65:} 
+\link{練習問題 2.63}と\link{練習問題 2.64}の結果を使って、集合を
 (バランスの取れた)二分木として\( \Theta(n) \)で実装せよ。
 \footnote{
-\link{Exercise 2.63}から\link{Exercise 2.65}まではPaul Hilfingerによるものである。}
+\link{練習問題 2.63}から\link{練習問題 2.65}まではPaul Hilfingerによるものである。}
 \end{quote}
 
 \subsubsection*{集合と情報検索}
@@ -10003,7 +10003,7 @@ d(u^n)            du
 残りの部分には修正の必要がないはずです。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.66}Exercise 2.66:}
+\heading{\phantomsection\label{練習問題 2.66}練習問題 2.66:}
 
 レコードの集合が、キーの数値の大小によって順序づけられた二分木という構造に
 なっている場合について、\code{lookup}手続きを実装せよ。
@@ -10277,7 +10277,7 @@ merge
 
 葉と木の集合は、重みの昇順に配置した要素のリストとして表現することにします。
 以下の\code{adjoin\-/set}手続きは集合を構築するためのものですが、これは
-\link{Exercise 2.61}で説明したものと似ています。しかし、項目の比較は重みによって
+\link{練習問題 2.61}で説明したものと似ています。しかし、項目の比較は重みによって
 行い、また追加する要素がすでに集合にあるということはありません。
 
 \begin{scheme}
@@ -10305,7 +10305,7 @@ merge
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.67}Exercise 2.67:} 
+\heading{\phantomsection\label{練習問題 2.67}練習問題 2.67:} 
 符号化木とサンプルメッセージを次のように定義する。
 
 \begin{scheme}
@@ -10322,7 +10322,7 @@ merge
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.68}Exercise 2.68:} 
+\heading{\phantomsection\label{練習問題 2.68}練習問題 2.68:} 
 \code{encode}手続きは、引数としてメッセージと木を取り、メッセージを符号化した
 ビットのリストを返す。
 
@@ -10336,13 +10336,13 @@ merge
 
 \code{encode\-/symbol}は、与えられた木に従って与えられた記号を符号化したビット列を
 返す。この手続きを書け。記号が木に含まれていなければエラーを出すように
-\code{encode\-/symbol}を設計せよ。\link{Exercise 2.67}で得た結果をサンプルの木を
+\code{encode\-/symbol}を設計せよ。\link{練習問題 2.67}で得た結果をサンプルの木を
 使って符号化し、それが元のサンプルメッセージと同じになるかどうか確認して、書いた
 手続きをテストせよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.69}Exercise 2.69:} 
+\heading{\phantomsection\label{練習問題 2.69}練習問題 2.69:} 
 以下の手続きは、引数として記号・頻度ペアのリスト(同じ記号が二つ以上のペアに
 出てくることはない)を取り、ハフマンアルゴリズムに従ってハフマン符号化木を
 生成する。
@@ -10361,7 +10361,7 @@ merge
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.70}Exercise 2.70:}
+\heading{\phantomsection\label{練習問題 2.70}練習問題 2.70:}
 以下に示す8記号の相対頻度つきアルファベットは、1950年代のロックの歌詞を効率よく
 符号化できるよう設計されたものである(``アルファベット''の``記号''が単独の文字で
 あるとは限らないことに注意)。
@@ -10372,8 +10372,8 @@ BOOM 1   JOB 2   NA 16   YIP 9
 \end{example}
 
 
-\code{generate\-/huffman\-/tree}(\link{Exercise 2.69})を使って対応するハフマン木を
-生成し、\code{encode} (\link{Exercise 2.68})を使って次のメッセージを符号化せよ。
+\code{generate\-/huffman\-/tree}(\link{練習問題 2.69})を使って対応するハフマン木を
+生成し、\code{encode} (\link{練習問題 2.68})を使って次のメッセージを符号化せよ。
 
 \begin{example}
 Get a job
@@ -10389,7 +10389,7 @@ Sha boom
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.71}Exercise 2.71:} 
+\heading{\phantomsection\label{練習問題 2.71}練習問題 2.71:} 
 \( n \)記号のアルファベットに対するハフマン木があり、記号の相対頻度は
 \( 1, 2, 4, \dots, 2^{n-1} \)であるとする。\( n=5 \)、\( n=10 \)の場合の
 木をスケッチせよ。そのような木では、(一般の\( n \)について)最も頻度の高い
@@ -10398,12 +10398,12 @@ Sha boom
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.72}Exercise 2.72:} 
-\link{Exercise 2.68}で設計した符号化手続きについて考える。ひとつの記号を符号化する
+\heading{\phantomsection\label{練習問題 2.72}練習問題 2.72:} 
+\link{練習問題 2.68}で設計した符号化手続きについて考える。ひとつの記号を符号化する
 のに必要なステップ数の増加オーダーはどのようになるだろうか。各ノードに着くたびに
 記号リストを検索するのに必要なステップ数を含めることを忘れないように。この問題の
 一般の場合について答えることは難しい。ここでは、\( n \)記号の相対頻度が
-\link{Exercise 2.71}のようになっている特別な場合について考えよう。アルファベット中で
+\link{練習問題 2.71}のようになっている特別な場合について考えよう。アルファベット中で
 頻度が最大の記号と最小の記号を符号化するのにかかるステップ数の増加オーダーを
 (\( n \)の関数として)答えよ。
 \end{quote}
@@ -11127,7 +11127,7 @@ BenとAlyssaは、相手のものと同じ名前(例えば、\code{real\-/part}�
 \code{apply\-/generic}は、テーブルから演算の名前と引数の型に対応する箇所を検索し、
 手続きがあればそれを適用します。
 \footnote{
-\code{apply\-/generic}は、\link{Exercise 2.20}で説明したドット末尾記法を使います。
+\code{apply\-/generic}は、\link{練習問題 2.20}で説明したドット末尾記法を使います。
 それぞれのジェネリック演算が取る引数の数は違うかもしれないからです。
 \code{apply\-/generic}では、\code{op}は\code{apply\-/generic}の第一引数を値として
 持ち、\code{args}は残りの引数のリストを値として持ちます。
@@ -11182,7 +11182,7 @@ BenとAlyssaは、相手のものと同じ名前(例えば、\code{real\-/part}�
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.73}Exercise 2.73:} 
+\heading{\phantomsection\label{練習問題 2.73}練習問題 2.73:} 
 \link{2.3.2節}では、記号微分を行うプログラムについて説明した。
 
 \begin{scheme}
@@ -11232,7 +11232,7 @@ BenとAlyssaは、相手のものと同じ名前(例えば、\code{real\-/part}�
 補助コードを書け。
 
 \item
-任意の微分規則(例えば、\link{Exercise 2.56}の指数の微分など)を選び、それを
+任意の微分規則(例えば、\link{練習問題 2.56}の指数の微分など)を選び、それを
 このデータ主導システムに組み込め。
 
 \item
@@ -11250,7 +11250,7 @@ BenとAlyssaは、相手のものと同じ名前(例えば、\code{real\-/part}�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.74}Exercise 2.74:} 
+\heading{\phantomsection\label{練習問題 2.74}練習問題 2.74:} 
 Insatiable Enterprises, Inc.(貪欲エンタープライズ社)は、世界中に散らばった多数の
 独立事業所からなる分散型複合企業である。この会社のコンピュータ設備は、どのユーザから
 見てもネットワーク全体がひとつのコンピュータのように見えるような巧妙なネットワーク
@@ -11352,13 +11352,13 @@ Insatiable Enterprises, Inc.(貪欲エンタープライズ社)は、世界中�
 いきます。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.75}Exercise 2.75:} 
+\heading{\phantomsection\label{練習問題 2.75}練習問題 2.75:} 
 コンストラクタ\code{make\-/from\-/mag\-/ang}をメッセージパッシングスタイルで実装せよ。
 この手続きは、上で与えた\code{make\-/from\-/real\-/imag}と似たようなものになるだろう。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.76}Exercise 2.76:} 
+\heading{\phantomsection\label{練習問題 2.76}練習問題 2.76:} 
 ジェネリック演算を使った大きなシステムが発展するにつれ、新しいデータオブジェクトの型や
 新しい演算が必要になることがある。三つの戦略(明示的ディスパッチによるジェネリック演算、
 データ主導スタイル、メッセージパッシングスタイル)それぞれについて、新しい型や新しい
@@ -11619,7 +11619,7 @@ scheme-numberパッケージのユーザは、次の手続きによって(タグ
 単に\code{add}, \code{sub}, \code{mul}, \code{div}という名前をつけていたとしても大丈夫です。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.77}Exercise 2.77:} 
+\heading{\phantomsection\label{練習問題 2.77}練習問題 2.77:} 
 Louis Reasonerは、式\code{(magnitude z)}を評価しようとした。ここで、\code{z}は
 \link{Figure 2.24}に示したオブジェクトである。驚いたことに、5という答えが返ってくるのでは
 なく、\code{apply\-/generic}からのエラーメッセージが返ってきて、型\code{(complex)}には
@@ -11642,7 +11642,7 @@ Louis Reasonerは、式\code{(magnitude z)}を評価しようとした。ここ�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.78}Exercise 2.78:} 
+\heading{\phantomsection\label{練習問題 2.78}練習問題 2.78:} 
 \code{scheme\-/number}パッケージの内部手続きは、本質的に基本手続き\code{+}, \code{-}
 その他に対する呼び出しでしかない。ここでのタイプタグシステムでは、各データオブジェクトに
 型がくっついていないといけないようになっていたので、直接この言語の基本手続きを使う
@@ -11656,14 +11656,14 @@ Louis Reasonerは、式\code{(magnitude z)}を評価しようとした。ここ�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.79}Exercise 2.79:}
+\heading{\phantomsection\label{練習問題 2.79}練習問題 2.79:}
 二つの数値の等価性をテストするジェネリックな等価性述語\code{equ?}を定義し、
 ジェネリック算術演算パッケージに組み込め。この演算は、通常の数値、有理数、複素数に対して
 動作しなければならない。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.80}Exercise 2.80:} 
+\heading{\phantomsection\label{練習問題 2.80}練習問題 2.80:} 
 引数が0であるかテストするジェネリックな述語\code{=zero?}を定義し、ジェネリック算術
 演算パッケージに組み込め。この演算は、通常の数値、有理数、複素数に対して動作しなければ
 ならない。
@@ -11759,7 +11759,7 @@ Louis Reasonerは、式\code{(magnitude z)}を評価しようとした。ここ�
 適用することを求められたら、最初はこれまでと同じように引数の型に対して演算が定義されて
 いるかどうかチェックします。定義されていれば、演算-型テーブルで見つかった手続きに
 ディスパッチします。定義されていなければ、強制型変換を試みます。簡単にするために、
-ここでは引数が二つの場合だけを考えます。\footnote{一般化については\link{Exercise 2.82}を
+ここでは引数が二つの場合だけを考えます。\footnote{一般化については\link{練習問題 2.82}を
 参照。}強制型変換テーブルを見て、一つ目の型のオブジェクトが二つ目の型に強制型変換可能か
 どうか確認します。可能であれば、一つ目の引数を強制型変換し、もう一度演算を試みます。
 もし一つ目の型のオブジェクトが二つ目の型に一般的に強制型変換できないのであれば、逆に
@@ -11863,7 +11863,7 @@ integer
 対して、その型のオブジェクトをタワーの一階上に``上げる''\code{raise}という手続きを用意
 します。こうすると、システムが異なる型のオブジェクトの演算を行うよう求められたとき、
 すべてのオブジェクトが塔の同じ階に揃うようになるまで低い型を連続して上げていくという
-ことができるようになります(\link{Exercise 2.83}と\link{Exercise 2.84}は、そのような
+ことができるようになります(\link{練習問題 2.83}と\link{練習問題 2.84}は、そのような
 戦略の実装の詳細に関係するものです)。
 
 タワーの別の利点として、すべての型がスーパータイプに定義されたすべての演算を
@@ -11879,7 +11879,7 @@ integer
 より一般的な階層に対してのタワーのもう一つの利点は、データオブジェクトを最も単純な
 表現に``下げる''ことが簡単にできるということがあります。例えば、\( 2 + 3i \)と
 \( 4 - 3i \)を足す場合、複素数\( 6 + 0i \)という形で答えを得るよりも、整数の6という
-答えを得るほうがいいでしょう。\link{Exercise 2.85}では、そのようなレベル下げ演算に
+答えを得るほうがいいでしょう。\link{練習問題 2.85}では、そのようなレベル下げ演算に
 ついて検討します(注意すべきところは、レベル下げが可能な\( 6 + 0i \)のような
 オブジェクトと、レベル下げが不可能な\( 6 + 2i \)のようなオブジェクトを見分ける
 一般的な方法が必要だというところです)。
@@ -11949,7 +11949,7 @@ triangle      right          |       \    |
 \end{figure}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.81}Exercise 2.81:} 
+\heading{\phantomsection\label{練習問題 2.81}練習問題 2.81:} 
 Louis Reasonerは、引数の型がすでに同じであっても、\code{apply\-/generic}は引数を
 お互いの型に強制型変換しようとしてもいいのではないかと気がついた。そのため、
 それぞれの型の引数をそれ自身の型に\jnewterm{強制型変換}(\newterm{coerce})する
@@ -12004,7 +12004,7 @@ Louisの考え方は正しいだろうか。それとも、\code{apply\-/generic
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.82}Exercise 2.82:} 
+\heading{\phantomsection\label{練習問題 2.82}練習問題 2.82:} 
 \code{apply\-/generic}を一般化し、複数の引数一般について強制型変換を扱うようにする
 やり方を示せ。戦略のひとつとしては、すべての引数を一つ目の引数の型に強制型変換する
 ことを試み、次に二つ目の引数の型に強制型変換することを試み、ということを続けるという
@@ -12014,7 +12014,7 @@ Louisの考え方は正しいだろうか。それとも、\code{apply\-/generic
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.83}Exercise 2.83:} 
+\heading{\phantomsection\label{練習問題 2.83}練習問題 2.83:} 
 \link{Figure 2.25}に示した型のタワー(整数、有理数、実数、複素数)を扱う
 ジェネリック算術演算システムを設計しているとする。それぞれの型(複素数を除く)に対し、
 その型のオブジェクトをタワーの中で一階上げる手続きを設計せよ。それぞれの型
@@ -12023,8 +12023,8 @@ Louisの考え方は正しいだろうか。それとも、\code{apply\-/generic
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.84}Exercise 2.84:} 
-\link{Exercise 2.83}の\code{raise}演算を使って\code{apply\-/generic}手続きを修正して、
+\heading{\phantomsection\label{練習問題 2.84}練習問題 2.84:} 
+\link{練習問題 2.83}の\code{raise}演算を使って\code{apply\-/generic}手続きを修正して、
 この節で検討した通り、連続して``上げる''という方法によって引数が同じ型を持つよう
 強制型変換を行うようにせよ。二つの型のどちらがタワーの中で高い位置にあるかを
 テストする方法を考える必要がある。システムのほかの部分と``互換性がある''ようなやり方で
@@ -12032,9 +12032,9 @@ Louisの考え方は正しいだろうか。それとも、\code{apply\-/generic
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.85}Exercise 2.85:} 
+\heading{\phantomsection\label{練習問題 2.85}練習問題 2.85:} 
 この節では、あるデータオブジェクトを型のタワーの中で可能な限り下げていくことによって
-``単純化''するという方法について触れた。\link{Exercise 2.83}で述べたタワーについて、
+``単純化''するという方法について触れた。\link{練習問題 2.83}で述べたタワーについて、
 これを実行する手続き\code{drop}を設計せよ。ポイントは、オブジェクトを下げることが
 できるかどうかを何らかの汎用的なやり方で決めるということにある。例えば、複素数
 \( 1.5 + 0i \)は\code{real}まで下げることができ、複素数\( 1 + 0i \)は
@@ -12048,13 +12048,13 @@ Louisの考え方は正しいだろうか。それとも、\code{apply\-/generic
 やり方を詳しく示せ。いろいろな射影演算を設計し
 \footnote{実数は、引数に最も近い整数を返す基本手続き\code{round}を使って整数に射影
 できる。}、\code{project}をジェネリック演算としてシステムに組み込むことが必要になる。
-また、\link{Exercise 2.79}で述べたジェネリック等価性述語を利用することも必要となる。
-最後に、\code{drop}を使って\link{Exercise 2.84}の\code{apply\-/generic}を書き直し、
+また、\link{練習問題 2.79}で述べたジェネリック等価性述語を利用することも必要となる。
+最後に、\code{drop}を使って\link{練習問題 2.84}の\code{apply\-/generic}を書き直し、
 解答を``単純化''するようにせよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.86}Exercise 2.86:}
+\heading{\phantomsection\label{練習問題 2.86}練習問題 2.86:}
 複素数の実部、虚部、絶対値、偏角に、通常の数値や有理数や、これからシステムに
 追加するその他の数値を使えるようにしたいとする。そのような複素数を使えるように
 するために、システムにどのような変更を加える必要があるか説明し、それを実装せよ。
@@ -12229,7 +12229,7 @@ polyの加算と乗算を定義するものです。
 項と項リストがデータ抽象として捉えられるようになり、具体的な表現は別に考えることができます。
 
 以下は、二つの多項式の和となる項リストを構築する手続きです。\footnote{
-この演算は、\link{Exercise 2.62}で開発した\code{union\-/set}演算にとても似ています。
+この演算は、\link{練習問題 2.62}で開発した\code{union\-/set}演算にとても似ています。
 実際、不定元の指数の順に並べた集合として多項式の項を考えると、和の項リストを生成する
 プログラムは\code{union\-/set}とほとんど同じものになります。}
 
@@ -12381,7 +12381,7 @@ B : x^100 + 2x^2 + 1
 \( A \)は、\code{(1 2 0 3 -2 -5)}という形でうまく表現できます。この表現では、
 その項の係数から始まるサブリストの長さから1を引いたものになります。
 \footnote{
-これらの多項式の例では、\link{Exercise 2.78}で提案したような型メカニズムを使って
+これらの多項式の例では、\link{練習問題 2.78}で提案したような型メカニズムを使って
 ジェネリック算術演算システムを実装していると想定しています。つまり、通常の数値の係数は、
 \code{car}が記号\code{scheme\-/number}であるペアとしてではなく、数値そのものによって
 表現されているということです。}
@@ -12397,7 +12397,7 @@ B : x^100 + 2x^2 + 1
 既存の項リストに単純に\code{cons}するようになっています。\code{adjoin\-/term}を使う手続き
 (\code{add\-/terms}など)がこの手続きを呼ぶ際に、リスト内のものよりも高次の項を引数として
 呼び出しを行うということを保証するなら、このままでも問題はありません。そのような保証を
-したくなければ、順序つきリストとしての集合の表現(\link{Exercise 2.61})に対する
+したくなければ、順序つきリストとしての集合の表現(\link{練習問題 2.61})に対する
 \code{adjoin\-/set}に近い形で\code{adjoin\-/term}を実装することもできます。}
 
 \begin{scheme}
@@ -12417,7 +12417,7 @@ B : x^100 + 2x^2 + 1
 \end{scheme}
 
 \noindent
-\code{=zero?}は\link{Exercise 2.80}で定義したものです(下の\link{Exercise 2.87}も参照)。
+\code{=zero?}は\link{練習問題 2.80}で定義したものです(下の\link{練習問題 2.87}も参照)。
 
 多項式パッケージのユーザは、(タグつきの)多項式を次の手続きによって作成します。
 
@@ -12427,24 +12427,24 @@ B : x^100 + 2x^2 + 1
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.87}Exercise 2.87:} 
+\heading{\phantomsection\label{練習問題 2.87}練習問題 2.87:} 
 多項式に対する\code{=zero?}をジェネリック数値演算パッケージに組み込め。こうすることで、
 係数がそれ自身多項式となっている多項式に対して\code{adjoin\-/term}が動作するようになる。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.88}Exercise 2.88:} 
+\heading{\phantomsection\label{練習問題 2.88}練習問題 2.88:} 
 多項式システムを拡張し、多項式の減算ができるようにせよ(ヒント：ジェネリックな符号反転演算を
 定義するといいかもしれない)。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.89}Exercise 2.89:} 
+\heading{\phantomsection\label{練習問題 2.89}練習問題 2.89:} 
 密な多項式に適していると上で述べた項リスト表現を実装する手続きを定義せよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.90}Exercise 2.90:} 
+\heading{\phantomsection\label{練習問題 2.90}練習問題 2.90:} 
 疎な多項式と密な多項式の両方に対して効率的な多項式システムを作りたいとする。
 そのためのひとつの方法は、システム内でどちらの項リスト表現も使えるようにするということで
 ある。この状況は\link{2.4節}の複素数の例と似ている。そのときは直行形式と極形式の
@@ -12456,7 +12456,7 @@ B : x^100 + 2x^2 + 1
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.91}Exercise 2.91:} 
+\heading{\phantomsection\label{練習問題 2.91}練習問題 2.91:} 
 1変数多項式は、別の1変数多項式によって割ることができる。商と剰余は多項式となる。例えば、
 次のようになる
 \begin{comment}
@@ -12540,7 +12540,7 @@ x^2 - 1
 支える強力な構造化とモジュール化の原則を与えてくれます。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.92}Exercise 2.92:}
+\heading{\phantomsection\label{練習問題 2.92}練習問題 2.92:}
 変数に順番をつけることによって、異なる変数の多項式同士の加算と乗算が動作するよう
 多項式パッケージを拡張せよ。(これは簡単ではない!)
 \end{quote}
@@ -12584,7 +12584,7 @@ x^3 - 1   x^2 - 1    x^4 + x^3 - x - 1
 分数を既約にするという問題を除いて、望むことができるようになります。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.93}Exercise 2.93:} 
+\heading{\phantomsection\label{練習問題 2.93}練習問題 2.93:} 
 有理数算術演算パッケージを修正し、ジェネリック演算を使うようにせよ。
 しかし、\code{make\-/rat}は分数を既約にしようと試みないように変更せよ。
 \code{make\-/rational}を二つの多項式に対して呼び出し有理関数を作ることで、
@@ -12637,11 +12637,11 @@ x^3 - 1   x^2 - 1    x^4 + x^3 - x - 1
 \end{scheme}
 
 \noindent
-ここでの\code{remainder\-/terms}は、\link{Exercise 2.91}で実装した項リスト除算演算
+ここでの\code{remainder\-/terms}は、\link{練習問題 2.91}で実装した項リスト除算演算
 \code{div\-/terms}が返すリストから、剰余の部分を取り出すものです。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.94}Exercise 2.94:} 
+\heading{\phantomsection\label{練習問題 2.94}練習問題 2.94:} 
 \code{div\-/terms}を使って手続き\code{remainder\-/terms}を実装し、それを使って
 \code{gcd\-/terms}を上記のように定義せよ。次に、二つの多項式に対して
 多項式\acronym{GCD}を求める手続き\code{gcd\-/poly}を書け(この手続きは、
@@ -12663,7 +12663,7 @@ x^3 - 1   x^2 - 1    x^4 + x^3 - x - 1
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.95}Exercise 2.95:} 
+\heading{\phantomsection\label{練習問題 2.95}練習問題 2.95:} 
 以下の多項式\( P_1 \), \( P_2 \), \( P_3 \)を定義せよ。
 \begin{comment}
 
@@ -12689,7 +12689,7 @@ P_3 : 13x + 5
 \end{array}
 \end{displaymath}
 次に、\( P_1 \)と\( P_2 \)の積\( Q_1 \)、\( P_1 \)と\( P_3 \)の積\( Q_2 \)を定義し、
-\code{greatest\-/common\-/divisor}(\link{Exercise 2.94})を使って\( Q_1 \)と\( Q_2 \)
+\code{greatest\-/common\-/divisor}(\link{練習問題 2.94})を使って\( Q_1 \)と\( Q_2 \)
 の\acronym{GCD}を求めよ。答えが\( P_1 \)と同じにならないことに注意せよ。この例では
 計算に非整数演算の演算が絡んでくるので、\acronym{GCD}アルゴリズムが困難になっている。
 \footnote{
@@ -12701,7 +12701,7 @@ P_3 : 13x + 5
 \end{quote}
 
 \noindent
-\link{Exercise 2.95}で出てきた問題は、以下のように\acronym{GCD}アルゴリズムを修正すると
+\link{練習問題 2.95}で出てきた問題は、以下のように\acronym{GCD}アルゴリズムを修正すると
 解決できます(これは、実際には整数係数の多項式の場合にしか動作しません)。\acronym{GCD}
 計算で多項式の除算を行う前にはいつも、除算過程で分数が現れないことを保証するように選んだ
 整数定数を被除数にかけるようにします。こうすると、答えは実際の\acronym{GCD}と整数定数
@@ -12718,14 +12718,14 @@ P_3 : 13x + 5
 \jnewterm{擬剰余}(\newterm{pseudoremainder})と呼ばれます。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.96}Exercise 2.96:}
+\heading{\phantomsection\label{練習問題 2.96}練習問題 2.96:}
 \begin{enumerate}[a]
 
 \item
 手続き\code{pseudoremainder\-/terms}を実装せよ。これは\code{remainder\-/terms}と
 同じようなものになるが、\code{div\-/terms}を呼ぶ前に、上で述べた整数化因数を被除数に
 かけるというところが違う。\code{gcd\-/terms}を修正して\code{pseudoremainder\-/terms}を
-使うようにし、\code{greatest\-/common\-/divisor}が\link{Exercise 2.95}の例に対して
+使うようにし、\code{greatest\-/common\-/divisor}が\link{練習問題 2.95}の例に対して
 整数係数の答えを返すようになっていることを確認せよ。
 
 \item
@@ -12741,7 +12741,7 @@ P_3 : 13x + 5
 \begin{itemize}
 
 \item
-\link{Exercise 2.96}版の\code{gcd\-/terms}を使って、分子と分母の\acronym{GCD}を
+\link{練習問題 2.96}版の\code{gcd\-/terms}を使って、分子と分母の\acronym{GCD}を
 求める。
 
 \item
@@ -12760,7 +12760,7 @@ P_3 : 13x + 5
 \end{itemize}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 2.97}Exercise 2.97:}
+\heading{\phantomsection\label{練習問題 2.97}練習問題 2.97:}
 \begin{enumerate}[a]
 
 \item
@@ -13072,7 +13072,7 @@ Schemeでは手続きの本体として式の連続が使えるので、すで�
 \footnote{
 上の\code{new\-/withdraw}とは違い、\code{balance}をローカル変数にするために\code{let}を使う
 必要はありません。仮引数は元々ローカルだからです。このことは、\link{3.2節}で評価の
-環境モデルについて検討すると、よりはっきりします(\link{Exercise 3.10}も参照)。
+環境モデルについて検討すると、よりはっきりします(\link{練習問題 3.10}も参照)。
 }
 
 \begin{scheme}
@@ -13166,7 +13166,7 @@ Schemeでは手続きの本体として式の連続が使えるので、すで�
 完全に別の口座オブジェクトを作り、自分のローカルな\code{balance}を保持します。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.1}Exercise 3.1:} 
+\heading{\phantomsection\label{練習問題 3.1}練習問題 3.1:} 
 \newterm{accumulator}は、ひとつの数値引数で繰り返し呼ばれる手続きで、引数を合計に集積していく。
 呼び出されるたびに現在までに集積された合計を返す。それぞれ独立した合計を持つアキュムレータを
 返す手続き\code{make\-/accumulator}を書け。\code{make\-/accumulator}への入力は、合計の初期値を
@@ -13182,7 +13182,7 @@ Schemeでは手続きの本体として式の連続が使えるので、すで�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.2}Exercise 3.2:}
+\heading{\phantomsection\label{練習問題 3.2}練習問題 3.2:}
 ソフトウェアをテストするアプリケーションでは、計算の過程で、ある手続きが何回呼ばれたかを
 数えられると便利だ。一引数の手続き\code{f}を入力として取る手続き\code{make\-/monitored}を書け。
 \code{make\-/monitored}が返すのは第三の手続き(仮に\code{mf}とする)で、この手続きは内部カウンタを
@@ -13202,7 +13202,7 @@ Schemeでは手続きの本体として式の連続が使えるので、すで�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.3}Exercise 3.3:} 
+\heading{\phantomsection\label{練習問題 3.3}練習問題 3.3:} 
 \code{make\-/account}手続きを修正し、パスワードで守られた口座を作成するようにせよ。
 具体的には、次のように\code{make\-/account}が追加の引数としてひとつの記号を取るようにする。
 
@@ -13222,8 +13222,8 @@ Schemeでは手続きの本体として式の連続が使えるので、すで�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.4}Exercise 3.4:} 
-\link{Exercise 3.3}の\code{make\-/account}手続きを変更して別のローカル状態変数を追加し、
+\heading{\phantomsection\label{練習問題 3.4}練習問題 3.4:} 
+\link{練習問題 3.3}の\code{make\-/account}手続きを変更して別のローカル状態変数を追加し、
 間違ったパスワードで口座に7回連続アクセスされると\code{call\-/the\-/cops}(警察を呼ぶ)という
 手続きを呼ぶようにせよ。
 \end{quote}
@@ -13371,7 +13371,7 @@ Kolmogorov, Solomonoff, Chaitinはこれらの問題の解明に大きく寄与�
 残念ながら、これから見ていくように、話はそんなに簡単ではありません。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.5}Exercise 3.5:} 
+\heading{\phantomsection\label{練習問題 3.5}練習問題 3.5:} 
 \jnewterm{モンテカルロ積分}(\newterm{Monte Carlo integration})は、モンテカルロシミュレーションに
 よって定積分を推定する手法である。領域内の点\( (x, y) \)に対しては真となり、領域外の点に対しては
 偽となるような述語\( P(x, y) \)によって記述される領域の面積を計算する場合について考える。
@@ -13405,7 +13405,7 @@ Kolmogorov, Solomonoff, Chaitinはこれらの問題の解明に大きく寄与�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.6}Exercise 3.6:}
+\heading{\phantomsection\label{練習問題 3.6}練習問題 3.6:}
 乱数生成器をリセットして、与えられた値から始まる数列を作れるようにできると便利だ。
 記号\code{generate}または\code{reset}のどちらかを引数として取り、次のようなふるまいをする新しい
 \code{rand}手続きを設計せよ。\code{(rand 'generate)}は新しい乱数を生成する。
@@ -13708,8 +13708,8 @@ Kolmogorov, Solomonoff, Chaitinはこれらの問題の解明に大きく寄与�
 設計をするのに局所状態を持つオブジェクトを使うことについて検討します。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.7}Exercise 3.7:} 
-\link{Exercise 3.3}で述べた、パスワード機能を追加した\code{make\-/account}で作った
+\heading{\phantomsection\label{練習問題 3.7}練習問題 3.7:} 
+\link{練習問題 3.3}で述べた、パスワード機能を追加した\code{make\-/account}で作った
 銀行口座オブジェクトについて考える。私たちの銀行システムでは、共同口座を作る能力が
 必要だとする。これを実現する手続き\code{make\-/joint}を定義せよ。\code{make\-/joint}は三つの
 引数を取る。一つ目はパスワード保護された口座である。二つ目の引数は口座を定義したときの
@@ -13726,11 +13726,11 @@ Kolmogorov, Solomonoff, Chaitinはこれらの問題の解明に大きく寄与�
 \noindent
 このようにすることで、\code{paul\-/acc}という名前と\code{rosebud}というパスワードによって
 \code{peter\-/acc}に対する取引ができるようにする。この新しい機能に対応するには、
-\link{Exercise 3.3}の解答を修正するのがよいかもしれない。
+\link{練習問題 3.3}の解答を修正するのがよいかもしれない。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.8}Exercise 3.8:} 
+\heading{\phantomsection\label{練習問題 3.8}練習問題 3.8:} 
 \link{1.1.3節}で評価モデルを定義したときに、式を評価する最初のステップはその部分式を
 評価することだと述べました。しかし、部分式を評価する順番(例えば、左から右、または右から左)に
 ついては規定していませんでした。代入を導入すると、手続きの引数を評価する順番によって結果が
@@ -13839,7 +13839,7 @@ CとDは同じ環境を指しています。変数\code{z}と\code{x}がフレ�
 
 \item
 組み合わせの部分式を評価する。\footnote{
-代入があると、ステップ1に難しいところが出てきます。\link{Exercise 3.8}で示したように、
+代入があると、ステップ1に難しいところが出てきます。\link{練習問題 3.8}で示したように、
 代入があると、組み合わせの部分式がどういう順番で評価されるかによって違う値を返すような
 式が書けるようになるからです。そのため、正確には、ステップ1の評価順序(例えば、左から右や
 右から左)を規定しておく必要があります。しかし、この順序は常に実装の細部として捉えられるべき
@@ -14124,7 +14124,7 @@ env       +-----------------------------------------------------+
 この点については、\link{第5章}で詳しく見ていきます。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.9}Exercise 3.9:} 
+\heading{\phantomsection\label{練習問題 3.9}練習問題 3.9:} 
 \link{1.2.1節}では、階乗を計算する二つの手続きを解析するのに置換モデルを使った。
 再帰版は以下の通りで、
 
@@ -14433,7 +14433,7 @@ E2に格納された\code{balance}を参照しています。このため、一�
 変更を加えても、もう一方のオブジェクトには影響がありません。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.10}Exercise 3.10:} 
+\heading{\phantomsection\label{練習問題 3.10}練習問題 3.10:} 
 \code{make\-/withdraw}手続きでは、ローカル変数\code{balance}は\code{make\-/withdraw}の仮引数と
 して作られる。局所状態変数は、\code{let}を使って、以下のように明示的に作ることもできる。
 
@@ -14586,7 +14586,7 @@ E1に出てくる\code{x}の束縛を参照することになります。これ�
 \end{itemize}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.11}Exercise 3.11:} 
+\heading{\phantomsection\label{練習問題 3.11}練習問題 3.11:} 
 \link{3.2.3節}では、局所状態を持つ手続きのふるまいがどのように環境モデルによって
 説明されるかを見た。ここでは、内部定義がどのように動くのかを見た。典型的なメッセージパッシング
 手続きは、これら両方の側面を持っている。\link{3.1.1節}の銀行口座手続きについて考えてみよう。
@@ -14874,7 +14874,7 @@ x -->| * | * |     | * | *-+---->| * | / |
 \clearpage
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.12}Exercise 3.12:} 
+\heading{\phantomsection\label{練習問題 3.12}練習問題 3.12:} 
 
 \link{2.2.1節}では、次のリスト追加手続きを紹介した。
 
@@ -14927,8 +14927,8 @@ w
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.13}Exercise 3.13:}
-次の\code{make\-/cycle}手続きについて考えよ。これは、\link{Exercise 3.12}で定義した
+\heading{\phantomsection\label{練習問題 3.13}練習問題 3.13:}
+次の\code{make\-/cycle}手続きについて考えよ。これは、\link{練習問題 3.12}で定義した
 \code{last\-/pair}手続きを使っている。
 
 \begin{scheme}
@@ -14947,7 +14947,7 @@ w
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.14}Exercise 3.14:} 
+\heading{\phantomsection\label{練習問題 3.14}練習問題 3.14:} 
 次の手続きはわかりにくいが、とても役に立つ。
 
 \begin{scheme}
@@ -15112,13 +15112,13 @@ z2
 ``同一性''という問題を解く一般的な方法とはとても言えないものです。}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.15}Exercise 3.15:} 
+\heading{\phantomsection\label{練習問題 3.15}練習問題 3.15:} 
 箱とポインタの図を描いて、上記の構造\code{z1}と\code{z2}に対する\code{set\-/to\-/wow!}の効果を
 説明せよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.16}Exercise 3.16:} 
+\heading{\phantomsection\label{練習問題 3.16}練習問題 3.16:} 
 Ben Bitdiddleは任意のリスト構造内のペアの数を数える手続きを書くことにした。``簡単だよな''と
 彼は考えた。``どんな構造でも、\code{car}のぶんの数と\code{cdr}のぶんの数を足して、それに
 そのペア自身を数えるために1を足せば、ペアの数が求められる。'' そして、Benは次の手続きを書いた。
@@ -15138,22 +15138,22 @@ Benの手続きが3, 4, 7を返すもの、また手続きが終了しないも�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.17}Exercise 3.17:} 
-\link{Exercise 3.16}の\code{count\-/pairs}手続きの正しいバージョンを考え、任意の構造について
+\heading{\phantomsection\label{練習問題 3.17}練習問題 3.17:} 
+\link{練習問題 3.16}の\code{count\-/pairs}手続きの正しいバージョンを考え、任意の構造について
 異なるペアの数を返すようにせよ。(ヒント：カウント済みのペアを記録しておく補助データ構造を
 維持しながら構造をたどれ)。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.18}Exercise 3.18:}
+\heading{\phantomsection\label{練習問題 3.18}練習問題 3.18:}
 リストを検査し、循環を持つかどうか、つまり連続して\code{cdr}を取ることによってリストの終端を
-探そうとするプログラムが無限ループになるかどうかを判定する手続きを書け。\link{Exercise 3.13}で
+探そうとするプログラムが無限ループになるかどうかを判定する手続きを書け。\link{練習問題 3.13}で
 そのようなリストを構築した。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.19}Exercise 3.19:} 定数量の空間しか使わない
-アルゴリズムによって\link{Exercise 3.18}をやり直せ(これにはとても巧妙なアイデアが必要となる)。
+\heading{\phantomsection\label{練習問題 3.19}練習問題 3.19:} 定数量の空間しか使わない
+アルゴリズムによって\link{練習問題 3.18}をやり直せ(これにはとても巧妙なアイデアが必要となる)。
 \end{quote}
 
 \subsubsection*{変更は代入にすぎない}
@@ -15208,7 +15208,7 @@ Benの手続きが3, 4, 7を返すもの、また手続きが終了しないも�
 どちらも、もう一方によって実装することができます。}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.20}Exercise 3.20:} 
+\heading{\phantomsection\label{練習問題 3.20}練習問題 3.20:} 
 上記の手続きによるペアの実装を使って、次の式の列を評価する。
 \begin{scheme}
 (define x (cons 1 2))
@@ -15219,7 +15219,7 @@ Benの手続きが3, 4, 7を返すもの、また手続きが終了しないも�
 \end{scheme}
 
 \noindent
-評価の様子を、環境の図を描いて説明せよ(\link{Exercise 3.11}と比較せよ)。
+評価の様子を、環境の図を描いて説明せよ(\link{練習問題 3.11}と比較せよ)。
 \end{quote}
 
 \subsection{キューの表現}
@@ -15485,7 +15485,7 @@ Operation                Resulting Queue
 \end{figure}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.21}Exercise 3.21:} 
+\heading{\phantomsection\label{練習問題 3.21}練習問題 3.21:} 
 Ben Bitdiddleは、上記のキューの実装をテストすることにした。彼はLispインタプリタにキューの
 手続きを入力し、それから試しに使ってみた。
 
@@ -15524,7 +15524,7 @@ Eva Luの話について解説せよ。具体的には、なぜBenの例がそ�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.22}Exercise 3.22:} 
+\heading{\phantomsection\label{練習問題 3.22}練習問題 3.22:} 
 キューは、ポインタのペアとして表現する以外に、局所状態を持つ手続きとして構築することもできる。
 局所状態は通常のリストの先端と終端へのポインタからなる。したがって、手続き\code{make\-/queue}は
 以下のような形になる。
@@ -15542,7 +15542,7 @@ Eva Luの話について解説せよ。具体的には、なぜBenの例がそ�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.23}Exercise 3.23:} 
+\heading{\phantomsection\label{練習問題 3.23}練習問題 3.23:} 
 \jnewterm{両端キュー}(\newterm{deque})(``double\-/ended queue'')は、先端と終端のどちらに対しても
 項目の挿入と削除が行える列である。dequeに対する演算は、コンストラクタ\code{make\-/deque}、
 述語\code{empty\-/deque?}、セレクタ\code{front\-/deque}、\code{rear\-/deque}、
@@ -15550,7 +15550,7 @@ Eva Luの話について解説せよ。具体的には、なぜBenの例がそ�
 \code{front\-/delete\-/deque!}, \code{rear\-/delete\-/deque!}である。
 ペアによってdequeを表現するやり方を示せ。また、演算を実装せよ。
 \footnote{
-インタプリタに循環を含む構造を表示させないように注意せよ(\link{Exercise 3.13}参照)。}
+インタプリタに循環を含む構造を表示させないように注意せよ(\link{練習問題 3.13}参照)。}
 全ての演算は\( \Theta \)(1)ステップで完了しなければならない。
 \end{quote}
 
@@ -15820,7 +15820,7 @@ table
 アクセスします。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.24}Exercise 3.24:}
+\heading{\phantomsection\label{練習問題 3.24}練習問題 3.24:}
 上のテーブル実装では、キーの等価性は\code{equal?}(\code{assoc}に呼ばれる)によってテストされて
 いる。これは常に適切なテストというわけではない。例えば、数字をキーとするテーブルを扱っている場合、
 検索する数字に対して完全に一致する必要がなく、いくらかの誤差の範囲内のものであればいいということも
@@ -15831,24 +15831,24 @@ table
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.25}Exercise 3.25:} 
+\heading{\phantomsection\label{練習問題 3.25}練習問題 3.25:} 
 一次元と二次元のテーブルを一般化し、任意の数のキーの下に値を格納するテーブルを実装する
 やり方を示せ。値によってキーの数は異なることもある。\code{lookup}, \code{insert!}手続きは、
 テーブルにアクセスするためのキーのリストを入力として取る。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.26}Exercise 3.26:} 
+\heading{\phantomsection\label{練習問題 3.26}練習問題 3.26:} 
 上のように実装したテーブルを検索するには、レコードのリストを走査する必要がある。
 これは、基本的に\link{2.3.3節}の順序なしリスト表現である。大きなテーブルに対しては、
 別のやり方でテーブルを構造化するほうが効率がよくなるかもしれない。(キー, 値)のレコードを
 二分木を使ってまとめるようなテーブルの実装について説明せよ。キーは、何らかの方法(数の大小順や
-アルファベット順など)によって順序づけができるものとする(\link{第2章}の\link{Exercise 2.66}と
+アルファベット順など)によって順序づけができるものとする(\link{第2章}の\link{練習問題 2.66}と
 比較せよ)。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.27}Exercise 3.27:} 
+\heading{\phantomsection\label{練習問題 3.27}練習問題 3.27:} 
 \jnewterm{メモ化}(\newterm{memoization})(\jnewterm{テーブル化}(\newterm{tabulation})とも)とは、
 以前計算したことのある値を手続きが局所テーブルに記録できるようにするテクニックである。この
 テクニックを使うことでプログラムのパフォーマンスが大きく変わることもある。メモ化された手続きは、
@@ -16076,7 +16076,7 @@ C -----+       +---------------/___/   |
 \end{figure}
 
 \code{full\-/adder}を手続きとして定義したので、今度はそれを構築用ブロックとして使って、
-さらに複雑な回路を作ることができるようになります(例は\link{Exercise 3.30}を参照)。
+さらに複雑な回路を作ることができるようになります(例は\link{練習問題 3.30}を参照)。
 
 簡単にいうと、このシミュレータは回路を構築するための道具を提供してくれるものだといえます。
 \link{1.1節}でLispの学習に対するアプローチとして使ったような一般的な視点から見ると、
@@ -16150,13 +16150,13 @@ ANDゲートはもうちょっと複雑です。アクション手続きは、�
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.28}Exercise 3.28:} 
+\heading{\phantomsection\label{練習問題 3.28}練習問題 3.28:} 
 ORゲートを基本関数箱として定義せよ。\code{or\-/gate}のコンストラクタは
 \code{and\-/gate}と似たようなものにすること。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.29}Exercise 3.29:} 
+\heading{\phantomsection\label{練習問題 3.29}練習問題 3.29:} 
 ORゲートを構築する別の方法として、ANDゲートとインバータからなる複合デジタル論理デバイスとして
 組み立てるというものがある。これを実現する手続き\code{or\-/gate}を定義せよ。このORゲートの
 遅延時間は、\code{and\-/gate\-/delay}と\code{inverter\-/delay}によって表すと、どのようになる
@@ -16164,7 +16164,7 @@ ORゲートを構築する別の方法として、ANDゲートとインバータ
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.30}Exercise 3.30:} 
+\heading{\phantomsection\label{練習問題 3.30}練習問題 3.30:} 
 \link{Figure 3.27}は、\( n \)個の全加算器をつなげた\jnewterm{繰り上がり伝播加算器}
 (\newterm{ripple-carry adder})を示している。これは、二つの\( n \)ビット二進数を
 足すための最も単純な形の並列加算器である。\( A_1 \), \( A_2 \), \( A_3 \), \( \dots \),
@@ -16249,7 +16249,7 @@ C ------+   |     +-----+   |     +-----+   |     :  ------+   |
 
 \noindent
 局所手続き\code{accept\-/action\-/procedure!}は、与えられた手続きを実行する手続きのリストに
-追加し、それから新しい手続きを一回実行します(\link{Exercise 3.31}参照)。
+追加し、それから新しい手続きを一回実行します(\link{練習問題 3.31}参照)。
 
 局所手続き\code{dispatch}が上で規定した通りに設定されていれば、以下のいくつかの手続きを
 提供することで線に対する局所演算にアクセスできるようになります。
@@ -16420,7 +16420,7 @@ C ------+   |     +-----+   |     +-----+   |     :  ------+   |
 \code{carry}は時刻11で1に変わり、\code{sum}は時刻16で0に変わります。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.31}Exercise 3.31:} 
+\heading{\phantomsection\label{練習問題 3.31}練習問題 3.31:} 
 \code{make\-/wire}の中で定義される内部手続き\code{accept\-/action\-/procedure!}は、
 新しいアクション手続きが線に追加されるときに、その手続きがすぐに実行されるということを
 規定している。この初期化がなぜ必要なのか説明せよ。具体的には、上の段落の半加算器の例をトレースし、
@@ -16441,7 +16441,7 @@ C ------+   |     +-----+   |     +-----+   |     :  ------+   |
 
 予定表は、複数の\jnewterm{時間区分}(\newterm{time segment})によって構成されます。
 それぞれの時間区分は、数値(時刻)と、その時間区分の間に実行するようスケジュールされた
-手続きを持っておくキュー (\link{Exercise 3.32}参照)からなるペアです。
+手続きを持っておくキュー (\link{練習問題 3.32}参照)からなるペアです。
 
 \begin{scheme}
 (define (make-time-segment time queue)
@@ -16553,7 +16553,7 @@ C ------+   |     +-----+   |     +-----+   |     :  ------+   |
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.32}Exercise 3.32:} 
+\heading{\phantomsection\label{練習問題 3.32}練習問題 3.32:} 
 予定表の各時間区分で実行するべき手続きはキューに保存される。そのため、各時間区分の
 手続きは、予定表に追加した順(最初に入れたものが最初に取り出される)で呼び出される。
 どうしてこの順番でなければならないのか説明せよ。具体的には、ひとつの時間区分の中で
@@ -17029,14 +17029,14 @@ C -----+ m1      |  u  |      m1 +-------+ a1      |
   ((connector 'connect) new-constraint))
 \end{scheme}
 
-\begin{quote}\heading{\phantomsection\label{Exercise 3.33}Exercise 3.33:} 
+\begin{quote}\heading{\phantomsection\label{練習問題 3.33}練習問題 3.33:} 
 三つのコネクタ\code{a}, \code{b}, \code{c}を入力として取り、\code{c}の値が\code{a}と
 \code{b}の値の平均となるような制約を作る手続き\code{averager}を、基本の乗算器・加算器・
 定数制約を使って定義せよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.34}Exercise 3.34:} 
+\heading{\phantomsection\label{練習問題 3.34}練習問題 3.34:} 
 Louis Reasonerは、squarerという制約を作りたいと思っている。squarerは二つの端子を持ち、
 二つ目の端子のコネクタ\code{b}は常に一つ目の端子の値\code{a}の二乗になる。彼は、ひとつの
 乗算器からなる次の単純な装置を提案した。
@@ -17049,8 +17049,8 @@ Louis Reasonerは、squarerという制約を作りたいと思っている。sq
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.35}Exercise 3.35:} 
-Ben BitdiddleはLouisに、\link{Exercise 3.34}の問題を避ける方法のひとつは、squarerを
+\heading{\phantomsection\label{練習問題 3.35}練習問題 3.35:} 
+Ben BitdiddleはLouisに、\link{練習問題 3.34}の問題を避ける方法のひとつは、squarerを
 新しい基本制約として定義することだと伝えた。Benが書いた手続き概略の欠けている部分を埋め、
 そのような制約を実装せよ。
 
@@ -17071,7 +17071,7 @@ Ben BitdiddleはLouisに、\link{Exercise 3.34}の問題を避ける方法のひ
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.36}Exercise 3.36:} 
+\heading{\phantomsection\label{練習問題 3.36}練習問題 3.36:} 
 グローバル環境で、次のような式の列を評価するとする。
 
 \begin{scheme}
@@ -17092,7 +17092,7 @@ Ben BitdiddleはLouisに、\link{Exercise 3.34}の問題を避ける方法のひ
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.37}Exercise 3.37:} 
+\heading{\phantomsection\label{練習問題 3.37}練習問題 3.37:} 
 \code{celsius\-/fahrenheit\-/converter}手続きは、以下のような式指向スタイルによる定義に
 比べると面倒だ。
 
@@ -17396,7 +17396,7 @@ time
 ことです。プログラムの結果は、\emph{何らかの}順序で逐次的に実行したものと同じになっていれば
 よいからです。例えば、PeterとPaulの共同口座の残高が最初は100ドルで、Peterが40ドルを預け入れる
 のと並行にPaulが残高の半額を引き出すという場合について考えてみましょう。この場合、逐次実行では、
-残高は最終的に70ドルか90ドルのどちらかになります(\link{Exercise 3.38}参照)。
+残高は最終的に70ドルか90ドルのどちらかになります(\link{練習問題 3.38}参照)。
 \footnote{\label{Footnote 39}この考え方をより形式的に表現すると、並行プログラムは本質的に
 \jnewterm{非決定的}(\newterm{nondeterministic})であるということになります。つまり、並行
 プログラムは単一の値を持つ関数として記述するのではなく、取り得る値の集合という形で結果を持つ
@@ -17411,7 +17411,7 @@ time
 値を並行に使用する際に制限を設ける必要はありません。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.38}Exercise 3.38:} 
+\heading{\phantomsection\label{練習問題 3.38}練習問題 3.38:} 
 Peter, Paul, Maryが共同口座を持っていて、最初は100ドル入っているとする。以下に示す
 コマンドによって、Peterは10ドルを預け入れ、Paulは20ドルを引き出し、Maryは口座残高の半額を
 引き出すということを並行的に行う。
@@ -17575,7 +17575,7 @@ Mary:  (set! balance (- balance (/ balance 2)))
 持っているので、別々の口座に対する預け入れと引き出しは並行に行うことができます。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.39}Exercise 3.39:} 
+\heading{\phantomsection\label{練習問題 3.39}練習問題 3.39:} 
 並行実行の結果として上で示した五つの可能な値のうち、実行を次のように直列化したら、どれが
 残るだろうか。
 
@@ -17589,7 +17589,7 @@ Mary:  (set! balance (- balance (/ balance 2)))
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.40}Exercise 3.40:}
+\heading{\phantomsection\label{練習問題 3.40}練習問題 3.40:}
 以下のものを実行したときに\code{x}が取り得る値をすべて列挙せよ。
 
 \begin{scheme}
@@ -17609,7 +17609,7 @@ Mary:  (set! balance (- balance (/ balance 2)))
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.41}Exercise 3.41:} 
+\heading{\phantomsection\label{練習問題 3.41}練習問題 3.41:} 
 Ben Bitdiddleは、次のように銀行口座を実装したほうがいいのではないかと心配している
 (変更箇所はコメントつきの行)。
 
@@ -17643,7 +17643,7 @@ Ben Bitdiddleは、次のように銀行口座を実装したほうがいいの�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.42}Exercise 3.42:} 
+\heading{\phantomsection\label{練習問題 3.42}練習問題 3.42:} 
 Ben Bitdiddleは、\code{withdraw}と\code{deposit}メッセージが来るたびに新しい直列化手続きを
 作るのは時間の無駄だと提案した。彼の意見は、\code{make\-/account}を変更して、
 \code{protected}に対する呼び出しを\code{dispatch}手続きの外で行うようにしたらいいという
@@ -17711,7 +17711,7 @@ Peterが\( a \)1と\( a \)2を交換する間にPaulが並行に\( a \)1と\( a 
 交換を終える前にPaulが\( a \)1の残高を変更してしまうかもしれません。
 \footnote{口座残高が最初10ドル, 20ドル, 30ドルだったとすると、並行の交換を何回行っても、
 順番はともかく、残高は10ドル, 20ドル, 30ドルのままでなければなりません。個別口座に対する預け入れを
-直列化するだけでは、このことを保証するには十分ではありません。\link{Exercise 3.43}参照。}
+直列化するだけでは、このことを保証するには十分ではありません。\link{練習問題 3.43}参照。}
 正しいふるまいをさせるためには、交換が終わるまでの間ずっと、どちらの口座からもほかの並行アクセスを
 排除するように配慮する必要があります。
 
@@ -17748,7 +17748,7 @@ Peterが\( a \)1と\( a \)2を交換する間にPaulが並行に\( a \)1と\( a 
 これを使って、預け入れと引き出しを直列化して行うことができます。しかし、前の直列化口座とは
 違って、直列化を明示的に管理するのは銀行口座オブジェクトのそれぞれのユーザの責任になっています。
 以下はその一例です。
-\footnote{\link{Exercise 3.45}では、なぜ預け入れと引き出しを自動的に口座によって直列化されない
+\footnote{\link{練習問題 3.45}では、なぜ預け入れと引き出しを自動的に口座によって直列化されない
 ようにしているのかを調査します。}
 
 \begin{scheme}
@@ -17773,7 +17773,7 @@ Peterが\( a \)1と\( a \)2を交換する間にPaulが並行に\( a \)1と\( a 
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.43}Exercise 3.43:} 
+\heading{\phantomsection\label{練習問題 3.43}練習問題 3.43:} 
 三つの口座の残高が最初は10ドル、20ドル、30ドルで、それから複数のプロセスが実行されて
 口座の残高を交換するとする。プロセスが逐次的に実行されるとしたら、並行の残高交換を
 何回行ったとしても、口座残高は何らかの順番で10ドル、20ドル、30ドルであるということを論証せよ。
@@ -17784,7 +17784,7 @@ Peterが\( a \)1と\( a \)2を交換する間にPaulが並行に\( a \)1と\( a 
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.44}Exercise 3.44:} 
+\heading{\phantomsection\label{練習問題 3.44}練習問題 3.44:} 
 ある口座から別の口座に振込をするという問題について考える。Ben Bitdiddleは、たとえ複数の人々が
 複数の口座間で並行にお金の振込をするという場合であっても、以下の手続きによって達成できると
 主張している。この手続きでは、例えば上で出てきたバージョンの\code{make\-/account}のように、
@@ -17803,7 +17803,7 @@ Louis Reasonerは、これには問題があり、残高交換問題を扱う際
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.45}Exercise 3.45:} 
+\heading{\phantomsection\label{練習問題 3.45}練習問題 3.45:} 
 Louis Reasonerは、預け入れと引き出しが自動的に直列化されないようになったことで、
 この銀行口座システムが必要以上に複雑になり、またエラーが起こりやすくなったと考えている。
 彼は、\code{make\-/account\-/and\-/serializer}が(\code{serialized\-/exchange}のような
@@ -17850,7 +17850,7 @@ Louisの考えのどこがおかしいのか説明せよ。具体的には、\co
 \footnote{``mutex''という用語は\jnewterm{相互排除}(\newterm{mutual exclusion})
 の短縮形です。並行プロセスがリソースを安全に共有できる仕組みを準備するという一般的な問題は、
 相互排除問題と呼ばれます。ここでのミューテックスは、\jnewterm{セマフォ}(\newterm{semaphore})
-メカニズムをちょっと変えて単純にしたものです(\link{Exercise 3.47}参照)。セマフォという
+メカニズムをちょっと変えて単純にしたものです(\link{練習問題 3.47}参照)。セマフォという
 メカニズムは、アイントホーフェン技術大学で開発された``THE''マルチプログラミングシステムで
 導入されたものです。``THE''という名前は、この大学のオランダ語のイニシャルに由来します
 (\link{Dijkstra 1968a})。獲得と解法の演算は、元はPとVと呼ばれていました。これらは鉄道で使われる
@@ -17919,7 +17919,7 @@ Louisの考えのどこがおかしいのか説明せよ。具体的には、\co
 実行されなければいけないということです。これは、あるプロセスがセルをテストし偽だと知ったら、
 ほかのプロセスがそのセルをテストするより前に、そのセルの内容は実際に真に設定されるよう
 保証しなければならないということを意味します。この保証をしなければ、\link{Figure 3.29}で銀行口座
-が失敗したのと同じように、ミューテックスが失敗することになります(\link{Exercise 3.46}参照)。
+が失敗したのと同じように、ミューテックスが失敗することになります(\link{練習問題 3.46}参照)。
 
 \code{test\-/and\-/set!}の実際の実装は、システムが並行プロセスをどのように実行するかに
 依存します。例えば、並行プロセスを動かすのに、逐次的なプロセッサ上で時分割メカニズムを使い、
@@ -17959,7 +17959,7 @@ load-reserve, store-conditionalなど、さまざまなものがあります。�
 どちらに最初に行くか決めることができないため飢え死にすると主張しました。}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.46}Exercise 3.46:} 
+\heading{\phantomsection\label{練習問題 3.46}練習問題 3.46:} 
 テキストで示したように、\code{test\-/and\-/set!}を通常の手続きを使って実装し、
 演算をアトミックにしようとはしないと仮定する。\link{Figure 3.29}のようなタイミング図を描き、
 このミューテックスの実装が、二つのプロセスが同時にミューテックスを獲得するのを許してしまう
@@ -17967,7 +17967,7 @@ load-reserve, store-conditionalなど、さまざまなものがあります。�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.47}Exercise 3.47:} 
+\heading{\phantomsection\label{練習問題 3.47}練習問題 3.47:} 
 (サイズ\( n \)の)セマフォとは、ミューテックスの一般化である。ミューテックスと同じように、
 セマフォは獲得と解放の演算をサポートするが、並行に\( n \)プロセスまで獲得できるという意味で
 より一般的になっている。それ以上のプロセスがセマフォを獲得しようとすると、解放演算を待つ
@@ -18001,7 +18001,7 @@ Paulは進むことができません。どちらのプロセスも、お互い�
 プロセスが手続きに入る際に最小の番号を持つ口座を最初に保護するように
 \code{serialized\-/exchange}を書き換えるというものがあります。この手法は交換問題には
 うまくいくのですが、さらに洗練されたデッドロック回避テクニックが必要になる状況や、
-デッドロックがまったく防げないという状況もあります(\link{Exercise 3.48}、\link{Exercise 3.49}参照)
+デッドロックがまったく防げないという状況もあります(\link{練習問題 3.48}、\link{練習問題 3.49}参照)
 \footnote{共有リソースに番号を振り、順番に獲得するという一般的なデッドロック回避技術は、
 \link{Havender (1968)}によります。デッドロックが防げない状況では、\jnewterm{デッドロック回復}
 (\newterm{deadlock\-/recovery})手法が必要となります。そのような手法では、プロセスに
@@ -18010,7 +18010,7 @@ Paulは進むことができません。どちらのプロセスも、お互い�
 詳しく取り上げられています。}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.48}Exercise 3.48:} 
+\heading{\phantomsection\label{練習問題 3.48}練習問題 3.48:} 
 上で説明したデッドロック回避手法(口座に番号を振り、各プロセスは小さな番号の口座から獲得を試みる)
 によって、残高交換問題でのデッドロックが防げるのはなぜか、詳細に解説せよ。
 この考え方を取り入れるように\code{serialized\-/exchange}を書き直せ
@@ -18019,7 +18019,7 @@ Paulは進むことができません。どちらのプロセスも、お互い�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.49}Exercise 3.49:} 
+\heading{\phantomsection\label{練習問題 3.49}練習問題 3.49:} 
 上で説明したデッドロック回避メカニズムがうまくいかない場合のシナリオを示せ
 (ヒント:残高交換問題では、各プロセスは自分がどの口座にアクセスする必要があるか事前に知っている。
 プロセスが、どの追加リソースが必要になるかわからない状態で共有リソースにアクセスする必要が
@@ -18446,10 +18446,10 @@ noindent
 \code{delay}と\code{force}が仕様通りに動くようにするだけなら、この実装で十分です。しかし、
 重要な最適化をひとつ取り入れる余地があります。多くの応用では、同じ遅延オブジェクトを
 何回も強制するはめになります。これは、ストリームを使った再帰プログラムで、深刻な
-非効率性の原因となることがあります(\link{Exercise 3.57}参照)。これを解決するには、遅延
+非効率性の原因となることがあります(\link{練習問題 3.57}参照)。これを解決するには、遅延
 オブジェクトが最初に強制される際に計算した値を格納するように遅延オブジェクトを構築します。
 二回目以降の強制では、計算を繰り返すことはしないで、格納した値をそのまま返します。
-つまり、\link{Exercise 3.27}で説明したものと同じような、特別目的のメモ化手続きとして
+つまり、\link{練習問題 3.27}で説明したものと同じような、特別目的のメモ化手続きとして
 \code{delay}を実装するということです。これを実現する方法のひとつとして、(引数なしの)
 手続きをひとつ引数として取り、その手続きのメモ化バージョンを返す手続きを使うというものが
 あります。以下にその手続きを示します。メモ化手続きが一回目に実行されると、計算結果を
@@ -18488,7 +18488,7 @@ noindent
 です。}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.50}Exercise 3.50:} 
+\heading{\phantomsection\label{練習問題 3.50}練習問題 3.50:} 
 以下の定義を完成させよ。これは、\link{2.2.1節}\link{Footnote 12}の\code{map}と同じように、
 複数の引数を取る手続きを使えるよう\code{stream\-/map}を一般化するものである。
 
@@ -18504,7 +18504,7 @@ noindent
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.51}Exercise 3.51:} 
+\heading{\phantomsection\label{練習問題 3.51}練習問題 3.51:} 
 遅延評価についてより詳しく観察するために、引数を表示してからそのまま返すだけの以下の手続きを
 使うことにする。
 
@@ -18516,7 +18516,7 @@ noindent
 
 以下のような一連の式を評価させると、インタプリタはどのような表示をするだろうか。
 
-\footnote{\link{Exercise 3.51}や\link{Exercise 3.52}のような課題は、
+\footnote{\link{練習問題 3.51}や\link{練習問題 3.52}のような課題は、
 \code{delay}の動作についてちゃんと理解しているかどうかを確認できるという意味で、価値のあるものです。
 一方、遅延評価と表示を混在させると、頭が混乱しやすくなります。代入まで入ってくると、ますます
 ひどくなります。コンピュータ言語の授業では、この節に出てきたような試験問題で講師が学生を苦しめる
@@ -18536,7 +18536,7 @@ noindent
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.52}Exercise 3.52:} 
+\heading{\phantomsection\label{練習問題 3.52}練習問題 3.52:} 
 以下の一連の式について考える。
 
 \begin{scheme}
@@ -18710,7 +18710,7 @@ noindent
 
 演算によってストリームを操作すると、もっと面白いことができます。例えば、\code{add\-/streams}という、
 二つの与えられたストリームの要素ごとの和を生成する演算について考えます。
-\footnote{これは、\link{Exercise 3.50}で出てきた一般化されたバージョンの\code{stream\-/map}を
+\footnote{これは、\link{練習問題 3.50}で出てきた一般化されたバージョンの\code{stream\-/map}を
 利用しています。}
 
 \begin{scheme}
@@ -18815,7 +18815,7 @@ P. L. Chebyshevが、すべての\( n \)に対し、\( p_{n+1} \le 2p_n \)であ
 22.3節にあります。}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.53}Exercise 3.53:} 
+\heading{\phantomsection\label{練習問題 3.53}練習問題 3.53:} 
 プログラムを実行することなしに、以下によって定義されるストリームの要素を述べよ。
 
 \begin{scheme}
@@ -18824,7 +18824,7 @@ P. L. Chebyshevが、すべての\( n \)に対し、\( p_{n+1} \le 2p_n \)であ
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.54}Exercise 3.54:} 
+\heading{\phantomsection\label{練習問題 3.54}練習問題 3.54:} 
 \code{add\-/streams}と同じような仕組みで二つの入力ストリームの要素ごとの積を生成する手続き
 \code{mul\-/streams}を定義せよ。これと\code{integers}ストリームを組み合わせて、
 (0から始まる)\( n \)番目の要素が\( n + 1 \)の階乗となるような以下のストリームの定義を完成させよ。
@@ -18837,14 +18837,14 @@ P. L. Chebyshevが、すべての\( n \)に対し、\( p_{n+1} \le 2p_n \)であ
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.55}Exercise 3.55:} 
+\heading{\phantomsection\label{練習問題 3.55}練習問題 3.55:} 
 ストリーム\( S \)を引数として取り、要素が\( S_0 \), \( S_0 + S_1 \), \( S_0 + S_1 + S_2, \dots \)
 であるストリームを返す手続き\code{partial\-/sums}を定義せよ。例えば、
 \code{(partial\-/sums integers)}は1, 3, 6, 10, 15, \( \dots \)というストリームになる。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.56}Exercise 3.56:}
+\heading{\phantomsection\label{練習問題 3.56}練習問題 3.56:}
 R. Hammingが提起した有名な問題に、素因数が2, 3, 5のみからなる正の整数を昇順に重複なく
 列挙するというものがある。すぐ思いつく方法は、整数をひとつずつ見ていって、2, 3, 5以外の
 素因数がないかどうか調べるというものだ。しかし、これは非常に非効率である。これは、整数が
@@ -18903,19 +18903,19 @@ R. Hammingが提起した有名な問題に、素因数が2, 3, 5のみからな
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.57}Exercise 3.57:} 
+\heading{\phantomsection\label{練習問題 3.57}練習問題 3.57:} 
 \code{add\-/streams}手続きによる\code{fibs}の定義を使って\( n \)番目のフィボナッチ数を
 計算する際に、加算は何回実行されるだろうか。\code{(delay <\var{exp}>)}の実装を単純に
 \code{(lambda () <\var{exp}>)}として、\link{3.5.1節}で述べた\code{memo\-/proc}手続きによって
 提供される最適化を使わない場合、加算回数が指数的に増加することを示せ。
-\footnote{この練習問題は、必要呼びが\link{Exercise 3.27}で述べた通常のメモ化と密接に関係している
-ことを示しています。\link{Exercise 3.27}では、局所テーブルを明示的に構築するために代入を
+\footnote{この練習問題は、必要呼びが\link{練習問題 3.27}で述べた通常のメモ化と密接に関係している
+ことを示しています。\link{練習問題 3.27}では、局所テーブルを明示的に構築するために代入を
 使いましたが、ここでの必要呼びによるストリームの最適化では、ストリームの以前に強制された部分の
 値を格納することによって、事実上、そのようなテーブルを自動的に構築していることになります。}
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.58}Exercise 3.58:} 
+\heading{\phantomsection\label{練習問題 3.58}練習問題 3.58:} 
 以下の手続きによって計算されるストリームを解釈せよ。
 
 \begin{scheme}
@@ -18931,7 +18931,7 @@ R. Hammingが提起した有名な問題に、素因数が2, 3, 5のみからな
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.59}Exercise 3.59:} 
+\heading{\phantomsection\label{練習問題 3.59}練習問題 3.59:} 
 \link{2.5.3節}では、多項式を項のリストとして表現する多項式数値演算システムの
 実装方法を学んだ。似たような方法で、以下のような\jnewterm{冪級数}(\newterm{power series})を、
 \begin{comment}
@@ -19007,8 +19007,8 @@ sinの導関数がcosで、cosの導関数が負のsinであるということ�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.60}Exercise 3.60:}
-\link{Exercise 3.59}のように係数のストリームとして表現された羃級数では、級数の加算は
+\heading{\phantomsection\label{練習問題 3.60}練習問題 3.60:}
+\link{練習問題 3.59}のように係数のストリームとして表現された羃級数では、級数の加算は
 \code{add\-/streams}により実装される。級数を乗算する以下の手続きの定義を完成させよ。
 
 \begin{scheme}
@@ -19016,13 +19016,13 @@ sinの導関数がcosで、cosの導関数が負のsinであるということ�
   (cons-stream ~\( \dark \langle \)~~\var{\dark ??}~~\( \dark \rangle \)~ (add-streams ~\( \dark \langle \)~~\var{\dark ??}~~\( \dark \rangle \)~ ~\( \dark \langle \)~~\var{\dark ??}~~\( \dark \rangle \)~)))
 \end{scheme}
 
-\link{Exercise 3.59}の級数を使って\( \sin^2 x +\cos^2 x = 1 \)となることを確認することで、
+\link{練習問題 3.59}の級数を使って\( \sin^2 x +\cos^2 x = 1 \)となることを確認することで、
 手続きをテストできる。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.61}Exercise 3.61:}
-\( S \)を、定数項が1の羃級数(\link{Exercise 3.59})とする。羃級数\( 1 / S \)、つまり
+\heading{\phantomsection\label{練習問題 3.61}練習問題 3.61:}
+\( S \)を、定数項が1の羃級数(\link{練習問題 3.59})とする。羃級数\( 1 / S \)、つまり
 \( SX = 1 \)となるような級数\( X \)を求めたいとする。\( S_R \)を\( S \)の定数項の後の部分として、
 \( S = 1 + S_R \)と書く。すると、\( X \)は以下のように解ける。
 \begin{comment}
@@ -19051,15 +19051,15 @@ sinの導関数がcosで、cosの導関数が負のsinであるということ�
 \end{displaymath}
 言い換えると、\( X \)は定数項が1で、高次の項が\( -S_R \cdot X \)として与えられる羃級数という
 ことになる。この考え方を使って、定数項1を持つ羃級数\( S \)に対する\( 1 / S \)を求める手続き
-\code{invert\-/unit\-/series}を書け。\link{Exercise 3.60}の\code{mul\-/series}を使う必要がある。
+\code{invert\-/unit\-/series}を書け。\link{練習問題 3.60}の\code{mul\-/series}を使う必要がある。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.62}Exercise 3.62:} 
-\link{Exercise 3.60}と\link{Exercise 3.61}の結果を使って、2つの羃級数を割る
+\heading{\phantomsection\label{練習問題 3.62}練習問題 3.62:} 
+\link{練習問題 3.60}と\link{練習問題 3.61}の結果を使って、2つの羃級数を割る
 手続き\code{div\-/series}を定義せよ。\code{div\-/series}は任意の2つの級数について
 動作するようにする(もし分母の定数項がゼロなら\code{div\-/series}はエラーを出すようにする)。
-\code{div\-/series}と\link{Exercise 3.59}の結果と組み合わせてtanの羃級数を生成する方法を示せ。
+\code{div\-/series}と\link{練習問題 3.59}の結果と組み合わせてtanの羃級数を生成する方法を示せ。
 \end{quote}
 
 \subsection{ストリームパラダイムの活用}
@@ -19092,7 +19092,7 @@ sinの導関数がcosで、cosの導関数が負のsinであるということ�
 元の\code{sqrt}手続きでは、状態変数の一連の値がこれらの推測値となっていました。その代わりにここで
 考える方法は、推測値の無限ストリームを生成するというものです。ストリームの最初の値は初期値の1です。
 \footnote{\code{let}を使って局所変数\code{guesses}を束縛することはできません。\code{guesses}の値は
-\code{guesses}自身に依存しているからです。\link{Exercise 3.63}では、なぜここで局所変数が必要
+\code{guesses}自身に依存しているからです。\link{練習問題 3.63}では、なぜここで局所変数が必要
 なのかを考えます。}
 
 \begin{scheme}
@@ -19116,7 +19116,7 @@ sinの導関数がcosで、cosの導関数が負のsinであるということ�
 \noindent
 ストリームの項を生成していくことによって、推測値を改善していくことができます。
 答えが十分よいものになるまで項を生成し続ける手続きを書くこともできます
-(\link{Exercise 3.64}参照)。
+(\link{練習問題 3.64}参照)。
 
 このほかに、\link{1.3.1節}で見た交代級数に基づいて\( \pi \)の近似値を生成する反復も
 同じように扱えます。
@@ -19133,7 +19133,7 @@ sinの導関数がcosで、cosの導関数が負のsinであるということ�
  {\pi\over4} = 1 - {1\over3} + {1\over5} - {1\over7} + \dots. 
 \end{displaymath}
 まず、級数の加数(項ごとに符号が逆になる奇数の逆数)のストリームを生成します。次に、
-(\link{Exercise 3.55}の\code{partial\-/sums}手続きを使って)対象項数が増えていく部分和の
+(\link{練習問題 3.55}の\code{partial\-/sums}手続きを使って)対象項数が増えていく部分和の
 ストリームを作ります。それから結果を4倍します。
 
 \begin{scheme}
@@ -19284,7 +19284,7 @@ $ s_{00} $ 	&  $ s_{01} $ 	&  $ s_{02} $ 	&  $ s_{03} $ 	&  $ s_{04} $ 	&  $ \do
 それを統一された演算の集合によって操作することができるからです。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.63}Exercise 3.63:} 
+\heading{\phantomsection\label{練習問題 3.63}練習問題 3.63:} 
 Louis Reasonerは、\code{sqrt\-/stream}手続きを書くのに、局所変数\code{guesses}を使わない
 以下のような素直な実装をなぜしないのかと尋ねた。
 
@@ -19303,7 +19303,7 @@ Alyssaの答えについて説明せよ。もし\code{delay}の実装が\code{me
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.64}Exercise 3.64:} 
+\heading{\phantomsection\label{練習問題 3.64}練習問題 3.64:} 
 ストリームと数値(許容誤差)を引数として取る手続き\code{stream\-/limit}を書け。
 この手続きは、ストリームの二つの連続する要素の差の絶対値が許容誤差以下になるまで
 ストリームを調べていき、その二つの値のうち後のものを返す。これを使うと、与えられた許容誤差まで
@@ -19316,7 +19316,7 @@ Alyssaの答えについて説明せよ。もし\code{delay}の実装が\code{me
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.65}Exercise 3.65:} 
+\heading{\phantomsection\label{練習問題 3.65}練習問題 3.65:} 
 級数
 \begin{comment}
 
@@ -19417,7 +19417,7 @@ $ (S_0, T_0) $ 	& $ (S_0, T_1) $ 	& $ (S_0, T_2) $ 	& $ \dots $ \cr
 
 一般的なペアのストリームを\code{(pairs S T)}と呼び、それを三つの部分からなるものとして
 考えます。ペア\( (S_0, T_0) \)、一行目の残りのペア、それ以外のペアです。
-\footnote{このような分解方法を選ぶ理由となる洞察については\link{Exercise 3.68}を参照してください。}
+\footnote{このような分解方法を選ぶ理由となる洞察については\link{練習問題 3.68}を参照してください。}
 \begin{comment}
 
 \begin{example}
@@ -19526,7 +19526,7 @@ $ (S_0, T_0) $ 	& $ (S_0, T_1) $ 	& $ (S_0, T_2) $ 	& $ \dots $ \cr
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.66}Exercise 3.66:} 
+\heading{\phantomsection\label{練習問題 3.66}練習問題 3.66:} 
 ストリーム\code{(pairs integers integers)}について詳しく観察せよ。ペアがストリームに
 配置される順番について、全体的なコメントをせよ。例えば、ペア(1, 100)の前にはおよそどれだけの
 数のペアが出てくるだろうか。(99, 100)と(100, 100)の場合はどうだろうか。
@@ -19534,14 +19534,14 @@ $ (S_0, T_0) $ 	& $ (S_0, T_1) $ 	& $ (S_0, T_2) $ 	& $ \dots $ \cr
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.67}Exercise 3.67:} 
+\heading{\phantomsection\label{練習問題 3.67}練習問題 3.67:} 
 \code{pairs}手続きを修正し、\code{(pairs integers integers)}が\emph{すべて}の整数のペア
 \( (i, j) \)(\( i \le j \)という条件なしで)生成するようにせよ。ヒント：追加のストリームを
 混ぜる必要がある。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.68}Exercise 3.68:} 
+\heading{\phantomsection\label{練習問題 3.68}練習問題 3.68:} 
 Louis Reasonerは、ペアのストリームを構築するのに三つの部分に分けるのは必要以上に複雑
 なのではないかと考えた。彼は、ペア\( (S_0, T_0) \)を最初の行のそれ以外のペアと分ける代わりに、
 次のように最初の行全体を扱うことを提案した。
@@ -19560,7 +19560,7 @@ Louis Reasonerは、ペアのストリームを構築するのに三つの部分
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.69}Exercise 3.69:}
+\heading{\phantomsection\label{練習問題 3.69}練習問題 3.69:}
 三つの無限ストリーム\( S \), \( T \), \( U \)を取り、\( i \le j \le k \)の三つ組
 \( (S_i, T_j, U_k) \)のストリームを生成する手続き\code{triples}を書け。
 \code{triples}を使って、すべての正の整数のピタゴラス数の三つ組、つまり\( i \le j \)かつ
@@ -19568,10 +19568,10 @@ Louis Reasonerは、ペアのストリームを構築するのに三つの部分
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.70}Exercise 3.70:} 
+\heading{\phantomsection\label{練習問題 3.70}練習問題 3.70:} 
 ペアが出てくる順番が、\emph{アドホック}な混ぜ合わせ処理の結果ではなく、何か役に立つ順番と
 なっているようなストリームが作れれば便利だ。もし、ある整数のペアがほかのペアと比べて``小さい''
-かどうかを判断する方法を定義できるなら、\link{Exercise 3.56}の\code{merge}手続きに似た
+かどうかを判断する方法を定義できるなら、\link{練習問題 3.56}の\code{merge}手続きに似た
 テクニックを使うことができる。これを行う方法のひとつとして、``重み関数''\( W(i, j) \)を定義し、
 \( W(i_1, j_1) < W(i_2, j_2) \)なら\( (i_1, j_1) \)は\( (i_2, j_2) \)より小さいと取り決めると
 いうものがある。\code{merge}に似ているが、追加の引数\code{weight}手続きを取る
@@ -19596,7 +19596,7 @@ Louis Reasonerは、ペアのストリームを構築するのに三つの部分
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.71}Exercise 3.71:} 
+\heading{\phantomsection\label{練習問題 3.71}練習問題 3.71:} 
 二つの立方数の和で表す方法が複数ある数は、数学者Srinivasa Ramanujan(シュリニヴァーサ・
 ラマヌジャン)にちなんで\jnewterm{ラマヌジャン数}(\newterm{Ramanujan numbers})と呼ばれる
 ことがある。
@@ -19610,14 +19610,14 @@ Louis Reasonerは、ペアのストリームを構築するのに三つの部分
 示してくれたものです。}
 ペアの順序つきストリームを使うと、エレガントな方法でこれらの数を計算することができる。
 二つの立方数の和として表す方法が二通りある数を見つけるには、\( i^3 + j^3 \)という和によって
-重みづけをした整数のペア\( (i, j) \)のストリームを生成し(\link{Exercise 3.70}参照)、それから
+重みづけをした整数のペア\( (i, j) \)のストリームを生成し(\link{練習問題 3.70}参照)、それから
 同じ重みを持つ連続したペアをストリームから探すだけでよい。ラマヌジャン数を生成する手続きを書け。
 そのような最初の数は1,729である。次の五個を求めよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.72}Exercise 3.72:} 
-\link{Exercise 3.71}と似たようなやり方で、二つの平方数の和として表す方法が三通りあるすべての
+\heading{\phantomsection\label{練習問題 3.72}練習問題 3.72:} 
+\link{練習問題 3.71}と似たようなやり方で、二つの平方数の和として表す方法が三通りあるすべての
 数のストリームを生成せよ(そのように書ける理由も示せ)。
 \end{quote}
 
@@ -19688,7 +19688,7 @@ input  |           |      |\__    +-->|   \_  integral
 \end{figure}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.73}Exercise 3.73:} 
+\heading{\phantomsection\label{練習問題 3.73}練習問題 3.73:} 
 ストリームを使って時系列上の電流や電圧の値を表すことによって電子回路をモデル化することができる。
 例えば、抵抗値\( R \)の抵抗と静電容量\( C \)のコンデンサが直列になっている\jnewterm{RC回路}
 (\newterm{RC circuit})があるとする。注入電流\( i \)に対する回路の電圧応答\( v \)は
@@ -19742,7 +19742,7 @@ input  |           |      |\__    +-->|   \_  integral
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.74}Exercise 3.74:} 
+\heading{\phantomsection\label{練習問題 3.74}練習問題 3.74:} 
 Alyssa P. Hackerは物理センサから来る信号を処理するシステムを設計している。
 彼女が作りたい重要な機能のひとつとして、入力信号の\jnewterm{ゼロ交差}
 (\newterm{zero crossings})を記録する信号というものがある。これは、入力信号が負から正に変わったときに
@@ -19779,7 +19779,7 @@ Alyssaは、二つの値を引数として取り、値の符号を比較し、0,
 \end{scheme}
 
 そこに通りがかったAlyssaの上司 Eva Lu Atorは、このプログラムは以下のプログラムとほぼ等価だと
-言った。このプログラムでは、\link{Exercise 3.50}で出てきた、一般化したバージョンの
+言った。このプログラムでは、\link{練習問題 3.50}で出てきた、一般化したバージョンの
 \code{stream-map}を使っている。
 
 \begin{scheme}
@@ -19793,8 +19793,8 @@ Alyssaは、二つの値を引数として取り、値の符号を比較し、0,
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.75}Exercise 3.75:} 
-残念なことに、\link{Exercise 3.74}のAlyssaのゼロ交差識別器は十分でないということがわかった。
+\heading{\phantomsection\label{練習問題 3.75}練習問題 3.75:} 
+残念なことに、\link{練習問題 3.74}のAlyssaのゼロ交差識別器は十分でないということがわかった。
 センサからノイズの交じった信号が来ると、余計なゼロ交差を検出してしまうのだ。
 ハードウェアのスペシャリストLem E. Tweakitは、ゼロ交差を検出する前に信号を平滑化してノイズを
 フィルタリングすることをAlyssaに提案した。Alyssaは彼のアドバイスに従い、センサデータの値と
@@ -19819,8 +19819,8 @@ Alyssaは、二つの値を引数として取り、値の符号を比較し、0,
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.76}Exercise 3.76:} 
-Eva Lu Atorは、\link{Exercise 3.75}でのLouisのアプローチに批判的だ。彼が書いた
+\heading{\phantomsection\label{練習問題 3.76}練習問題 3.76:} 
+Eva Lu Atorは、\link{練習問題 3.75}でのLouisのアプローチに批判的だ。彼が書いた
 プログラムは、平滑化演算とゼロ交差検出が交じってしまっていて、モジュール化されていないと
 いうのが彼女の意見だ。例えば、入力信号を調整するよりよい方法をAlyssaが見つけていれば、
 検出器は変更する必要がなかったはずだ。Louisを手伝って、入力としてひとつのストリームを取り、
@@ -19952,7 +19952,7 @@ Eva Lu Atorは、\link{Exercise 3.75}でのLouisのアプローチに批判的�
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.77}Exercise 3.77:} 
+\heading{\phantomsection\label{練習問題 3.77}練習問題 3.77:} 
 上で使った\code{integral}手続きは、\link{3.5.2節}に出てきた、整数の無限ストリームの
 ``暗黙的''定義に似ている。別のやり方として、\code{integral}の定義を、
 (同じく\link{3.5.2節}に出てきた)\code{integers\-/starting\-/from}に似たものにすることも
@@ -19976,7 +19976,7 @@ Eva Lu Atorは、\link{Exercise 3.75}でのLouisのアプローチに批判的�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.78}Exercise 3.78:} 
+\heading{\phantomsection\label{練習問題 3.78}練習問題 3.78:} 
 同次2階線形微分方程式について調べるために信号処理システムを設計するという問題について
 考えよ。
 \begin{comment}
@@ -20030,13 +20030,13 @@ d t^2        d t
 
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.79}Exercise 3.79:} 
-\link{Exercise 3.78}の\code{solve\-/2nd}手続きを一般化し、一般的な二次微分方程式
+\heading{\phantomsection\label{練習問題 3.79}練習問題 3.79:} 
+\link{練習問題 3.78}の\code{solve\-/2nd}手続きを一般化し、一般的な二次微分方程式
 \( d^2y / dt^2 =f(dy / dt, y) \)を解くのに使えるようにせよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.80}Exercise 3.80:} 
+\heading{\phantomsection\label{練習問題 3.80}練習問題 3.80:} 
 \jnewterm{直列RLC回路}(\newterm{series RLC circuit})とは、抵抗・コンデンサ・コイルが
 \link{Figure 3.36}のように直列に接続されているものをいう。ここで、\( R \), \( L \), \( C \)が
 それぞれ抵抗・コイル・コンデンサであるとすると、これら三つのコンポーネントの
@@ -20126,7 +20126,7 @@ v_C -+- C                     _)  v_L
 
 \begin{quote}
 引数として、回路のパラメタ\( R \), \( L \), \( C \)と、時間の増分\( dt \)を取る
-手続き\code{RLC}を書け。\link{Exercise 3.73}の\code{RC}手続きと同じように、
+手続き\code{RLC}を書け。\link{練習問題 3.73}の\code{RC}手続きと同じように、
 \code{RLC}は手続きを返す。返り値の手続きは、状態変数の初期値\( v_{C_0} \)と\( i_{L_0} \)を取り、
 \( v_C \)と\( i_L \)の状態ストリームのペアを(\code{cons}を使って)生成する。
 \code{RLC}を使って、\( R \) = 1[Ω], \( C \) = 0.2[F], \( L \) = 1 henry, \( dt \)
@@ -20208,7 +20208,7 @@ v_C -+- C                     _)  v_L
 私たちの言語をこの方式に転換するやり方を見ていきます。残念ながら、手続き呼び出しに遅延を
 採用すると、代入・可変データ・入出力といった、イベントの順番に依存するプログラムを設計する
 能力がめちゃくちゃになってしまいます。\code{cons\-/stream}で\code{delay}をひとつ使うだけでも、
-\link{Exercise 3.51}や\link{Exercise 3.52}で例示したように、ひどい混乱が起こることがあります。
+\link{練習問題 3.51}や\link{練習問題 3.52}で例示したように、ひどい混乱が起こることがあります。
 知られている限りでは、可変性と遅延評価はプログラミング言語の中でうまく同居させることができません。
 これら二つを同時に扱う方法を工夫することは活発な研究領域となっています。
 
@@ -20288,8 +20288,8 @@ v_C -+- C                     _)  v_L
 といったものは使われていません。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.81}Exercise 3.81:} 
-\link{Exercise 3.6}では、乱数生成器を一般化して、乱数列をリセットできるようにすることで、
+\heading{\phantomsection\label{練習問題 3.81}練習問題 3.81:} 
+\link{練習問題 3.6}では、乱数生成器を一般化して、乱数列をリセットできるようにすることで、
 再現可能な``ランダム''な数の列を生成することについて検討した。同じ生成器をストリームによって
 定式化せよ。この生成器は要求の入力ストリームに基づいて動作し、望み通りの乱数ストリームを
 生成する。要求は、新しい乱数を生成する\code{generate}、または列を指定された値に
@@ -20297,8 +20297,8 @@ v_C -+- C                     _)  v_L
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 3.82}Exercise 3.82:} 
-\link{Exercise 3.5}のモンテカルロ積分をストリームによって再度行え。
+\heading{\phantomsection\label{練習問題 3.82}練習問題 3.82:} 
+\link{練習問題 3.5}のモンテカルロ積分をストリームによって再度行え。
 ストリーム版\code{estimate\-/integral}は試行回数の引数を持たない。その代わりに、
 連続した試行に基づく推定値のストリームを生成する。
 \end{quote}
@@ -20790,7 +20790,7 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 定義しようと思うと\code{eval}の定義を編集しないといけないということです。ほとんどのLisp実装では、
 式の型によるディスパッチはデータ主導スタイルで行われています。そのことによって、
 \code{eval}が識別できる新たな式の型を、\code{eval}そのものの定義を修正することなしに
-ユーザが追加できるようになっています(\link{Exercise 4.3}参照)。
+ユーザが追加できるようになっています(\link{練習問題 4.3}参照)。
 
 \subsubsection*{apply}
 
@@ -20904,7 +20904,7 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 実装依存です---つまり、返す値は実装者が決めることができます。}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.1}Exercise 4.1:} 
+\heading{\phantomsection\label{練習問題 4.1}練習問題 4.1:} 
 メタ循環評価器が被演算子を評価する順番は、左から右なのか、右から左なのかわからないという
 ことに注意せよ。評価順は、基層となるLispのものを引き継ぐ。つまり、\code{list\-/of\-/values}にある
 \code{cons}の引数が左から右という順で評価されるのであれば、\code{list\-/of\-/values}は被演算子を
@@ -20953,7 +20953,7 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 クォート式は\code{(quote <\var{text\-/of\-/quotation}>)}という形式です。
 \footnote{\link{2.3.1節}で触れたように、評価器はクォート式を\code{quote}から始まる
 リストとして扱います。これは、クォート式に引用符が使われている場合でも同じです。例えば、
-式\code{'a}は、この評価器によって\code{(quote a)}として扱われます。\link{Exercise 2.55}参照。}
+式\code{'a}は、この評価器によって\code{(quote a)}として扱われます。\link{練習問題 2.55}参照。}
 
 \begin{scheme}
 (define (quoted? exp) (tagged-list? exp 'quote))
@@ -21158,7 +21158,7 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 
 \noindent
 \code{cond}のような、構文変形として実装するようにした式のことは\jnewterm{派生式}
-(\newterm{derived expressions})といいます。\code{let}式も同じく派生式です(\link{Exercise 4.6}参照)。
+(\newterm{derived expressions})といいます。\code{let}式も同じく派生式です(\link{練習問題 4.6}参照)。
 \footnote{実用的なLispシステムでは、ユーザが新しい派生式を追加し、評価器を修正することなく
 構文変形としての実装を規定することができる仕組みを提供しています。そのようなユーザ定義の変形は
 \jnewterm{マクロ}(\newterm{macro})と呼ばれます。単純なマクロ定義の仕組みを追加することは
@@ -21168,7 +21168,7 @@ Arguments   |  8     Eval          `888888888888888888) | Environment
 参照してください。}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.2}Exercise 4.2:} 
+\heading{\phantomsection\label{練習問題 4.2}練習問題 4.2:} 
 Louis Reasonerは、\code{eval}の\code{cond}を並べ替えて、手続き適用の節が代入の節より前に来るように
 しようとしている。彼は、こうするとインタプリタの効率がよくなると言う。プログラムは通常、
 代入や定義などより適用を多く含んでいるのだから、修正版の\code{eval}は、元の\code{eval}よりも
@@ -21191,14 +21191,14 @@ Louisは計画がうまくいかないのでイライラしている。彼は、
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.3}Exercise 4.3:} 
+\heading{\phantomsection\label{練習問題 4.3}練習問題 4.3:} 
 ディスパッチをデータ主導スタイルで行うように\code{eval}を書き直せ。これを
-\link{Exercise 2.73}のデータ主導型微分手続きと比較せよ(式の型としては、複合式の\code{car}を
+\link{練習問題 2.73}のデータ主導型微分手続きと比較せよ(式の型としては、複合式の\code{car}を
 使ってよい。この節で実装した構文ではそれが適切である)。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.4}Exercise 4.4:} 
+\heading{\phantomsection\label{練習問題 4.4}練習問題 4.4:} 
 \link{第1章}で出てきた特殊形式である\code{and}と\code{or}の定義を思い出そう。
 
 \begin{itemize}
@@ -21224,7 +21224,7 @@ Louisは計画がうまくいかないのでイライラしている。彼は、
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.5}Exercise 4.5:} 
+\heading{\phantomsection\label{練習問題 4.5}練習問題 4.5:} 
 Schemeには、\code{cond}節の別の構文として、\code{(<\var{test}> => <\var{recipient}>)}というものが
 ある。これは、\( \langle \)\var{test}\( \kern0.08em\rangle \)が真の値として評価される場合、
 \( \langle \)\var{recipient}\( \kern0.08em\rangle \)が評価される。その値は1引数の手続きである
@@ -21241,7 +21241,7 @@ Schemeには、\code{cond}節の別の構文として、\code{(<\var{test}> => <
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.6}Exercise 4.6:} 
+\heading{\phantomsection\label{練習問題 4.6}練習問題 4.6:} 
 \code{let}式は派生式である。以下は、
 
 \begin{scheme}
@@ -21265,7 +21265,7 @@ Schemeには、\code{cond}節の別の構文として、\code{(<\var{test}> => <
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.7}Exercise 4.7:}
+\heading{\phantomsection\label{練習問題 4.7}練習問題 4.7:}
 
 \code{let*}は\code{let}に似ているが、\code{let*}変数の束縛は左から右へ順番に行われ、
 それぞれの束縛は、それまでの束縛がすべて見える環境の中で行われるというところが違う。
@@ -21279,7 +21279,7 @@ Schemeには、\code{cond}節の別の構文として、\code{(<\var{test}> => <
 \noindent
 は39を返す。\code{let*}式を入れ子の\code{let}式の集合として書き直す方法を説明せよ。また、
 この変形を実行する手続き\code{let*\-/>nested\-/lets}を書け。もしすでに\code{let}を実装していて
-(\link{Exercise 4.6})、\code{let*}を扱えるように評価器を拡張したいとしたら、以下のアクションを持つ
+(\link{練習問題 4.6})、\code{let*}を扱えるように評価器を拡張したいとしたら、以下のアクションを持つ
 節を\code{eval}に追加することで足りるだろうか。
 
 \begin{scheme}
@@ -21291,7 +21291,7 @@ Schemeには、\code{cond}節の別の構文として、\code{(<\var{test}> => <
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.8}Exercise 4.8:} 
+\heading{\phantomsection\label{練習問題 4.8}練習問題 4.8:} 
 ``名前つき\code{let}''は\code{let}の変種で、以下の形式を持つ。
 
 \begin{scheme}
@@ -21317,11 +21317,11 @@ Schemeには、\code{cond}節の別の構文として、\code{(<\var{test}> => <
         b
         (fib-iter (+ a b) a (- count 1)))))
 \end{scheme}
-\link{Exercise 4.6}の\code{let\-/>combination}を修正し、名前つき\code{let}もサポートするようにせよ。
+\link{練習問題 4.6}の\code{let\-/>combination}を修正し、名前つき\code{let}もサポートするようにせよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.9}Exercise 4.9:} 
+\heading{\phantomsection\label{練習問題 4.9}練習問題 4.9:} 
 多くの言語では、\code{do}, \code{for}, \code{while}, \code{until}のようないろいろな反復構造を
 サポートしている。Schemeでは、反復処理は通常の手続き呼び出しによって表現できるので、特別な
 反復構造を入れても計算能力が本質的に上がるわけではない。一方で、そのような構造を持っていると
@@ -21330,7 +21330,7 @@ Schemeには、\code{cond}節の別の構文として、\code{(<\var{test}> => <
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.10}Exercise 4.10:}
+\heading{\phantomsection\label{練習問題 4.10}練習問題 4.10:}
 データ抽象化を使うことで、評価対象言語の個別の文法とは独立した\code{eval}手続きを書くことができた。
 そのことを示すために、\code{eval}と\code{apply}を変更せずに、この節の手続きを変更することによって
 Schemeの新しい文法を設計・実装せよ。
@@ -21528,31 +21528,31 @@ Schemeの新しい文法を設計・実装せよ。
 \noindent
 ここで記述した手法は、環境を表現する数多くの方法のひとつにすぎません。データ抽象化を使って、
 どういう表現を選択するかという細かいところを評価器のほかの部分から分離させたので、やろうと思えば
-環境の表現方法を変えることもできます(\link{Exercise 4.11}参照)。製品品質のLispシステムでは、
+環境の表現方法を変えることもできます(\link{練習問題 4.11}参照)。製品品質のLispシステムでは、
 評価器の環境演算速度(特に、変数探索の速度)がシステムの性能に大きく影響します。ここで記述した表現は、
 概念的には単純なのですが、効率的ではないので普通は製品システムで使われることはないでしょう。
-\footnote{この表現(\link{Exercise 4.11}のバージョンも同様です)の欠点は、ある変数の束縛を
+\footnote{この表現(\link{練習問題 4.11}のバージョンも同様です)の欠点は、ある変数の束縛を
 見つけるのに、評価器がたくさんのフレームを見ていかないといけないことがあるというところです
 (このようなアプローチは\jnewterm{深い束縛}(\newterm{deep binding})と呼ばれます)。この非効率さを
 防ぐ方法のひとつとして\jnewterm{レキシカルアドレッシング}(\newterm{lexical addressing})という
 戦略を使うというものがあります。これについては\link{5.5.6節}で検討します。}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.11}Exercise 4.11:} 
+\heading{\phantomsection\label{練習問題 4.11}練習問題 4.11:} 
 フレームをリストのペアとして表現するのではなく、束縛のリストとして表現することもできる。
 この場合、それぞれの束縛は名前と値のペアとなる。環境演算を書き直し、この表現を使うようにせよ。
 
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.12}Exercise 4.12:}
+\heading{\phantomsection\label{練習問題 4.12}練習問題 4.12:}
 手続き\code{set\-/variable\-/value!}, \code{define\-/variable!}, \code{lookup\-/variable\-/value}は、
 環境構造を順にたどる、より抽象的な手続きによって表現できる。共通パターンを取り出した抽象化を
 定義し、それらの抽象化によって上記三つの手続きを再定義せよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.13}Exercise 4.13:} 
+\heading{\phantomsection\label{練習問題 4.13}練習問題 4.13:} 
 Schemeでは、\code{define}によって新しい束縛を作ることができる一方で、束縛を削除する方法は
 提供していない。与えられた記号の束縛を評価環境から削除する特殊形式\code{make\-/unbound!}を実装せよ。
 この問題の仕様は完全ではない。例えば、削除を行うのは環境の一番目のフレームだけでよいのだろうか。
@@ -21714,7 +21714,7 @@ Schemeそのものだという理由です。つまり、例えば\code{(list 'f
 
 % \vspace{1em}
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.14}Exercise 4.14:}
+\heading{\phantomsection\label{練習問題 4.14}練習問題 4.14:}
 Eva Lu AtorとLouis Reasonerはそれぞれメタ循環評価器の実験をしていた。Evaは\code{map}の定義を
 入力し、それを使うテストプログラムを実行した。テストは問題なくうまくいった。
 一方、Louisはシステム版の\code{map}をメタ循環評価器の基本手続きとして組み込んだ。
@@ -21800,7 +21800,7 @@ C言語評価器の動作を模倣することになり、つまりC言語のプ
 (この主張は、\jnewterm{チャーチ・チューリングのテーゼ}(\newterm{Church-Turing thesis})として
 知られています)。次に、チューリングは万能機械、つまりチューリングマシン用プログラムの
 評価器としてふるまうチューリングマシンを実装しました。彼はこの枠組みを使って、
-チューリングマシンによって計算できない(\link{Exercise 4.15}参照)、つまり``実効的な処理''として
+チューリングマシンによって計算できない(\link{練習問題 4.15}参照)、つまり``実効的な処理''として
 定式化できない良設定問題が存在することを実証しました。チュールイングはさらに、実用的な計算機科学
 への基礎的な貢献も続けました。例えば、彼は汎用目的サブルーチンを使ってプログラミングを構造化する
 という考え方を発明しました。チューリングの伝記については\link{Hodges 1983}を参照してください。}
@@ -21887,7 +21887,7 @@ Lispの式として明示的に評価する能力をユーザに与えるため�
 含まれています。}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.15}Exercise 4.15:}
+\heading{\phantomsection\label{練習問題 4.15}練習問題 4.15:}
 1引数の手続き\code{p}とオブジェクト\code{a}について、式\code{(p a)}が(エラーメッセージを
 出して終了したり、無限に動き続けるのではなく)値を返すとき、\code{p}は\code{a}について``停止''すると
 いう。任意の手続き\code{p}と任意のオブジェクト\code{a}に対して、\code{p}が\code{a}について
@@ -21948,7 +21948,7 @@ Lispの式として明示的に評価する能力をユーザに与えるため�
 本体の先頭に来て、定義された変数に対する値の式の評価が定義された変数をひとつも実際には使わない
 手続きの場合、ここでの逐次評価メカニズムは同時定義を直接実装したメカニズムと同じ結果を返します
 (これらの制約に従わず、逐次定義が同時定義と等価にならないような手続きの例については、
-\link{Exercise 4.19}を参照してください)。
+\link{練習問題 4.19}を参照してください)。
 \footnote{\link{第1章}の\link{Footnote 28}で``責任を負いかねます''と書いたのは、
 プログラムにこの評価メカニズムに依存してほしくないというのがその理由です。内部手続きが
 最初に来て、定義が評価されている間にお互いを使わないと決めてあるため、
@@ -21989,7 +21989,7 @@ Schemeの\acronym{IEEE}標準を実装する際には、これらの定義を評
 ここで、\code{*unassigned*}は特別な記号で、未割り当ての変数の値を使おうとしたら
 エラーを発生させるものです。
 
-内部定義を走査する以外の戦略のひとつは、\link{Exercise 4.18}に示されています。
+内部定義を走査する以外の戦略のひとつは、\link{練習問題 4.18}に示されています。
 上記の変形とは違って、こちらは定義された変数の値はそれらの変数の値を使わないでも
 評価できるという制約を強制するものです。
 \footnote{Schemeの\acronym{IEEE}標準では、この制約に従うのはプログラマの責任で、
@@ -21998,9 +21998,9 @@ Schemeの\acronym{IEEE}標準を実装する際には、これらの定義を評
 そのため、この制約に従わないプログラムでも、そのような実装では実際には動くこともあります。}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.16}Exercise 4.16:}
+\heading{\phantomsection\label{練習問題 4.16}練習問題 4.16:}
 この練習問題では、上で説明した内部定義の手法を実装する。評価器は\code{let}をサポートしているとする
-(\link{Exercise 4.6}参照)。
+(\link{練習問題 4.6}参照)。
 
 \begin{enumerate}[a]
 
@@ -22020,7 +22020,7 @@ Schemeの\acronym{IEEE}標準を実装する際には、これらの定義を評
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.17}Exercise 4.17:}
+\heading{\phantomsection\label{練習問題 4.17}練習問題 4.17:}
 本文の手続き中の式\( \langle \)\var{e3}\( \kern0.1em\rangle \)を評価しているときに有効である
 環境の図を描き、定義が逐次的に解釈される場合と定義を上記のように掃き出す場合とでそれぞれ
 どのようになるか比較せよ。変形したプログラムでは、なぜフレームがひとつ余分にあるのだろうか。
@@ -22030,7 +22030,7 @@ Schemeの\acronym{IEEE}標準を実装する際には、これらの定義を評
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.18}Exercise 4.18:}
+\heading{\phantomsection\label{練習問題 4.18}練習問題 4.18:}
 定義を掃き出す別の戦略として、本文中の例を以下のように変形するものを考える。
 
 \begin{scheme}
@@ -22058,7 +22058,7 @@ Schemeの\acronym{IEEE}標準を実装する際には、これらの定義を評
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.19}Exercise 4.19:}
+\heading{\phantomsection\label{練習問題 4.19}練習問題 4.19:}
 Ben Bitdiddle, Alyssa P. Hacker, Eva Lu Atorは、以下の式を評価したときの結果として
 望ましいものは何かということで議論している。
 
@@ -22074,7 +22074,7 @@ Ben Bitdiddle, Alyssa P. Hacker, Eva Lu Atorは、以下の式を評価したと
 Benは、\code{define}に逐次ルールを使って結果を得るべきだと主張する。\code{b}は11と定義され、
 その次に\code{a}は5と定義されるので、結果は16であるべきだということだ。Alyssaは、相互再帰には
 内部手続き定義の同時スコープルールが必要で、手続きの名前とほかの名前で扱いを変えるのは
-不合理だと反対する。このため、彼女は\link{Exercise 4.16}で実装したメカニズムを支持している。
+不合理だと反対する。このため、彼女は\link{練習問題 4.16}で実装したメカニズムを支持している。
 これを使うと、\code{b}の値を計算する時点で、\code{a}は未割り当てということになる。
 よって、Alyssaの見方では、手続きはエラーを発生させるべきだということだ。
 Evaの意見はどちらとも違う。彼女は、\code{a}と\code{b}の定義が真に同時だとするなら、
@@ -22090,7 +22090,7 @@ Evaの意見はどちらとも違う。彼女は、\code{a}と\code{b}の定義�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.20}Exercise 4.20:}
+\heading{\phantomsection\label{練習問題 4.20}練習問題 4.20:}
 内部定義は逐次的に見えるのに実際は同時だということから、内部定義を完全に回避し、
 代わりに特殊形式\code{letrec}を使うという人もいる。
 \code{letrec}は\code{let}に似ているので、そこで束縛される変数が同時に束縛され、お互いに
@@ -22130,7 +22130,7 @@ Evaの意見はどちらとも違う。彼女は、\code{a}と\code{b}の定義�
 \begin{enumerate}[a]
 
 \item
-\code{letrec}を派生式として実装せよ。上の本文や\link{Exercise 4.18}で示したように、
+\code{letrec}を派生式として実装せよ。上の本文や\link{練習問題 4.18}で示したように、
 \code{letrec}式を\code{let}式に変形すること。つまり、\code{letrec}の変数を
 \code{let}によって作り、値を\code{set!}で代入するということになる。
 
@@ -22146,8 +22146,8 @@ Louis Reasonerは、内部定義について考えるうちに混乱してしま
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.21}Exercise 4.21:}
-驚くべきことに、\link{Exercise 4.20}でのLouisの直感は正しい。\code{letrec}を
+\heading{\phantomsection\label{練習問題 4.21}練習問題 4.21:}
+驚くべきことに、\link{練習問題 4.20}でのLouisの直感は正しい。\code{letrec}を
 (それどころか、\code{define}さえ)使わずに再帰手続きを規定することは実際に可能だ。
 しかし、これを実現する方法はLouisの想像よりもずっと難しいものになる。次の式は、
 再帰的な階乗手続きを適用することによって10の階乗を求めている。
@@ -22336,7 +22336,7 @@ Marc \link{Feeley (1986)} (\link{Feeley and Lapalme 1987}も参照)は、この�
 
 \noindent
 式の列(\code{begin}や、\code{lambda}式の本体に出てくるようなもの)の解析はより複雑です。
-\footnote{列の処理について理解を深めるには\link{Exercise 4.23}を参照してください。}
+\footnote{列の処理について理解を深めるには\link{練習問題 4.23}を参照してください。}
 列のそれぞれの式は解析され、実行手続きが作られます。これらの実行手続きは、引数に環境を取り、
 その環境を引数としてそれぞれの実行手続きを順番に呼び出していくひとつの実行手続きにまとめられます。
 
@@ -22392,12 +22392,12 @@ Marc \link{Feeley (1986)} (\link{Feeley and Lapalme 1987}も参照)は、この�
 同じデータ構造、構文手続き、実行時サポート手続きを使います。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.22}Exercise 4.22:}
-この節の評価器を拡張し、特殊形式\code{let}をサポートするようにせよ(\link{Exercise 4.6}参照)。
+\heading{\phantomsection\label{練習問題 4.22}練習問題 4.22:}
+この節の評価器を拡張し、特殊形式\code{let}をサポートするようにせよ(\link{練習問題 4.6}参照)。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.23}Exercise 4.23:}
+\heading{\phantomsection\label{練習問題 4.23}練習問題 4.23:}
 Alyssa P. Hackerは、\code{analyze\-/sequence}がどうしてこんなに複雑になるのか理解できない。
 ほかの解析手続きは、どれも\link{4.1.1節}に出てきた対応する評価手続き
 (または\code{eval}節)を素直に変形したものだ。彼女は、\code{analyze\-/sequence}は
@@ -22429,7 +22429,7 @@ Alyssaに説明する。Alyssaの列実行手続きは、個別の実行手続�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.24}Exercise 4.24:}
+\heading{\phantomsection\label{練習問題 4.24}練習問題 4.24:}
 元のメタ循環評価器とこの節のバージョンの速度を比較する実験をいくつか設計し、実行せよ。
 その結果を使って、いろいろな手続きについて、解析と実行に使われる時間の割合を見積もれ。
 \end{quote}
@@ -22496,7 +22496,7 @@ Lispの修正提案のいくつかの側面についてLispコミュニティの
 
 \noindent
 これは、適用順序の言語では動作しません。\code{unless}が呼ばれる前に、通常の値と例外の値が
-両方とも評価されてしまうためです(\link{Exercise 1.6}と比較してください)。遅延評価の利点のひとつは、
+両方とも評価されてしまうためです(\link{練習問題 1.6}と比較してください)。遅延評価の利点のひとつは、
 \code{unless}のようなある種の手続きが、引数のうち評価するとエラーになったり停止しなかったりするものが
 あったとしても、役に立つ計算ができるということです。
 
@@ -22509,7 +22509,7 @@ Lispの修正提案のいくつかの側面についてLispコミュニティの
 ``正規順序言語のHassleは、厳密な基本手続きをいくつか持っています。そのほかの手続きは引数を
 遅延評価で取ります。''}純粋な適用順序言語では、すべての複合手続きはすべての引数について厳密で、
 基本手続きは厳密であることも非厳密であることもあります。このほかに、定義する手続きの厳密さを
-プログラマが細かくコントロールできるようにしている言語もあります(\link{Exercise 4.31}参照)。
+プログラマが細かくコントロールできるようにしている言語もあります(\link{練習問題 4.31}参照)。
 
 非厳密にすることで有用な結果が得られる手続きの顕著な例は\code{cons}(に限らず、一般的に
 ほとんどすべてのデータ構造のコンストラクタ)です。要素の値がわかっていない場合でも、
@@ -22519,7 +22519,7 @@ Lispの修正提案のいくつかの側面についてLispコミュニティの
 非厳密な\code{cons}ペアからなるリストとして\link{第3章}のストリームを実装します。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.25}Exercise 4.25:}
+\heading{\phantomsection\label{練習問題 4.25}練習問題 4.25:}
 \code{unless}を(通常の適用順序Schemeで)上で示したように定義し、それから\code{factorial}を
 \code{unless}を使って以下のように定義するとする。
 
@@ -22535,7 +22535,7 @@ Lispの修正提案のいくつかの側面についてLispコミュニティの
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.26}Exercise 4.26:}
+\heading{\phantomsection\label{練習問題 4.26}練習問題 4.26:}
 Ben BitdiddleとAlyssa P. Hackerは、\code{unless}のようなものを実装する際に
 遅延評価がどれだけ重要かというところで意見が分かれている。Benは、適用順序でも特殊形式として
 \code{unless}を実装できると指摘した。Alyssaは、そういうふうにしてしまうと、
@@ -22584,9 +22584,9 @@ Ben BitdiddleとAlyssa P. Hackerは、\code{unless}のようなものを実装�
 引数渡しに対して\jnewterm{必要呼び}(\newterm{call-by-need})引数渡しと呼ばれることがあります。
 (call-by-nameはAlgol 60で導入されたものですが、これはメモ化しない遅延評価に似ています)。
 言語設計者である私たちは、評価器にメモ化させることも、メモ化させないことも、
-その選択をプログラマに任せることもできます(\link{Exercise 4.31})。\link{第3章}で見てきたことから
+その選択をプログラマに任せることもできます(\link{練習問題 4.31})。\link{第3章}で見てきたことから
 予測できるように、代入がある場合、この選択は難しく混乱を招く問題を引き起こします
-(\link{Exercise 4.27}、\link{Exercise 4.29}参照)。\link{Clinger (1982)}による優れた論文では、
+(\link{練習問題 4.27}、\link{練習問題 4.29}参照)。\link{Clinger (1982)}による優れた論文では、
 ここで起こる混乱の複数の側面について明らかにすることを試みています。}
 
 \subsubsection*{評価器の修正}
@@ -22781,7 +22781,7 @@ REPLまで返された場合、表示前に強制するようにするためで�
 注意してください。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.27}Exercise 4.27:}
+\heading{\phantomsection\label{練習問題 4.27}練習問題 4.27:}
 以下の定義を遅延評価器に入力したとする。
 
 \begin{scheme}
@@ -22811,17 +22811,17 @@ count
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.28}Exercise 4.28:}
+\heading{\phantomsection\label{練習問題 4.28}練習問題 4.28:}
 \code{eval}は、演算子を\code{apply}に渡す前に、\code{eval}ではなく\code{actual\-/value}を使って
 演算子を評価する。これは、演算子の値を強制するためである。ここで強制を行う必要があるということが
 わかるような例を示せ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.29}Exercise 4.29:}
+\heading{\phantomsection\label{練習問題 4.29}練習問題 4.29:}
 メモ化しなければ、メモ化した場合よりも実行がずっと遅くなりそうなプログラムを示せ。
 また、以下の対話について考えよ。この対話の中では、\code{id}手続きの定義は
-\link{Exercise 4.27}と同じで、\code{count}は0から始める。
+\link{練習問題 4.27}と同じで、\code{count}は0から始める。
 
 \begin{scheme}
 (define (square x) (* x x))
@@ -22840,7 +22840,7 @@ count
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.30}Exercise 4.30:}
+\heading{\phantomsection\label{練習問題 4.30}練習問題 4.30:}
 改心したC言語プログラマのCy D. Fectは、遅延評価器では列の中の式を強制しないので、
 副作用が起こらないことになるのではないかと心配している。列の中の式の値は最後のもの以外は
 使われない(式は変数代入や表示などの作用のために存在する)ので、(例えば基本手続きの引数として)
@@ -22859,7 +22859,7 @@ count
 \begin{enumerate}[a]
 
 \item
-Ben Bitdiddleは、Cyは間違っていると考えている。彼は、\link{Exercise 2.23}で説明した
+Ben Bitdiddleは、Cyは間違っていると考えている。彼は、\link{練習問題 2.23}で説明した
 \code{for\-/each}手続きをCyに見せた。これは、副作用のある列の重要な例となっている。
 
 \begin{scheme}
@@ -22916,7 +22916,7 @@ Cyのアプローチだろうか、本文中のアプローチだろうか。そ
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.31}Exercise 4.31:}
+\heading{\phantomsection\label{練習問題 4.31}練習問題 4.31:}
 この節でのアプローチはちょっと気持ちの悪いところがある。というのは、互換性のない変更を
 Schemeに加えてしまっているからだ。遅延評価を\jnewterm{上位互換性のある拡張}
 (\newterm{upward-compatible extension})として、つまり通常のSchemeが前と同じように動くように
@@ -22950,7 +22950,7 @@ Schemeに加えてしまっているからだ。遅延評価を\jnewterm{上位�
 一般的なやり方を使うことができます。しかし、このやり方は不自然です。問題のひとつとして、
 特殊形式が手続きのような第一級オブジェクトではないので、高階手続きと組み合わせて使えないという
 ことがあります。
-\footnote{これはまさしく、\link{Exercise 4.26}の\code{unless}で起こった問題です。}
+\footnote{これはまさしく、\link{練習問題 4.26}の\code{unless}で起こった問題です。}
 そのうえ、リストに似ているもののリストと同一ではない新しい種類のデータオブジェクトとして
 ストリームを作らざるを得ず、そのことによって通常のリスト演算の多く(\code{map}, \code{append} など)
 をストリーム用に再実装しなければならないことになりました。
@@ -22961,11 +22961,11 @@ Schemeに加えてしまっているからだ。遅延評価を\jnewterm{上位�
 非厳密な基本手続きを許すようにして、そのひとつとして\code{cons}を実装するということです。
 もっと簡単な方法は、\code{cons}を基本手続きとして実装する根本的な必要性はない(\link{2.1.3節})
 ということを思い出して、ペアを手続きとして表現するということです。
-\footnote{この手続きによる表現は\link{Exercise 2.4}で説明したものです。本質的には、
+\footnote{この手続きによる表現は\link{練習問題 2.4}で説明したものです。本質的には、
 どんな手続きによる表現(例えば、メッセージパッシングによる実装)を使っても問題はありません。
 これらの定義は、ドライバループに入力すれば遅延評価器に組み込むことができます。元々
 \code{cons}, \code{car}, \code{cdr}をグローバル環境の基本手続きに入れていたとしたら、
-それらは再定義されることになります(\link{Exercise 4.33}と\link{Exercise 4.34}も参照してください)。}
+それらは再定義されることになります(\link{練習問題 4.33}と\link{練習問題 4.34}も参照してください)。}
 
 \begin{scheme}
 (define (cons x y) (lambda (m) (m x y)))
@@ -23035,13 +23035,13 @@ Schemeに加えてしまっているからだ。遅延評価を\jnewterm{上位�
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.32}Exercise 4.32:}
+\heading{\phantomsection\label{練習問題 4.32}練習問題 4.32:}
 \link{第3章}のストリームと、この節で説明した``より遅延化された''遅延リストとの間の
 違いを示す例をいくつか挙げよ。この遅延度の高さを利用するにはどのようにすればいいだろうか。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.33}Exercise 4.33:}
+\heading{\phantomsection\label{練習問題 4.33}練習問題 4.33:}
 Ben Bitdiddleは、次の式を評価することで、上記の遅延リストの実装をテストした。
 
 \begin{scheme}
@@ -23055,7 +23055,7 @@ Ben Bitdiddleは、次の式を評価することで、上記の遅延リスト�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.34}Exercise 4.34:}
+\heading{\phantomsection\label{練習問題 4.34}練習問題 4.34:}
 評価器のドライバループを修正し、遅延ペアと遅延リストが何らかの方式で適切に表示されるようにせよ
 (無限リストについてはどうするのがよいだろうか？)。評価器が表示する際に遅延ペアを識別できるように、
 遅延ペアの表現も修正する必要があるかもしれない。
@@ -23310,7 +23310,7 @@ try-again
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.35}Exercise 4.35:}
+\heading{\phantomsection\label{練習問題 4.35}練習問題 4.35:}
 2つの与えられた限界の間の整数を返す手続き\code{an\-/integer\-/between}を書け。
 これはピタゴラス数、つまり与えられた範囲の間の整数の三つ組\( (i, j, k) \)で
 \( i \le j \) かつ \( i^2 + j^2 = k^2 \)となるものを求める手続きを実装するのに使える。
@@ -23326,18 +23326,18 @@ try-again
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.36}Exercise 4.36:}
-\link{Exercise 3.69}では、探索対象の整数の大きさに上限を設けることなく``すべての''
+\heading{\phantomsection\label{練習問題 4.36}練習問題 4.36:}
+\link{練習問題 3.69}では、探索対象の整数の大きさに上限を設けることなく``すべての''
 ピタゴラス数のストリームを生成する方法を検討した。\code{an\-/integer\-/between}を
-単純に\link{Exercise 4.35}の手続き内の\code{an\-/integer\-/starting\-/from}で置き換えるという
+単純に\link{練習問題 4.35}の手続き内の\code{an\-/integer\-/starting\-/from}で置き換えるという
 やり方が、任意のピタゴラス数を生成する方法としてなぜ適切でないのか説明せよ。
 これを実際に達成する手続きを書け(つまり、\code{try\-/again}を繰り返し入力すると原理的には
 すべてのピタゴラス数を生成することになる手続きを書け)。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.37}Exercise 4.37:}
-Ben Bitdiddleは、ピタゴラス数を生成する以下の手法が\link{Exercise 4.35}のものよりも
+\heading{\phantomsection\label{練習問題 4.37}練習問題 4.37:}
+Ben Bitdiddleは、ピタゴラス数を生成する以下の手法が\link{練習問題 4.35}のものよりも
 効率的だと主張している。彼は正しいだろうか。 (ヒント：探索すべき可能性の数を考えよ)
 
 \begin{scheme}
@@ -23419,17 +23419,17 @@ SmithはFletcherのすぐ上やすぐ下の階には住んでいません。Flet
 \end{scheme}
 
 \noindent
-この簡単な手続きはうまくいくのですが、非常に時間がかかります。\link{Exercise 4.39}と
-\link{Exercise 4.40}では、考えられるいくつかの改善方法について検討します。
+この簡単な手続きはうまくいくのですが、非常に時間がかかります。\link{練習問題 4.39}と
+\link{練習問題 4.40}では、考えられるいくつかの改善方法について検討します。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.38}Exercise 4.38:}
+\heading{\phantomsection\label{練習問題 4.38}練習問題 4.38:}
 multiple-dwelling手続きを修正し、SmithとFletcherがすぐ上下の階に住んでいないという
 制約を取り除け。この変更したパズルにはいくつの解があるだろうか。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.39}Exercise 4.39:}
+\heading{\phantomsection\label{練習問題 4.39}練習問題 4.39:}
 multiple-dwelling手続き内の制約の順番は解に影響するだろうか。答えを見つけるのにかかる
 時間には影響するだろうか。もし順番が関係あると考えるのであれば、与えられた問題の
 制約の順番を変えることによって得られるより速いプログラムを示せ。
@@ -23437,7 +23437,7 @@ multiple-dwelling手続き内の制約の順番は解に影響するだろうか
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.40}Exercise 4.40:}
+\heading{\phantomsection\label{練習問題 4.40}練習問題 4.40:}
 複数居住問題で、各人を各階に割り当てるやり方は、階の割り当てがそれぞれ別々でなければならない
 という制約を設定する前と後で、それぞれ何組あるだろうか。各人を各階に割り当てるすべての可能な
 やり方を生成してからバックトラックにそれらを排除させるのは、非常に非効率的だ。例えば、
@@ -23447,12 +23447,12 @@ multiple-dwelling手続き内の制約の順番は解に影響するだろうか
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.41}Exercise 4.41:}
+\heading{\phantomsection\label{練習問題 4.41}練習問題 4.41:}
 複数居住パズルを解く通常のSchemeプログラムを書け。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.42}Exercise 4.42:}
+\heading{\phantomsection\label{練習問題 4.42}練習問題 4.42:}
 次の``嘘つき''パズル(\link{Phillips 1934}より)を解け。
 
 5人の女子生徒が試験のために座っている。彼女らは、両親が結果に過度の関心を持っていると考えている。
@@ -23482,7 +23482,7 @@ Mary: ``私は4位。トップはBettyだったよ。''
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.43}Exercise 4.43:}
+\heading{\phantomsection\label{練習問題 4.43}練習問題 4.43:}
 \code{amb}評価器を使って次のパズルを解け。
 \footnote{これは1960年代にLitton Industriesから出版された
 ``問題のレクリエーション''という本から取ったものです。
@@ -23495,13 +23495,13 @@ Hall氏のはRosalindという名前だ。Downing大佐のクルーザーMelissa
 つけたものだ。Gabrielleの父親は、Dr. Parkerの娘の名前をつけたクルーザーを持っている。
 Lornaの父親は誰か。
 
-効率よく動くプログラムを書くよう努めること(\link{Exercise 4.40}参照)。
+効率よく動くプログラムを書くよう努めること(\link{練習問題 4.40}参照)。
 また、もしMary Annの姓がMooreだと知らされていない場合はいくつの解が存在するだろうか。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.44}Exercise 4.44:}
-\link{Exercise 2.42}では、``8クイーンパズル''という、どの2つも互いに利き筋に入らないように
+\heading{\phantomsection\label{練習問題 4.44}練習問題 4.44:}
+\link{練習問題 2.42}では、``8クイーンパズル''という、どの2つも互いに利き筋に入らないように
 8つのクイーンをチェス盤に置くパズルについて記述した。このパズルを解く非決定性プログラムを書け。
 \end{quote}
 
@@ -23728,7 +23728,7 @@ Lornaの父親は誰か。
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.45}Exercise 4.45:}
+\heading{\phantomsection\label{練習問題 4.45}練習問題 4.45:}
 上の文法では、次の文の構文解析結果には5通りある。``The professor
 lectures to the student in the class with the cat''。5通りの解析結果を示し、それぞれのニュアンスの
 違いを説明せよ。
@@ -23736,14 +23736,14 @@ lectures to the student in the class with the cat''。5通りの解析結果を�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.46}Exercise 4.46:} 
+\heading{\phantomsection\label{練習問題 4.46}練習問題 4.46:} 
 \link{4.1節}と\link{4.2節}の評価器は、被演算子の評価順を決めていなかった。
 \code{amb}評価器は被演算子を左から右に評価するということを今後見ていく。
 被演算子の評価順がそれと違うものであったら我々の構文解析器がうまく動作しないのはなぜか説明せよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.47}Exercise 4.47:}
+\heading{\phantomsection\label{練習問題 4.47}練習問題 4.47:}
 Louis Reasonerは、動詞句は、動詞か、前置詞句が後ろに続く動詞句なのだから、
 手続き\code{parse\-/verb\-/phrase}は次のように定義するほうがずっと素直なのではないかと言う
 (名詞句も同じようにする)。
@@ -23761,7 +23761,7 @@ Louis Reasonerは、動詞句は、動詞か、前置詞句が後ろに続く動
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.48}Exercise 4.48:}
+\heading{\phantomsection\label{練習問題 4.48}練習問題 4.48:}
 上の文法を拡張子、より複雑な文が扱えるようにせよ。例えば、形容詞や副詞を含むように
 名詞句や動詞句を拡張してもよい。または、重文を取り扱えるようにしてもよい。
 \footnote{この種の文法は、いくらでも複雑なものにすることができます。しかし、実際の言語理解を
@@ -23773,7 +23773,7 @@ Louis Reasonerは、動詞句は、動詞か、前置詞句が後ろに続く動
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.49}Exercise 4.49:}
+\heading{\phantomsection\label{練習問題 4.49}練習問題 4.49:}
 Alyssa P. Hackerは、文を構文解析するより、面白い文を生成することに興味がある。彼女は、
 手続き\code{parse\-/word}を変更して``入力文''を無視するようにして、常に成功して適切な単語を
 生成するようにするだけで、構文解析のために作ったこのプログラムを使って文の生成ができるのでは
@@ -23782,7 +23782,7 @@ Alyssa P. Hackerは、文を構文解析するより、面白い文を生成す�
 ちょっと退屈です---生成される文は、この言語で可能な文の中から興味深いものをサンプリングした
 ものにはなっていないからです。実際のところ、この文法はいろいろなところでかなり再帰的で、
 Alyssaのやり方ではそれらの再帰のひとつに``はまって''抜け出せなくなってしまうのです。
-これに対処するひとつの方法については、\link{Exercise 4.50}を参照してください。}
+これに対処するひとつの方法については、\link{練習問題 4.50}を参照してください。}
 \end{quote}
 
 \subsection{\code{amb}評価器の実装}
@@ -23886,7 +23886,7 @@ Alyssaのやり方ではそれらの再帰のひとつに``はまって''抜け�
 \code{amb}評価器の文法とデータを表現する手続きと、基本的な\code{analyze}手続きは、
 \link{4.1.7節}の評価器のものとまったく同じものです。違うのは、特殊形式\code{amb}を
 認識できるように追加の構文手続きが必要になるということだけです。
-\footnote{評価器は、非決定性プログラムで使った\code{let}(\link{Exercise 4.22}参照)を
+\footnote{評価器は、非決定性プログラムで使った\code{let}(\link{練習問題 4.22}参照)を
 サポートしていると想定しています。}
 
 \begin{scheme}
@@ -24238,14 +24238,14 @@ Alyssaのやり方ではそれらの再帰のひとつに``はまって''抜け�
 ユーザが\code{try\-/again}を入力したときに起こるふるまいです。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.50}Exercise 4.50:}
+\heading{\phantomsection\label{練習問題 4.50}練習問題 4.50:}
 新しい特殊形式\code{ramb}を定義せよ。これは\code{amb}に似ているが、次の選択肢を左から右に
 探索するのではなく、ランダムな順番で探索するというところが違う。
-これがあると\link{Exercise 4.49}のAlyssaの問題を解くのにどう役に立つか示せ。
+これがあると\link{練習問題 4.49}のAlyssaの問題を解くのにどう役に立つか示せ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.51}Exercise 4.51:}
+\heading{\phantomsection\label{練習問題 4.51}練習問題 4.51:}
 \code{permanent\-/set!}という、失敗時に取り消されることのない新しい種類の代入を実装せよ。
 例えば、以下のように、二つの異なる要素をリストから選択し、成功する選択をするのに要した
 試行回数を数えるということができる。
@@ -24270,7 +24270,7 @@ try-again
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.52}Exercise 4.52:}
+\heading{\phantomsection\label{練習問題 4.52}練習問題 4.52:}
 \code{if\-/fail}という、ユーザが式の失敗を捕捉することを可能にする新しい構造を実装せよ。
 \code{if\-/fail}は二つの式を取る。\code{if\-/fail}は最初の式を通常通りに評価し、その評価が
 成功したら通常通りに戻る。しかし、その評価が失敗したら、以下の例のように二つ目の式の値が返される。
@@ -24297,8 +24297,8 @@ try-again
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.53}Exercise 4.53:}
-\link{Exercise 4.51}で述べた\code{permanent\-/set!}と\link{Exercise 4.52}の
+\heading{\phantomsection\label{練習問題 4.53}練習問題 4.53:}
+\link{練習問題 4.51}で述べた\code{permanent\-/set!}と\link{練習問題 4.52}の
 \code{if\-/fail}があるとき、以下を評価した結果はどのようなものになるだろうか。
 
 \begin{scheme}
@@ -24313,7 +24313,7 @@ try-again
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.54}Exercise 4.54:}
+\heading{\phantomsection\label{練習問題 4.54}練習問題 4.54:}
 \code{require}が\code{amb}を使う通常の手続きとして実装できて、ユーザが非決定性プログラムの
 一部として定義できるということに気づいていなければ、\code{require}を特殊形式として
 実装する必要があっただろう。そのためには、以下の構文手続きが必要になる。
@@ -24698,7 +24698,7 @@ Benの監督するコンピュータ部門のほかに、会社には会計主�
 これは、このエントリの三つ目の項目が三要素のリストであるのに対し、パターンの三つ目の項目は
 二要素であるべきだと規定しているためです。三つ目の項目が\code{computer}で始まる任意のリストと
 なるようにパターンを変更するには、以下のように規定します。
-\footnote{ここでは、\link{Exercise 2.20}で紹介したドット末尾記法を使っています。}
+\footnote{ここでは、\link{練習問題 2.20}で紹介したドット末尾記法を使っています。}
 
 \begin{scheme}
 (job ?x (computer . ?type))
@@ -24758,7 +24758,7 @@ Benの監督するコンピュータ部門のほかに、会社には会計主�
 そのデータベースに対してパターンを満たすことになります。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.55}Exercise 4.55:}
+\heading{\phantomsection\label{練習問題 4.55}練習問題 4.55:}
 以下の情報をデータベースから取り出す単純クエリを示せ。
 
 \begin{enumerate}
@@ -24899,7 +24899,7 @@ Slumervilleに住むすべての人の名前と住所
 
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.56}Exercise 4.56:}
+\heading{\phantomsection\label{練習問題 4.56}練習問題 4.56:}
 以下の情報を取得する複合クエリを考えよ。
 
 \begin{enumerate}[a]
@@ -25014,7 +25014,7 @@ Ben Bitdiddleの近くに住むコンピュータプログラマをすべて検�
 そのボスはその職員より地位が上であるというものです。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.57}Exercise 4.57:}
+\heading{\phantomsection\label{練習問題 4.57}練習問題 4.57:}
 人1が人2と同じ職務を持っているか、人1の職務を持つ人には人2の職務もできるという場合で、
 人1と人2が同一人物でない場合、人1は人2を代替(\code{replace})できるとする規則を定義せよ。
 この規則を使って、以下の検索を行うクエリを示せ。
@@ -25031,13 +25031,13 @@ Cy D. Fectを代替できるすべての人
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.58}Exercise 4.58:}
+\heading{\phantomsection\label{練習問題 4.58}練習問題 4.58:}
 ある人が、自分の勤める部署に勤める監督者がいない場合、その人を``big shot''(重要人物)であると
 する規則を定義せよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.59}Exercise 4.59:}
+\heading{\phantomsection\label{練習問題 4.59}練習問題 4.59:}
 Ben Bitdiddleはある会議を何度も欠席してしまった。この会議を忘れる癖を何とかしないと首になると
 思って、Benは対策を取ることを決めた。彼は、以下のような表明として会社の週次ミーティングを
 Microshaftのデータベースにすべて追加した。
@@ -25081,7 +25081,7 @@ Alyssaは水曜の朝に職場に着き、その日にどんな会議がある�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.60}Exercise 4.60:}
+\heading{\phantomsection\label{練習問題 4.60}練習問題 4.60:}
 以下のクエリによって、
 
 \begin{scheme}
@@ -25191,7 +25191,7 @@ Alyssaは水曜の朝に職場に着き、その日にどんな会議がある�
 見ていくように、一般的な方法が破綻することもあります。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.61}Exercise 4.61:}
+\heading{\phantomsection\label{練習問題 4.61}練習問題 4.61:}
 次の二つの規則は、リストの隣り合う要素を求める\code{next\-/to}関係を実装している。
 
 \begin{scheme}
@@ -25210,8 +25210,8 @@ Alyssaは水曜の朝に職場に着き、その日にどんな会議がある�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.62}Exercise 4.62:}
-\link{Exercise 2.17}の\code{last\-/pair}演算を実装する規則を定義せよ。
+\heading{\phantomsection\label{練習問題 4.62}練習問題 4.62:}
+\link{練習問題 2.17}の\code{last\-/pair}演算を実装する規則を定義せよ。
 これは、空でないリストの最後の要素を含むリストを返すものである。
 \code{(last\-/pair (3) ?x)}, \code{(last\-/pair (1 2 3) ?x)}, \code{(last\-/pair (2 ?x) (3))}の
 ようなクエリに対して、それらの規則をチェックせよ。それらの規則は\code{(last\-/pair ?x (3))}のような
@@ -25219,7 +25219,7 @@ Alyssaは水曜の朝に職場に着き、その日にどんな会議がある�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.63}Exercise 4.63:}
+\heading{\phantomsection\label{練習問題 4.63}練習問題 4.63:}
 次のデータベース(創世記第4章参照)は、Adaの子孫の家系をたどり、Cainを経てAdamに到るまで遡っている。
 
 \begin{scheme}
@@ -25238,7 +25238,7 @@ Alyssaは水曜の朝に職場に着き、その日にどんな会議がある�
 の孫である''、``もし\( W \)が\( M \)の妻であり、かつ、\( S \)が\( W \)の息子ならば、\( S \)は
 \( M \)の息子である''といった(聖書時代には現代よりもあてはまりやすかったと思われる)規則を
 定式化せよ。これらによって、クエリシステムがCainの孫、Lamechの息子、Methushaelの孫を求めることが
-できるようになる(より複雑な関係を推論する規則については、\link{Exercise 4.69}参照)。
+できるようになる(より複雑な関係を推論する規則については、\link{練習問題 4.69}参照)。
 
 \end{quote}
 
@@ -25254,7 +25254,7 @@ Alyssaは水曜の朝に職場に着き、その日にどんな会議がある�
 クエリ評価器がクエリをデータベース内の事実や規則に対してマッチさせるためには何らかの
 探索を行う必要があるということはおわかりかと思います。探索を行う方法のひとつは、
 \link{4.3節}の\code{amb}評価器を使って、クエリシステムを非決定性プログラムとして
-実装するというものです(\link{Exercise 4.78}参照)。別のやり方としては、ストリームの助けを借りて
+実装するというものです(\link{練習問題 4.78}参照)。別のやり方としては、ストリームの助けを借りて
 探索を管理するというものもあります。ここでの実装は、この二つ目のアプローチを取ることにします。
 
 このクエリシステムは、\jnewterm{パターンマッチング}(\newterm{pattern matching})と
@@ -25462,7 +25462,7 @@ frames     | |    ^          +-------+ |  frames
 これは高レベルの記述ですが、これだけ見ても複合クエリの処理速度が遅くなりやすいということは
 明らかです。例えば、クエリはそれぞれの入力フレームについて複数の出力ストリームを生成する
 可能性があり、\code{and}は前のクエリから入力フレームを受け取るため、\code{and}クエリは、
-最悪の場合、クエリ数に対して指数的な数のマッチを実行する必要があります(\link{Exercise 4.76}参照)。
+最悪の場合、クエリ数に対して指数的な数のマッチを実行する必要があります(\link{練習問題 4.76}参照)。
 \footnote{しかし、このような指数的爆発は\code{and}クエリではあまりありません。
 追加条件は、生成されるフレーム数を増やすより減らすことが多いからです。}
 単純クエリだけを扱うシステムはとても実用的なのですが、複合クエリを扱うことは非常に難しいのです。
@@ -25831,7 +25831,7 @@ Minnie Mickey)}
 \code{(married Minnie Mickey)}を見つけられるかどうかは、システムがデータベース内の
 項目をチェックする順番の実装に依存します。これは、起こりうるループの
 非常に単純な例です。相互に関連する規則の集まりの場合、これよりもずっと予測が難しいループを
-招くことがあり、またループが現れるかどうかは\code{and}内の節の順序(\link{Exercise 4.64}参照)や、
+招くことがあり、またループが現れるかどうかは\code{and}内の節の順序(\link{練習問題 4.64}参照)や、
 システムがクエリを処理する順序に関する低レベルの実装に依存することもあります。
 \footnote{これは論理の問題ではなく、インタプリタによって提供される、論理の手続き的解釈の
 問題です。ここでループに陥らないインタプリタを書くことも一応は可能です。例えば、
@@ -25840,7 +25840,7 @@ Minnie Mickey)}
 難しくなります。そのようなプログラムで精緻な制御構造を構築する試みが
 \link{deKleer et al. 1977}に記述されています。そのような深刻な制御上の問題を引き起こさない
 別のテクニックとして、特定の種類のループに対する検知器といった、特別な知識を組み込むという
-ものがあります(\link{Exercise 4.67})。しかし、推論を実行する際にシステムが無限の経路を
+ものがあります(\link{練習問題 4.67})。しかし、推論を実行する際にシステムが無限の経路を
 たどり続けることを確実に防ぐ一般的な設計方法はあり得ません。
 適切に選んだ関数\( f \)についての、
 ``\( P(x) \)が真であることを示すためには、\( P(f(x)) \)が真であることを示せ''という形の
@@ -25872,7 +25872,7 @@ Minnie Mickey)}
 ことです。\code{not}節が(上の例での\code{?x}のように)束縛されていないままの変数のあるフレームと
 ともに処理されると、システムは期待しない結果を返します。同じような問題は、\code{lisp\-/value}を
 使う際にも起こります。Lispの述語は、未束縛の引数があると動作しません。
-\link{Exercise 4.77}を参照してください。
+\link{練習問題 4.77}を参照してください。
 
 クエリ言語の\code{not}と数学論理学の\code{not}の違いは、これよりもはるかに深刻なところにもあります。
 論理学では、命題``not \( P \)''を、\( P \)は真ではないという意味に解釈します。
@@ -25887,7 +25887,7 @@ Minnie Mickey)}
 \code{(not (baseball\-/fan (Bitdiddle Ben)))}が生成されます。}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.64}Exercise 4.64:}
+\heading{\phantomsection\label{練習問題 4.64}練習問題 4.64:}
 Louis Reasonerは誤って\code{outranked\-/by}規則(\link{4.4.1節})をデータベースから削除して
 しまった。彼がこのことに気づいたとき、すぐにまたその規則を組み込んだ。困ったことに、
 彼は規則を少し変更してしまい、次のように入力した。
@@ -25911,7 +25911,7 @@ Louisがこの情報をシステムに入力してすぐDeWitt Aullがやって�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.65}Exercise 4.65:}
+\heading{\phantomsection\label{練習問題 4.65}練習問題 4.65:}
 組織内での昇進の日を待ち望んでいるCy D. Fectは、(\link{4.4.1節}の規則\code{wheel}を使って)
 組織の重要人物をすべて検索するクエリを入力してみた。
 
@@ -25934,7 +25934,7 @@ Oliver Warbucksはなぜ四回表示されたのだろうか。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.66}Exercise 4.66:}
+\heading{\phantomsection\label{練習問題 4.66}練習問題 4.66:}
 Benは、会社についての統計データを出せるようにクエリシステムを一般化する作業をしているところだ。
 例えば、以下のように入力することで、すべてのコンピュータプログラマの給料の合計を求めることが
 できるようになる。
@@ -25955,7 +25955,7 @@ Benは、会社についての統計データを出せるようにクエリシ�
 Benは、この実装は朝飯前だろうと考えた。クエリパターンを単純に\code{qeval}に与えればいい。
 そうするとフレームのストリームができる。それから、このストリームを、各フレームから指定された
 変数の値を取り出しその結果のストリームを集積関数に渡すマップ関数に渡す。Benが実装を終えて
-動作確認をしようとしていたところ、Cyがやってきた。Cyは相変わらず\link{Exercise 4.65}の
+動作確認をしようとしていたところ、Cyがやってきた。Cyは相変わらず\link{練習問題 4.65}の
 \code{wheel}クエリの結果に悩んでいた。CyがBenにシステムの応答を見せると、Benは
 ``あぁ、ダメだ。これじゃこの単純な集積計画はうまくいかないな''とうめいた。
 
@@ -25963,8 +25963,8 @@ Benは何に気づいたのだろうか。状況打開に使える方法の概�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.67}Exercise 4.67:}
-本文や\link{Exercise 4.64}で示したような種類の単純なループを防ぐために、クエリシステムに
+\heading{\phantomsection\label{練習問題 4.67}練習問題 4.67:}
+本文や\link{練習問題 4.64}で示したような種類の単純なループを防ぐために、クエリシステムに
 ループ検知器を組み込む方法を考えよ。考え方の概要は、システムが現在の推論のつながりについて
 何らかの形で履歴を管理するようにして、すでに実行中のクエリの処理を始めないようにするという
 ものである。この履歴にはどのような種類の情報(パターンとフレーム)が含まれるか、また
@@ -25973,15 +25973,15 @@ Benは何に気づいたのだろうか。状況打開に使える方法の概�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.68}Exercise 4.68:}
-与えられたリストと同じ要素を逆順で持つリストを返す、\link{Exercise 2.18}の\code{reverse}演算を
+\heading{\phantomsection\label{練習問題 4.68}練習問題 4.68:}
+与えられたリストと同じ要素を逆順で持つリストを返す、\link{練習問題 2.18}の\code{reverse}演算を
 実装する規則を定義せよ(ヒント：\code{append\-/to\-/form}を使う)。その規則は
 \code{(reverse (1 2 3) ?x)}と\code{(reverse ?x (1 2 3))}の両方に答えることができるだろうか。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.69}Exercise 4.69:}
-\link{Exercise 4.63}で作ったデータベースと規則をもとに、孫(grandson)の関係に``great''を
+\heading{\phantomsection\label{練習問題 4.69}練習問題 4.69:}
+\link{練習問題 4.63}で作ったデータベースと規則をもとに、孫(grandson)の関係に``great''を
 追加する規則を考えよ。これによって、システムはIradがAdamのgreat-grandson(ひ孫)であることや、
 JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ孫)であることが
 推論できるようになる(ヒント：Iradについての事実を、例えば\code{((great grandson) Adam Irad)}と
@@ -26116,7 +26116,7 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 また別の拡張フレームのストリームを生成します。これら二つのストリームは
 (\code{stream\-/append\-/delayed}(\link{4.4.4.6節})を使って)
 組み合わされ、結果として与えられたパターンが元のフレームと矛盾しない形で満たされる
-すべての方法からなるストリームができます(\link{Exercise 4.71}参照)。個々の入力フレームに
+すべての方法からなるストリームができます(\link{練習問題 4.71}参照)。個々の入力フレームに
 ついてのこのストリームは\code{stream\-/flatmap} (\link{4.4.4.6節})によって組み合わされ、
 元の入力ストリームの任意のフレームを拡張して与えられたパターンとのマッチを作るすべての
 方法の大きなストリームがひとつできます。
@@ -26152,7 +26152,7 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 \link{Figure 4.6}に図示したように、\code{or}クエリも同じように扱います。
 \code{or}のそれぞれの選言肢(disjunct)に対する出力ストリームは別々に計算され、
 \link{4.4.4.6節}の\code{interleave\-/delayed}手続きによって結合されます
-(\link{Exercise 4.71}、\link{Exercise 4.72}参照)。
+(\link{練習問題 4.71}、\link{練習問題 4.72}参照)。
 
 \begin{scheme}
 (define (disjoin disjuncts frame-stream)
@@ -26338,7 +26338,7 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 
 \subsubsection*{ドット末尾を持つパターン}
 
-パターンがドットとそれに続くパターン変数を含む場合、\link{Exercise 2.20}で述べた
+パターンがドットとそれに続くパターン変数を含む場合、\link{練習問題 2.20}で述べた
 ドット末尾記法から予想できるように、そのパターン変数はデータリストの(次の要素ではなく)
 残りにマッチします。ここまでで実装したパターンマッチャはドットを探すことはしませんが、
 期待通りのふるまいをします。これは、\code{query\-/driver\-/loop}で使っているLispの基本
@@ -26389,7 +26389,7 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 互いに関係がないので、この二つの束縛に矛盾があってはならないなどと考えるようになっては
 いけません。変数名を変えるのではなく、より巧妙な環境構造を考えることもできるところかも
 しれません。しかし、変数名を変えるというここで選んだやり方は、最も効率のよいものではないに
-しても、もっとも素直なやり方です(\link{Exercise 4.79}参照)。
+しても、もっとも素直なやり方です(\link{練習問題 4.79}参照)。
 \code{apply\-/a\-/rule}手続きは以下のようになります。
 
 \begin{scheme}
@@ -26722,7 +26722,7 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.70}Exercise 4.70:}
+\heading{\phantomsection\label{練習問題 4.70}練習問題 4.70:}
 手続き\code{add\-/assertion!}と\code{add\-/rule!}内の\code{let}による束縛の目的は何か。
 以下に示す\code{add\-/assertion!}の実装はどこが間違っているだろうか。ヒント：
 \link{3.5.2節}での1の無限ストリームの定義を思い出そう：
@@ -26745,7 +26745,7 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 \code{stream\-/append\-/delayed}、\code{interleave\-/delayed}は\code{stream\-/append}、
 \code{interleave}(\link{3.5.3節})と
 似ていますが、(\link{3.5.4節}の\code{integral}のように)遅延化された引数を取るという
-ところが違います。これはループを先送りすることがあります(\link{Exercise 4.71}参照)。
+ところが違います。これはループを先送りすることがあります(\link{練習問題 4.71}参照)。
 
 \begin{scheme}
 (define (stream-append-delayed s1 delayed-s2)
@@ -26774,7 +26774,7 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 単純にストリームを足していくのではなく、結果を互い違いに挟み込むというプロセスによって
 集積します。
 
-(\link{Exercise 4.72}と\link{Exercise 4.73}参照)
+(\link{練習問題 4.72}と\link{練習問題 4.73}参照)
 \begin{scheme}
 (define (stream-flatmap proc s)
   (flatten-stream (stream-map proc s)))
@@ -26943,7 +26943,7 @@ JabalとJubalがAdamのgreat-great-great-great-great-grandsons(ひひひひひ�
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.71}Exercise 4.71:}
+\heading{\phantomsection\label{練習問題 4.71}練習問題 4.71:}
 
 Louis Reasonerは、\code{simple\-/query}と\code{disjoin}の手続き(\link{4.4.4.2節})が
 なぜ以下のような定義ではなく、明示的な\code{delay}演算を用いて実装されているのだろうかと
@@ -26971,14 +26971,14 @@ Louis Reasonerは、\code{simple\-/query}と\code{disjoin}の手続き(\link{4.4
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.72}Exercise 4.72:}
+\heading{\phantomsection\label{練習問題 4.72}練習問題 4.72:}
 \code{disjoin}と\code{stream\-/flatmap}は、なぜそれらを単純につなげていくのではなく、
 ストリームを互い違いに挟み込むようにしているのか。なぜ相互配置のほうがよりうまくいくのかを
 示す例を挙げよ。(ヒント：\link{3.5.3節}ではなぜ\code{interleave}を使ったのだろうか)
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.73}Exercise 4.73:}
+\heading{\phantomsection\label{練習問題 4.73}練習問題 4.73:}
 なぜ\code{flatten\-/stream}は明示的に\code{delay}を使っているのだろうか。
 以下のように定義するとどのような問題があるのだろうか。
 
@@ -26993,7 +26993,7 @@ Louis Reasonerは、\code{simple\-/query}と\code{disjoin}の手続き(\link{4.4
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.74}Exercise 4.74:}
+\heading{\phantomsection\label{練習問題 4.74}練習問題 4.74:}
 Alyssa P. Hackerは、\code{negate}, \code{lisp\-/value},\code{find\-/assertions}の中で
 簡単なほうの\code{stream\-/flatmap}を使うことを提案した。彼女は、これらの場合に
 フレームのストリームにマップされる手続きが作るのは常に空ストリームか単一要素のストリームで
@@ -27020,7 +27020,7 @@ Alyssaのプログラムに欠けている式を埋めよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.75}Exercise 4.75:}
+\heading{\phantomsection\label{練習問題 4.75}練習問題 4.75:}
 クエリ言語に\code{unique}と呼ばれる新しい特殊形式を実装せよ。\code{unique}は、指定された
 クエリを満たす項目がデータベース中にちょうどひとつだけある場合に成功する。
 例えば、
@@ -27076,7 +27076,7 @@ Alyssaのプログラムに欠けている式を埋めよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.76}Exercise 4.76:}
+\heading{\phantomsection\label{練習問題 4.76}練習問題 4.76:}
 ここでのシステムでは、\code{and}をクエリの直列の組み合わせ(\link{Figure 4.5})として実装している。
 この実装はエレガントだが、\code{and}の二つ目のクエリを処理する際に一つ目のクエリが生成した
 フレームそれぞれについてデータベースを走査しなければならないため非効率だ。
@@ -27095,7 +27095,7 @@ Alyssaのプログラムに欠けている式を埋めよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.77}Exercise 4.77:}
+\heading{\phantomsection\label{練習問題 4.77}練習問題 4.77:}
 \link{4.4.3節}では、変数が束縛されていないフレームに\code{not}や\code{lisp\-/value}と
 いったフィルタリング演算を適用すると、クエリ言語が``間違った''答えを返すことがあるという
 ことを学んだ。この欠陥を直す方法を考えよ。ひとつの考え方としては、
@@ -27107,7 +27107,7 @@ Alyssaのプログラムに欠けている式を埋めよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.78}Exercise 4.78:}
+\heading{\phantomsection\label{練習問題 4.78}練習問題 4.78:}
 クエリ言語をストリーム処理として実装するのではなく、\link{4.3節}の評価器によって
 実装する非決定性プログラムとして再設計せよ。このアプローチでは、それぞれのクエリは
 (すべての回答のストリームではなく)ひとつの回答を生成し、ユーザは\code{try\-/again}を
@@ -27118,7 +27118,7 @@ Alyssaのプログラムに欠けている式を埋めよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 4.79}Exercise 4.79:}
+\heading{\phantomsection\label{練習問題 4.79}練習問題 4.79:}
 \link{4.1節}でLisp評価器を実装したとき、局所環境を使って別々の手続きの引数同士で
 名前が衝突しないようにする方法を学んだ。例えば、以下を評価する際に、
 
@@ -27349,7 +27349,7 @@ Schemeプログラムを翻訳する単純なコンパイラについて学び�
 
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.1}Exercise 5.1:}
+\heading{\phantomsection\label{練習問題 5.1}練習問題 5.1:}
 以下の手続きによって規定されるような、反復アルゴリズムによって階乗を計算するレジスタマシンを
 設計せよ。このマシンに対するデータパス図とコントローラの図を描け。
 
@@ -27499,8 +27499,8 @@ Schemeプログラムを翻訳する単純なコンパイラについて学び�
 必要があります。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.2}Exercise 5.2:}
-レジスタマシン言語を使って\link{Exercise 5.1}の反復階乗マシンを記述せよ。
+\heading{\phantomsection\label{練習問題 5.2}練習問題 5.2:}
+レジスタマシン言語を使って\link{練習問題 5.1}の反復階乗マシンを記述せよ。
 
 \end{quote}
 
@@ -27709,7 +27709,7 @@ Schemeプログラムを翻訳する単純なコンパイラについて学び�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.3}Exercise 5.3:}
+\heading{\phantomsection\label{練習問題 5.3}練習問題 5.3:}
 \link{1.1.7節}に示したニュートン法によって平方根を求めるマシンを設計せよ。
 
 \begin{scheme}
@@ -28117,7 +28117,7 @@ after-gcd-2
 保存したレジスタを復元して主問題の実行を続けます。\code{continue}レジスタは常に保存する
 必要があります。保存するべきレジスタがほかにあるかどうかはマシンによります。再帰計算の
 すべてが、部分問題を解く間に変更されるレジスタの元の値を必要とするわけではないからです
-(\link{Exercise 5.4}参照)。
+(\link{練習問題 5.4}参照)。
 
 \subsubsection*{二重再帰}
 
@@ -28183,7 +28183,7 @@ after-gcd-2
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.4}Exercise 5.4:}
+\heading{\phantomsection\label{練習問題 5.4}練習問題 5.4:}
 次のそれぞれの手続きを実装するレジスタマシンを規定せよ。それぞれのマシンについて、
 コントローラ命令列を書き、データパスを示す図を描け。
 
@@ -28216,14 +28216,14 @@ after-gcd-2
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.5}Exercise 5.5:}
+\heading{\phantomsection\label{練習問題 5.5}練習問題 5.5:}
 何らかの自明でない(少なくとも一回は再帰呼び出しの実行が必要となるような)入力を使って、
 階乗マシンとフィボナッチマシンを手作業でシミュレートせよ。実行中の重要な場所でのスタックの
 中身を示せ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.6}Exercise 5.6:}
+\heading{\phantomsection\label{練習問題 5.6}練習問題 5.6:}
 Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に余分な\code{save}と\code{restore}が
 あり、取り除くことによってマシンを高速化できることに気がついた。
 それらの命令はどれか。
@@ -28279,7 +28279,7 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 \label{5.2節}
 
 レジスタマシンの設計をよく理解するには、設計したマシンが期待通りに動くかどうかを見るために
-テストを行う必要があります。設計をテストする方法のひとつとして、\link{Exercise 5.5}で
+テストを行う必要があります。設計をテストする方法のひとつとして、\link{練習問題 5.5}で
 やったように、コントローラの演算を手作業でシミュレートするというものがあります。
 しかしこれは、よほど簡単なマシンでもなければ、非常に退屈な作業になります。この章では、
 レジスタマシン言語で記述されたマシンのシミュレータを構築します。シミュレータは
@@ -28367,8 +28367,8 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 なるからです。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.7}Exercise 5.7:}
-シミュレータを使って\link{Exercise 5.4}で設計したマシンをテストせよ。
+\heading{\phantomsection\label{練習問題 5.7}練習問題 5.7:}
+シミュレータを使って\link{練習問題 5.4}で設計したマシンをテストせよ。
 \end{quote}
 
 \subsection{マシンモデル}
@@ -28720,7 +28720,7 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 
 \noindent
 命令テキストはシミュレータには使われませんが、デバッグ用に持っておくと便利です
-(\link{Exercise 5.16}参照)。
+(\link{練習問題 5.16}参照)。
 
 ラベルテーブルの要素はペアです。
 
@@ -28742,7 +28742,7 @@ Ben Bitdiddleは、フィボナッチマシンのコントローラ命令列に�
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.8}Exercise 5.8:}
+\heading{\phantomsection\label{練習問題 5.8}練習問題 5.8:}
 以下のレジスタマシンのコードは、ラベル\code{here}が複数回定義されているため曖昧になっている。
 
 \begin{scheme}
@@ -29046,19 +29046,19 @@ there
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.9}Exercise 5.9:}
+\heading{\phantomsection\label{練習問題 5.9}練習問題 5.9:}
 マシンの演算を上のように扱うと、定数とレジスタの中身以外に、ラベルに対しても演算が可能になる。
 式処理手続きを修正し、演算はレジスタと定数だけにしか使えないという条件を強制するようにせよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.10}Exercise 5.10:}
+\heading{\phantomsection\label{練習問題 5.10}練習問題 5.10:}
 レジスタマシンの命令に新しい構文を設計し、その新しい構文を使えるようにシミュレータを修正せよ。
 この節の構文手続き以外のシミュレータの部分を変更せずに新しい構文を実装できるだろうか。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.11}Exercise 5.11:}
+\heading{\phantomsection\label{練習問題 5.11}練習問題 5.11:}
 \link{5.1.4節}で\code{save}と\code{restore}を導入したときには、最後に保存したレジスタで
 ないレジスタを復元しようとしたときに何が起こるかを規定していなかった。例えば、次のような
 命令列の場合である。
@@ -29094,7 +29094,7 @@ there
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.12}Exercise 5.12:}
+\heading{\phantomsection\label{練習問題 5.12}練習問題 5.12:}
 シミュレータは、あるコントローラを持つマシンを実装するために必要となるデータパスを
 決めるときの補助として使うことができる。アセンブラを拡張し、以下の情報をマシンモデルに
 格納するようにせよ。
@@ -29123,7 +29123,7 @@ there
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.13}Exercise 5.13:}
+\heading{\phantomsection\label{練習問題 5.13}練習問題 5.13:}
 シミュレータを修正し、\code{make\-/machine}の引数としてレジスタリストを要求するのではなく、
 コントローラ命令列を使ってマシンの持つレジスタを決定するようにせよ。
 \code{make\-/machine}の中でレジスタをあらかじめ割り当てておく代わりに、
@@ -29192,11 +29192,11 @@ there
 \end{scheme}
 
 \noindent
-\link{Exercise 5.15}から\link{Exercise 5.19}では、レジスタマシンシミュレータに追加できる
+\link{練習問題 5.15}から\link{練習問題 5.19}では、レジスタマシンシミュレータに追加できる
 このほかの便利な監視・デバッグ機能について示します。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.14}Exercise 5.14:}
+\heading{\phantomsection\label{練習問題 5.14}練習問題 5.14:}
 \link{Figure 5.11}に示した階乗マシンを使って、いくつかの小さな\( n \)の値について\( n! \)の
 計算に必要となるpushの回数とスタックの最大の深さを計測せよ。そのデータから、
 任意の\( n > 1 \)について、\( n! \)を計算するのに使われるpush演算の総数とスタックの最大の
@@ -29210,7 +29210,7 @@ there
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.15}Exercise 5.15:}
+\heading{\phantomsection\label{練習問題 5.15}練習問題 5.15:}
 レジスタマシンシミュレータに\jnewterm{命令数カウンタ}(\newterm{instruction counting})を
 追加せよ。つまり、マシンモデルに実行した命令数を管理させることになる。マシンモデルの
 インターフェイスを拡張し、命令カウンタの値を表示してからカウンタをゼロにリセットする
@@ -29218,7 +29218,7 @@ there
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.16}Exercise 5.16:}
+\heading{\phantomsection\label{練習問題 5.16}練習問題 5.16:}
 シミュレータを拡張し、\jnewterm{命令トレース}(\newterm{instruction tracing})を追加せよ。
 つまり、シミュレータが各命令を実行する前に、その命令のテキストを表示するようにするという
 ことである。マシンモデルが\code{trace\-/on}, \code{trace\-/off}メッセージを受け入れ、
@@ -29226,15 +29226,15 @@ there
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.17}Exercise 5.17:}
-\link{Exercise 5.16}の命令トレース機能を拡張し、シミュレータが命令を表示する前に、
+\heading{\phantomsection\label{練習問題 5.17}練習問題 5.17:}
+\link{練習問題 5.16}の命令トレース機能を拡張し、シミュレータが命令を表示する前に、
 コントローラ命令列中でその命令の直前にあるラベルを表示するにせよ。
-これを行う際に、命令数カウンタ(\link{Exercise 5.15})に干渉しないように注意すること。
+これを行う際に、命令数カウンタ(\link{練習問題 5.15})に干渉しないように注意すること。
 必要なラベル情報をシミュレータに持たせておく必要があるだろう。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.18}Exercise 5.18:}
+\heading{\phantomsection\label{練習問題 5.18}練習問題 5.18:}
 \link{5.2.1節}の\code{make\-/register}手続きを修正し、レジスタをトレースできるように
 せよ。レジスタはトレースをオン・オフするメッセージを受け入れる。レジスタがトレースされている
 ときには、そのレジスタへの代入が行われると、レジスタの名前・レジスタの古い値・代入する新しい
@@ -29243,7 +29243,7 @@ there
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.19}Exercise 5.19:}
+\heading{\phantomsection\label{練習問題 5.19}練習問題 5.19:}
 Alyssa P. Hackerは、マシン設計のデバッグに使うために、シミュレータに\jnewterm{ブレークポイント}
 (\newterm{breakpoint})機能がほしくなった。そこで、この機能を組み込むために、彼女は
 あなたを雇うことにした。彼女は、シミュレータが止まる場所を指定できるようにして、
@@ -29576,7 +29576,7 @@ the-cdrs |    | p2 | p4 |    | e0 | p7 |    | e0 |    | ...
 実現できます。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.20}Exercise 5.20:}
+\heading{\phantomsection\label{練習問題 5.20}練習問題 5.20:}
 \code{free}ポインタの初期値を\code{p1}として、次の式によって生成されるリスト構造について、
 (\link{Figure 5.14}のように)箱とポインタ表現とメモリベクタ表現を描け。
 
@@ -29590,7 +29590,7 @@ the-cdrs |    | p2 | p4 |    | e0 | p7 |    | e0 |    | ...
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.21}Exercise 5.21:}
+\heading{\phantomsection\label{練習問題 5.21}練習問題 5.21:}
 以下の手続きに対応するレジスタマシンを実装せよ。リスト構造メモリ演算はマシンの基本演算として
 使えると仮定する。
 
@@ -29625,8 +29625,8 @@ the-cdrs |    | p2 | p4 |    | e0 | p7 |    | e0 |    | ...
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.22}Exercise 5.22:}
-\link{3.3.1節}の\link{Exercise 3.12}では、二つのリストを足してひとつの新しいリストにする
+\heading{\phantomsection\label{練習問題 5.22}練習問題 5.22:}
+\link{3.3.1節}の\link{練習問題 3.12}では、二つのリストを足してひとつの新しいリストにする
 \code{append}手続きと、二つのリストを継ぎ合わせる\code{append!}手続きを紹介した。
 これらの手続きそれぞれを実装するレジスタマシンを設計せよ。リスト構造メモリ演算は基本演算として
 使えると仮定する。
@@ -30197,12 +30197,12 @@ ev-appl-accum-last-arg
 
 \noindent
 組み合わせの中の被演算子をインタプリタが評価する順番(左から右、あるいは右から左など。
-\link{Exercise 3.8}参照)は、引数評価ループの実装によって決定されます。メタ循環評価器では、
+\link{練習問題 3.8}参照)は、引数評価ループの実装によって決定されます。メタ循環評価器では、
 実装に使った基層のSchemeから制御構造を継承しているため、評価順はメタ循環評価器によって
 決定されるわけではありません。
 \footnote{メタ循環評価器では、被演算子の評価順は、\link{4.1.1節}の手続き
 \code{list\-/of\-/values}内の\code{cons}に対する引数の評価順によって決定されます
-(\link{Exercise 4.1}参照)。}
+(\link{練習問題 4.1}参照)。}
 (\code{ev\-/appl\-/operand\-/loop}で一続きの被演算子を\code{unev}から抽出するために使う)
 \code{first\-/operand}セレクタは\code{car}として実装されていて、\code{rest\-/operands}は
 \code{cdr}として実装されているので、明示制御評価器は組み合わせの被演算子を左から右という順番で
@@ -30503,7 +30503,7 @@ ev-definition-1
 \end{scheme}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.23}Exercise 5.23:}
+\heading{\phantomsection\label{練習問題 5.23}練習問題 5.23:}
 評価器を拡張して、\code{cond}や\code{let}などの派生式を扱えるようにせよ(\link{4.1.2節})。
 ``ずる''をして、\code{cond\-/>if}のような構文変換器がマシン演算として利用可能であると仮定してもよい。
 \footnote{これは、実際にはずるではありません。実際に評価器を一から実装するとしても、
@@ -30512,14 +30512,14 @@ Schemeプログラムを解釈させることになるでしょう。}
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.24}Exercise 5.24:}
+\heading{\phantomsection\label{練習問題 5.24}練習問題 5.24:}
 \code{cond}を\code{if}に簡約せずに新しい基本特殊形式として実装せよ。真である述語を見つけるまで
 連続した\code{cond}節の述語をテストしていくループを構築し、それから\code{ev\-/sequence}を使って
 その節のアクションを評価する必要があるだろう。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.25}Exercise 5.25:}
+\heading{\phantomsection\label{練習問題 5.25}練習問題 5.25:}
 \link{4.2節}の遅延評価器をもとに評価器を修正して、正規順序評価を使うようにせよ。
 \end{quote}
 
@@ -30573,7 +30573,7 @@ print-result
 手続きの中で(\code{apply\-/dispatch}の示す``未知の手続き型エラー''のような)エラーにぶつかると、
 エラーメッセージを表示してドライバループに戻ります。
 \footnote{インタプリタに扱わせたいエラーはほかにもありますが、それらはそれほど単純ではありません。
-\link{Exercise 5.30}参照。}
+\link{練習問題 5.30}参照。}
 
 \begin{scheme}
 unknown-expression-type
@@ -30682,7 +30682,7 @@ print-result
 直前の式の評価に使われたスタック演算のみについてのものになります。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.26}Exercise 5.26:}
+\heading{\phantomsection\label{練習問題 5.26}練習問題 5.26:}
 監視機能つきスタックを使って評価器の末尾再帰の特性(\link{5.4.2節})を調査せよ。
 評価器をスタートさせ、\link{1.2.1節}の反復\code{factorial}手続きを定義せよ。
 
@@ -30712,8 +30712,8 @@ print-result
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.27}Exercise 5.27:}
-\link{Exercise 5.26}との比較のために、階乗を再帰的に求める以下の手続きのふるまいを調査せよ。
+\heading{\phantomsection\label{練習問題 5.27}練習問題 5.27:}
+\link{練習問題 5.26}との比較のために、階乗を再帰的に求める以下の手続きのふるまいを調査せよ。
 
 \begin{scheme}
 (define (factorial n)
@@ -30761,15 +30761,15 @@ factorial
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.28}Exercise 5.28:}
+\heading{\phantomsection\label{練習問題 5.28}練習問題 5.28:}
 \code{eval\-/sequence}を\link{5.4.2節}で記述したように変更して評価器の定義を修正し、
-評価器が末尾再帰でなくなるようにせよ。\link{Exercise 5.26}と\link{Exercise 5.27}の
+評価器が末尾再帰でなくなるようにせよ。\link{練習問題 5.26}と\link{練習問題 5.27}の
 実験を再実行し、\code{factorial}手続きのどちらのバージョンも、入力に対して線形に増加する
 記憶領域を必要とするようになっていることを示せ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.29}Exercise 5.29:}
+\heading{\phantomsection\label{練習問題 5.29}練習問題 5.29:}
 木の再帰によるフィボナッチ数計算のスタック演算を監視せよ。
 
 \begin{scheme}
@@ -30799,7 +30799,7 @@ factorial
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.30}Exercise 5.30:}
+\heading{\phantomsection\label{練習問題 5.30}練習問題 5.30:}
 今のところ、評価器は二種類のエラー---未知の式の型と未知の手続きの型---だけキャッチして
 知らせるようになっている。ほかのエラーがあると評価器のREPLから抜けてしまう。この評価器を
 レジスタマシンシミュレータを使って実行している場合は、これらのエラーは基層のSchemeシステムに
@@ -30957,7 +30957,7 @@ Macintosh(tm)は、爆発する爆弾の絵を表示して、コンピュータ�
 を実行せずに、そのフレームに直接アクセスできます。そのような変数アクセスの実装方法については
 \link{5.5.6節}で検討します。しかし、それまでの間は、上で記述したようなレジスタとスタックの
 最適化に焦点を合わせることにします。コンパイラが行える最適化はほかにも数多くあります。
-その中には、\code{apply}メカニズム(\link{Exercise 5.38}参照)を使わずに、基本演算を``インライン''で
+その中には、\code{apply}メカニズム(\link{練習問題 5.38}参照)を使わずに、基本演算を``インライン''で
 コードするといったものがあります。しかし、ここでは深入りしないことにしましょう。この章の
 主な目的は、単純な(それでいて面白さを失わない)文脈でコンパイル処理を説明するというところに
 あります。
@@ -31198,7 +31198,7 @@ $\langle{seq_2}\rangle$				& \hbox{\tt (restore} $\langle{reg_1}\rangle${\tt)} \
 命令列を組み立てる手続きは\link{5.5.4節}で示します。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.31}Exercise 5.31:}
+\heading{\phantomsection\label{練習問題 5.31}練習問題 5.31:}
 手続き適用を評価する際、明示制御評価器は常に演算子の評価の前後で\code{env}レジスタの保存と復元を
 行い、(最後の1つを除いて)各被演算子の評価の前後で\code{env}の保存と復元を行い、各被演算子の
 評価の前後で\code{argl}の保存と復元を行い、被演算子列の評価の前後で\code{proc}の保存と復元を
@@ -31215,7 +31215,7 @@ $\langle{seq_2}\rangle$				& \hbox{\tt (restore} $\langle{reg_1}\rangle${\tt)} \
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.32}Exercise 5.32:}
+\heading{\phantomsection\label{練習問題 5.32}練習問題 5.32:}
 \code{preserving}メカニズムを使うと、組み合わせの演算子が記号である場合、コンパイラは演算子の
 評価の前後で\code{env}の保存と復元を回避することになる。このような最適化は、評価器にも組み込む
 ことができるものだ。実際に、\link{5.4節}の明示制御評価器は、被演算子のない組み合わせを
@@ -32208,7 +32208,7 @@ after-call15
 分岐内の手続き呼び出しと\code{return}のリンクに必要とされるためです。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.33}Exercise 5.33:}
+\heading{\phantomsection\label{練習問題 5.33}練習問題 5.33:}
 次の階乗手続きの定義について考えよ。これは上に挙げたものとわずかに異なっている。
 
 \begin{scheme}
@@ -32224,7 +32224,7 @@ after-call15
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.34}Exercise 5.34:}
+\heading{\phantomsection\label{練習問題 5.34}練習問題 5.34:}
 反復階乗手続きをコンパイルせよ。
 
 \begin{scheme}
@@ -32385,12 +32385,12 @@ after-lambda1
 
 %%%
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.35}Exercise 5.35:}
+\heading{\phantomsection\label{練習問題 5.35}練習問題 5.35:}
 \link{Figure 5.18}に示すコードは、どのような式をコンパイルして生成されたものか。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Figure 5.18}Figure 5.18:} \( \downarrow \) コンパイラ出力の例。\link{Exercise 5.35}参照。
+\heading{\phantomsection\label{Figure 5.18}Figure 5.18:} \( \downarrow \) コンパイラ出力の例。\link{練習問題 5.35}参照。
 
 \begin{smallscheme}
 (assign val 
@@ -32488,7 +32488,7 @@ after-lambda15
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.36}Exercise 5.36:}
+\heading{\phantomsection\label{練習問題 5.36}練習問題 5.36:}
 我々のコンパイラは、組み合わせの被演算子に対してどのような評価順を生成するだろうか。
 左から右だろうか、右から左だろうか、またはほかの順序だろうか。この順序はコンパイラのどこで決定される
 だろうか。コンパイラを修正し、別の評価順を生成するようにせよ(\link{5.4.1節}での明示制御
@@ -32497,7 +32497,7 @@ after-lambda15
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.37}Exercise 5.37:}
+\heading{\phantomsection\label{練習問題 5.37}練習問題 5.37:}
 スタック使用を最適化するためのコンパイラの\code{preserving}のメカニズムを理解する方法のひとつとして、
 この考えを使わなかったとしたらどのような演算が余分に生成されていたかを見るというものがある。
 \code{preserving}を修正し、\code{save}と\code{restore}演算を常に生成するようにせよ。
@@ -32506,7 +32506,7 @@ after-lambda15
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.38}Exercise 5.38:}
+\heading{\phantomsection\label{練習問題 5.38}練習問題 5.38:}
 我々のコンパイラは、不必要なスタック演算を避けることに関してはうまくやっているが、言語の基本手続きの
 呼び出しをマシンによって提供される基本演算を使ってコンパイルすることに関しては、まったくうまく
 やっていない。例えば、例えば、\code{(+ a 1)}を求めるためにどれだけのコードがコンパイルされるか
@@ -32539,7 +32539,7 @@ after-lambda15
 \footnote{基本手続きを予約語に入れるというのは一般的にはよくない考えです。そうしてしまうと、
 ユーザがそれらの名前を別の手続きに束縛し直すことができなくなるからです。そのうえ、いま使われている
 コンパイラに予約語を追加すると、それらの名前で手続きを定義している既存のプログラムが動作しなく
-なります。この問題を避けるための考え方については\link{Exercise 5.44}を参照してください。}
+なります。この問題を避けるための考え方については\link{練習問題 5.44}を参照してください。}
 特殊形式それぞれに対して、私たちのコンパイラはコード生成器を持っている。この練習問題では、
 オープンコードの基本手続きに対して、コード生成器を構築する。
 
@@ -32609,7 +32609,7 @@ after-lambda15
 スコープを持つ言語なので、式の実行時環境は、その式があるプログラムのレキシカルな構造を
 反映した構造を持ちます。
 \footnote{内部定義を許すのであれば、それらを取り除かない限り、これは成り立ちません。
-\link{Exercise 5.43}参照。}
+\link{練習問題 5.43}参照。}
 そのため、コンパイラが上の式を分析するとき、手続きが適用されるときはいつでも、\code{(* x y z)}の
 変数\code{x}が現在のフレームから二つ外のフレームで見つかるということ、またそのフレームの最初の
 変数であるということを知ることができます。
@@ -32658,31 +32658,31 @@ after-lambda15
 コンパイルの各時点で、\code{compile\-/variable}と\code{compile\-/assignment}は適切な
 レキシカルアドレスを生成するためにコンパイル時環境を使用します。
 
-\link{Exercise 5.39}から\link{Exercise 5.43}は、コンパイラにレキシカルな検索を組み込むために、
+\link{練習問題 5.39}から\link{練習問題 5.43}は、コンパイラにレキシカルな検索を組み込むために、
 このレキシカルアドレッシング戦略の概要をどのように完成させるべきかを述べたものです。
-\link{Exercise 5.44}では、コンパイル時環境の別の使い方を記述します。
+\link{練習問題 5.44}では、コンパイル時環境の別の使い方を記述します。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.39}Exercise 5.39:}
+\heading{\phantomsection\label{練習問題 5.39}練習問題 5.39:}
 新しい検索演算を実装する\code{lexical\-/address\-/lookup}手続きを書け。引数はレキシカルアドレスと
 実行時環境の二つで、指定したレキシカルアドレスに格納された変数の値を返す。
 \code{lexical\-/address\-/lookup}は、変数の値が記号\code{*unassigned*}であればエラーを発生させる。
 \footnote{これは、内部定義を取り除くための走査手法を実装するのであれば必要となる、変数検索に
-対する修正です(\link{Exercise 5.43})。レキシカルアドレッシングを動作させるためには、内部定義を
+対する修正です(\link{練習問題 5.43})。レキシカルアドレッシングを動作させるためには、内部定義を
 取り除く必要があります。}
 また、指定したレキシカルアドレスの変数の値を変更する演算を実装する手続き
 \code{lexical\-/address\-/set!}を書け。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.40}Exercise 5.40:}
+\heading{\phantomsection\label{練習問題 5.40}練習問題 5.40:}
 コンパイラを修正し、上で述べたコンパイル時環境を維持するようにせよ。つまり、\code{compile}と
 さまざまなコード生成器にcompile-time-environmentという引数を追加し、
 \code{compile\-/lambda\-/body}の中でそれを拡張するようにせよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.41}Exercise 5.41:}
+\heading{\phantomsection\label{練習問題 5.41}練習問題 5.41:}
 引数として変数とコンパイル時環境を取り、その環境に対するその変数のレキシカルアドレスを
 返す手続き\code{find\-/variable}を書け。例えば、上で示されたプログラムの断片では、
 式\( \langle \)\var{e1}\( \kern0.08em\rangle \)をコンパイルしている間の
@@ -32700,15 +32700,15 @@ after-lambda15
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.42}Exercise 5.42:}
-\link{Exercise 5.41}の\code{find\-/variable}を使って\code{compile\-/variable}と
+\heading{\phantomsection\label{練習問題 5.42}練習問題 5.42:}
+\link{練習問題 5.41}の\code{find\-/variable}を使って\code{compile\-/variable}と
 \code{compile\-/assignment}を書き直し、レキシカルアドレス命令を出力するようにせよ。
 \code{find\-/variable}が\code{not\-/found}を返す場合(つまり、変数がコンパイル時環境内には存在しない
 場合)には、以前と同じように、コード生成器が環境命令を使って束縛を検索するようにする。
 (コンパイル時に見つからない変数が存在しうる位置はグローバル環境のみである。グローバル環境は
 実行環境の一部だが、コンパイル時環境の一部ではない。
 \footnote{レキシカルアドレスはグローバル環境内の変数にアクセスするためには使えません。グローバル
-環境の名前はいつでも対話的に定義・再定義ができるからです。\link{Exercise 5.43}のように内部定義を
+環境の名前はいつでも対話的に定義・再定義ができるからです。\link{練習問題 5.43}のように内部定義を
 取り除くと、コンパイラから見える定義はグローバル環境に影響するトップレベルのものだけになります。
 定義をコンパイルしても、定義した名前がコンパイル時環境に入ることはありません。}
 そのため、やろうと思えば、評価器の演算に\code{env}にある実行時環境をすべて検索させるのではなく、
@@ -32718,21 +32718,21 @@ after-lambda15
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.43}Exercise 5.43:}
+\heading{\phantomsection\label{練習問題 5.43}練習問題 5.43:}
 \link{4.1.6節}では、ブロック構造の内部定義は``本物の''\code{define}と考えるべきでなく、
 手続きの本体は、定義されている内部変数が\code{set!}を使って正しい値に初期化された通常の\code{lambda}
-変数であるかのように解釈されるべきだと主張した。\link{4.1.6節}と\link{Exercise 4.16}では、
+変数であるかのように解釈されるべきだと主張した。\link{4.1.6節}と\link{練習問題 4.16}では、
 メタ循環インタプリタを修正して内部定義を走査して削除することによってこれを達成する方法を示した。
 コンパイラを修正し、手続きの本体をコンパイルする前にこれと同じ変形を実行するようにせよ。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.44}Exercise 5.44:}
+\heading{\phantomsection\label{練習問題 5.44}練習問題 5.44:}
 この節では、レキシカルアドレスを生成するためにコンパイル時環境を使うことに焦点を当てた。
-しかし、コンパイル時環境にはそのほかの使い方もある。例えば、\link{Exercise 5.38}では基本手続きを
+しかし、コンパイル時環境にはそのほかの使い方もある。例えば、\link{練習問題 5.38}では基本手続きを
 オープンコード化することによってコンパイル済みコードの効率を向上させた。我々の実装では、
 オープンコードの手続きの名前を予約後として扱った。もしプログラムがそのような名前を再束縛しようと
-すると、\link{Exercise 5.38}で記述したメカニズムは、新しい束縛を無視して、依然としてそれを
+すると、\link{練習問題 5.38}で記述したメカニズムは、新しい束縛を無視して、依然としてそれを
 基本手続きとしてオープンコード化するだろう。例えば、\code{x}と\code{y}の線形結合を求める次の手続きに
 ついて考える。
 
@@ -32910,7 +32910,7 @@ REPLを実行して手続きを試してみることができるようになり�
 この節のプログラムを使うと、解釈とコンパイルという実行戦略の選択肢を実験することができるように
 なります。
 \footnote{コンパイラを拡張して、コンパイルされたコードが解釈される手続きを呼び出せるようにすると、
-さらによくなります。\link{Exercise 5.47}参照。}
+さらによくなります。\link{練習問題 5.47}参照。}
 インタプリタはマシンをユーザプログラムのレベルに上げるもので、コンパイラはユーザプログラムを
 機械語のレベルに落とすものです。Scheme言語は(Scheme言語だけでなく、どんなプログラミング言語でも)、
 機械語の上に建てられた一貫性のある抽象化の一族と見なすことができます。インタプリタは、プログラム
@@ -32959,7 +32959,7 @@ fingerデーモンで入力バッファがオーバーフローしたかどう�
 作るということも可能です。
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.45}Exercise 5.45:}
+\heading{\phantomsection\label{練習問題 5.45}練習問題 5.45:}
 コンパイル済みコードと評価器が同じ計算を行う際に使うスタック演算を比較することで、
 コンパイラがスタック使用の最適化をどの程度行っているかを、速度(スタック演算の総数を減らすこと)と
 空間(スタックの最大深度を減らすこと)の両面から判断できる。この最適化されたスタック使用と、
@@ -32969,8 +32969,8 @@ fingerデーモンで入力バッファがオーバーフローしたかどう�
 \begin{enumerate}[a.]
 
 \item
-\link{Exercise 5.27}では、上記の再帰階乗手続きを使って\( n! \)を計算するのに評価器が必要とする
-プッシュの数と最大スタック深度を\( n \)の関数として表すよう求めた。\link{Exercise 5.14}では、
+\link{練習問題 5.27}では、上記の再帰階乗手続きを使って\( n! \)を計算するのに評価器が必要とする
+プッシュの数と最大スタック深度を\( n \)の関数として表すよう求めた。\link{練習問題 5.14}では、
 \link{Figure 5.11}に示した特別目的階乗マシンついて、同じ測定を行うよう求めた。ここでは、コンパイルした
 \code{factorial}手続きについて同じ分析を行う。
 
@@ -32991,7 +32991,7 @@ fingerデーモンで入力バッファがオーバーフローしたかどう�
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.46}Exercise 5.46:}
+\heading{\phantomsection\label{練習問題 5.46}練習問題 5.46:}
 木の再帰による以下のフィボナッチ手続きについて、
 
 \begin{scheme}
@@ -33004,13 +33004,13 @@ fingerデーモンで入力バッファがオーバーフローしたかどう�
 
 \noindent
 これをコンパイルしたときの性能と、\link{Figure 5.12}の特別目的フィボナッチマシンを使う場合の性能とを
-比較し、\link{Exercise 5.45}のような分析を実行せよ(解釈版のパフォーマンス測定については
-\link{Exercise 5.29}参照)。フィボナッチ数の計算では、使われる時間的リソースは\( n \)に対して線形では
+比較し、\link{練習問題 5.45}のような分析を実行せよ(解釈版のパフォーマンス測定については
+\link{練習問題 5.29}参照)。フィボナッチ数の計算では、使われる時間的リソースは\( n \)に対して線形では
 ないため、スタック演算の比は\( n \)と独立な極限値には近づかない。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.47}Exercise 5.47:}
+\heading{\phantomsection\label{練習問題 5.47}練習問題 5.47:}
 この節では、解釈されるコードがコンパイル済み手続きを呼び出せるように明示制御評価器を修正する方法に
 ついて記述した。コンパイル済み手続きが、基本手続きとコンパイル済み手続きだけでなく、解釈される
 手続きも呼べるようにコンパイラを修正する方法を示せ。このためには、\code{compile\-/procedure\-/call}
@@ -33034,7 +33034,7 @@ read-eval-print-loop ~\( \dots \)~
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.48}Exercise 5.48:}
+\heading{\phantomsection\label{練習問題 5.48}練習問題 5.48:}
 この節で実装した\code{compile\-/and\-/go}インターフェイスは、一回(評価器開始時)しか呼ぶことができない
 ため、扱いにくい。明示制御評価器から次のようにしてコンパイラを呼び出すことができる
 \code{compile\-/and\-/run}という基本手続きを追加して、コンパイラ-インタプリタ間のインターフェイスを
@@ -33055,7 +33055,7 @@ read-eval-print-loop ~\( \dots \)~
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.49}Exercise 5.49:}
+\heading{\phantomsection\label{練習問題 5.49}練習問題 5.49:}
 明示制御評価器のREPLの代替手段として、REPLを行うレジスタマシンを設計せよ。つまり、マシンは
 式を読み込み、それをコンパイルし、その結果のコードをアセンブルして実行し、結果を出力するという
 ループを走らせるということになる。これは、シミュレーション構成の中では簡単に実行できる。
@@ -33063,7 +33063,7 @@ read-eval-print-loop ~\( \dots \)~
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.50}Exercise 5.50:}
+\heading{\phantomsection\label{練習問題 5.50}練習問題 5.50:}
 \link{4.1節}のメタ循環評価器をコンパイラを使ってコンパイルし、レジスタマシンシミュレータを
 使ってそのプログラムを実行せよ(一度に複数の定義をコンパイルするには、それらの定義を\code{begin}の
 中にまとめればよい)。その結果できるインタプリタは、複数レベルで解釈が行われるため、実行速度は
@@ -33071,15 +33071,15 @@ read-eval-print-loop ~\( \dots \)~
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.51}Exercise 5.51:}
+\heading{\phantomsection\label{練習問題 5.51}練習問題 5.51:}
 \link{5.4節}の明示制御評価器を翻訳することによって、C言語(または好きな低レベル言語)による
 Schemeの基本的な実装を開発せよ。このコードを動かすためには、適切なメモリ割り当てルーチンや、
 その他の実行時サポートを用意する必要があるだろう。
 \end{quote}
 
 \begin{quote}
-\heading{\phantomsection\label{Exercise 5.52}Exercise 5.52:}
-\link{Exercise 5.51}と対応するものとして、コンパイラを修正してSchemeの手続きをC言語の命令列に
+\heading{\phantomsection\label{練習問題 5.52}練習問題 5.52:}
+\link{練習問題 5.51}と対応するものとして、コンパイラを修正してSchemeの手続きをC言語の命令列に
 コンパイルするようにせよ。\link{4.1節}のメタ循環評価器をコンパイルして、C言語で書かれた
 Schemeインタプリタを生成せよ。
 \end{quote}
